@@ -30,7 +30,9 @@ function scrollAnimate () {
 function loaderScreen() {
 	$('.loader-gif').fadeOut('slow');
 }
-
+$( document ).on('click','.123', function () {
+		alert( "clicked" );
+	});
 /*main block */
 $( window ).on( "load", function() {
   console.log( "document loaded" );
