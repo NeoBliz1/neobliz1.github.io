@@ -18,6 +18,20 @@ p {
   font-family: 'Biryani', sans-serif;
   font-size: 1.8rem;
 }
+a {
+  color: rgb(77, 77, 77);
+  font-family: 'Biryani', sans-serif;
+  font-size: 1.8rem;
+  color: purple; 
+  cursor: pointer;
+  text-decoration: underline;
+}
+a:hover {
+  color: black;  
+}
+a:focus, a:active {
+  color: white;
+}
 h1 {
   font-family: 'Big Shoulders Display', cursive;
   font-size: 3rem;
@@ -71,9 +85,10 @@ h2 {
   width: 500px;
   height: 500px;
   text-align: center;
+  
 }
 .blizThumbnail {
-  background-image: url(../img/thmb.png);
+  background-image: url(../img/user-3.jpg);
   border-radius: 50%;
   width: 40%;
   height: 40%;
@@ -107,7 +122,7 @@ h2 {
   align-items: flex-start;
   justify-content: center;
 }
-.helloBlock p {
+.helloBlock > p {
   font-size: 2rem;
 }
 .helloBlock > div:nth-of-type(1) {
@@ -119,7 +134,7 @@ h2 {
   text-align: right;
 }
 
-.helloBlock div:nth-of-type(2) {
+.helloBlock > div:nth-of-type(2) {
   margin: 1rem;
   flex: 2 200px;
   text-align: left;
@@ -164,7 +179,9 @@ h2 {
     justify-self: start;
     grid-template-columns: 1fr 1fr 8fr;       
   }
-  
+  .btnResponsiveSize {
+    font-size: 10px;
+  }
 }  
 
 @media screen and (min-width: 1024px) {
@@ -220,11 +237,14 @@ h2 {
   }
   .invertIcon {
     grid-area: icon;
-  }  
+  }
+  .btnResponsiveSize {
+    font-size: 15px;
+  }
 }
 
 /* icon background */
-.bgIcon {  
+.bgIcon {    
   background-color: rgb(255, 145, 0);
   width: 30px;
   height: 30px;
@@ -232,9 +252,10 @@ h2 {
   padding-top: 7px;
   margin-top: 100%;  
   text-align: center;
-  font-size: 1.5rem;  
+  font-size: 1.5rem !important;   
   color: white;
 }
+
 /* vertical line css */
 .vertLine {
   background-color: grey;
@@ -261,29 +282,250 @@ h2 {
   opacity: 0.2;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 2;
 }
 .mySkills > div > h1 {
   text-align: center;  
 }
-.examples {  
-  display: grid;
-  grid-template-columns:  1fr 1fr 1fr 1fr;
-  grid-auto-rows: minmax(200px, auto);
-  align-items: stretch;
-  justify-items: center;
+.mySkillsContent {
+  position: relative;
+  z-index: 3;
 }
-.examples div {
+.examplesContainer {  
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;  
+  justify-content: space-around;
+  padding: 40px;
+}
+.examplesContainer > div {
+  flex: 0;    
+  /* min-width: 250px;
+    min-height: 200px; */  
   margin: 20px;
-  min-width: 200px;
   border-style: double;
-  border-color: white;  
+  border-color: white;
+  
+  /* background-color: #D5E8FF;     */  
 }
-/*
+.project_1 {
+  background-image: url(../img/NeoBliz_profile.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
 }
-.resume{
 
+/*buttons in the "My skills" area*/
+.readMoreBtn, .viewProject  {
+  box-shadow: 0px 1px 0px 0px #fff6af;
+  background:linear-gradient(to bottom, #FED761 5%, #fca314 100%);
+  background-color:#ffec64;
+  border-radius:6px;
+  border:1px solid #ffaa22;
+  display:inline-block;
+  cursor:pointer;
+  color:#333333;  
+  font-weight:bold;
+  font-family: 'Big Shoulders Display', cursive;
+  position: relative;
+  padding:3px 14px;
+  margin: 10px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #ffee66;
+  outline:none;
+  z-index: 7;
 }
-.footer{
+.readMoreBtn:hover, .viewProject:hover {
+  background:linear-gradient(to bottom, #fca314 5%, #ffec64 100%);
+  background-color:#fca314;
+}
+.readMoreBtn:active {
+  position:relative;
+  top:1px;
+}
+.viewProject {
+  float: right;
+  margin-top: 3px;
+  margin-left: 4px;
+}
+.viewProject:active {
+  bottom:0px;
+}
 
-}*/
+#fullSizeSkillBoxOverlay {  
+  height: 100vh;
+  width: 100%;
+  background-color: #000000;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  opacity: 0.5;
+  z-index: 9;
+}
+/* styles for close button */
+.outerCloseButton {
+  position: relative;
+  margin: auto;
+  width: 9px;
+  height: 9px;
+  margin-top: -12px;
+  margin-right: -13px;
+  cursor: pointer;
+  float: right;
+}
+
+.innerCloseButton  {
+  width: inherit;
+  height: inherit;
+  text-align: center;
+}
+
+label.closeButton {
+  position: absolute;
+  font-size: .4rem; 
+  line-height: 1rem;
+  text-transform: uppercase;
+  color: #fff;
+  transition: all .3s ease-in;
+  opacity: 0;
+  cursor: pointer;
+  margin: auto;
+  margin-left: -5px;
+  text-indent: 0;
+}
+
+.innerCloseButton:before, .innerCloseButton:after {
+  position: absolute;
+  content: '';
+  height: 1px;
+  width: inherit;
+  background: #FFC107;
+  left: 0;
+  transition: all .3s ease-in;
+}
+
+.innerCloseButton:before {
+  top: 40%; 
+  transform: rotate(45deg);  
+}
+
+.innerCloseButton:after {  
+  bottom: 50%;
+  transform: rotate(-45deg);  
+}
+
+.outerCloseButton:hover label {
+  opacity: 1;
+}
+
+.outerCloseButton:hover .innerCloseButton:before,
+.outerCloseButton:hover .innerCloseButton:after {
+  transform: rotate(0);
+}
+
+.outerCloseButton:hover .innerCloseButton:before {
+  top: 0;
+}
+
+.outerCloseButton:hover .innerCloseButton:after {
+  bottom: 0;
+}
+
+.paragraphMSD {
+  font-size: 0.6rem;
+  line-height: 1.5;  
+  margin: 0;  
+  text-align: justify;
+  text-indent: 6px !important;  
+  width: 90%;
+  z-index: 6;
+}
+.topParagraphMSD {
+  position: absolute;  
+  left: 10px;
+  top: 10px;  
+}
+.bottomParagraphMSD {
+  position: relative;
+  text-indent: 0px !important; 
+}
+.bottomPart {
+  position: absolute;
+  bottom: 3px;
+  left: 10px;
+}
+.canvasCodeContainer {
+  display: flex;
+  flex-flow: row;
+  min-height: 90%;
+}
+.frameShadow {  
+  -webkit-box-shadow: 10px 13px 33px 8px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 13px 33px 8px rgba(0,0,0,0.75);
+  box-shadow: 10px 13px 33px 8px rgba(0,0,0,0.75);
+  height: 410px;
+  width: 410px;
+  margin: 10px; 
+}
+#canvasHolderSmall {  
+  padding: 3px;
+  padding-left: 2px;
+  padding-top: 4.5px; 
+}
+#codeSnippet {  
+  padding: 6px;   
+}
+h2.projectHeader {
+  font-family: 'Caveat', cursive;
+  font-size: 5rem;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin: 0;
+}
+
+
+
+.smallCanvas {
+  display: inline-flex;
+  width: 800px;
+  height: 500px;
+  min-height: 500px;
+  max-height: 500px;
+}
+.snippetWrapper {
+  text-align: left;  
+  font-size: 1.4rem;
+  overflow: scroll;
+  height: 100%;
+  background-color: #272822;
+  scrollbar-color: orange #E0E0E0;
+  scrollbar-width: thin;
+}
+/* scroll bar sstyle */
+  .snippetWrapper::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+
+  .snippetWrapper::-webkit-scrollbar
+  {
+    width: 12px;
+    background-color: #F5F5F5;
+  }
+
+  .snippetWrapper::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #C3C3C3;
+  }
+.snippetWrapper > div > table > tbody > tr > td:first-child > pre {
+  color: black;
+  background-color: #E8E8E8;
+  text-align: left;
+}
+.headerContent a {
+  font-size: 1.4rem;
+}
