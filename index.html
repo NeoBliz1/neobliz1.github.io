@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="shortcut icon" href="img/favicon.jpg" type="image/x-icon" />
   </head>
   <body>
@@ -27,7 +28,7 @@
         <div class="headerContent flex_box">
           <div class="blizThumbnail"></div>
           <h1>- Ilia Grebenshchikov -</h1>
-          <p>Web/Mobile software developer</p>
+          <p>Web software developer</p>
         </div>
       </header>
 
@@ -44,8 +45,8 @@
             <p>
               I am passionate about building excellent software that improves
               the lives of those around me. I specialize in creating software
-              for clients ranging from individuals and small-businesses all the
-              way to large enterprise corporations.
+              for clients ranging from individuals and small-businesses <!-- all the
+              way to large enterprise corporations. -->
             </p>
           </div>
         </article>
@@ -55,7 +56,7 @@
           	<h1 class="scrollAnimate wicdHeader justifySelfCenter">What I can do.</h1>      
           	<div class="scrollAnimate">
           		<div class="invertIcon">
-          			<i class="fas fa-suitcase bgIcon"></i>
+          			<i class="fa fa-suitcase bgIcon"></i>
           		</div>
           		<div class="vertLine invert_vLine justifySelfRight">
           			
@@ -70,7 +71,7 @@
           	</div>
           	<div class="scrollAnimate">
           		<div class="invertIcon">
-          			<i class="fas fa-suitcase bgIcon"></i>
+          			<i class="fa fa-suitcase bgIcon"></i>
           		</div>
           		<div class="vertLine invert_vLine justifySelfLeft">
           			
@@ -85,7 +86,7 @@
           	</div>
           	<div class="scrollAnimate">
           		<div class="invertIcon">
-          			<i class="fas fa-suitcase bgIcon"></i>
+          			<i class="fa fa-suitcase bgIcon"></i>
           		</div>
           		<div class="vertLine invert_vLine justifySelfRight">
           			
@@ -97,7 +98,7 @@
           	</div>
           	<div class="scrollAnimate">
           		<div class="invertIcon">
-          			<i class="fas fa-suitcase bgIcon"></i>
+          			<i class="fa fa-suitcase bgIcon"></i>
           		</div>
           		<div class="vertLine invert_vLine justifySelfLeft">
           			
@@ -109,20 +110,47 @@
           	</div>          	
           </div>
         </article>
-
-        <article class="mySkills scrollAnimate">          
+        <article class="mySkills">          
           <div class="mySkillsOverlay"></div>
-          <div>
+          <div class="mySkillsContent">
           	<h1>My skills</h1>
-          	<div class="examples">
-	          	<div></div>
-		          <div></div>
-		          <div></div>
-		          <div></div>
-		          <div></div>
-		          <div></div>
-		          <div></div>
-		          <div></div>
+          	<div class="examplesContainer">
+	          	<div class="project_1 projectDiv">
+	          		<p class="topParagraphMSD paragraphMSD hidden">
+	          			This project started from zero and wrote on pure HTML/CSS also used the JQuery library and some plugins based on JQuery. Like JQuery waypoints, a list of all used plugins at the bottom of this page.
+	          		</p>
+	          		<div class="bottomPart">
+	          			<p class="paragraphMSD hidden">During this project, I learned JQuery deeper and revise my </p>
+	          			<a class="viewProject btnResponsiveSize hidden" id="vpb" href="file:///I:/webdev/My_profile/index.html" target="_blank">view project</a>	
+	          			<p class="bottomParagraphMSD paragraphMSD hidden">
+	          				 HTML/CSS skills. In a way of responsive design in this project, I used HTML flex structure, CSS media and fit object resize with JQuery. 
+	          			</p>
+	          		</div>	          		
+	          	</div>
+              <div class="project_3 projectDiv">
+                <p class="topParagraphMSD paragraphMSD hidden">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt voluptates natus reprehenderit soluta nihil dignissimos repudiandae, vel, quam et est a aspernatur libero praesentium cum beatae eligendi quibusdam animi harum!
+                </p>
+                <div class="bottomPart">
+                  <p class="paragraphMSD hidden">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <a class="viewProject btnResponsiveSize hidden" id="vpb" href="html/project3.html" target="_blank">view project</a> 
+                  <p class="bottomParagraphMSD paragraphMSD hidden">
+                     Tempora veniam voluptatum, eum nihil quos sit repellat id, officia totam dolorum officiis ducimus unde suscipit iure sunt tenetur pariatur eligendi aliquid.
+                  </p>
+                </div>
+              </div>
+		          <div class="project_2 projectDiv">
+		          	<p class="topParagraphMSD paragraphMSD hidden">
+		          		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt voluptates natus reprehenderit soluta nihil dignissimos repudiandae, vel, quam et est a aspernatur libero praesentium cum beatae eligendi quibusdam animi harum!
+		          	</p>
+		          	<div class="bottomPart">
+		          		<p class="paragraphMSD hidden">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+		          		<a class="viewProject btnResponsiveSize hidden" id="vpb" href="html/project2.html" target="_blank">view project</a>	
+		          		<p class="bottomParagraphMSD paragraphMSD hidden">
+		          			 Tempora veniam voluptatum, eum nihil quos sit repellat id, officia totam dolorum officiis ducimus unde suscipit iure sunt tenetur pariatur eligendi aliquid.
+		          		</p>
+		          	</div>
+		          </div>		          
 	          </div>   
           </div>                 
         </article>
@@ -140,9 +168,7 @@
     <!-- waypoints scroll detection -->
 		<script src="js/jquery.waypoints.min.js"></script>
 		<!-- modernizer script -->
-		<script src="js/modernizr-custom.js"></script>
-		<!-- fontAwesome fore several icons -->
-		<script src="https://kit.fontawesome.com/05b0af04dd.js" crossorigin="anonymous"></script>
+		<script src="js/modernizr-custom.js"></script>		
     <!-- Main -->
     <script src="js/main.js" type="text/javascript"></script>
   </body>
