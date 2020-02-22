@@ -32,7 +32,10 @@ In this version has added next updates:
   var winState = false;
   var button, btnSinglePlayer, btnDoublePlayer, btnPlus, btnMinus, btnStart, btnBoardSizePlus, btnBoardSizeMinus, btnRestart, Tile;  
   var countTime, timeCalc, timeX, timeDraw, timeCount, j1, j2, tempArr, scene1, scene2;
-let leafYellow;
+  var tiles = [];
+  var flippedTiles = [];
+  let leafYellow;
+  var delayStartFC;
 function preload() {
   leafYellow = loadImage("https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/leaf-yellow.png");
 }
@@ -55,6 +58,9 @@ function setup() {
   
   colorMode(RGB);
   
+  startConfig();  
+}
+var startConfig = function () {
   //buttons prototypes**************************************************
 
   //prototypes
@@ -256,8 +262,19 @@ function setup() {
     label: "Restart game",
     onClick: function() {
       this.color = color(255, 255, 255);
-      this.changeColor = true;
-      Program.restart();
+      this.changeColor = true;      
+      scene = 1;
+      tiles.length = 0;
+      flippedTiles.length = 0;
+      timeSec = 0;
+      timeLeft = 0;
+      winState = 0;
+      timeIsOver = 0;
+      numMatches = 0;
+      numTries = 0;
+      NUM_COLS = 5;
+      NUM_ROWS = 4;
+      startConfig();
     }            
   });        
 
@@ -315,8 +332,6 @@ function setup() {
       loadImage("https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/old-spice-man.png"),
       loadImage("https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_1.png")
     ];
-    var tiles = [];
-  
   //tiles creating******************************************************
   
     // Create the tiles
@@ -499,10 +514,9 @@ function setup() {
         array[counter] = array[ind];
         array[ind] = temp;
       }
-    };
-    var flippedTiles = [];
-    var delayStartFC = null;
-  
+    };    
+    delayStartFC = null;
+    
   scene2 = function () {
     //tiles creating at once
     while (c1<1){
@@ -540,8 +554,9 @@ function setup() {
     //buttons
     btnRestart.draw();
     btnRestart.offClick();
-    //time faceFlip
+    //time faceFlip    
     if (delayStartFC && (frameCount - delayStartFC) > 30) {
+      console.log('check');
       for (var i = 0; i < tiles.length; i++) {
         var tile = tiles[i];
         if (!tile.isMatch) {
@@ -661,7 +676,6 @@ function setup() {
   }
 }
 
-
 //mouse clicked*******************************************************
 mouseClicked = function() {
   if (scene === 1){
@@ -692,6 +706,7 @@ mouseClicked = function() {
                 numMatches++;
               }
               delayStartFC = frameCount;
+              console.log(delayStartFC+' '+frameCount);             
             }
           } 
           loop();
@@ -760,8 +775,16 @@ mouseClicked = function() {
     else if (scene === 2){
       background(255, 255, 255);
       scene2();
-    }
-    text(mouseX,mouseX,mouseY);
+    }    
   };
 
 
+var createCodeSnippet = function () {
+  var scriptText;
+  $.get('https://res.cloudinary.com/deah4rwon/raw/upload/v1582167507/js/code_project4_hszfeg.txt', function (response) {
+    scriptText = response;
+
+    $('.snippetWrapper').html(scriptText);
+  }); 
+}
+createCodeSnippet();

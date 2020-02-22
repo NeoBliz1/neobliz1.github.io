@@ -89,3 +89,13 @@ function draw() {
     }           
   }
 }
+
+var createCodeSnippet = function () {
+  var scriptText;
+  $.get('https://res.cloudinary.com/deah4rwon/raw/upload/v1581477877/js/code_project3_xurmh5.txt', function (response) {
+    scriptText = response;
+
+    $('.snippetWrapper').html(scriptText);
+  }); 
+}
+createCodeSnippet();
