@@ -39,16 +39,22 @@ var mySkillsAnimation = function () {
 	$($projectDiv).addClass('scrollAnimate hidden');
 	var windowSizeHandler = function () {
 		viewportWidth = $(window).width();
-		if (viewportWidth<1024){
+		if (viewportWidth>=1024){
+			projectDivZoomInCoeff = 1.4/viewportWidth;
+			projectDivWidthCoeff = 0.18;
+			projectDivHeightCoeff = 0.14;
+		}
+		else if (viewportWidth>=500) {			
 			projectDivZoomInCoeff = 1.8/viewportWidth;
 			projectDivWidthCoeff = 0.27;
 			projectDivHeightCoeff = 0.2;
 		}
 		else {
-			projectDivZoomInCoeff = 1.4/viewportWidth;
-			projectDivWidthCoeff = 0.18;
-			projectDivHeightCoeff = 0.14;
+			projectDivZoomInCoeff = 1.8/viewportWidth;
+			projectDivWidthCoeff = 0.37;
+			projectDivHeightCoeff = 0.29;
 		}
+
 		
 		/*console.log(viewportWidth+' '+projectDivZoomInCoeff);*/
 		var skillDivWidth = viewportWidth*projectDivWidthCoeff;
@@ -237,7 +243,7 @@ var mySkillsAnimation = function () {
 		//roll in "view project" button
 		$($cloneDiv).find('#vpb')
 		.removeClass('btnResponsiveSize')
-		.css('font-size', '10px')
+		.addClass('butInScale')
 		.rollInBtnAnimation();
 		//taking current scroll pos
 		var currentScroll = $(window).scrollTop();
