@@ -387,12 +387,18 @@ h2.projectHeader {
 .smallCanvas {
   background-color: rgb(255, 145, 0);
   position: relative;  
-  width: 100%;
-  height: 100%;
+  width: 100%;   
   min-height: min-content;
+  z-index: 0;   
+}
+.smallCanvasContainer {
+  position: relative;
+  z-index: 2;
 }
 .smallCanvas p {
-  width: 90%;   
+  max-width: 60%;
+  color: rgb(255, 255, 255);
+  text-align: center;  
 }
 .botDescription {
   margin-top: 30px;
@@ -457,6 +463,12 @@ h2.projectHeader {
     justify-self: start;
     grid-template-columns: 1fr 1fr 8fr;       
   }
+  .projectDiv {
+    min-width: 150px; 
+    min-height: 120px;
+    width: 150px; 
+    height: 120px;
+  }
   .btnResponsiveSize {
     font-size: 5px;
   }  
@@ -467,7 +479,7 @@ h2.projectHeader {
     margin: 5px;
   }
   .paragraphMSD {
-    font-size: 0.33rem;
+    font-size: 0.43rem;
     line-height: 1.5;
   }
   .butInScale {
@@ -493,20 +505,20 @@ h2.projectHeader {
     left: 3px;
   }
   label.closeButton {
-    font-size: .3rem; 
+    font-size: .4rem; 
     line-height: .7rem;
-    margin-left: -5.5px;
+    margin-left: -6.5px;
   }
   .outerCloseButton {    
-    width: 7px;
-    height: 7px;
-    margin-top: -12px;
+    width: 10px;
+    height: 15px;
+    margin-top: -16px;
     margin-right: -8px;    
   }
   .innerCloseButton:before {
-    top: 30%;
+    top: 40%;
     transform: rotate(45deg);    
-  }
+  }  
 }
 @media screen and (min-width: 500px) {
   /*grid box area for "wicd" article*/    
@@ -534,6 +546,12 @@ h2.projectHeader {
     justify-self: start;
     grid-template-columns: 1fr 1fr 8fr;       
   }
+  .projectDiv {
+    min-width: 190px; 
+    min-height: 150px;
+    width: 190px; 
+    height: 150px;
+  }
   .btnResponsiveSize {
     font-size: 5px;
   }  
@@ -544,7 +562,7 @@ h2.projectHeader {
     margin: 5px;
   }
   .paragraphMSD {
-    font-size: 0.5rem;
+    font-size: 0.51rem;
     line-height: 1.5;
   }
   .butInScale {
@@ -561,31 +579,31 @@ h2.projectHeader {
     font-size: 1rem;    
   }
   .topParagraphMSD {    
-    left: 3px;
+    left: 8px;
     top: 3px;  
   }
   .bottomPart {    
     bottom: 3px;
-    left: 3px;
+    left: 8px;
   }
   label.closeButton {
-    font-size: .5rem; 
-    line-height: 1rem;
-    margin-left: -7.5px;
+    font-size: .35rem; 
+    line-height: 0.8rem;
+    margin-left: -8.5px;
   }
   .outerCloseButton {    
-    width: 15px;
-    height: 20px;
-    margin-top: -15px;
-    margin-right: -20px;    
+    width: 10px;
+    height: 15px;
+    margin-top: -10px;
+    margin-right: -14px;    
   }
   .innerCloseButton:before {
-    top: 45%;  
+    top: 40%;  
     transform: rotate(45deg);  
   }
 }  
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 860px) {
   /*grid box area for "wicd" article*/
   .justifySelfCenter {
     justify-self: center;
@@ -608,7 +626,7 @@ h2.projectHeader {
     grid-auto-rows: auto;
   }
   .wicdCont > div:nth-of-type(odd) {
-    margin-left: 1px;    
+    margin-left: 2px;    
     width: 50%;
     align-self: start;
     justify-self: start;
@@ -639,6 +657,12 @@ h2.projectHeader {
   .invertIcon {
     grid-area: icon;
   }
+  .projectDiv {
+    min-width: 320px; 
+    min-height: 250px;
+    width: 320px; 
+    height: 250px;
+  }
   .btnResponsiveSize {
     font-size: 5px;
   }  
@@ -649,7 +673,7 @@ h2.projectHeader {
     margin: 5px;
   }
   .paragraphMSD {
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 1.5;
   }
   .butInScale {
@@ -687,5 +711,8 @@ h2.projectHeader {
   .innerCloseButton:before {
     top: 45%;  
     transform: rotate(45deg);  
+  }
+  .smallCanvas {    
+    height: 100%;
   }
 }
