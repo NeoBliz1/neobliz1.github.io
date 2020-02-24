@@ -37,7 +37,7 @@ var mySkillsAnimation = function () {
 	var durationTime = 500;
 	var viewportWidth, projectDivZoomInCoeff, projectDivWidthCoeff, projectDivHeightCoeff;
 	$($projectDiv).addClass('scrollAnimate hidden');
-	var windowSizeHandler = function () {
+	var windowSizeHandler = function () { //function handle which window is on resize
 		viewportWidth = $(window).width();
 		if (viewportWidth>=1024){
 			projectDivZoomInCoeff = 1.4/viewportWidth;
@@ -54,18 +54,7 @@ var mySkillsAnimation = function () {
 			projectDivWidthCoeff = 0.37;
 			projectDivHeightCoeff = 0.29;
 		}
-
 		
-		/*console.log(viewportWidth+' '+projectDivZoomInCoeff);*/
-		var skillDivWidth = viewportWidth*projectDivWidthCoeff;
-		var skillDivHeight = viewportWidth*projectDivHeightCoeff;
-		/*console.log(skillDivWidth+' '+skillDivHeight);*/
-		$projectDiv.css({
-			'min-width':skillDivWidth+'px', 
-			'min-height': skillDivHeight+'px',
-			'width':skillDivWidth+'px', 
-			'height': skillDivHeight+'px'
-		});
 		if ( $('#cloneDiv').length ) {			
 			$('#cloneDiv').center()
 			.scaleDivMax();
