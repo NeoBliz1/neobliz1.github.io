@@ -24,14 +24,14 @@
   </head>
   <body>
   	<div class="loader-gif"></div>
-    <div class="smallCanvas flex_box">
+    <div class="smallCanvas flex_box" >
       <div class="header_overlay"></div>
-      <div class="smallCanvasContainer flex_box">
+      <div class="smallCanvasContainer flex_box dynamicallyResize" data="0.8">
           <h2 class="projectHeader">Graphics with p5.js</h2>
             <p>
                 This is my mini-game which was created with based on the processing.js library. &nbsp <a href="https://www.khanacademy.org/computer-programming/spin-off-of-project-memory/4588960547110912" target="_blank"> Link</a> to my original project on Khan Academy.
               </p>
-              <div class="canvasCodeContainer">
+              <div class="canvasCodeContainer" >
                 <div id="canvasHolderSmall" class="frameShadow">
 
                 </div>
@@ -57,8 +57,10 @@ tagname { width:100%; }
     <!-- modernizer script -->
 		<script src="../js/modernizr-custom.js"></script>		
     <!-- Main -->
-    <script src="../js/projectPage.js" type="text/javascript"></script>
+    <script src="../js/projectPage.js" type="text/javascript"></script>    
+    <!-- scale script -->
+    <script src="../js/windowResizeHandler.js"></script>
     <!-- project_JS -->
-    <script src="../js/projects/project4.js"></script>    
+    <script src="../js/projects/project4.js"></script>
   </body>
 </html>
