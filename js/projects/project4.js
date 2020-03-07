@@ -1,3 +1,5 @@
+
+
 /*This program based on the project: Memory Game
 In this version has added next updates:
  - was add a changes tile background color when mouse is hovered on the tile - done
@@ -92,10 +94,10 @@ var startConfig = function () {
   };
 
   button.prototype.isMouseInside = function() {
-    return mouseX > this.x &&
-    mouseX < (this.x + this.width) &&
-    mouseY > this.y &&
-    mouseY < (this.y + this.width+this.height);
+    return mouseX/divTargetCoeff > this.x &&
+    mouseX/divTargetCoeff < (this.x + this.width) &&
+    mouseY/divTargetCoeff > this.y &&
+    mouseY/divTargetCoeff < (this.y + this.width+this.height);
   };
 
   button.prototype.handleMouseClick = function() {
@@ -477,7 +479,6 @@ var startConfig = function () {
     text(NUM_ROWS + " " + NUM_COLS,15,45);
   
   //functions
-  
     timeCalc();
     timeDraw();
     btnPlus.draw();
@@ -572,7 +573,7 @@ var startConfig = function () {
     //changes color when mouse is hovered
     for (var i = 0; i < tiles.length; i++) {
       var tile = tiles[i];
-      if (tile.isUnderMouse(mouseX, mouseY)) {
+      if (tile.isUnderMouse(mouseX/divTargetCoeff, mouseY/divTargetCoeff)) {
         tile.color = color (222, 222, 4);
       }
       else {
@@ -693,7 +694,7 @@ mouseClicked = function() {
     if (numPlayers === 1){
       for (var i = 0; i < tiles.length; i++) {
         var tile = tiles[i];
-        if (tile.isUnderMouse(mouseX, mouseY)) {
+        if (tile.isUnderMouse(mouseX/divTargetCoeff, mouseY/divTargetCoeff)) {
           if (flippedTiles.length < 2 && !tile.isFaceUp) {
             tile.isFaceUp = true;
             flippedTiles.push(tile);
@@ -717,7 +718,7 @@ mouseClicked = function() {
       if (player === 1){
         for (var i = 0; i < tiles.length; i++) {
           var tile = tiles[i];
-          if (tile.isUnderMouse(mouseX, mouseY)) {
+          if (tile.isUnderMouse(mouseX/divTargetCoeff, mouseY/divTargetCoeff)) {
             if (flippedTiles.length < 2 && !tile.isFaceUp) {
               tile.isFaceUp = true;
               flippedTiles.push(tile);
@@ -740,7 +741,7 @@ mouseClicked = function() {
       else if (player === 2){
         for (var i = 0; i < tiles.length; i++) {
           var tile = tiles[i];
-          if (tile.isUnderMouse(mouseX, mouseY)) {
+          if (tile.isUnderMouse(mouseX/divTargetCoeff, mouseY/divTargetCoeff)) {
             if (flippedTiles.length < 2 && !tile.isFaceUp) {
               tile.isFaceUp = true;
               flippedTiles.push(tile);
@@ -768,7 +769,7 @@ mouseClicked = function() {
   //mouse coordinates set null
   mouseX=null;
   mouseY=null;
-  function draw() {
+  function draw() {    
     if (scene === 1){
       scene1();                
     }
@@ -778,12 +779,11 @@ mouseClicked = function() {
     }    
   };
 
-
+// create code snippet with jquery
 var createCodeSnippet = function () {
   var scriptText;
   $.get('https://res.cloudinary.com/deah4rwon/raw/upload/v1582167507/js/code_project4_hszfeg.txt', function (response) {
     scriptText = response;
-
     $('.snippetWrapper').html(scriptText);
   }); 
 }
