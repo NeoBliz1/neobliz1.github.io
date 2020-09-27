@@ -41,7 +41,7 @@ h2 {
   font-family: 'Biryani', sans-serif;
 }
 .blizThumbnail {
-  background-image: url(../img/user-3.jpg);
+  background-image: url(../img/thmb.png);
   border-radius: 50%;
   width: 40%;
   height: 40%;
@@ -80,13 +80,47 @@ h2 {
 .header_overlay {
   background-attachment: fixed;
   position: absolute;
-  background-image: url(../img/cover_bg_3.jpg);
+  background-image: url(../img/cover_bg_3.svg);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
   opacity: 0.2;
   width: 100%;
   height: 100%;
   z-index: 1;
+}
+.links_to_acc {
+  z-index: 2;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.logo_prop {
+  margin:3px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background-position: 60% 60%;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  transition-duration: 1s;
+}
+.twitter_logo {
+  background-image: url(../img/icons8-twitter.svg);
+}
+
+.codecademy_logo {
+  background-image: url(../img/CCico.svg);  
+}
+.kacademy_logo {
+  background-image: url(../img/Kacademy_logo.svg);
+}
+.github_logo {
+  background-image: url(../img/GitHub-Mark-120px-plus.svg);
+}
+.twitter_logo:hover, .codecademy_logo:hover, 
+.kacademy_logo:hover, .github_logo:hover {
+  background-color: #fff;
+  transition-duration: 1s;
 }
 .headerContent {
   z-index: 2;
