@@ -94,7 +94,7 @@ h2 {
   top: 10px;
   right: 10px;
 }
-.logo_prop {
+.logo_prop, .go_home {
   margin:3px;
   border-radius: 50%;
   width: 60px;
@@ -103,6 +103,9 @@ h2 {
   background-repeat: no-repeat;
   background-size: 80%;
   transition-duration: 1s;
+}
+.go_home {
+  background-image: url(../img/home-icon-transparent-background-17.svg);
 }
 .twitter_logo {
   background-image: url(../img/icons8-twitter.svg);
@@ -118,10 +121,11 @@ h2 {
   background-image: url(../img/GitHub-Mark-120px-plus.svg);
 }
 .twitter_logo:hover, .codecademy_logo:hover, 
-.kacademy_logo:hover, .github_logo:hover {
+.kacademy_logo:hover, .github_logo:hover, .go_home:hover {
   background-color: #fff;
   transition-duration: 1s;
 }
+
 .headerContent {
   z-index: 2;
   position: relative;
@@ -263,6 +267,48 @@ h2 {
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
 }
+.project_2 {
+  background-image: url(../img/project2.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-position: 150% 100%;
+}
+.project_2 .viewProject {
+  left: 193px;
+  bottom: -12px;
+}
+.project_2:active .viewProject {
+  bottom: -15px;
+}
+.project_3 {
+  background-image: url(../img/project3.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+.project_4 {
+  background-image: url(../img/project4.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: 130% 100%;
+  background-size: 140% 100%;
+  background-position: 50% 0%;  
+}
+
+
+.project_5 {
+  background-image: url(../img/NeoBliz_profile.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+.project_6 {
+  background-image: url(../img/NeoBliz_profile.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+
 
 /*buttons in the "My skills" area*/
 .readMoreBtn, .viewProject  {
@@ -275,7 +321,7 @@ h2 {
   color:#333333;  
   font-weight:bold;
   font-family: 'Big Shoulders Display', cursive;
-  position: relative;  
+  position: relative;
   text-decoration:none;
   text-shadow:0px 1px 0px #ffee66;
   outline:none;
@@ -293,9 +339,16 @@ h2 {
   float: right;
   margin-top: 3px;
   margin-left: 4px;
+  left: 190px;
+  bottom: 15px;
 }
 .viewProject:active {
-  bottom:0px;
+  bottom:10px;
+}
+
+.project_1 .viewProject {
+  left: 0;
+  bottom: 0;
 }
 
 #fullSizeSkillBoxOverlay {  
@@ -320,6 +373,7 @@ h2 {
   width: inherit;
   height: inherit;
   text-align: center;
+  text-indent: 0;
 }
 
 label.closeButton {
@@ -586,8 +640,15 @@ h2.projectHeader {
     width: 190px; 
     height: 150px;
   }
+  .viewProject {
+    left: 117px;
+    bottom: 9px;
+  }
+  .viewProject:active {
+    bottom:5px;
+  }
   .btnResponsiveSize {
-    font-size: 5px;
+    font-size: 8px;
   }  
   .headerContent > h1 {
     font-size: 3.5rem;
@@ -621,15 +682,15 @@ h2.projectHeader {
     left: 8px;
   }
   label.closeButton {
-    font-size: .35rem; 
-    line-height: 0.8rem;
-    margin-left: -8.5px;
+    font-size: 0.25rem;
+    line-height: 0.7rem;
+    margin-left: -3.5px;
   }
   .outerCloseButton {    
     width: 10px;
-    height: 15px;
-    margin-top: -10px;
-    margin-right: -14px;    
+    height: 10px;
+    margin-top: -14px;
+    margin-right: -12px;   
   }
   .innerCloseButton:before {
     top: 40%;  
@@ -697,6 +758,13 @@ h2.projectHeader {
     width: 320px; 
     height: 250px;
   }
+  .viewProject {
+    left: 180px;
+    bottom: 16px;
+  }
+  .viewProject:active {
+    bottom:14px;
+  }
   .btnResponsiveSize {
     font-size: 5px;
   }  
@@ -711,7 +779,7 @@ h2.projectHeader {
     line-height: 1.5;
   }
   .butInScale {
-    font-size: 1.8rem !important;   
+    font-size: 1.4rem !important;   
   }
   .readMoreBtn, .viewProject  { 
     border-radius: 18px; 
