@@ -7,8 +7,6 @@
     <meta name="keywords" content="HTML,CSS,XML,JavaScript" />
     <meta name="author" content="NeoBliz" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <title>NeoBliz profile</title>
     <link
       href="https://fonts.googleapis.com/css?family=Big+Shoulders+Display:500|Biryani|Caveat&display=swap"
@@ -19,12 +17,10 @@
     <link rel="stylesheet" href="../css/animate.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="shortcut icon" href="../img/favicon.jpg" type="image/x-icon" />
-    <!-- p5.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js"></script> 
   </head>
   <body>
   	<div class="loader-gif"></div>
-      <div class="smallCanvas">
+      <div class="smallCanvas flex_box">
         <div class="header_overlay"></div>
         <div class="smallCanvasContainer flex_box">        
             <h2 class="projectHeader">Graphics with p5.js</h2>
@@ -55,7 +51,20 @@ tagname { width:100%; }
     </div>               
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- fallback script -->
+    <!-- p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js"></script>
+    <script type="text/javascript">
+      if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='../js/p5.min.js' type='text/javascript'%3E%3C/script%3E"));
+      }
+    </script> 
+    <script type="text/javascript">
+      if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='../js/jquery-3.5.1.min.js' type='text/javascript'%3E%3C/script%3E"));        
+      }
+    </script>  
     <!-- modernizer script -->
 		<script src="../js/modernizr-custom.js"></script>		
     <!-- Main -->
