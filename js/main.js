@@ -45,12 +45,12 @@ var mySkillsAnimation = function () {
 			projectDivHeightCoeff = 0.14;
 		}
 		else if (viewportWidth>=500) {			
-			projectDivZoomInCoeff = 1.8/viewportWidth;
+			projectDivZoomInCoeff = 1.4/viewportWidth;
 			projectDivWidthCoeff = 0.27;
 			projectDivHeightCoeff = 0.2;
 		}
 		else {
-			projectDivZoomInCoeff = 1.8/viewportWidth;
+			projectDivZoomInCoeff = 1.4/viewportWidth;
 			projectDivWidthCoeff = 0.37;
 			projectDivHeightCoeff = 0.29;
 		}
@@ -293,7 +293,7 @@ var mySkillsAnimation = function () {
 		$projectDiv.hover(function() {
 			/* Stuff to do when the mouse enters the element */
 			var thisIs = this;					
-			zoomInAnimation(thisIs);		
+			zoomInAnimation(thisIs);			
 		}, function() {		
 			/* Stuff to do when the mouse leaves the element */
 			var thisIs = this;
