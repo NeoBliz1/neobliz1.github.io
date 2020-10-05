@@ -1,0 +1,182 @@
+<!-- HTML generated using hilite.me --><div style="width:auto;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">j</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">c</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">l</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">50</span><span style="color: #f8f8f2">;</span><span style="color: #75715e">//number of start drops</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">xPositions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">];</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">yPositions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">];</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">xPositionsRock</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">];</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">yPositionsRock</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #f92672">-</span><span style="color: #ae81ff">203</span><span style="color: #f8f8f2">];</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dropsObjArray</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">img</span><span style="color: #f8f8f2">;</span> <span style="color: #75715e">// Declare variable &#39;img&#39;.</span>
+
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">setup</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>   
+  <span style="color: #75715e">// canvas size (Integers only, please.)</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">canvas</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">createCanvas</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">400</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">400</span><span style="color: #f8f8f2">);</span>
+    
+  <span style="color: #75715e">// Move the canvas so it’s inside our &lt;div id=&quot;canvas-holder&quot;&gt;.</span>
+  <span style="color: #a6e22e">canvas</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">parent</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;canvasHolderSmall&#39;</span><span style="color: #f8f8f2">);</span>
+    
+  <span style="color: #75715e">// smooth edges</span>
+  <span style="color: #a6e22e">smooth</span><span style="color: #f8f8f2">();</span>
+    
+  <span style="color: #75715e">// limit the number of frames per second</span>
+  <span style="color: #a6e22e">frameRate</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">60</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #75715e">//creating color array</span>
+  
+  <span style="color: #a6e22e">colorMode</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">RGB</span><span style="color: #f8f8f2">);</span>
+  
+	<span style="color: #75715e">//loop is determining rain density</span>
+  <span style="color: #66d9ef">while</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">j</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">l</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #a6e22e">j</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">newDropObj</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> 
+      <span style="color: #a6e22e">xPositions</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">228</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">158</span><span style="color: #f8f8f2">),</span>   
+      <span style="color: #a6e22e">yPositions</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">800</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">),</span>
+      <span style="color: #a6e22e">color</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #a6e22e">dropsObjArray</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newDropObj</span><span style="color: #f8f8f2">);</span>  
+  <span style="color: #f8f8f2">}</span>		
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">cuteRock</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">preload</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">cuteRock</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;https://res.cloudinary.com/deah4rwon/image/upload/v1580977996/cuteRock_wfbb7c.png&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #75715e">//loop add drop or rock</span>
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">mousePressed</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">event</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">button</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">newDropObj</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> 
+      <span style="color: #a6e22e">xPositions</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">mouseX</span><span style="color: #f92672">-</span><span style="color: #ae81ff">241</span><span style="color: #f8f8f2">,</span>   
+      <span style="color: #a6e22e">yPositions</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">mouseY</span><span style="color: #f92672">-</span><span style="color: #ae81ff">161</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #a6e22e">color</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #a6e22e">dropsObjArray</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newDropObj</span><span style="color: #f8f8f2">);</span>      
+  <span style="color: #f8f8f2">}</span>
+  <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">xPositionsRock</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">mouseX</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">yPositionsRock</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">mouseY</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;clicked&#39;</span><span style="color: #f8f8f2">);</span> 
+  <span style="color: #f8f8f2">}</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">false</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>	
+	
+	<span style="color: #75715e">//loop determining drop color  </span>
+  
+  <span style="color: #a6e22e">background</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">204</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">247</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+       
+  <span style="color: #75715e">//loop rain engine</span>
+	<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dropsObjArray</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">noStroke</span><span style="color: #f8f8f2">();</span>       
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dropObj</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dropsObjArray</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">];</span> 
+    <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span><span style="color: #f8f8f2">);</span>    
+    <span style="color: #a6e22e">bezier</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">242</span><span style="color: #f92672">+</span><span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">xPositions</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">yPositions</span><span style="color: #f92672">+</span><span style="color: #ae81ff">115</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">233</span><span style="color: #f92672">+</span><span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">xPositions</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">yPositions</span><span style="color: #f92672">+</span><span style="color: #ae81ff">138</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">xPositions</span><span style="color: #f92672">+</span><span style="color: #ae81ff">250</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">yPositions</span><span style="color: #f92672">+</span><span style="color: #ae81ff">146</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">xPositions</span><span style="color: #f92672">+</span><span style="color: #ae81ff">241</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">yPositions</span><span style="color: #f92672">+</span><span style="color: #ae81ff">114</span><span style="color: #f8f8f2">);</span>                  
+    <span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">yPositions</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #75715e">//restart rain engine</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">yPositions</span><span style="color: #f92672">&gt;</span><span style="color: #ae81ff">400</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    	<span style="color: #a6e22e">dropObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">yPositions</span><span style="color: #f92672">=</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">130</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>           
+  <span style="color: #f8f8f2">}</span>
+  <span style="color: #75715e">//loop rain of rock engine</span>
+  <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">q</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">q</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">xPositionsRock</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">q</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  	<span style="color: #75715e">//shape of drops</span>
+    <span style="color: #a6e22e">image</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cuteRock</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">xPositionsRock</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">q</span><span style="color: #f8f8f2">],</span> <span style="color: #a6e22e">yPositionsRock</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">q</span><span style="color: #f8f8f2">],</span> <span style="color: #ae81ff">15</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">30</span><span style="color: #f8f8f2">);</span> 
+    <span style="color: #a6e22e">yPositionsRock</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">q</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">+=</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #75715e">//restart rain engine</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">yPositionsRock</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">q</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">&gt;</span><span style="color: #ae81ff">400</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">yPositionsRock</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">q</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">130</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>           
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></td></tr></table></div>

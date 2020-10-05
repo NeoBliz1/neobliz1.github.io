@@ -1,0 +1,1558 @@
+<!-- HTML generated using hilite.me --><!-- HTML generated using hilite.me --><div style="width:auto;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #75715e">/*This program based on the project: Memory Game</span>
+<span style="color: #75715e">In this version has added next updates:</span>
+<span style="color: #75715e"> - was add a changes tile background color when mouse is hovered on the tile - done</span>
+<span style="color: #75715e"> - was add timer to the game - done</span>
+<span style="color: #75715e"> - was add buttons which change time left - done</span>
+<span style="color: #75715e"> - was add the possibility to chosen game mode single or multi - done</span>
+<span style="color: #75715e"> - was add the possibility to chosen board size - done</span>
+<span style="color: #75715e"> - was add tiles cascading down the screen - done</span>
+<span style="color: #75715e"> */</span>
+<span style="color: #75715e">//global variables</span>
+
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">scene</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">NUM_COLS</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">NUM_ROWS</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">timeMin</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">timeLeft</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">refreshTimeCalc</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">changeBoardSize</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">sceneOutTime</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">numPlayers</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">player</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">btnSPChangeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">btnDPChangeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">numTries</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">numMatches</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">numTries1</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">numMatches1</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">numTries2</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">numMatches2</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">timeIsOver</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">winState</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">btnSinglePlayer</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">btnDoublePlayer</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">btnPlus</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">btnMinus</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">btnStart</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">btnBoardSizePlus</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">btnBoardSizeMinus</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">btnRestart</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Tile</span><span style="color: #f8f8f2">;</span>  
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">countTime</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">timeCalc</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">timeX</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">timeDraw</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">timeCount</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">j1</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">j2</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">tempArr</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">scene1</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">scene2</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tiles</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">flippedTiles</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+  <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">leafYellow</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">delayStartFC</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">preload</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">leafYellow</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/leaf-yellow.png&quot;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+  
+
+
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">setup</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span> 
+  <span style="color: #75715e">// canvas size (Integers only, please.)</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">canvas</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">createCanvas</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">400</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">400</span><span style="color: #f8f8f2">);</span>
+    
+  <span style="color: #75715e">// Move the canvas so it’s inside our &lt;div id=&quot;canvas-holder&quot;&gt;.</span>
+  <span style="color: #a6e22e">canvas</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">parent</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;canvasHolderSmall&#39;</span><span style="color: #f8f8f2">);</span>
+    
+  <span style="color: #75715e">// smooth edges</span>
+  <span style="color: #a6e22e">smooth</span><span style="color: #f8f8f2">();</span>
+    
+  <span style="color: #75715e">// limit the number of frames per second</span>
+  <span style="color: #a6e22e">frameRate</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">60</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #75715e">//creating color array</span>
+  
+  <span style="color: #a6e22e">colorMode</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">RGB</span><span style="color: #f8f8f2">);</span>
+  
+  <span style="color: #a6e22e">startConfig</span><span style="color: #f8f8f2">();</span>  
+<span style="color: #f8f8f2">}</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">startConfig</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #75715e">//buttons prototypes**************************************************</span>
+
+  <span style="color: #75715e">//prototypes</span>
+  <span style="color: #a6e22e">button</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">config</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">height</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">height</span> <span style="color: #f92672">||</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeColor</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">||</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">113</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">179</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeWeight</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeWeight</span> <span style="color: #f92672">||</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">||</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">113</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">179</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">label</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">label</span> <span style="color: #f92672">||</span> <span style="color: #e6db74">&quot;push me&quot;</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textColor</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textColor</span> <span style="color: #f92672">||</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textSize</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textSize</span> <span style="color: #f92672">||</span> <span style="color: #ae81ff">20</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textX</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textX</span> <span style="color: #f92672">||</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textY</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textY</span> <span style="color: #f92672">||</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">onClick</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">onClick</span> <span style="color: #f92672">||</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{};</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeColor</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeColor</span> <span style="color: #f92672">||</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">count</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">count</span> <span style="color: #f92672">||</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">};</span>
+
+  <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">rect</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f92672">+</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">height</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">fill</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textColor</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">label</span><span style="color: #f8f8f2">,</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">+</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f92672">/</span><span style="color: #ae81ff">3.5</span><span style="color: #f92672">+</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textX</span><span style="color: #f8f8f2">,</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">+</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f92672">/</span><span style="color: #ae81ff">1.26</span><span style="color: #f92672">+</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textY</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">};</span>
+
+  <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isMouseInside</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">mouseX</span> <span style="color: #f92672">&gt;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span> <span style="color: #f92672">&amp;&amp;</span>
+    <span style="color: #a6e22e">mouseX</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span> <span style="color: #f92672">+</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&amp;&amp;</span>
+    <span style="color: #a6e22e">mouseY</span> <span style="color: #f92672">&gt;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span> <span style="color: #f92672">&amp;&amp;</span>
+    <span style="color: #a6e22e">mouseY</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span> <span style="color: #f92672">+</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f92672">+</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">height</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">};</span>
+
+  <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">handleMouseClick</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isMouseInside</span><span style="color: #f8f8f2">())</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">onClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>          
+  <span style="color: #f8f8f2">};</span>
+
+
+  <span style="color: #a6e22e">btnSinglePlayer</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">x</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">y</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">209</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">width</span><span style="color: #f92672">:</span><span style="color: #ae81ff">174</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">height</span><span style="color: #f92672">:-</span><span style="color: #ae81ff">141</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textSize</span><span style="color: #f92672">:</span><span style="color: #ae81ff">24</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textX</span><span style="color: #f92672">:-</span><span style="color: #ae81ff">32</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textY</span><span style="color: #f92672">:-</span><span style="color: #ae81ff">114</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">label</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;Single player&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">onClick</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">btnSPChangeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">btnDPChangeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">numPlayers</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>            
+  <span style="color: #f8f8f2">});</span>
+
+  <span style="color: #a6e22e">btnDoublePlayer</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">x</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">210</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">y</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">btnSinglePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">width</span><span style="color: #f92672">:</span><span style="color: #a6e22e">btnSinglePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">height</span><span style="color: #f92672">:</span><span style="color: #a6e22e">btnSinglePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">height</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textSize</span><span style="color: #f92672">:</span><span style="color: #a6e22e">btnSinglePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textX</span><span style="color: #f92672">:-</span><span style="color: #ae81ff">35</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textY</span><span style="color: #f92672">:</span><span style="color: #a6e22e">btnSinglePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textY</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">label</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;Double player&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">onClick</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">btnSPChangeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">btnDPChangeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">numPlayers</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>            
+  <span style="color: #f8f8f2">});</span>
+
+  <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offClick</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeColor</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">count</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">count</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">15</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">113</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">179</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">count</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #f92672">!</span><span style="color: #a6e22e">btnSPChangeColor</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">btnSinglePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">113</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">179</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #f92672">!</span><span style="color: #a6e22e">btnDPChangeColor</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">btnDoublePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">113</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">179</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">};</span>
+
+  <span style="color: #75715e">//creating buttons**************************************</span>
+  <span style="color: #a6e22e">btnPlus</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">x</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">371</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">y</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">34</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textX</span><span style="color: #f92672">:</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textY</span><span style="color: #f92672">:</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">width</span><span style="color: #f92672">:</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">label</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;+&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">onClick</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">timeSec</span><span style="color: #f92672">+=</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">timeLeft</span><span style="color: #f92672">+=</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">refreshTimeCalc</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #a6e22e">sceneOutTime</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>            
+  <span style="color: #f8f8f2">});</span>
+
+  <span style="color: #a6e22e">btnMinus</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">x</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">btnPlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">-</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">y</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">btnPlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textSize</span><span style="color: #f92672">:</span><span style="color: #ae81ff">29</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textX</span><span style="color: #f92672">:</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textY</span><span style="color: #f92672">:</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">width</span><span style="color: #f92672">:</span><span style="color: #a6e22e">btnPlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">label</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;-&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">onClick</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">timeSec</span><span style="color: #f92672">-=</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">timeLeft</span><span style="color: #f92672">-=</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">refreshTimeCalc</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>            
+  <span style="color: #f8f8f2">});</span>
+
+  <span style="color: #a6e22e">btnStart</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">x</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">110</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">y</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">258</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">width</span><span style="color: #f92672">:</span><span style="color: #ae81ff">180</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">height</span><span style="color: #f92672">:-</span><span style="color: #ae81ff">145</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textSize</span><span style="color: #f92672">:</span><span style="color: #ae81ff">29</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textX</span><span style="color: #f92672">:-</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textY</span><span style="color: #f92672">:-</span><span style="color: #ae81ff">117</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">label</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;Start game&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">onClick</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">&lt;=</span> <span style="color: #ae81ff">0</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">timeMin</span> <span style="color: #f92672">&lt;=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #a6e22e">sceneOutTime</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">sceneOutTime</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #a6e22e">scene</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>              
+    <span style="color: #f8f8f2">}</span>            
+  <span style="color: #f8f8f2">});</span>
+
+  <span style="color: #a6e22e">btnBoardSizePlus</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">x</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">91</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">y</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">btnPlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">width</span><span style="color: #f92672">:</span><span style="color: #a6e22e">btnPlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textSize</span><span style="color: #f92672">:</span><span style="color: #ae81ff">22</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textX</span><span style="color: #f92672">:-</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textY</span><span style="color: #f92672">:</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">label</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;+&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">onClick</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">NUM_COLS</span><span style="color: #f92672">!==</span><span style="color: #ae81ff">5</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">NUM_ROWS</span><span style="color: #f92672">!==</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #a6e22e">NUM_COLS</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #a6e22e">NUM_ROWS</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>            
+  <span style="color: #f8f8f2">});</span>
+
+  <span style="color: #a6e22e">btnBoardSizeMinus</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">x</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">btnBoardSizePlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">-</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">y</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">btnPlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">width</span><span style="color: #f92672">:</span><span style="color: #a6e22e">btnPlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textSize</span><span style="color: #f92672">:</span><span style="color: #a6e22e">btnBoardSizePlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textX</span><span style="color: #f92672">:</span><span style="color: #a6e22e">btnBoardSizePlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textX</span><span style="color: #f92672">+</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textY</span><span style="color: #f92672">:</span><span style="color: #a6e22e">btnBoardSizePlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textY</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">label</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;-&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">onClick</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">NUM_COLS</span><span style="color: #f92672">!==</span><span style="color: #ae81ff">2</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">NUM_ROWS</span><span style="color: #f92672">!==</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #a6e22e">NUM_COLS</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #a6e22e">NUM_ROWS</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span> 
+    <span style="color: #f8f8f2">}</span>            
+  <span style="color: #f8f8f2">});</span>
+
+  <span style="color: #a6e22e">btnRestart</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">button</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">x</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">139</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">y</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">357</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">width</span><span style="color: #f92672">:</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">height</span><span style="color: #f92672">:-</span><span style="color: #ae81ff">89</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textSize</span><span style="color: #f92672">:</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textX</span><span style="color: #f92672">:-</span><span style="color: #ae81ff">17</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">textY</span><span style="color: #f92672">:-</span><span style="color: #ae81ff">75</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">label</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;Restart game&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">onClick</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>      
+      <span style="color: #a6e22e">scene</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">timeLeft</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">winState</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">timeIsOver</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">numMatches</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">numTries</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">NUM_COLS</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">NUM_ROWS</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">startConfig</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>            
+  <span style="color: #f8f8f2">});</span>        
+
+  <span style="color: #75715e">//tiles prototypes****************************************************</span>
+  
+    <span style="color: #a6e22e">Tile</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">y</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">face</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">x</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">y</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">70</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">face</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">face</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isFaceUp</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isMatch</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">232</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">245</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">157</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">countY</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">randomTileFallY</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">random</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">randomTileFallX</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">random</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">};</span>
+
+    <span style="color: #a6e22e">Tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">rect</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isFaceUp</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">image</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">face</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">image</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">leafYellow</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">winState</span> <span style="color: #f92672">||</span> <span style="color: #a6e22e">timeIsOver</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">countY</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">200</span><span style="color: #f8f8f2">){</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">countY</span><span style="color: #f92672">+=</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">randomTileFallY</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">+=</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">randomTileFallY</span><span style="color: #f8f8f2">;</span> 
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">+=</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">randomTileFallX</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #f8f8f2">}</span>
+        <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">30</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">-=</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">randomTileFallY</span><span style="color: #f8f8f2">;</span> 
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">+=</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">randomTileFallX</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #f8f8f2">}</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">};</span>
+
+    <span style="color: #a6e22e">Tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isUnderMouse</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">y</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">x</span> <span style="color: #f92672">&gt;=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">x</span> <span style="color: #f92672">&lt;=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span> <span style="color: #f92672">+</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span>  <span style="color: #f92672">&amp;&amp;</span>
+      <span style="color: #a6e22e">y</span> <span style="color: #f92672">&gt;=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">y</span> <span style="color: #f92672">&lt;=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span> <span style="color: #f92672">+</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">};</span>
+    <span style="color: #75715e">// Declare an array of all possible faces</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">faces</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
+      <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/leafers-seed.png&quot;</span><span style="color: #f8f8f2">),</span>
+      <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/leafers-seedling.png&quot;</span><span style="color: #f8f8f2">),</span>
+      <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/leafers-sapling.png&quot;</span><span style="color: #f8f8f2">),</span>
+      <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/leafers-tree.png&quot;</span><span style="color: #f8f8f2">),</span>
+      <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/leafers-ultimate.png&quot;</span><span style="color: #f8f8f2">),</span>
+      <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/marcimus.png&quot;</span><span style="color: #f8f8f2">),</span>
+      <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/mr-pants.png&quot;</span><span style="color: #f8f8f2">),</span>
+      <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/mr-pink.png&quot;</span><span style="color: #f8f8f2">),</span>
+      <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/old-spice-man.png&quot;</span><span style="color: #f8f8f2">),</span>
+      <span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_1.png&quot;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">];</span>
+  <span style="color: #75715e">//tiles creating******************************************************</span>
+  
+    <span style="color: #75715e">// Create the tiles</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">NUM_COLS</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">j</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">NUM_ROWS</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tileX</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">78</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tileY</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">j</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">78</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">40</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Tile</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">tileX</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">tileY</span><span style="color: #f8f8f2">));</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>       
+  
+
+  <span style="color: #75715e">//time part***********************************************************</span>
+         
+    <span style="color: #a6e22e">countTime</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #a6e22e">timeCalc</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(){</span>
+      <span style="color: #66d9ef">while</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">refreshTimeCalc</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+       <span style="color: #a6e22e">refreshTimeCalc</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+       <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">50</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">timeMin</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">-=</span> <span style="color: #ae81ff">60</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeMin</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">0</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #a6e22e">timeMin</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">+=</span> <span style="color: #ae81ff">60</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #a6e22e">timeLeft</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">};</span>
+
+  <span style="color: #a6e22e">timeX</span><span style="color: #f92672">=</span><span style="color: #ae81ff">344</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">timeDraw</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(){</span>
+    <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">14</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">text</span> <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Time left:&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">timeX</span><span style="color: #f92672">+-</span><span style="color: #ae81ff">63</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">21</span><span style="color: #f8f8f2">);</span>               
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeMin</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;0&quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">timeMin</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot; : 0&quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">timeSec</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">timeX</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">21</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;0&quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">timeMin</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot; : &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">timeSec</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">timeX</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">21</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeMin</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot; : 0&quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">timeSec</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">timeX</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">21</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeMin</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot; : &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">timeSec</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">timeX</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">21</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">};</span>
+  <span style="color: #a6e22e">timeCount</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeLeft</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">countTime</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">countTime</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">60</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #a6e22e">timeSec</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #a6e22e">timeLeft</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeSec</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #a6e22e">timeMin</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #a6e22e">timeSec</span><span style="color: #f92672">=</span><span style="color: #ae81ff">59</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #f8f8f2">}</span>
+        <span style="color: #a6e22e">countTime</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeLeft</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">timeIsOver</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">};</span>
+
+  <span style="color: #75715e">//scenes**************************************************************</span>
+
+  <span style="color: #75715e">//sene1 - introduction</span>
+  <span style="color: #a6e22e">j1</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">j2</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">tempArr</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">scene1</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(){</span>
+    <span style="color: #a6e22e">background</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #75715e">//change board size</span>
+    <span style="color: #75715e">//draw array</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f92672">-</span><span style="color: #a6e22e">j2</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #75715e">//copy_array_at_programm_start</span>
+    <span style="color: #66d9ef">while</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">j1</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">j1</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">tempArr</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">NUM_COLS</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">5</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">NUM_ROWS</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">tiles</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">tempArr</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">j2</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">NUM_COLS</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">4</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">NUM_ROWS</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">tiles</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">tempArr</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">j2</span><span style="color: #f92672">=</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">9</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">13</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">NUM_COLS</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">3</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">NUM_ROWS</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">tiles</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">tempArr</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">j2</span><span style="color: #f92672">=</span><span style="color: #ae81ff">8</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">9</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">13</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">NUM_COLS</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">2</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">NUM_ROWS</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">tiles</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">tempArr</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">j2</span><span style="color: #f92672">=</span><span style="color: #ae81ff">12</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">7</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">sceneOutTime</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">rect</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">390</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">73</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">25</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;The time value is zero&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">74</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">147</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;please increase the playing time&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">179</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #75715e">//topText</span>
+  
+    <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">rect</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">390</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">59</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">14</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Change the playing time&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">183</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">49</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Change the board size&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">22</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">NUM_ROWS</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot; &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">NUM_COLS</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">45</span><span style="color: #f8f8f2">);</span>
+  
+  <span style="color: #75715e">//functions</span>
+  
+    <span style="color: #a6e22e">timeCalc</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">timeDraw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnPlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnMinus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnStart</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnBoardSizePlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnBoardSizeMinus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnSinglePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnDoublePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnPlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnMinus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnStart</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnBoardSizePlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnBoardSizeMinus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnSinglePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnDoublePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offClick</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #f8f8f2">}</span>
+  
+  
+  <span style="color: #75715e">//scene2 - game</span>
+  <span style="color: #75715e">//defining tiles loop variables</span>
+  
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">c1</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">possibleFaces</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">faces</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">selected</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+    <span style="color: #75715e">// Now shuffle the elements of that array</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">shuffleArray</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">array</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">counter</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">array</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #75715e">// While there are elements in the array</span>
+      <span style="color: #66d9ef">while</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">counter</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">ind</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Math.</span><span style="color: #a6e22e">floor</span><span style="color: #f8f8f2">(Math.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">*</span> <span style="color: #a6e22e">counter</span><span style="color: #f8f8f2">);</span><span style="color: #75715e">// Pick a random index</span>
+        <span style="color: #a6e22e">counter</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">;</span><span style="color: #75715e">// Decrease counter by 1</span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">temp</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">array</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">counter</span><span style="color: #f8f8f2">];</span><span style="color: #75715e">// And swap the last element with it</span>
+        <span style="color: #a6e22e">array</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">counter</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">array</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">ind</span><span style="color: #f8f8f2">];</span>
+        <span style="color: #a6e22e">array</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">ind</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">temp</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">};</span>    
+    <span style="color: #a6e22e">delayStartFC</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">null</span><span style="color: #f8f8f2">;</span>
+    
+  <span style="color: #a6e22e">scene2</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #75715e">//tiles creating at once</span>
+    <span style="color: #66d9ef">while</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">c1</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">c1</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #75715e">//tiles creating</span>
+      
+        <span style="color: #75715e">// Make an array which has 2 of each, then randomize it</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">NUM_COLS</span> <span style="color: #f92672">*</span> <span style="color: #a6e22e">NUM_ROWS</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #75715e">// Randomly pick one from the array of remaining faces</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">randomInd</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">floor</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">possibleFaces</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">));</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">face</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">possibleFaces</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">randomInd</span><span style="color: #f8f8f2">];</span>
+          <span style="color: #75715e">// Push twice onto array</span>
+          <span style="color: #a6e22e">selected</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">face</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">selected</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">face</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">// Remove from array</span>
+          <span style="color: #a6e22e">possibleFaces</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">randomInd</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">}</span>
+        <span style="color: #a6e22e">shuffleArray</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">selected</span><span style="color: #f8f8f2">);</span> 
+        <span style="color: #75715e">// Create the tiles</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">q</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">q</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">NUM_COLS</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">q</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">w</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">w</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">NUM_ROWS</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">w</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+            <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tileX</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">q</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">78</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>
+            <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tileY</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">w</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">78</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">40</span><span style="color: #f8f8f2">;</span>
+            <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tileFace</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">selected</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pop</span><span style="color: #f8f8f2">();</span>
+            <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Tile</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">tileX</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">tileY</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">tileFace</span><span style="color: #f8f8f2">));</span>
+          <span style="color: #f8f8f2">}</span>
+        <span style="color: #f8f8f2">}</span>    
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #75715e">//draw tiles</span>
+    
+    <span style="color: #75715e">//timer draw</span>
+    <span style="color: #a6e22e">timeCount</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">timeDraw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #75715e">//buttons</span>
+    <span style="color: #a6e22e">btnRestart</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnRestart</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #75715e">//time faceFlip    </span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">delayStartFC</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">frameCount</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">delayStartFC</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">30</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;check&#39;</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tile</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">];</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #f92672">!</span><span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isMatch</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isFaceUp</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #f8f8f2">}</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #a6e22e">flippedTiles</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+      <span style="color: #a6e22e">delayStartFC</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">null</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #75715e">//changes color when mouse is hovered</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tile</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">];</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isUnderMouse</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">mouseX</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">mouseY</span><span style="color: #f8f8f2">))</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">222</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">222</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">color</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">232</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">245</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">157</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>  
+    <span style="color: #75715e">//score text</span>
+    <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">13</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numPlayers</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player score: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numMatches</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">370</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Number of tries: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numTries</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">385</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #75715e">//text(timeIsOver+ &quot; &quot; + timeLeft,350,385);</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numMatches</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f92672">/</span><span style="color: #ae81ff">2</span> <span style="color: #f92672">||</span> <span style="color: #a6e22e">timeIsOver</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeIsOver</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+          <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">rect</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">390</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">73</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Time is over&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">40</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">150</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player score: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numMatches</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">150</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Number of tries: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numTries</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">125</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">175</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">}</span>
+        <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">rect</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">390</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">73</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;You found them all in &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numTries</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot; tries!&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">164</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">winState</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #f8f8f2">}</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numPlayers</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">18</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Turn player &quot;</span> <span style="color: #f92672">+</span>  <span style="color: #a6e22e">player</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">12</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">25</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">13</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player1 score: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numMatches1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">370</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Number of tries: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numTries1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">385</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player2 score: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numMatches2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">277</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">370</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Number of tries: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numTries2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">277</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">385</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">((</span><span style="color: #a6e22e">numMatches1</span><span style="color: #f92672">+</span><span style="color: #a6e22e">numMatches2</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f92672">/</span><span style="color: #ae81ff">2</span> <span style="color: #f92672">||</span> <span style="color: #a6e22e">timeIsOver</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeIsOver</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+          <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">rect</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">101</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">390</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">107</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Time is over&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">150</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">120</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player1 score: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numMatches1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">145</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Number of tries: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numTries1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">175</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player2 score: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numMatches2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">220</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">145</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Number of tries: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numTries2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">220</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">175</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numMatches1</span> <span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">numMatches2</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player1 are winner&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numMatches1</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">numMatches2</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player2 are winner&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numMatches1</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">numMatches2</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">numTries1</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">numTries2</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player1 are winner&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numMatches1</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">numMatches2</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">numTries1</span> <span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">numTries2</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player2 are winner&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numMatches1</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">numMatches2</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">numTries1</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">numTries2</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;The winner is friendship&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+        <span style="color: #f8f8f2">}</span>
+        <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">rect</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">101</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">390</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">107</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">textSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player1 score: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numMatches1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">145</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Number of tries: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numTries1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">175</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player2 score: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numMatches2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">220</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">145</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Number of tries: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">numTries2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">220</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">175</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numMatches1</span> <span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">numMatches2</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player1 are winner&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numMatches1</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">numMatches2</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player2 are winner&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numMatches1</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">numMatches2</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">numTries1</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">numTries2</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player1 are winner&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numMatches1</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">numMatches2</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">numTries1</span> <span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">numTries2</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Player2 are winner&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numMatches1</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">numMatches2</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">numTries1</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">numTries2</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;The winner is friendship&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #a6e22e">winState</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #f8f8f2">}</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #75715e">//mouse clicked*******************************************************</span>
+<span style="color: #a6e22e">mouseClicked</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">scene</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #a6e22e">btnPlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">handleMouseClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnMinus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">handleMouseClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnStart</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">handleMouseClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnBoardSizePlus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">handleMouseClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnBoardSizeMinus</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">handleMouseClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnSinglePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">handleMouseClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">btnDoublePlayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">handleMouseClick</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #f8f8f2">}</span>
+  <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">scene</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #a6e22e">btnRestart</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">handleMouseClick</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #75715e">//tiles clicked function</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numPlayers</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tile</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">];</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isUnderMouse</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">mouseX</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">mouseY</span><span style="color: #f8f8f2">))</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">2</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #f92672">!</span><span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isFaceUp</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+            <span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isFaceUp</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+            <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">);</span>
+            <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+              <span style="color: #a6e22e">numTries</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+              <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">face</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">face</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+                <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">isMatch</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+                <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">isMatch</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+                <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+                <span style="color: #a6e22e">numMatches</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+              <span style="color: #f8f8f2">}</span>
+              <span style="color: #a6e22e">delayStartFC</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">frameCount</span><span style="color: #f8f8f2">;</span>
+              <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">delayStartFC</span><span style="color: #f92672">+</span><span style="color: #e6db74">&#39; &#39;</span><span style="color: #f92672">+</span><span style="color: #a6e22e">frameCount</span><span style="color: #f8f8f2">);</span>             
+            <span style="color: #f8f8f2">}</span>
+          <span style="color: #f8f8f2">}</span> 
+          <span style="color: #a6e22e">loop</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #f8f8f2">}</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">numPlayers</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">player</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tile</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">];</span>
+          <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isUnderMouse</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">mouseX</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">mouseY</span><span style="color: #f8f8f2">))</span> <span style="color: #f8f8f2">{</span>
+            <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">2</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #f92672">!</span><span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isFaceUp</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+              <span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isFaceUp</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+              <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">);</span>
+              <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+                <span style="color: #a6e22e">numTries1</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">face</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">face</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+                  <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">isMatch</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">isMatch</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #a6e22e">numMatches1</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+                <span style="color: #f8f8f2">}</span>
+                <span style="color: #a6e22e">delayStartFC</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">frameCount</span><span style="color: #f8f8f2">;</span>
+                <span style="color: #a6e22e">player</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+              <span style="color: #f8f8f2">}</span>
+            <span style="color: #f8f8f2">}</span> 
+            <span style="color: #a6e22e">loop</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #f8f8f2">}</span>
+        <span style="color: #f8f8f2">}</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">player</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tile</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">tiles</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">];</span>
+          <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isUnderMouse</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">mouseX</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">mouseY</span><span style="color: #f8f8f2">))</span> <span style="color: #f8f8f2">{</span>
+            <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">2</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #f92672">!</span><span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isFaceUp</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+              <span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isFaceUp</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+              <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">tile</span><span style="color: #f8f8f2">);</span>
+              <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+                <span style="color: #a6e22e">numTries2</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">face</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">face</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+                  <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">isMatch</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">isMatch</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #a6e22e">flippedTiles</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #a6e22e">numMatches2</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+                <span style="color: #f8f8f2">}</span>
+                <span style="color: #a6e22e">delayStartFC</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">frameCount</span><span style="color: #f8f8f2">;</span>
+                <span style="color: #a6e22e">player</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">;</span>
+              <span style="color: #f8f8f2">}</span>
+            <span style="color: #f8f8f2">}</span> 
+            <span style="color: #a6e22e">loop</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #f8f8f2">}</span>
+        <span style="color: #f8f8f2">}</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>         
+<span style="color: #75715e">//****************main*program***************************************</span>
+<span style="color: #75715e">//start scenes********************************************************</span>
+  <span style="color: #75715e">//mouse coordinates set null</span>
+  <span style="color: #a6e22e">mouseX</span><span style="color: #f92672">=</span><span style="color: #66d9ef">null</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">mouseY</span><span style="color: #f92672">=</span><span style="color: #66d9ef">null</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">function</span> <span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">scene</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">scene1</span><span style="color: #f8f8f2">();</span>                
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">scene</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">background</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">scene2</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>    
+  <span style="color: #f8f8f2">};</span>
+</pre></td></tr></table></div>
