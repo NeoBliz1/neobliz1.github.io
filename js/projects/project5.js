@@ -599,8 +599,7 @@ let gameSketch = function(p) {
     return false; // prevent any default behavior
   }
   p.mouseReleased = function () {
-    soundOnce = 1;
-    return false; // prevent any default behavior
+    soundOnce = 1;    
   }
   p.draw = function() {
     if (scene === 1){
