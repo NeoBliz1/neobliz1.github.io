@@ -114,7 +114,7 @@ let gameSketch = function(p) {
     p.smooth();
       
     // limit the number of frames per second
-    p.frameRate(30);
+    p.frameRate(60);
     //creating color array
     
     p.colorMode(p.RGB);    
@@ -164,7 +164,7 @@ let gameSketch = function(p) {
         this.gems++;
         giantYah.play();
         this.worldSpeed++;        
-        if  (this.worldSpeed === 1) {
+        if  (this.worldSpeed === 2) {
           this.worldSpeed =0;
           speed += 0.1;
         }
@@ -724,6 +724,7 @@ $(document).ajaxComplete(function(){
   ajaxComplete++;  
   // console.log(ajaxComplete)
   if (ajaxComplete === 14){
+    p5.disableFriendlyErrors = true; // disables FES
     let myp5 = new p5(gameSketch);
   }  
 });
