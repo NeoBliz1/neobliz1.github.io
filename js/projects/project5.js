@@ -103,8 +103,9 @@ let gameSketch = function(p) {
     boom2 = p.loadSound(boom2Url);
     hitThud = p.loadSound(hitThudUrl);
     battleSwing = p.loadSound(battleSwingUrl);
-    // canvas size (Integers only, please.)
+    // canvas size
     var canvas = p.createCanvas(400, 400);
+    // canvas.style.width = '100%', canvas.style.height = '100%';
   
     // Move the canvas so it’s inside our <div id='canvas-holder'>.
     canvas.parent('canvasHolderSmall');
@@ -597,6 +598,10 @@ let gameSketch = function(p) {
     soundOnce = 1;
     return false; // prevent any default behavior
   }
+  p.mouseReleased = function () {
+    soundOnce = 1;
+    return false; // prevent any default behavior
+  }
   p.draw = function() {
     if (scene === 1){
       p.scene1 ();
@@ -644,7 +649,7 @@ let gameSketch = function(p) {
         scene = 3;
       }
       //move_gen_hero  
-      if (p.keyIsPressed){        
+      if (p.keyIsPressed || p.mouseIsPressed){        
         OhNoesGuy.hop();        
         while(soundOnce===1){
           battleSwing.play()
