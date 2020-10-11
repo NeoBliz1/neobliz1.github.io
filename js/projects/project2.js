@@ -78,3 +78,20 @@ function draw() {
 	//start_table-knife
 	stroke (0,0,0);
 }
+
+//check availability of the code txt version URL
+var checkTxtUrl = function () {
+  var txt_url = 'https://res.cloudinary.com/deah4rwon/raw/upload/v1601907400/js/code_project2_sfldet.txt'; 
+  $.ajax({
+    url:txt_url,
+    type:'HEAD',
+    error: function(){
+      $('.snippetWrapper').load('../../txt/code_project2.txt');
+    },
+    success: function(){
+      $('.snippetWrapper').load('https://res.cloudinary.com/deah4rwon/raw/upload/v1601907400/js/code_project2_sfldet.txt');
+    }
+  });   
+}
+
+checkTxtUrl();

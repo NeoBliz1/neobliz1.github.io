@@ -101,7 +101,7 @@ var checkImgUrl = function () {
     url:goto_url,
     type:'HEAD',
     error: function(){
-      cuteRockUrl = '../../img/cuteRock.png'
+      cuteRockUrl = '../../img/projects_Img/cuteRock.png'
       let myp5 = new p5(colorRainSketch);      
     },
     success: function(){

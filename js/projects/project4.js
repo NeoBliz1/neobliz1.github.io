@@ -18,17 +18,17 @@ var checkImgUrl = function () {
     url:goto_url,
     type:'HEAD',
     error: function(){
-      leafYellowUrl = '../../img/leaf-yellow.png'
-      leafersSeedUrl = '../../img/leafers-seed.png';
-      leafersSeedlingUrl = '../../img/leafers-seedling.png';
-      leafersSaplingUrl = '../../img/leafers-sapling.png';
-      leafersTreeUrl = '../../img/leafers-tree.png';
-      leafersUltimateUrl = '../../img/leafers-ultimate.png';
-      marcimusUrl = '../../img/marcimus.png';
-      mrPantsUrl = '../../img/mr-pants.png';
-      mrPinkUrl = '../../img/mr-pink.png';
-      oldSpiceManUrl = '../../img/old-spice-man.png';
-      robotFemaleUrl = '../../img/robot_female_1.png';
+      leafYellowUrl = '../../img/projects_Img/leaf-yellow.png';
+      leafersSeedUrl = '../../img/projects_Img/leafers-seed.png';
+      leafersSeedlingUrl = '../../img/projects_Img/leafers-seedling.png';
+      leafersSaplingUrl = '../../img/projects_Img/leafers-sapling.png';
+      leafersTreeUrl = '../../img/projects_Img/leafers-tree.png';
+      leafersUltimateUrl = '../../img/projects_Img/leafers-ultimate.png';
+      marcimusUrl = '../../img/projects_Img/marcimus.png';
+      mrPantsUrl = '../../img/projects_Img/mr-pants.png';
+      mrPinkUrl = '../../img/projects_Img/mr-pink.png';
+      oldSpiceManUrl = '../../img/projects_Img/old-spice-man.png';
+      robotFemaleUrl = '../../img/projects_Img/robot_female_1.png';
       let myp5 = new p5(gameSketch);      
     },
     success: function(){

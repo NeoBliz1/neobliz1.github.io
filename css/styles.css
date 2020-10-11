@@ -278,7 +278,7 @@ h2 {
   left: 193px;
   bottom: -12px;
 }
-.project_2:active .viewProject {
+.project_2 .viewProject:active {
   bottom: -15px;
 }
 .project_3 {
@@ -297,7 +297,7 @@ h2 {
 
 
 .project_5 {
-  background-image: url(../img/NeoBliz_profile.png);
+  background-image: url(../img/project5.png);
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
