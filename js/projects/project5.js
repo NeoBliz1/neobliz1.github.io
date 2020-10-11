@@ -677,9 +677,10 @@ let gameSketch = function(p) {
       /*changeNickBtn.draw();*/           
     }
   };
-  // p.touchStarted = function() {
-       
-  // }
+  $('#canvasHolderSmall').contextmenu(function() {
+    return false;
+  }).css('touch-action', 'manipulation');
+  
 };
 
 //check availability of the code txt version URL
