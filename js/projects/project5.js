@@ -114,7 +114,7 @@ let gameSketch = function(p) {
     p.smooth();
       
     // limit the number of frames per second
-    p.frameRate(60);
+    p.frameRate(30);
     //creating color array
     
     p.colorMode(p.RGB);    
@@ -702,7 +702,7 @@ var checkTxtUrl = function () {
       $('.snippetWrapper').load('../../txt/code_project5.txt');
     },
     success: function(){
-      $('.snippetWrapper').load('https://res.cloudinary.com/deah4rwon/raw/upload/v1602400770/js/code_project5_lw6qss.txt');
+      $('.snippetWrapper').load('https://res.cloudinary.com/deah4rwon/raw/upload/v1602429596/js/code_project5_y5z2m7.txt');
     }
   });   
 }
