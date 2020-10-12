@@ -254,7 +254,7 @@ h2 {
 .examplesContainer > div {
   flex: 0;    
   /* min-width: 250px;
-    min-height: 200px; */  
+  min-height: 200px; */  
   margin: 20px;
   border-style: double;
   border-color: white;
@@ -399,7 +399,7 @@ label.closeButton {
 }
 
 .innerCloseButton:before {   
-   
+
 }
 
 .innerCloseButton:after {  
@@ -525,7 +525,13 @@ h2.projectHeader {
 
 
 @media screen and (max-width: 480px) {
- .gridBoxWicd {
+  .blizThumbnail {
+    background-image: url(../img/responsive_Img/thmb_small.png);
+  }
+  .header_overlay {    
+    background-image: url(../img/responsive_Img/cover_bg_3_small.jpg);
+  }
+  .gridBoxWicd {
     display: grid;
     grid-template-areas: 'empt1 cont empt2';    
     grid-template-columns: 0.5fr 4fr 0.5fr;
