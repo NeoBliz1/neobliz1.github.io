@@ -139,7 +139,8 @@ var mySkillsAnimation = function () {
 		var viewportHeight = $(window).height();
 		var viewportWidth = $(window).width();
 		var divCurrentHeight = $(this).outerHeight();
-		var divCurrentWidth = $(this).outerWidth();				
+		var divCurrentWidth = $(this).outerWidth();
+		var divCurrentOffset = $(this).offset();			
 		var targetTopOffset = Math.max(0, ((viewportHeight - divCurrentHeight) / 2) + $(window).scrollTop());//defining the target position from the div top to the viewport
 		var targetLeftOffset = Math.max(0, ((viewportWidth - divCurrentWidth) / 2) + $(window).scrollLeft());//defining the target position from the div left to the viewport		
 		this.animate({
@@ -239,7 +240,7 @@ var mySkillsAnimation = function () {
 		//add overlay div
 		$('main .flex_box').append('<div id="fullSizeSkillBoxOverlay"></div>');		
 		$($cloneDiv).attr('id', 'cloneDiv')
-		.appendTo('main .flex_box') //adding clone div to the end main div
+		.appendTo('body') //adding clone div to the end main div
 		.append('<div class="outerCloseButton hidden"><div class="innerCloseButton hidden"><label class="closeButton hidden">Back</label></div></div>')//adding overlay div to the end main div
 		.css({
 			position : 'absolute',
@@ -269,7 +270,7 @@ var mySkillsAnimation = function () {
 		$(window).on('scroll.fixedCurrentView', function() {					
 			$(window).scrollTop(currentScroll);
 		});
-		$('body').css('overflow', 'hidden');//hiding scroll bar
+		// $('body').css('overflow', 'hidden');//hiding scroll bar
 		$projectDiv.off('mouseenter mouseleave');//shutdown mouse event handler from skills divs
 	}
 	//minimize fullSize div

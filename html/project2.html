@@ -7,8 +7,6 @@
     <meta name="keywords" content="HTML,CSS,XML,JavaScript" />
     <meta name="author" content="NeoBliz" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <title>NeoBliz profile</title>
     <link
       href="https://fonts.googleapis.com/css?family=Big+Shoulders+Display:500|Biryani|Caveat&display=swap"
@@ -19,30 +17,54 @@
     <link rel="stylesheet" href="../css/animate.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="shortcut icon" href="../img/favicon.jpg" type="image/x-icon" />
-    <!-- p5.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js"></script> 
   </head>
   <body>
   	<div class="loader-gif"></div>
-    <div class="smallCanvas flex_box">
-      <div class="header_overlay"></div>
-      <div class="smallCanvasContainer flex_box">        
+      <div class="smallCanvas flex_box">
+        <div class="header_overlay"></div>
+        <div class="smallCanvasContainer flex_box">        
             <h2 class="projectHeader">Graphics with p5.js</h2>
               <p>
-                This is my first sketch based on Processing.js library.
+                This is my first sketch based on the processing.js library. &nbsp <a href="https://www.khanacademy.org/computer-programming/spin-off-of-project-whats-for-dinner/5855622440353792" target="_blank"> Link</a> to original project on Khan Academy.
               </p>
-            <div id="canvasHolderSmall">
+              <div class="canvasCodeContainer">
+                <div id="canvasHolderSmall" class="frameShadow">
 
-            </div>
-            <p>
-              5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae illo nam, magnam magni laboriosam maiores, corporis optio tempora! Praesentium illo distinctio, ducimus labore hic adipisci omnis dolor illum maiores temporibus.
+                </div>
+                <div id="codeSnippet" class="frameShadow">
+                  <div class="snippetWrapper">
+                   <pre class="snippet">
+#selector { color:#000000; }
+.another-selector { font-size:20px; border:1px solid #000000; 
+  padding:20px; 
+} 
+tagname { width:100%; }
+                  </pre> 
+                  </div>                   
+                </div>
+              </div>
+            <p class="botDescription">
+              Is that simple drawing is symbol start code learning at Khan Academy.
             </p>          
-      </div>
-    </div>     
-                  
+          </div>
+      </div>     
+    </div>               
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- fallback script -->
+    <!-- p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+    <script type="text/javascript">
+      if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='../js/p5.min.js' type='text/javascript'%3E%3C/script%3E"));
+      }
+    </script> 
+    <script type="text/javascript">
+      if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='../js/jquery-3.5.1.min.js' type='text/javascript'%3E%3C/script%3E"));        
+      }
+    </script>  
     <!-- modernizer script -->
 		<script src="../js/modernizr-custom.js"></script>		
     <!-- Main -->

@@ -557,6 +557,13 @@ h2.projectHeader {
     width: 150px; 
     height: 120px;
   }
+  .viewProject {
+    left: 99px;
+    bottom: 12px;
+  }
+  .viewProject:active {
+    bottom:10px;
+  }
   .btnResponsiveSize {
     font-size: 5px;
   }  
