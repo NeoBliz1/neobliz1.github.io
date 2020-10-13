@@ -11,7 +11,7 @@ body {
 body,
 html {
   height: 100%;
-  font-size: 10px;
+  font-size: 3vw;
 }
 p {
   color: rgb(77, 77, 77);
@@ -43,8 +43,8 @@ h2 {
 .blizThumbnail {
   background-image: url(../img/thmb.png);
   border-radius: 50%;
-  width: 40%;
-  height: 40%;
+  width: 30vh;
+  height: 30vh;
   background-position: 60% 0%;
   background-repeat: no-repeat;
   background-size: 130%;
@@ -75,7 +75,7 @@ h2 {
   position: relative;
   z-index: 0;
   width: 100%;
-  height: 100vh;
+  height: 100vh;  
 }
 .header_overlay {
   background-attachment: fixed;
@@ -97,12 +97,13 @@ h2 {
 .logo_prop, .go_home {
   margin:3px;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 10vh;
+  height: 10vh;
   background-position: 60% 60%;
   background-repeat: no-repeat;
   background-size: 80%;
   transition-duration: 1s;
+  z-index: 3;
 }
 .go_home {
   background-image: url(../img/home-icon-transparent-background-17.svg);
@@ -128,23 +129,19 @@ h2 {
 
 .headerContent {
   z-index: 2;
-  position: relative;
-  width: 500px;
-  height: 500px;
-  text-align: center;
-  
+  position: relative;    
+  text-align: center;  
 }
 .headerContent a {
   font-size: 1.4rem;
 }
 
 .headerContent > p {  
-  font-size: 1.4rem;
+  font-size: 2.5vh;
   color: rgb(255, 255, 255);
 }
 .headerContent > h1 {
-  font-family: 'Caveat', cursive;
-  
+  font-family: 'Caveat', cursive;  
   color: rgb(255, 255, 255);
   text-align: center;
   -webkit-transform: rotate(5deg);
@@ -152,33 +149,35 @@ h2 {
   -o-transform: rotate(5deg);
   -ms-transform: rotate(5deg);
   transform: rotate(-5deg);
+  font-size: 5vh;
 }
 /*main block, first article styles*/
 .main {
   height: auto;
 }
 .helloBlock {
-  width: 50%;
+  width: 90vw;
   flex-flow: row;
   align-items: flex-start;
   justify-content: center;
 }
 .helloBlock > p {
-  font-size: 2rem;
+  font-size: 3vw;
 }
 .helloBlock > div:nth-of-type(1) {
-  margin: 1rem;
-  flex: 1 200px;
+  margin: 1vw;
+  flex: 1 40vw;
 }
 .helloBlock > div > h1 {
-  font-size: 3rem;
+  font-size: 7vw;
   text-align: right;
 }
 
 .helloBlock > div:nth-of-type(2) {
-  margin: 1rem;
-  flex: 2 200px;
-  text-align: left;
+  margin: 1vh;
+  flex: 2 50vw;
+  text-align: left;  
+  text-indent: 7vw;
   padding-top: 10px;
 }
 /*main part, second skills article styles*/
@@ -531,6 +530,17 @@ h2.projectHeader {
   .header_overlay {    
     background-image: url(../img/responsive_Img/cover_bg_3_small.jpg);
   }
+  .flex_box {
+    flex-flow: column nowrap;    
+  }
+  .helloBlock > div:nth-of-type(1) {
+    margin-bottom: 0px;
+  }
+  .helloBlock > div:nth-of-type(2) {
+    text-align: justify;
+    padding-top: 0px;
+    margin-top: 0px;
+  }
   .gridBoxWicd {
     display: grid;
     grid-template-areas: 'empt1 cont empt2';    
@@ -573,9 +583,6 @@ h2.projectHeader {
   .btnResponsiveSize {
     font-size: 5px;
   }  
-  .headerContent > h1 {
-    font-size: 3.5rem;
-  }
   .bgIcon {
     margin: 5px;
   }
@@ -663,9 +670,6 @@ h2.projectHeader {
   .btnResponsiveSize {
     font-size: 8px;
   }  
-  .headerContent > h1 {
-    font-size: 3.5rem;
-  }
   .bgIcon {
     margin: 5px;
   }
@@ -780,9 +784,6 @@ h2.projectHeader {
   }
   .btnResponsiveSize {
     font-size: 5px;
-  }  
-  .headerContent > h1 {
-    font-size: 3.5rem;
   }
   .bgIcon {
     margin: 5px;

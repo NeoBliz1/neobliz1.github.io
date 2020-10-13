@@ -23,13 +23,19 @@ var scrollAnimate = function () {
 	}, 
 	{	
 		//offset from window top
-	  offset: '85%'
+	  if ($(window).height() < 480) {
+	  	offset: '90%';
+	  }
+	  else {
+	  	offset: '85%';	
+	  }  
 	});
 }
 /*fadingOut loader screen*/
 var loaderScreen = function () {
 	$('.loader-gif').fadeOut('slow');
 }
+
 /*functions which handle MySkills areas divs
 and applying zommIn animation on it*/
 var mySkillsAnimation = function () {
