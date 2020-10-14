@@ -7,29 +7,36 @@ var zoomInHeader = function () {
 }
 /*use waypoint JQuery plugin for tracking scroll elements*/
 var scrollAnimate = function () {
-	$('.scrollAnimate').waypoint(function(direction) {		
-		if (direction === 'up') {			
-			//animated fadeOut elements when their are scrolling 
-			$(this.element)			
-			.removeClass('fadeInUp animated slow')
-			.addClass('fadeOutDown animated');
-		}
-		else {			
-			//animated fadIn elements when their are scrolling 
-			$(this.element)
-			.removeClass('hidden fadeOutDown animated')
-			.addClass('fadeInUp animated slow');			
-		}		
-	}, 
-	{	
-		//offset from window top
-	  if ($(window).height() < 480) {
-	  	offset: '90%';
-	  }
-	  else {
-	  	offset: '85%';	
-	  }  
-	});
+	var offsetNum=0;
+	//offset from window top
+	if ($(window).height() < 480) {
+		offsetNum = '97%';		
+	}
+	else if (($(window).height() > 2000)) {
+		offsetNum = '100%';		
+	}
+	else {
+		offsetNum = '85%';
+	};
+	console.log(offsetNum);
+	$('.scrollAnimate')
+	.waypoint(
+		function(direction) {		
+			if (direction === 'up') {			
+				//animated fadeOut elements when their are scrolling 
+				$(this.element)			
+				.removeClass('fadeInUp animated slow')
+				.addClass('fadeOutDown animated');
+			}
+			else {			
+				//animated fadIn elements when their are scrolling 
+				$(this.element)
+				.removeClass('hidden fadeOutDown animated')
+				.addClass('fadeInUp animated slow');			
+			}					
+		}, 
+		{	offset: offsetNum}
+	);
 }
 /*fadingOut loader screen*/
 var loaderScreen = function () {

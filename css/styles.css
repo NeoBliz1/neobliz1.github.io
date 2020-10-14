@@ -16,12 +16,12 @@ html {
 p {
   color: rgb(77, 77, 77);
   font-family: 'Biryani', sans-serif;
-  font-size: 1.8rem;
+  font-size: 3vh;
 }
 a {
   color: rgb(77, 77, 77);
   font-family: 'Biryani', sans-serif;
-  font-size: 1.8rem;
+  font-size: 3vh;
   color: purple; 
   cursor: pointer;
   text-decoration: underline;
@@ -34,10 +34,10 @@ a:focus, a:active {
 }
 h1 {
   font-family: 'Big Shoulders Display', cursive;
-  font-size: 3rem;
+  font-size: 5vh;
 }
 h2 {
-  font-size: 2rem;
+  font-size: 4vh;
   font-family: 'Biryani', sans-serif;
 }
 .blizThumbnail {
@@ -89,10 +89,10 @@ h2 {
   z-index: 1;
 }
 .links_to_acc {
-  z-index: 2;
+  z-index: 3;
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 10px;  
 }
 .logo_prop, .go_home {
   margin:3px;
@@ -102,8 +102,7 @@ h2 {
   background-position: 60% 60%;
   background-repeat: no-repeat;
   background-size: 80%;
-  transition-duration: 1s;
-  z-index: 3;
+  transition-duration: 1s;  
 }
 .go_home {
   background-image: url(../img/home-icon-transparent-background-17.svg);
@@ -168,8 +167,7 @@ h2 {
   margin: 1vw;
   flex: 1 40vw;
 }
-.helloBlock > div > h1 {
-  font-size: 7vw;
+.helloBlock > div > h1 {  
   text-align: right;
 }
 
@@ -198,13 +196,13 @@ h2 {
 /* icon background */
 .bgIcon {    
   background-color: rgb(255, 145, 0);
-  width: 30px;
-  height: 30px;
+  width: 5vh;
+  height: 5vh;
   border-radius: 50%;
-  padding-top: 7px;
-  margin-top: 100%;  
+  padding-top: 1vh;
+  margin-top: 3vh;  
   text-align: center;
-  font-size: 1.5rem !important;   
+  font-size: 3vh !important;   
   color: white;
 }
 
@@ -547,12 +545,11 @@ h2.projectHeader {
     grid-template-columns: 0.5fr 4fr 0.5fr;
   }
   .wicdCont {
+    width: 40vh;
     display: grid;
     grid-area: cont;    
     grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-    width: 100%;
-
+    grid-auto-rows: auto; 
   }
   .wicdCont > div:nth-of-type(odd) {
     width: 100%;
@@ -566,6 +563,9 @@ h2.projectHeader {
     align-self: start;
     justify-self: start;
     grid-template-columns: 1fr 1fr 8fr;       
+  }
+  .bgIcon {
+    margin-right: 1vh;
   }
   .projectDiv {
     min-width: 150px; 
@@ -583,9 +583,6 @@ h2.projectHeader {
   .btnResponsiveSize {
     font-size: 5px;
   }  
-  .bgIcon {
-    margin: 5px;
-  }
   .paragraphMSD {
     font-size: 0.43rem;
     line-height: 1.5;
@@ -636,6 +633,7 @@ h2.projectHeader {
     grid-template-columns: 1fr 4fr 1fr;
   }
   .wicdCont {
+    width: 100vh;
     display: grid;
     grid-area: cont;    
     grid-template-columns: 1fr;
@@ -669,10 +667,7 @@ h2.projectHeader {
   }
   .btnResponsiveSize {
     font-size: 8px;
-  }  
-  .bgIcon {
-    margin: 5px;
-  }
+  }   
   .paragraphMSD {
     font-size: 0.51rem;
     line-height: 1.5;
@@ -732,6 +727,7 @@ h2.projectHeader {
     grid-template-columns: 1fr 4fr 1fr;
   }
   .wicdCont {
+    width: 100vh;
     display: grid;
     grid-area: cont;    
     grid-template-columns: 1fr;
@@ -784,10 +780,7 @@ h2.projectHeader {
   }
   .btnResponsiveSize {
     font-size: 5px;
-  }
-  .bgIcon {
-    margin: 5px;
-  }
+  }  
   .paragraphMSD {
     font-size: 0.8rem;
     line-height: 1.5;
