@@ -46,31 +46,50 @@ var loaderScreen = function () {
 /*functions which handle MySkills areas divs
 and applying zommIn animation on it*/
 var mySkillsAnimation = function () {
-	var $projectDiv = $('.projectDiv');
+	var $projectDiv = $('.projectDiv');	
 	var durationTime = 500;
-	var viewportWidth, projectDivZoomInCoeff, projectDivWidthCoeff, projectDivHeightCoeff;
+	var viewportWidth, projectDivZoomInCoeff, projectDivWidth, vpbFontSize, vpbMarginValue;
 	$($projectDiv).addClass('scrollAnimate hidden');
 	var windowSizeHandler = function () { //function handle which window is on resize
 		viewportWidth = $(window).width();
-		if (viewportWidth>=1024){
-			projectDivZoomInCoeff = 1.4/viewportWidth;
-			projectDivWidthCoeff = 0.18;
-			projectDivHeightCoeff = 0.14;
+		if (viewportWidth>=980) {
+			projectDivZoomInCoeff = 1.3/viewportWidth;
 		}
-		else if (viewportWidth>=500) {			
+		else if (viewportWidth>=350){
 			projectDivZoomInCoeff = 1.4/viewportWidth;
-			projectDivWidthCoeff = 0.27;
-			projectDivHeightCoeff = 0.2;
-		}
+		}		
 		else {
-			projectDivZoomInCoeff = 1.4/viewportWidth;
-			projectDivWidthCoeff = 0.37;
-			projectDivHeightCoeff = 0.29;
+			projectDivZoomInCoeff = 1.2/viewportWidth;			
 		}
-		
-		if ( $('#cloneDiv').length ) {			
-			$('#cloneDiv').center()
-			.scaleDivMax();
+		//set project div size
+		projectDivWidth = Math.pow(viewportWidth*30000, 1/3);
+		var projectDivHeight = projectDivWidth*0.8;
+		$projectDiv.css({
+			'min-width': projectDivWidth,
+	    'min-height': projectDivHeight,
+	    width: projectDivWidth,
+	    height: projectDivHeight,
+	    'margin-left': 0.05*projectDivWidth,
+	    'margin-right': 0.05*projectDivWidth
+		});
+		//set font-size property for view project button in scale state
+		vpbFontSize = projectDivWidth*0.04;
+		vpbMarginValue = projectDivWidth*0.03;
+		//adding buttons to the project div in skills section		
+		$('#rmb, #vpb').css('font-size', projectDivWidth*0.06);
+		$('.paragraphMSD').css({
+			'text-indent': projectDivWidth*0.02,
+		  'font-size': projectDivWidth*0.025		  
+		});
+	
+		//handle clone div if it exist	
+		if ( $('#cloneDiv').length ) {
+			$('#cloneDiv').find('.closeButton').scaleCloseButton();
+			$('#cloneDiv').find('#vpb').css({
+				'font-size': vpbFontSize,
+				margin: vpbMarginValue
+			});			
+			$('#cloneDiv').center().scaleDivMax();
 		}
 	}	
 	
@@ -128,11 +147,7 @@ var mySkillsAnimation = function () {
   			}			 				
 			},'linear'
 		);
-	}
-	//adding buttons to the project div in skills section
-	var addButtonsToDiv = function (thisIs) {
-		$projectDiv.prepend('<button class="readMoreBtn btnResponsiveSize hidden" id="rmb" type="button">read more</button>');
-	}
+	}	
 
 	jQuery.fn.rollInBtnAnimation = function () {
 		//button animated In
@@ -233,28 +248,46 @@ var mySkillsAnimation = function () {
 		)
 		return this;
 	}
+	jQuery.fn.scaleCloseButton = function () {		
+		this.css({
+			'font-size': projectDivWidth*0.03,    	
+    	top: -22,
+    	left: projectDivWidth*0.99,
+    	'text-indent': 0  	
+		});
+		return this;
+	}
+
 	//scaling project div for more description
 	var projectDivFullSize = function (thisIs) {
 		var currentDivOffset = $(thisIs).offset();
 		//forced triggering mouse leave handler for minimizing current div
 		$(thisIs).trigger('mouseleave'); 
+
 		//cloning current div for saving current structure flex table
 		var $cloneDiv = $(thisIs).clone();
+
 		//remove "read more" button
 		$($cloneDiv).find('#rmb')
 		.remove();
+
 		//roll in "view project" button
-		$($cloneDiv).find('#vpb')
+		$($cloneDiv).find('#vpb')		
 		.removeClass('btnResponsiveSize')
-		.addClass('butInScale')
+		.css({
+			'font-size': vpbFontSize,
+			margin: vpbMarginValue
+		})	
 		.rollInBtnAnimation();
+
 		//taking current scroll pos
 		var currentScroll = $(window).scrollTop();
+
 		//add overlay div
-		$('main .flex_box').append('<div id="fullSizeSkillBoxOverlay"></div>');		
+		$('main .flex_box').append('<div id="fullSizeSkillBoxOverlay"></div>');		//adding overlay div to the end main div
 		$($cloneDiv).attr('id', 'cloneDiv')
 		.appendTo('body') //adding clone div to the end main div
-		.append('<div class="outerCloseButton hidden"><div class="innerCloseButton hidden"><label class="closeButton hidden">Back</label></div></div>')//adding overlay div to the end main div
+		.append('<p class="closeButton hidden"><i class="far fa-times-circle"></i></p>')
 		.css({
 			position : 'absolute',
 			top : currentDivOffset.top,
@@ -266,14 +299,35 @@ var mySkillsAnimation = function () {
 		})
 		.center()
 		.scaleDivMax();
+
 		//show description 
 		$($cloneDiv).find('.paragraphMSD').removeClass('hidden')
 		.hide()
 		.fadeIn(DSdurationTime);
+
+		//set close button font-size
+		$('.closeButton').scaleCloseButton();
+
 		//show close button
-		$('.outerCloseButton, .innerCloseButton, .closeButton').removeClass('hidden')
+		$('.closeButton')
+		.removeClass('hidden')
 		.hide()
-		.fadeIn(DSdurationTime);
+		.fadeIn(DSdurationTime)
+		.hover(function() {
+			$(this).find('.fa-times-circle')
+			.removeClass('far')
+			.addClass('fas')
+			.hide()
+			.fadeIn(DSdurationTime);
+		}, function() {
+			$(this).find('.fa-times-circle')
+			.removeClass('fas')
+			.addClass('far')
+			.hide()
+			.fadeIn(DSdurationTime);
+		});;
+		
+			
 		//overlay click handler
 		$('#fullSizeSkillBoxOverlay, .closeButton').click(function(event) {
 			/* Act on the event */			
@@ -315,8 +369,9 @@ var mySkillsAnimation = function () {
 		});	
 	}
 	/**************My skills animation main block*******************/
-	windowSizeHandler(); //resize MySkills divs from window size
-	addButtonsToDiv(); // adding buttons to divs
+	//add read more button to project divs
+	$projectDiv.prepend('<button class="readMoreBtn btnResponsiveSize hidden" id="rmb" type="button">read more</button>');
+	windowSizeHandler(); //resize MySkills divs from window size	
 	divHoverHandler();
 	//size MySkills divs handler
 	var resizeTimer;

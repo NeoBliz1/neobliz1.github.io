@@ -11,17 +11,17 @@ body {
 body,
 html {
   height: 100%;
-  font-size: 3vw;
+  font-size: 2.5vh;
 }
 p {
   color: rgb(77, 77, 77);
   font-family: 'Biryani', sans-serif;
-  font-size: 3vh;
+  font-size: 2.5vh;
 }
 a {
   color: rgb(77, 77, 77);
   font-family: 'Biryani', sans-serif;
-  font-size: 3vh;
+  font-size: 2.5vh;
   color: purple; 
   cursor: pointer;
   text-decoration: underline;
@@ -34,10 +34,10 @@ a:focus, a:active {
 }
 h1 {
   font-family: 'Big Shoulders Display', cursive;
-  font-size: 5vh;
+  font-size: 3.5vh;
 }
 h2 {
-  font-size: 4vh;
+  font-size: 3vh;
   font-family: 'Biryani', sans-serif;
 }
 .blizThumbnail {
@@ -97,8 +97,8 @@ h2 {
 .logo_prop, .go_home {
   margin:3px;
   border-radius: 50%;
-  width: 10vh;
-  height: 10vh;
+  width: 7vh;
+  height: 7vh;
   background-position: 60% 60%;
   background-repeat: no-repeat;
   background-size: 80%;
@@ -155,9 +155,9 @@ h2 {
   height: auto;
 }
 .helloBlock {
-  width: 90vw;
-  flex-flow: row;
-  align-items: flex-start;
+  width: 64vw;
+  flex-flow: row;  
+  align-items: center;
   justify-content: center;
 }
 .helloBlock > p {
@@ -175,18 +175,25 @@ h2 {
   margin: 1vh;
   flex: 2 50vw;
   text-align: left;  
-  text-indent: 7vw;
-  padding-top: 10px;
 }
 /*main part, second skills article styles*/
+.gridBoxWicd {
+  width: 85vw;
+}
 .wicdHeader {
   display: grid;  
   text-align: center;
   text-transform: uppercase; 
   background-color: #DFDFDF;
   border-radius: 10px;
-  width: 20rem;
+  width: inherit;
   margin: 0;
+}
+.wicdCont {
+  width: inherit;
+}
+.wicdCont > div {
+  width: inherit;
 }
 .wicdCont > div:nth-of-type(odd), .wicdCont > div:nth-of-type(even) {
   display: grid;  
@@ -308,6 +315,7 @@ h2 {
 
 
 /*buttons in the "My skills" area*/
+
 .readMoreBtn, .viewProject  {
   box-shadow: 0px 1px 0px 0px #fff6af;
   background:linear-gradient(to bottom, #FED761 5%, #fca314 100%);
@@ -347,6 +355,9 @@ h2 {
   left: 0;
   bottom: 0;
 }
+.project_1 .viewProject:active {
+  bottom: -2px;
+}
 
 #fullSizeSkillBoxOverlay {  
   height: 100vh;
@@ -359,82 +370,33 @@ h2 {
   z-index: 9;
 }
 /* styles for close button */
-.outerCloseButton {
-  position: relative;
-  margin: auto;  
-  cursor: pointer;
-  float: right;
-}
-
-.innerCloseButton  {
-  width: inherit;
-  height: inherit;
-  text-align: center;
-  text-indent: 0;
-}
-
-label.closeButton {
-  position: absolute;  
-  text-transform: uppercase;
-  color: #fff;
-  transition: all .3s ease-in;
-  opacity: 0;
-  cursor: pointer;
-  margin: auto;  
-  text-indent: 0;
-  text-align: center;
-}
-
-.innerCloseButton:before, .innerCloseButton:after {
+.closeButton {
   position: absolute;
-  content: '';
-  height: 1px;
-  width: inherit;
-  background: #FFC107;
-  left: 0;
-  transition: all .3s ease-in;
-}
-
-.innerCloseButton:before {   
-
-}
-
-.innerCloseButton:after {  
-  bottom: 50%;
-  transform: rotate(-45deg);  
-}
-
-.outerCloseButton:hover label {
+  border-radius: 50%;
+  color: #FFFFFF;  
+  font-weight: 100;  
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
   opacity: 1;
+  transition-duration: 1s; 
 }
-
-.outerCloseButton:hover .innerCloseButton:before,
-.outerCloseButton:hover .innerCloseButton:after {
-  transform: rotate(0);
-}
-
-.outerCloseButton:hover .innerCloseButton:before {
-  top: 0px;
-}
-
-.outerCloseBinnerCloseButtonutton:hover .innerCloseButton:after {
-  bottom: 0px;
-}
-
 .paragraphMSD {    
   margin: 0;  
-  text-align: justify;
-  text-indent: 6px !important;  
+  text-align: justify;   
   width: 90%;
   z-index: 6;
   color: white;
+  line-height: 1.4; 
 }
+
 .topParagraphMSD {
   position: absolute;      
 }
 .bottomParagraphMSD {
-  position: relative;
-  text-indent: 0px !important; 
+  position: relative;  
+  text-indent: 0 !important;
 }
 .bottomPart {
   position: absolute; 
@@ -520,7 +482,11 @@ h2.projectHeader {
   text-align: left;
 }
 
-
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
 @media screen and (max-width: 480px) {
   .blizThumbnail {
     background-image: url(../img/responsive_Img/thmb_small.png);
@@ -544,8 +510,7 @@ h2.projectHeader {
     grid-template-areas: 'empt1 cont empt2';    
     grid-template-columns: 0.5fr 4fr 0.5fr;
   }
-  .wicdCont {
-    width: 40vh;
+  .wicdCont {    
     display: grid;
     grid-area: cont;    
     grid-template-columns: 1fr;
@@ -579,27 +544,19 @@ h2.projectHeader {
   }
   .viewProject:active {
     bottom:10px;
-  }
-  .btnResponsiveSize {
-    font-size: 5px;
   }  
-  .paragraphMSD {
-    font-size: 0.43rem;
-    line-height: 1.5;
-  }
+ 
   .butInScale {
     font-size: 0.6rem !important;   
   }
   .readMoreBtn, .viewProject  {
     border-radius:6px;    
     padding:0px 2px 0px 0px;
-    margin: 2px;
-    font-size: 0.8rem;    
+    margin: 2px;       
   }
   .readMoreBtn {    
     padding: 0px 2px 0px 2px;
-    margin: 2px;
-    font-size: 0.8rem;    
+    margin: 2px;        
   }
   .topParagraphMSD {    
     left: 3px;
@@ -608,23 +565,14 @@ h2.projectHeader {
   .bottomPart {    
     bottom: 3px;
     left: 3px;
-  }
-  label.closeButton {
-    font-size: .4rem; 
-    line-height: .7rem;
-    margin-left: -6.5px;
-  }
-  .outerCloseButton {    
-    width: 10px;
-    height: 15px;
-    margin-top: -16px;
-    margin-right: -8px;    
-  }
-  .innerCloseButton:before {
-    top: 40%;
-    transform: rotate(45deg);    
-  }  
+  } 
+  
 }
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
 @media screen and (min-width: 500px) {
   /*grid box area for "wicd" article*/    
   .gridBoxWicd {
@@ -632,8 +580,7 @@ h2.projectHeader {
     grid-template-areas: 'empt1 cont empt2';    
     grid-template-columns: 1fr 4fr 1fr;
   }
-  .wicdCont {
-    width: 100vh;
+  .wicdCont {    
     display: grid;
     grid-area: cont;    
     grid-template-columns: 1fr;
@@ -664,26 +611,15 @@ h2.projectHeader {
   }
   .viewProject:active {
     bottom:5px;
-  }
-  .btnResponsiveSize {
-    font-size: 8px;
-  }   
-  .paragraphMSD {
-    font-size: 0.51rem;
-    line-height: 1.5;
-  }
-  .butInScale {
-    font-size: 1rem !important;   
-  }
+  }  
+  
   .readMoreBtn, .viewProject  { 
     border-radius:6px;   
     padding:0px 3px 0px 3px;
-    margin: 6px;
-    font-size: 1rem;    
+    margin: 6px;      
   }
   .readMoreBtn {    
-    padding: 0px 2px 0px 2px;    
-    font-size: 1rem;    
+    padding: 0px 2px 0px 2px;
   }
   .topParagraphMSD {    
     left: 8px;
@@ -693,23 +629,13 @@ h2.projectHeader {
     bottom: 3px;
     left: 8px;
   }
-  label.closeButton {
-    font-size: 0.25rem;
-    line-height: 0.7rem;
-    margin-left: -3.5px;
-  }
-  .outerCloseButton {    
-    width: 10px;
-    height: 10px;
-    margin-top: -14px;
-    margin-right: -12px;   
-  }
-  .innerCloseButton:before {
-    top: 40%;  
-    transform: rotate(45deg);  
-  }
-}  
 
+}  
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
 @media screen and (min-width: 860px) {
   /*grid box area for "wicd" article*/
   .justifySelfCenter {
@@ -726,8 +652,7 @@ h2.projectHeader {
     grid-template-areas: 'empt1 cont empt2';    
     grid-template-columns: 1fr 4fr 1fr;
   }
-  .wicdCont {
-    width: 100vh;
+  .wicdCont {    
     display: grid;
     grid-area: cont;    
     grid-template-columns: 1fr;
@@ -777,26 +702,14 @@ h2.projectHeader {
   }
   .viewProject:active {
     bottom:14px;
-  }
-  .btnResponsiveSize {
-    font-size: 5px;
-  }  
-  .paragraphMSD {
-    font-size: 0.8rem;
-    line-height: 1.5;
-  }
-  .butInScale {
-    font-size: 1.4rem !important;   
-  }
-  .readMoreBtn, .viewProject  { 
+  }   
+  .readMoreBtn, .viewProject  {
     border-radius: 18px; 
     padding:2px 8px 2px 8px;
-    margin: 15px;
-    font-size: 2rem;    
+    margin: 15px;       
   }
   .readMoreBtn {    
-    padding: 2px 8px 2px 8px;    
-    font-size: 2rem;    
+    padding: 2px 8px 2px 8px;       
   }
   .topParagraphMSD {    
     left: 10px;
@@ -805,21 +718,6 @@ h2.projectHeader {
   .bottomPart {    
     bottom: 0px;
     left: 10px;
-  }
-  label.closeButton {
-    font-size: .5rem; 
-    line-height: 1rem;
-    margin-left: -7.5px;
-  }
-  .outerCloseButton {    
-    width: 15px;
-    height: 20px;
-    margin-top: -15px;
-    margin-right: -20px;    
-  }
-  .innerCloseButton:before {
-    top: 45%;  
-    transform: rotate(45deg);  
   }
   .smallCanvas {    
     height: 100%;
