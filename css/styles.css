@@ -371,16 +371,20 @@ h2 {
 }
 /* styles for close button */
 .closeButton {
-  position: absolute;
-  border-radius: 50%;
+  position: absolute; 
   color: #FFFFFF;  
   font-weight: 100;  
   text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-  opacity: 1;
-  transition-duration: 1s; 
+  display: block;
+  cursor: pointer;  
+  margin: 0;
+  transition-duration: 0;
+  width: 0px;
+  height: 0px;
+}
+.fa-times-circle {
+  width: 0;
+  height: 0;
 }
 .paragraphMSD {    
   margin: 0;  

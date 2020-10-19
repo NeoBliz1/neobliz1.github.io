@@ -48,10 +48,11 @@ and applying zommIn animation on it*/
 var mySkillsAnimation = function () {
 	var $projectDiv = $('.projectDiv');	
 	var durationTime = 500;
-	var viewportWidth, projectDivZoomInCoeff, projectDivWidth, vpbFontSize, vpbMarginValue;
+	var viewportWidth, viewportHeight, projectDivZoomInCoeff, projectDivWidth, projectDivHeight, vpbFontSize, vpbMarginValue;
 	$($projectDiv).addClass('scrollAnimate hidden');
 	var windowSizeHandler = function () { //function handle which window is on resize
 		viewportWidth = $(window).width();
+		viewportHeight = $(window).height();
 		if (viewportWidth>=980) {
 			projectDivZoomInCoeff = 1.3/viewportWidth;
 		}
@@ -63,7 +64,7 @@ var mySkillsAnimation = function () {
 		}
 		//set project div size
 		projectDivWidth = Math.pow(viewportWidth*30000, 1/3);
-		var projectDivHeight = projectDivWidth*0.8;
+		projectDivHeight = projectDivWidth*0.8;
 		$projectDiv.css({
 			'min-width': projectDivWidth,
 	    'min-height': projectDivHeight,
@@ -251,9 +252,9 @@ var mySkillsAnimation = function () {
 	jQuery.fn.scaleCloseButton = function () {		
 		this.css({
 			'font-size': projectDivWidth*0.03,    	
-    	top: -22,
+    	bottom: projectDivHeight*1.02,
     	left: projectDivWidth*0.99,
-    	'text-indent': 0  	
+    	'text-indent': 0
 		});
 		return this;
 	}
@@ -316,14 +317,12 @@ var mySkillsAnimation = function () {
 		.hover(function() {
 			$(this).find('.fa-times-circle')
 			.removeClass('far')
-			.addClass('fas')
-			.hide()
+			.addClass('fas')			
 			.fadeIn(DSdurationTime);
 		}, function() {
 			$(this).find('.fa-times-circle')
 			.removeClass('fas')
-			.addClass('far')
-			.hide()
+			.addClass('far')			
 			.fadeIn(DSdurationTime);
 		});;
 		
