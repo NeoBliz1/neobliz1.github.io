@@ -18,7 +18,7 @@ var scrollAnimate = function () {
 	else {
 		offsetNum = '85%';
 	};
-	console.log(offsetNum);
+	// console.log(offsetNum);
 	$('.scrollAnimate')
 	.waypoint(
 		function(direction) {		
@@ -76,8 +76,22 @@ var mySkillsAnimation = function () {
 		//set font-size property for view project button in scale state
 		vpbFontSize = projectDivWidth*0.04;
 		vpbMarginValue = projectDivWidth*0.03;
-		//adding buttons to the project div in skills section		
+		//set buttons font-size		
 		$('#rmb, #vpb').css('font-size', projectDivWidth*0.06);
+		//set button vpb position parameters, except project_1 and 2 divs
+		$projectDiv.not('.project_1, .project_2')
+		.find('#vpb')
+		.css({
+			left: projectDivWidth*0.55,
+			bottom: projectDivHeight*0.08
+		});
+		//set button vpb position parameters in project_2 div
+		$('.project_2').find('#vpb')
+		.css({
+			left: projectDivWidth*0.55,
+			bottom: projectDivHeight*0.1
+		});
+		//set paragraph size in project divs
 		$('.paragraphMSD').css({
 			'text-indent': projectDivWidth*0.02,
 		  'font-size': projectDivWidth*0.025		  
@@ -86,10 +100,14 @@ var mySkillsAnimation = function () {
 		//handle clone div if it exist	
 		if ( $('#cloneDiv').length ) {
 			$('#cloneDiv').find('.closeButton').scaleCloseButton();
-			$('#cloneDiv').find('#vpb').css({
-				'font-size': vpbFontSize,
+			$('#cloneDiv').find('#vpb')
+			.css({
+				'font-size': vpbFontSize				
+			});
+			$('.project_1 #cloneDiv').find('#vpb')
+			.css({
 				margin: vpbMarginValue
-			});			
+			});	
 			$('#cloneDiv').center().scaleDivMax();
 		}
 	}	
@@ -109,7 +127,7 @@ var mySkillsAnimation = function () {
 			}, 
 			{
 				step: function(now,fx) 
-				{
+				{ //animate zomm in skill box
 					$(thisIs).css('-webkit-transform','scale3d('+now+', '+now+', '+now+')');
 					$(thisIs).css('transform','scale3d('+now+', '+now+', '+now+')');  
 				}, 
@@ -117,11 +135,23 @@ var mySkillsAnimation = function () {
 				complete: function(){
 					$(thisIs).find('button, a')
 					.rollInBtnAnimation()
-					.click(function(event) {		
+					.mousedown(function(event) { //animate press button, I use this method because animate.css is a conflict with translateY
+						var speed = 50;
+						var currentBottomProp = parseFloat($(this).css('bottom'));
+						$(this).animate({
+								bottom: currentBottomProp-3+'px'
+							},
+							speed
+							, function() {
+								$(this).animate({bottom: currentBottomProp+'px'}, speed)
+							}
+						);
+					})
+					.click(function(event) {						
 						if (event.currentTarget.id==='rmb') {
 							/*alert('Your clicked button 'Read more'');*/
 							projectDivFullSize(thisIs);
-						}			
+						}							
 					});
 				}
 			},
@@ -196,8 +226,8 @@ var mySkillsAnimation = function () {
 		else {
 			var divTargetCoeff = divTargetWidthCoeff;
 		}
-		console.log(viewportWidth);
-		console.log(viewportHeight);
+		// console.log(viewportWidth);
+		// console.log(viewportHeight);
 		this.animate(
 			{  
 				textIndent: divTargetCoeff
@@ -269,16 +299,18 @@ var mySkillsAnimation = function () {
 		var $cloneDiv = $(thisIs).clone();
 
 		//remove "read more" button
-		$($cloneDiv).find('#rmb')
+		$cloneDiv.find('#rmb')
 		.remove();
 
-		//roll in "view project" button
-		$($cloneDiv).find('#vpb')		
-		.removeClass('btnResponsiveSize')
+		$('.project_1 #cloneDiv').find('#vpb')
 		.css({
-			'font-size': vpbFontSize,
 			margin: vpbMarginValue
-		})	
+		});	
+		//roll in "view project" button		
+		$cloneDiv.find('#vpb')	
+		.css({
+			'font-size': vpbFontSize					
+		})
 		.rollInBtnAnimation();
 
 		//taking current scroll pos
@@ -286,7 +318,7 @@ var mySkillsAnimation = function () {
 
 		//add overlay div
 		$('main .flex_box').append('<div id="fullSizeSkillBoxOverlay"></div>');		//adding overlay div to the end main div
-		$($cloneDiv).attr('id', 'cloneDiv')
+		$cloneDiv.attr('id', 'cloneDiv')
 		.appendTo('body') //adding clone div to the end main div
 		.append('<p class="closeButton hidden"><i class="far fa-times-circle"></i></p>')
 		.css({
@@ -302,7 +334,7 @@ var mySkillsAnimation = function () {
 		.scaleDivMax();
 
 		//show description 
-		$($cloneDiv).find('.paragraphMSD').removeClass('hidden')
+		$cloneDiv.find('.paragraphMSD').removeClass('hidden')
 		.hide()
 		.fadeIn(DSdurationTime);
 
@@ -369,7 +401,7 @@ var mySkillsAnimation = function () {
 	}
 	/**************My skills animation main block*******************/
 	//add read more button to project divs
-	$projectDiv.prepend('<button class="readMoreBtn btnResponsiveSize hidden" id="rmb" type="button">read more</button>');
+	$projectDiv.prepend('<button class="readMoreBtn hidden" id="rmb" type="button">read more</button>');
 	windowSizeHandler(); //resize MySkills divs from window size	
 	divHoverHandler();
 	//size MySkills divs handler

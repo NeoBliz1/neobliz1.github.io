@@ -29,7 +29,7 @@ a {
 a:hover {
   color: black;  
 }
-a:focus, a:active {
+a:active {
   color: white;
 }
 h1 {
@@ -88,11 +88,11 @@ h2 {
   height: 100%;
   z-index: 1;
 }
-.links_to_acc {
-  z-index: 3;
+.links_to_acc {  
   position: absolute;
   top: 10px;
-  right: 10px;  
+  right: 10px;
+  z-index: 3;   
 }
 .logo_prop, .go_home {
   margin:3px;
@@ -102,7 +102,7 @@ h2 {
   background-position: 60% 60%;
   background-repeat: no-repeat;
   background-size: 80%;
-  transition-duration: 1s;  
+  transition-duration: 1s;
 }
 .go_home {
   background-image: url(../img/home-icon-transparent-background-17.svg);
@@ -282,9 +282,7 @@ h2 {
   left: 193px;
   bottom: -12px;
 }
-.project_2 .viewProject:active {
-  bottom: -15px;
-}
+
 .project_3 {
   background-image: url(../img/project3.png);
   background-repeat: no-repeat;
@@ -336,28 +334,22 @@ h2 {
   background:linear-gradient(to bottom, #fca314 5%, #ffec64 100%);
   background-color:#fca314;
 }
-.readMoreBtn:active {
-  position:relative;
-  top:1px;
+.readMoreBtn:active, .viewProject:active  {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+  color: white;  
 }
 .viewProject {
   float: right;
   margin-top: 3px;
-  margin-left: 4px;
-  left: 190px;
-  bottom: 15px;
-}
-.viewProject:active {
-  bottom:10px;
+  margin-left: 4px;  
 }
 
 .project_1 .viewProject {
   left: 0;
   bottom: 0;
 }
-.project_1 .viewProject:active {
-  bottom: -2px;
-}
+
 
 #fullSizeSkillBoxOverlay {  
   height: 100vh;
@@ -430,7 +422,7 @@ h2 {
 }
 h2.projectHeader {
   font-family: 'Caveat', cursive;
-  font-size: 5rem;
+  font-size: 5vh;
   color: rgb(255, 255, 255);
   text-align: center;
   margin: 0;
@@ -451,12 +443,15 @@ h2.projectHeader {
   color: rgb(255, 255, 255);
   text-align: center;  
 }
+pre {
+  font-size: 2vh;
+}
 .botDescription {
   margin-top: 30px;
 }
 .snippetWrapper {
   text-align: left;  
-  font-size: 1.4rem;
+  font-size: 2vh;
   overflow: scroll;
   height: 100%;
   background-color: #272822;
@@ -541,14 +536,8 @@ h2.projectHeader {
     min-height: 120px;
     width: 150px; 
     height: 120px;
-  }
-  .viewProject {
-    left: 99px;
-    bottom: 12px;
-  }
-  .viewProject:active {
-    bottom:10px;
-  }  
+  } 
+ 
  
   .butInScale {
     font-size: 0.6rem !important;   
@@ -608,14 +597,8 @@ h2.projectHeader {
     min-height: 150px;
     width: 190px; 
     height: 150px;
-  }
-  .viewProject {
-    left: 117px;
-    bottom: 9px;
-  }
-  .viewProject:active {
-    bottom:5px;
-  }  
+  } 
+
   
   .readMoreBtn, .viewProject  { 
     border-radius:6px;   
@@ -699,14 +682,8 @@ h2.projectHeader {
     min-height: 250px;
     width: 320px; 
     height: 250px;
-  }
-  .viewProject {
-    left: 180px;
-    bottom: 16px;
-  }
-  .viewProject:active {
-    bottom:14px;
-  }   
+  }  
+  
   .readMoreBtn, .viewProject  {
     border-radius: 18px; 
     padding:2px 8px 2px 8px;
