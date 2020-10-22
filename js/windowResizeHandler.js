@@ -1,73 +1,25 @@
 'use strict';
 var viewportWidth;
-var biggerThanFT = false;
+var locName = window.location.pathname.split('/');
+console.log(locName[1])
 var windowSizeHandler = function () {			
 	viewportWidth = $(window).width();
-	$('body, .headerContent, .main').css('width', viewportWidth+'px');
-
-	/*console.log(viewportWidth);*/
-	// if ($('.dynamicallyResize').length && viewportWidth < 401) {		
-	// 	$('.dynamicallyResize').scaleDivMax();	
-	// 	biggerThanFT = true;	
-	// }
-	// else {
-	// 	while (biggerThanFT){
-	// 		$('.dynamicallyResize').scaleDivMax();	
-	// 		biggerThanFT = false;			
-	// 	}	
-	// }	
+	if (viewportWidth>=440) {
+		$('body, .headerContent, .main').css('width', viewportWidth);
+	} 
+	else if (locName[1]!=='index.html') {
+		$('body, .headerContent, .main').css('width', '440px');
+	}
+	else {
+		$('body, .headerContent, .main').css('width', viewportWidth);
+	}
+	
 }	
 
-var DSdurationTime = 1000;//div skill full size animation duration time
-// var divTargetCoeff=1;	
-//jQuery function for scaling div
-// jQuery.fn.scaleDivMax = function () {	
-// 	var viewportHeight = $(window).height();	
-// 	var divCurrentHeight = $(this).outerHeight();
-// 	var divCurrentWidth = $(this).outerWidth();	
-// 	/*console.log(divCurrentWidth+' '+divCurrentHeight);*/
-// 	if (viewportWidth < 401) {
-// 		var widhtScalePercent = $(this).attr('data');
-// 		var divTargetWidthCoeff = viewportWidth*widhtScalePercent/divCurrentWidth;
-// 		var divTargetHeightCoeff = viewportHeight*widhtScalePercent/divCurrentHeight;
-		
-// 		if (viewportWidth>viewportHeight && (viewportWidth-viewportHeight)>200) {
-// 			divTargetCoeff = divTargetHeightCoeff;
-// 		}
-// 		else {
-// 			divTargetCoeff = divTargetWidthCoeff;			
-// 		}		 
-// 	}
-// 	else {		
-// 		divTargetCoeff = 1;		 
-// 	}		
-	
-// 	this.animate(
-// 		{  
-// 			textIndent: divTargetCoeff
-// 		}, 
-// 		{
-// 			step: function(now,fx) 
-// 		{
-// 			$(this).css('-webkit-transform','scale3d('+now+', '+now+', '+now+')');
-// 			$(this).css('transform','scale3d('+now+', '+now+', '+now+')');  
-// 		}, 
-// 		duration: DSdurationTime,
-// 		queue: false,
-// 		complete: function(){					
-// 			}
-// 		},
-// 		'linear'
-// 	)	
-		
-	
-// 	return this;
-// }
-	
 var resizeTimer;
 windowSizeHandler();//running once
 $(window).resize(function() {	
-	clearTimeout(resizeTimer);
+	clearTimeout(resizeTimer);//using a timer to avoid overload
 	resizeTimer = setTimeout(function() {
 		windowSizeHandler();
 	}, 250);

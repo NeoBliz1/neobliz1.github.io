@@ -694,7 +694,7 @@ let gameSketch = function(p) {
 
 //check availability of the code txt version URL
 var checkTxtUrl = function () {
-  var txt_url = 'https://res.cloudinary.com/deah4rwon/raw/upload/v1602400770/js/code_project5_lw6qss.txt'; 
+  var txt_url = 'https://res.cloudinary.com/deah4rwon/raw/upload/v1602429596/js/code_project5_y5z2m7.txt'; 
   $.ajax({
     url:txt_url,
     type:'HEAD',

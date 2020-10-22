@@ -50,7 +50,7 @@ var mySkillsAnimation = function () {
 	var durationTime = 500;
 	var viewportWidth, viewportHeight, projectDivZoomInCoeff, projectDivWidth, projectDivHeight, vpbFontSize, vpbMarginValue;
 	$($projectDiv).addClass('scrollAnimate hidden');
-	var windowSizeHandler = function () { //function handle which window is on resize
+	var projectDivSizeHandler = function () { //function handle which window is on resize
 		viewportWidth = $(window).width();
 		viewportHeight = $(window).height();
 		if (viewportWidth>=980) {
@@ -98,8 +98,7 @@ var mySkillsAnimation = function () {
 		});
 	
 		//handle clone div if it exist	
-		if ( $('#cloneDiv').length ) {
-			$('#cloneDiv').find('.closeButton').scaleCloseButton();
+		if ( $('#cloneDiv').length ) {			
 			$('#cloneDiv').find('#vpb')
 			.css({
 				'font-size': vpbFontSize				
@@ -360,7 +359,7 @@ var mySkillsAnimation = function () {
 		
 			
 		//overlay click handler
-		$('#fullSizeSkillBoxOverlay, .closeButton').click(function(event) {
+		$('#fullSizeSkillBoxOverlay, .closeButton, #vpb').click(function(event) {
 			/* Act on the event */			
 			projectDivMinimize(this, currentDivOffset);
 		});
@@ -402,14 +401,14 @@ var mySkillsAnimation = function () {
 	/**************My skills animation main block*******************/
 	//add read more button to project divs
 	$projectDiv.prepend('<button class="readMoreBtn hidden" id="rmb" type="button">read more</button>');
-	windowSizeHandler(); //resize MySkills divs from window size	
+	projectDivSizeHandler(); //resize MySkills divs from window size	
 	divHoverHandler();
 	//size MySkills divs handler
 	var resizeTimer;
 	$(window).resize(function() {
 		clearTimeout(resizeTimer);
 		resizeTimer = setTimeout(function() {
-			windowSizeHandler();
+			projectDivSizeHandler();
 		}, 250);
 	})
 	

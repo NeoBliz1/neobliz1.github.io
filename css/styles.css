@@ -441,7 +441,8 @@ h2.projectHeader {
 .smallCanvas p {
   max-width: 60%;
   color: rgb(255, 255, 255);
-  text-align: center;  
+  text-align: center;
+  margin: 1vh;  
 }
 pre {
   font-size: 2vh;
@@ -498,11 +499,13 @@ pre {
   }
   .helloBlock > div:nth-of-type(1) {
     margin-bottom: 0px;
+    flex: 2 0;
   }
   .helloBlock > div:nth-of-type(2) {
     text-align: justify;
     padding-top: 0px;
     margin-top: 0px;
+    flex: 2 0;
   }
   .gridBoxWicd {
     display: grid;
@@ -537,10 +540,9 @@ pre {
     width: 150px; 
     height: 120px;
   } 
- 
- 
-  .butInScale {
-    font-size: 0.6rem !important;   
+  
+  .examplesContainer {
+    padding: 0;
   }
   .readMoreBtn, .viewProject  {
     border-radius:6px;    

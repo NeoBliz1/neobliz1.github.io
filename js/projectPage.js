@@ -14,7 +14,7 @@ $( window ).on( 'load', function() {
 
 $('.smallCanvas').prepend('<div class="home_container"><a href="../index.html"><div class="go_home"></div></a></div>');
 $('.home_container').css({
-	'z-index': '2',
+	'z-index': '3',
 	position: 'absolute',
   top: '10px',
   right: '10px'
