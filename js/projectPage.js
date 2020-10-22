@@ -21,5 +21,27 @@ $('.home_container').css({
 });
 
 
+var windowSizeHandler = function () {
+	var viewportWidth =  $(window).width();
+	if (viewportWidth>=440) {
+		$('body').css('width', viewportWidth);
+	} 
+	else {
+		$('body').css('width', '440px');
+	}	
+}	
+
+
+
+windowSizeHandler(); //resize main blocks according to window width
+//resize handler
+var resizeTimer;
+$(window).resize(function() {
+	clearTimeout(resizeTimer);
+	resizeTimer = setTimeout(function() {
+		windowSizeHandler();		
+	}, 250);
+});
+
 
 

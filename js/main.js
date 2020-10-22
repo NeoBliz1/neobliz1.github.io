@@ -43,6 +43,14 @@ var loaderScreen = function () {
 	$('.loader-gif').fadeOut('slow');
 }
 
+
+
+//set main elements width
+var windowSizeHandler = function () {
+	$('body, .headerContent, .main').css('width', $(window).width());	
+}	
+
+
 /*functions which handle MySkills areas divs
 and applying zommIn animation on it*/
 var mySkillsAnimation = function () {
@@ -401,13 +409,15 @@ var mySkillsAnimation = function () {
 	/**************My skills animation main block*******************/
 	//add read more button to project divs
 	$projectDiv.prepend('<button class="readMoreBtn hidden" id="rmb" type="button">read more</button>');
-	projectDivSizeHandler(); //resize MySkills divs from window size	
+	windowSizeHandler(); //resize main blocks according to window width
+	projectDivSizeHandler(); //resize MySkills divs from window size
 	divHoverHandler();
-	//size MySkills divs handler
+	//resize handler
 	var resizeTimer;
 	$(window).resize(function() {
 		clearTimeout(resizeTimer);
 		resizeTimer = setTimeout(function() {
+			windowSizeHandler();
 			projectDivSizeHandler();
 		}, 250);
 	})
