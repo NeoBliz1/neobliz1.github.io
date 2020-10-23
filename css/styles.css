@@ -81,7 +81,7 @@ h2 {
   background-attachment: fixed;
   position: absolute;
   background-image: url(../img/cover_bg_3.svg);
-  background-repeat: repeat-x;
+  background-repeat: repeat-y;
   background-size: cover;
   opacity: 0.2;
   width: 100%;
