@@ -10,7 +10,7 @@ var scrollAnimate = function () {
 	var offsetNum=0;
 	//offset from window top
 	if ($(window).height() < 480) {
-		offsetNum = '97%';		
+		offsetNum = '110%';		
 	}
 	else if (($(window).height() > 2000)) {
 		offsetNum = '100%';		
