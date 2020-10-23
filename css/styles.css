@@ -81,7 +81,7 @@ h2 {
   background-attachment: fixed;
   position: absolute;
   background-image: url(../img/cover_bg_3.svg);
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
   background-size: cover;
   opacity: 0.2;
   width: 100%;
@@ -479,10 +479,7 @@ pre {
 @media screen and (max-width: 480px) {
   .blizThumbnail {
     background-image: url(../img/responsive_Img/thmb_small.png);
-  }
-  .overlay {    
-    background-image: url(../img/responsive_Img/cover_bg_3_small.jpg);
-  }
+  }  
   .flex_box {
     flex-flow: column nowrap;    
   }
