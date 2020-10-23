@@ -45,11 +45,9 @@ var loaderScreen = function () {
 
 
 
-//set main elements width
+//set main elements width and height
 var windowSizeHandler = function () {
-	$('body, .headerContent, .main').css('width', $(window).width());
-	var divHeight = $('.mySkills').height();	
-	$('.mySkills, .mySkillsOverlay').height(divHeight);
+	$('body, .headerContent, .main').css('width', $(window).width());	
 }	
 
 
