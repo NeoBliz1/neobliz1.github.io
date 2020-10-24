@@ -72,15 +72,9 @@ h2 {
 /*header styles*/
 .header {
   background-color: rgb(255, 145, 0);
-  position: relative;
-  z-index: 0;
+  position: relative;  
   width: 100%;
   height: 100vh;  
-}
-.overlay {  
-  position: absolute;  
-  width: 100%;
-  height: 100%;  
 }
 .links_to_acc {  
   position: absolute;
@@ -220,8 +214,7 @@ h2 {
 
 .mySkills {
   background-color: rgb(255, 145, 0);
-  position: relative;
-  z-index: 0;
+  position: relative;  
   width: 100%;  
 }
 .mySkills > div > h1 {

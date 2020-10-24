@@ -48,8 +48,7 @@ var loaderScreen = function () {
 //set main elements width and height
 var windowSizeHandler = function () {
 	var $wWidth = $(window).width();
-	$('body, .headerContent, .main').css('width', $wWidth);
-	
+	$('body, .headerContent, .main').css('width', $wWidth);	
 	//add parallax element
 	var pathToParllaxImg;
 	if ($wWidth>0 && $wWidth<480){
@@ -61,7 +60,8 @@ var windowSizeHandler = function () {
 	else {
 		pathToParllaxImg = '../img/cover_bg_3.svg';
 	}
-	$('.overlay').parallax({imageSrc: pathToParllaxImg});
+
+	$('header, .mySkills').parallax({imageSrc: pathToParllaxImg});
 	$('.parallax-mirror').css({
 		'z-index': '1',
 		opacity: '0.2'
@@ -436,7 +436,7 @@ var mySkillsAnimation = function () {
 		clearTimeout(resizeTimer);
 		resizeTimer = setTimeout(function() {
 			windowSizeHandler();
-			projectDivSizeHandler();
+			projectDivSizeHandler();			
 		}, 250);
 	})
 	
