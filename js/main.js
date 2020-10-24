@@ -47,7 +47,25 @@ var loaderScreen = function () {
 
 //set main elements width and height
 var windowSizeHandler = function () {
-	$('body, .headerContent, .main').css('width', $(window).width());	
+	var $wWidth = $(window).width();
+	$('body, .headerContent, .main').css('width', $wWidth);
+	
+	//add parallax element
+	var pathToParllaxImg;
+	if ($wWidth>0 && $wWidth<480){
+		pathToParllaxImg = '../img/responsive_Img/cover_bg_3-small_size.png';
+	}
+	else if ($wWidth>=480 && $wWidth<=1500) {
+		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
+	}
+	else {
+		pathToParllaxImg = '../img/cover_bg_3.svg';
+	}
+	$('.overlay').parallax({imageSrc: pathToParllaxImg});
+	$('.parallax-mirror').css({
+		'z-index': '1',
+		opacity: '0.2'
+	});
 }	
 
 
