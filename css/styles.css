@@ -482,7 +482,7 @@ pre {
     background-image: url(../img/responsive_Img/thmb_small.png);
   }
   .overlay {
-    background-image: url(../img/responsive_Img/cover_bg_3.png);
+    background-image: url(../img/responsive_Img/cover_bg_3-small_size.png);
   }
   .flex_box {
     flex-flow: column nowrap;    
@@ -559,7 +559,13 @@ pre {
 /*****************************************************/
 /*****************************************************/
 @media screen and (min-width: 500px) {
-  /*grid box area for "wicd" article*/    
+  /*grid box area for "wicd" article*/
+  .blizThumbnail {
+    background-image: url(../img/responsive_Img/thmb_small.png);
+  }
+  .overlay {
+    background-image: url(../img/responsive_Img/cover_bg_3-small_size.png);
+  }   
   .gridBoxWicd {
     display: grid;
     grid-template-areas: 'empt1 cont empt2';    
@@ -617,6 +623,12 @@ pre {
 /*****************************************************/
 @media screen and (min-width: 860px) {
   /*grid box area for "wicd" article*/
+  .blizThumbnail {
+    background-image: url(../img/responsive_Img/thmb_small.png);
+  }
+  .overlay {
+    background-image: url(../img/responsive_Img/cover_bg_3.png);
+  }
   .justifySelfCenter {
     justify-self: center;
   }
@@ -694,5 +706,19 @@ pre {
   }
   .smallCanvas {    
     height: 100%;
+  }
+}
+
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
+/*****************************************************/
+@media screen and (min-width: 1500px) {
+  .blizThumbnail {
+    background-image: url(../img/thmb.png);
+  }
+  .overlay {
+    background-image: url(../img/cover_bg_3.svg);
   }
 }
