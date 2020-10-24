@@ -1,4 +1,3 @@
- 
 /*!
  * parallax.js v1.5.0 (http://pixelcog.github.io/parallax.js/)
  * @copyright 2016 PixelCog, Inc.
@@ -163,9 +162,9 @@
     speed:    0.2,
     bleed:    0,
     zIndex:   -100,
-    iosFix:   true,
-    androidFix: true,
-    position: 'left',
+    iosFix:   false,
+    androidFix: false,
+    position: 'center',
     overScrollFix: false,
     mirrorContainer: 'body',
 
@@ -184,39 +183,8 @@
       var imageOffsetMin = (this.boxOffsetTop - maxOffset) * (1 - this.speed) | 0;
       var margin;
 
-      if (imageHeightMin * this.aspectRatio >= this.boxWidth) {
-        this.imageWidth    = imageHeightMin * this.aspectRatio | 0;
-        this.imageHeight   = imageHeightMin;
-        this.offsetBaseTop = imageOffsetMin;
-
-        margin = this.imageWidth - this.boxWidth;
-
-        if (this.positionX == 'left') {
-          this.offsetLeft = 0;
-        } else if (this.positionX == 'right') {
-          this.offsetLeft = - margin;
-        } else if (!isNaN(this.positionX)) {
-          this.offsetLeft = Math.max(this.positionX, - margin);
-        } else {
-          this.offsetLeft = - margin / 2 | 0;
-        }
-      } else {
-        this.imageWidth    = this.boxWidth;
-        this.imageHeight   = this.boxWidth / this.aspectRatio | 0;
-        this.offsetLeft    = 0;
-
-        margin = this.imageHeight - imageHeightMin;
-
-        if (this.positionY == 'top') {
-          this.offsetBaseTop = imageOffsetMin;
-        } else if (this.positionY == 'bottom') {
-          this.offsetBaseTop = imageOffsetMin - margin;
-        } else if (!isNaN(this.positionY)) {
-          this.offsetBaseTop = imageOffsetMin + Math.max(this.positionY, - margin);
-        } else {
-          this.offsetBaseTop = imageOffsetMin - margin / 2 | 0;
-        }
-      }
+      this.offsetLeft    = 0;
+      this.offsetBaseTop = imageOffsetMin;
     },
 
     render: function() {
@@ -224,7 +192,9 @@
       var scrollLeft   = Parallax.scrollLeft;
       var overScroll   = this.overScrollFix ? Parallax.overScroll : 0;
       var scrollBottom = scrollTop + Parallax.winHeight;
-
+      var $winWidth = $(window).width();      
+      console.log(this.$element.outerHeight())
+      var $boxHeight = this.$element.outerHeight();
       if (this.boxOffsetBottom > scrollTop && this.boxOffsetTop <= scrollBottom) {
         this.visibility = 'visible';
         this.mirrorTop = this.boxOffsetTop  - scrollTop;
@@ -237,17 +207,19 @@
       this.$mirror.css({
         transform: 'translate3d('+this.mirrorLeft+'px, '+(this.mirrorTop - overScroll)+'px, 0px)',
         visibility: this.visibility,
-        height: this.boxHeight,
-        width: this.boxWidth
+        height: $boxHeight,
+        width: $winWidth,
+        opacity: '0.2'
       });
 
       this.$slider.css({
         transform: 'translate3d('+this.offsetLeft+'px, '+this.offsetTop+'px, 0px)',
         position: 'absolute',
-        height: this.imageHeight,
-        width: this.imageWidth,
+        height: $boxHeight,
+        width: $winWidth,
         maxWidth: 'none'
       });
+      
     }
   });
 
@@ -411,4 +383,3 @@
   });
 
 }(jQuery, window, document));
-

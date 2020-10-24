@@ -49,7 +49,7 @@ var loaderScreen = function () {
 var windowSizeHandler = function () {
 	var $wWidth = $(window).width();
 	$('body, .headerContent, .main').css('width', $wWidth);	
-	//add parallax element
+	//add parallax element	
 	var pathToParllaxImg;
 	if ($wWidth>0 && $wWidth<480){
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3-small_size.png';
@@ -61,11 +61,10 @@ var windowSizeHandler = function () {
 		pathToParllaxImg = '../img/cover_bg_3.svg';
 	}
 
-	$('header, .mySkills').parallax({imageSrc: pathToParllaxImg});
-	$('.parallax-mirror').css({
-		'z-index': '1',
-		opacity: '0.2'
-	});
+	$('header, .mySkills').parallax({
+		imageSrc: pathToParllaxImg,
+		zIndex: 1
+	});	
 }	
 
 
@@ -438,8 +437,7 @@ var mySkillsAnimation = function () {
 			windowSizeHandler();
 			projectDivSizeHandler();			
 		}, 250);
-	})
-	
+	});	
 }
 var scrollTop = function () {
 	$("#button").click(function() {
