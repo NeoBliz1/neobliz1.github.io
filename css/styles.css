@@ -419,12 +419,15 @@ h2.projectHeader {
 .smallCanvasContainer {
   position: relative;
   z-index: 2;
+  padding-bottom: 2vh;
+
 }
 .smallCanvas p {
-  max-width: 60%;
+  max-width: 80%;
   color: rgb(255, 255, 255);
   text-align: center;
-  margin: 1vh;  
+  margin: 1vh;
+  font-size: 2vh; 
 }
 pre {
   font-size: 2vh;

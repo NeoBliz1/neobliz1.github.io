@@ -1,4 +1,10 @@
 'use strict';
+
+jQuery.event.special.renewPage = {
+  bindType: 'resize',
+  delegateType: 'resize'
+};
+
 var zoomInHeader = function () {
 	//zoom in main header
 	$('.headerContent').addClass('zoomIn animated');
@@ -16,7 +22,7 @@ var scrollAnimate = function () {
 		offsetNum = '100%';		
 	}
 	else {
-		offsetNum = '85%';
+		offsetNum = '90%';
 	};
 	// console.log(offsetNum);
 	$('.scrollAnimate')
@@ -46,6 +52,7 @@ var loaderScreen = function () {
 
 
 //set main elements width and height
+
 var windowSizeHandler = function () {
 	var $wWidth = $(window).width();
 	$('body, .headerContent, .main').css('width', $wWidth);	
@@ -61,46 +68,50 @@ var windowSizeHandler = function () {
 		pathToParllaxImg = '../img/cover_bg_3.svg';
 	}
 
+	Waypoint.destroyAll() //remove all waypoints
+
+	//initialize parallax script
 	$('header, .mySkills').parallax({
 		imageSrc: pathToParllaxImg,
 		zIndex: 1
-	});	
+	});
+	//initialize waypoints script
+	scrollAnimate();	
 }	
 
 
 /*functions which handle MySkills areas divs
 and applying zommIn animation on it*/
-var mySkillsAnimation = function () {
-	var $projectDiv = $('.projectDiv');	
-	var durationTime = 500;
-	var viewportWidth, viewportHeight, projectDivZoomInCoeff, projectDivWidth, projectDivHeight, vpbFontSize, vpbMarginValue;
-	$($projectDiv).addClass('scrollAnimate hidden');
-	var projectDivSizeHandler = function () { //function handle which window is on resize
-		viewportWidth = $(window).width();
-		viewportHeight = $(window).height();
-		if (viewportWidth>=980) {
-			projectDivZoomInCoeff = 1.3/viewportWidth;
-		}
-		else if (viewportWidth>=350){
-			projectDivZoomInCoeff = 1.4/viewportWidth;
-		}		
-		else {
-			projectDivZoomInCoeff = 1.2/viewportWidth;			
-		}
-		//set project div size
-		projectDivWidth = Math.pow(viewportWidth*30000, 1/3);
-		projectDivHeight = projectDivWidth*0.8;
-		$projectDiv.css({
-			'min-width': projectDivWidth,
-	    'min-height': projectDivHeight,
-	    width: projectDivWidth,
-	    height: projectDivHeight,
-	    'margin-left': 0.05*projectDivWidth,
-	    'margin-right': 0.05*projectDivWidth
-		});
-		//set font-size property for view project button in scale state
-		vpbFontSize = projectDivWidth*0.04;
-		vpbMarginValue = projectDivWidth*0.03;
+var $projectDiv = $('.projectDiv');	
+var durationTime = 500;
+var viewportWidth, viewportHeight, projectDivZoomInCoeff, projectDivWidth, projectDivHeight, vpbFontSize, vpbMarginValue;
+
+var projectDivSizeHandler = function () { //function handle which window is on resize
+	viewportWidth = $(window).width();
+	viewportHeight = $(window).height();
+	if (viewportWidth>=980) {
+		projectDivZoomInCoeff = 1.3/viewportWidth;
+	}
+	else if (viewportWidth>=350){
+		projectDivZoomInCoeff = 1.4/viewportWidth;
+	}		
+	else {
+		projectDivZoomInCoeff = 1.2/viewportWidth;			
+	}
+	//set project div size
+	projectDivWidth = Math.pow(viewportWidth*30000, 1/3);
+	projectDivHeight = projectDivWidth*0.8;
+	$projectDiv.css({
+		'min-width': projectDivWidth,
+		'min-height': projectDivHeight,
+		width: projectDivWidth,
+		height: projectDivHeight,
+		'margin-left': 0.05*projectDivWidth,
+		'margin-right': 0.05*projectDivWidth
+	});
+	//set font-size property for view project button in scale state
+	vpbFontSize = projectDivWidth*0.04;
+	vpbMarginValue = projectDivWidth*0.03;
 		//set buttons font-size		
 		$('#rmb, #vpb').css('font-size', projectDivWidth*0.06);
 		//set button vpb position parameters, except project_1 and 2 divs
@@ -110,31 +121,35 @@ var mySkillsAnimation = function () {
 			left: projectDivWidth*0.55,
 			bottom: projectDivHeight*0.08
 		});
-		//set button vpb position parameters in project_2 div
-		$('.project_2').find('#vpb')
+	//set button vpb position parameters in project_2 div
+	$('.project_2').find('#vpb')
+	.css({
+		left: projectDivWidth*0.55,
+		bottom: projectDivHeight*0.1
+	});
+	//set paragraph size in project divs
+	$('.paragraphMSD').css({
+		'text-indent': projectDivWidth*0.02,
+		'font-size': projectDivWidth*0.025		  
+	});
+
+	//handle clone div if it exist	
+	if ( $('#cloneDiv').length ) {			
+		$('#cloneDiv').find('#vpb')
 		.css({
-			left: projectDivWidth*0.55,
-			bottom: projectDivHeight*0.1
+			'font-size': vpbFontSize				
 		});
-		//set paragraph size in project divs
-		$('.paragraphMSD').css({
-			'text-indent': projectDivWidth*0.02,
-		  'font-size': projectDivWidth*0.025		  
-		});
+		$('.project_1 #cloneDiv').find('#vpb')
+		.css({
+			margin: vpbMarginValue
+		});	
+		$('#cloneDiv').center().scaleDivMax();
+	}
+}	
+
+var mySkillsAnimation = function () {
 	
-		//handle clone div if it exist	
-		if ( $('#cloneDiv').length ) {			
-			$('#cloneDiv').find('#vpb')
-			.css({
-				'font-size': vpbFontSize				
-			});
-			$('.project_1 #cloneDiv').find('#vpb')
-			.css({
-				margin: vpbMarginValue
-			});	
-			$('#cloneDiv').center().scaleDivMax();
-		}
-	}	
+	$($projectDiv).addClass('scrollAnimate hidden');	
 	
 	var zoomInAnimation = function (thisIs){
 		durationTime=500;
@@ -429,13 +444,22 @@ var mySkillsAnimation = function () {
 	windowSizeHandler(); //resize main blocks according to window width
 	projectDivSizeHandler(); //resize MySkills divs from window size
 	divHoverHandler();
+	resizeHandler();
+}
+var resizeHandler = function (argument) {
 	//resize handler
 	var resizeTimer;
-	$(window).resize(function() {
+	$(window).on('renewPage', function(event) {		
 		clearTimeout(resizeTimer);
 		resizeTimer = setTimeout(function() {
 			windowSizeHandler();
-			projectDivSizeHandler();			
+			projectDivSizeHandler();
+			//refresh parallax script
+			$(window)
+			.off('renewPage')
+			.trigger('resize')			
+			.trigger('scroll');			 	
+			resizeHandler();	
 		}, 250);
 	});	
 }
@@ -455,3 +479,4 @@ $( window ).on( 'load', function() {
 	mySkillsAnimation();
 	scrollAnimate();
 });
+
