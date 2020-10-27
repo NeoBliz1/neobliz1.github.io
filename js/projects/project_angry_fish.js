@@ -36,14 +36,14 @@ var checkImgUrl = function (varName, goto_url, errorUrl) {
 
 //main game function
 let gameSketch = function(p) {
-  let dirtBlockImg;
+  let dirtBlockImg, angryFish = [];
   p.preload = function () {
     dirtBlockImg = p.loadImage(dirtBlockUrl);
   };
   p.setup = function() {    
     // canvas size
     var canvas = p.createCanvas(400, 400);
-    // canvas.style.width = '100%', canvas.style.height = '100%';
+    // canvas.style.p.width = '100%', canvas.style.p.height = '100%';
   
     // Move the canvas so it’s inside our <div id='canvas-holder'>.
     canvas.parent('canvasHolderSmall');
@@ -78,15 +78,15 @@ let gameSketch = function(p) {
       p.angryFishF = function() {
         this.mass = 20;
         this.G = 10.2;
-        this.position = new PVector(0, 0);
-        this.startPosition = new PVector(0, 0);
-        this.velocity = new PVector(0, 0);
-        this.acceleration = new PVector(0, 0);
+        this.position = new p5.Vector(0, 0);
+        this.startPosition = new p5.Vector(0, 0);
+        this.velocity = new p5.Vector(0, 0);
+        this.acceleration = new p5.Vector(0, 0);
         this.dumbPredatorFishY = 0;
       };
 
       p.angryFishF.prototype.applyForce = function(force) {
-        var f = PVector.div(force,this.mass);
+        var f = p5.Vector.div(force,this.mass);
         this.acceleration.add(f);
       };
       p.angryFishF.prototype.draw = function() {
@@ -102,12 +102,12 @@ let gameSketch = function(p) {
       };
       p.angryFishF.prototype.calculateAttraction = function(mover) {
         // Calculate direction of force
-        var force = PVector.sub(this.position, mover.position);
+        var force = p5.Vector.sub(this.position, mover.position);
         // Distance between objects       
         var distance = force.mag();
         // Limiting the distance to eliminate "extreme"
         // results for very close or very far objects                            
-        distance = constrain(distance, 5, 25);
+        distance = p.constrain(distance, 5, 25);
         // Normalize vector                   
         force.normalize();
         // Calculate gravitional force magnitude  
@@ -127,8 +127,8 @@ let gameSketch = function(p) {
           this.acceleration.mult(0);
         }
         else {
-          var mouse = new PVector(this.startPosition.x+round(random(-rx,rx)), this.startPosition.y+round(random(-ry,ry)));
-          var dir = PVector.sub(mouse, this.position);
+          var mouse = new p5.Vector(this.startPosition.x+p.round(p.random(-rx,rx)), this.startPosition.y+p.round(p.random(-ry,ry)));
+          var dir = p5.Vector.sub(mouse, this.position);
           dir.normalize();
           dir.mult(0.046);
           this.acceleration = dir;
@@ -142,7 +142,7 @@ let gameSketch = function(p) {
     {
       var DAF = 0;
       p.angryFishF.prototype.drawDumbPredator = function() {
-         
+        p.ellipseMode(p.CENTER);
         if (dumbPredatorFishX>200) {
           /*dumb shark*/
           //shark color
@@ -150,36 +150,30 @@ let gameSketch = function(p) {
           //shark eye color
           var colorSharkEye = p.color(255, 255, 255);
           p.fill(colorShark);
-          p.pushMatrix();
-          //p.translate(this.dumbPredatorFishX,this.dumbPredatorFishY);
+          p.push();          
           p.translate(-280+this.position.x,-250+this.position.y);
           p.scale(1.35);
           p.stroke(0, 0, 0);
           //shark tail
-          p.pushMatrix();
+          p.push();
           p.translate(253,196);
           p.scale(0.25);
           p.strokeWeight(4);
           p.beginShape(); p.curveVertex(-60,-13);p.curveVertex(-41,5);p.curveVertex(-14,44);p.curveVertex(19,72);p.curveVertex(12,18);p.curveVertex(16,-3);p.curveVertex(35,-54);p.curveVertex(47,-86);p.curveVertex(-38,-40);p.curveVertex(-60,-13);p.curveVertex(-41,5);p.curveVertex(-14,44); p.endShape();
-          p.popMatrix();
+          p.pop();
           p.strokeWeight(1);
-          p.arc(210,189,40,50,-166,-78);
-          p.nofill();
-          p.arc(219,187,18,50,-166,-115);
+          //top fin
+          p.arc(210,189,40,50,-166,-78,p.PIE);
+          p.noFill();          
           p.fill(colorShark);
           //top shark
-          p.arc(200,200,100,50,-158,-31);
+          p.arc(200,200,100,50,-169,-11);
           //bot shark
-          p.arc(200,182,100,50,-230,-203);
-          p.arc(200,182,100,50,-326,-248);
-          p.nostroke();
-          p.arc(196,189,63,50,-212,-185);
-          p.arc(190,179,100,50,-271,-259);
-          p.arc(180,192,100,15,-282,-271);
-          p.strokeWeight(1);
-          //mouth
-          p.line(168,201,185,196);
-          p.line(181,205,185,196);
+          p.arc(200,183,100,50,-208,-190);
+          p.arc(200,182,100,50,-345,-228);
+          p.noStroke();
+          p.arc(196,189,63,50,-205,-185);          
+          p.strokeWeight(1);          
           //tooth
           p.stroke(122, 122, 122);
           p.fill(colorSharkEye);
@@ -199,13 +193,16 @@ let gameSketch = function(p) {
           p.ellipse(173,194,3,3);
           p.fill(colorShark);
           //bot fin
-          p.arc(207,198,25,35,-250,-198);
-          p.nofill();
-          p.arc(215,213,22,35,-187,-134);
+          p.arc(207,198,25,35,-255,-198);
+          p.noFill();
+          p.arc(215,213,22,35,-187,-114);
+          //gills
+          p.arc(215,195,22,35,-197,-124);
+          p.arc(210,195,22,35,-192,-129);
+          p.arc(205,195,22,35,-187,-134);
           p.fill(colorShark);
-          p.nostroke();
-          p.arc(222,192,39,35,-382,-348);
-          p.popMatrix();
+          p.noStroke();          
+          p.pop();
         }
         else {    
           //shark color
@@ -213,32 +210,29 @@ let gameSketch = function(p) {
           //shark eye color
           var colorSharkEye = p.color(255, 255, 255);
           p.fill(colorShark);
-          p.pushMatrix();    
+          p.push();    
           p.translate(-280+this.position.x,-250+this.position.y);
           p.scale(1.35);
           p.stroke(0, 0, 0);
           //shark tail
-          p.pushMatrix();
+          p.push();
           p.translate(253,196);
           p.scale(0.25);
           p.strokeWeight(4);
           p.beginShape(); p.curveVertex(-60,-13);p.curveVertex(-41,5);p.curveVertex(-14,44);p.curveVertex(19,72);p.curveVertex(12,18);p.curveVertex(16,-3);p.curveVertex(35,-54);p.curveVertex(47,-86);p.curveVertex(-38,-40);p.curveVertex(-60,-13);p.curveVertex(-41,5);p.curveVertex(-14,44); p.endShape();
-          p.popMatrix();
+          p.pop();
           p.strokeWeight(1);    
           //top shark
-          p.arc(196,200,92,50,-158,-91);
+          p.arc(196,200,92,50,-169,-91);
           //bot shark
-          p.arc(196,182,93,50,-232,-203);
-          p.arc(198,190,92,35,-259,-249);
-          p.nofill();
-          p.arc(180,187,34,50,-387,-308);
-          p.nostroke();
-          p.arc(196,189,63,50,-212,-185);
-          p.arc(190,179,100,50,-271,-259);
-          p.arc(180,192,100,15,-282,-271);
+          p.arc(190,195,92,50,-208,-190);
+          p.arc(198,190,92,35,-249,-219);
+          p.noFill();
+          p.arc(180,187,34,50,-387,-318);
+          p.noStroke();
+          
           p.fill(255, 255, 255);
-          p.triangle(189,181,183,205,189,199);
-          p.triangle(168,193,183,205,189,199);
+          
           p.strokeWeight(1);
           //mouth
           p.line(168,201,185,196);
@@ -260,25 +254,27 @@ let gameSketch = function(p) {
           p.ellipse(174,193,8,8);    
           p.fill(colorShark);    
           //skeleton
-          p.nofill();
-          p.arc(200,216,201,50,-91,-68);
-          p.arc(200,213,201,50,-91,-67);
+          p.noFill();
+          p.arc(200,216,201,50,-95,-31);
+          p.arc(200,213,201,50,-95,-30);
           var sharkSkeletonSize = 0;
           p.strokeWeight(1.5);
           for (var i=0; i<8; i+=1){
             p.arc(186+i*4.5,187,34,50,-387+sharkSkeletonSize,-308-sharkSkeletonSize);
             sharkSkeletonSize+=3.5;
           }
-          p.popMatrix();
+          p.pop();
         }
 
-        while (DAF<1){
-          DAF++;
-          this.position.x=round(random(500,800));
-          this.position.y=round(random(50,350));
-        }
-        var speedShark = new PVector(1,0);
-        this.position.sub(speedShark);
+        // while (DAF<1){
+        //   DAF++;
+        //   this.position.x=p.round(p.random(500,800));
+        //   this.position.y=p.round(p.random(50,350));
+        // }
+        // var speedShark = new p5.Vector(1,0);
+        // this.position.sub(speedShark);
+        this.position.x=200;
+        this.position.y=200;
         dumbPredatorFishX=this.position.x;
         if (this.position.x<-80){
           DAF=0;
@@ -287,9 +283,9 @@ let gameSketch = function(p) {
     }
     //background gen prototype
     { 
-      var backGrCol = function () {
+      p.backGrCol = function () {
       this.i = 0;};
-      backGrCol.prototype.create = function() {
+      p.backGrCol.prototype.create = function() {
         while (this.i<410){
             redCol -= 0.30;
             greenCol -= 0.30;
@@ -299,9 +295,9 @@ let gameSketch = function(p) {
         }
         // println(greenColorArray);
       };
-      backGrCol.prototype.draw = function() {
+      p.backGrCol.prototype.draw = function() {
         for (var j=0; j<redColorArray.length; j++){
-            p.nostroke();
+            p.noStroke();
             p.fill(redColorArray[j], greenColorArray[j], 100);
             p.rect(0,j,400,10);
         }    
@@ -309,7 +305,7 @@ let gameSketch = function(p) {
     }
     //create background
     {
-      var backGrColor = new backGrCol ();
+      backGrColor = new p.backGrCol ();
       backGrColor.create ();
     }
     //background - ocean floor
@@ -330,8 +326,8 @@ let gameSketch = function(p) {
       var yCoef = -218;
       for (var i=0;i < itemsQuantity;i++){
           bodySizeArray.push(Math.floor(Math.random() * (max1 - min1 + 1)) + min1);
-          var xStepSize = p.map(p.noise(tx),0,1,0,width*2.95);
-          var yStepSize = p.map(p.noise(ty),0,1,0,height*2.95);
+          var xStepSize = p.map(p.noise(tx),0,1,0,p.width*2.95);
+          var yStepSize = p.map(p.noise(ty),0,1,0,p.height*2.95);
           oceanBubblesPosX.push(xStepSize);
           oceanBubblesPosY.push(yStepSize);
           tx += 0.58;
@@ -339,15 +335,15 @@ let gameSketch = function(p) {
       }
       var bubblesDraw = function (){     
           for (var i=0;i < itemsQuantity;i++){
-              p.nofill();
+              p.noFill();
               p.stroke(0, 0, 0);
               p.ellipse(oceanBubblesPosX[i]-bodyLength/4+xCoef, oceanBubblesPosY[i]+yCoef, bodySizeArray[i]/1.5, bodySizeArray[i]/1.5);
-              p.nostroke();
+              p.noStroke();
               p.fill(252, 252, 252);
               p.arc(oceanBubblesPosX[i]-bodyLength/3+xCoef, oceanBubblesPosY[i]+yCoef,bodySizeArray[i]/3, bodySizeArray[i]/3,111,260);
               oceanBubblesPosY[i]-=2.9;
               if (oceanBubblesPosY[i]<240){
-                      oceanBubblesPosY[i]=round(random(600,700));
+                      oceanBubblesPosY[i]=p.round(p.random(600,700));
                   }
           }
           
@@ -361,11 +357,11 @@ let gameSketch = function(p) {
           var seaweedYpos1=seaweedYpos;
           var oceanSeaweedX = [];
           for (var j=0;j<20;j++){
-              oceanSeaweedX.push(round(random(j*30)));
+              oceanSeaweedX.push(p.round(p.random(j*30)));
           }
           var Seaweed = function () {
               for (var i=0;i<20;i++){
-                  p.pushMatrix();
+                  p.push();
                   p.translate(oceanSeaweedX[i],190);
                   p.scale(0.36,0.5);
                       //seaweed1
@@ -400,11 +396,12 @@ let gameSketch = function(p) {
                           p.endShape();}
                       //seaweed2
                       {
-                          p.pushMatrix();
+                          
+                          p.push();
                           p.fill(133, 194, 2);
                           p.translate(269,-43);
                           p.scale(0.26,0.9);
-                          rotate(20);
+                          p.rotate(20);
                           p.beginShape(); 
                               p.curveVertex(seaweedXpos1+222,seaweedYpos1+204);
                               p.curveVertex(seaweedXpos1+227,seaweedYpos1+221);
@@ -433,9 +430,9 @@ let gameSketch = function(p) {
                               p.curveVertex(seaweedXpos1+227,seaweedYpos1+221);
                               p.curveVertex(seaweedXpos1+222,seaweedYpos1+238);
                           p.endShape();
-                         p.popMatrix();
+                          p.pop();
                           }
-                  p.popMatrix();
+                  p.pop();
                   oceanSeaweedX[i]-=speed;
                   if (oceanSeaweedX[i]<-140){
                       oceanSeaweedX[i]=400;
@@ -450,7 +447,7 @@ let gameSketch = function(p) {
               oceanFloorX.push(j*30);
           }
           
-          var oceanFloorDraw = function () {
+          p.oceanFloorDraw = function () {
               bubblesDraw ();
               Seaweed();
               for (var i=0;i<oceanFloorX.length;i++){
@@ -476,7 +473,7 @@ let gameSketch = function(p) {
              for (var j=0; j<angryFishNum/2; j++){
                   y++;
                   n++;
-                  angryFishPos[n] = new PVector(125+i*46,131+j*35);
+                  angryFishPos[n] = new p5.Vector(125+i*46,131+j*35);
                   
              }
       }
@@ -495,31 +492,31 @@ let gameSketch = function(p) {
       angryFishPos.splice(0,1);
       //println(angryFishPos.length);
 
-      //create angry fish
-      var angryFish = [];
+      //create angry fish      
 
       for (var i=0; i<angryFishPos.length; i++){ 
-        angryFish[i] = new angryFishF();
+        angryFish[i] = new p.angryFishF();
         angryFish[i].position.add(angryFishPos[i]);
         angryFish[i].startPosition.add(angryFish[i].position);
       }
     }
     //create dumbPredator fish
-    var dumbPredator = new angryFishF();
+    dumbPredator = new p.angryFishF();
   }; 
 
   //main programm
   p.draw = function() {
-    background(255, 255, 255);
+    p.angleMode(p.DEGREES);
+    p.background(255, 255, 255);
     backGrColor.draw ();
-    oceanFloorDraw ();
+    // p.oceanFloorDraw ();
     dumbPredator.drawDumbPredator();
-    for (var i = 0; i < angryFish.length; i++) {
-      var force = dumbPredator.calculateAttraction(angryFish[i]);
-      angryFish[i].applyForce(force);
-      angryFish[i].update(dumbPredator);
-      angryFish[i].draw();
-    }  
+    // for (var i = 0; i < angryFish.length; i++) {
+    //   var force = dumbPredator.calculateAttraction(angryFish[i]);
+    //   angryFish[i].applyForce(force);
+    //   angryFish[i].update(dumbPredator);
+    //   angryFish[i].draw();
+    // }  
   };
 
   $('#canvasHolderSmall').contextmenu(function() {
