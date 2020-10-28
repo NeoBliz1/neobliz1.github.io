@@ -286,8 +286,8 @@ h2 {
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
 }
-.project_6 {
-  background-image: url(../img/NeoBliz_profile.png);
+.project_angry_fish {
+  background-image: url(../img/code_project_angry_fish.png);
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
@@ -427,6 +427,10 @@ h2.projectHeader {
   color: rgb(255, 255, 255);
   text-align: center;
   margin: 1vh;
+  font-size: 2vh; 
+}
+
+.smallCanvas a {  
   font-size: 2vh; 
 }
 pre {

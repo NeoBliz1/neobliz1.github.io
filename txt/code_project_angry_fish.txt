@@ -1,0 +1,1121 @@
+<!-- HTML generated using hilite.me --><!-- HTML generated using hilite.me --><div style="width:auto;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #75715e">// When there is no predator, the fishes swim forward.</span>
+<span style="color: #75715e">// When a predator swam in, angry fishes attack a predator and eat it.</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dirtBlockUrl</span><span style="color: #f8f8f2">;</span>
+<span style="color: #75715e">//check availability of the image&#39;s URLs</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">externalUrls</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">dirtBlockUrl</span> <span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/cute/DirtBlock.png&#39;</span>
+<span style="color: #f8f8f2">}</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">localUrls</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">grassBlockUrl</span> <span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;../../img/projects_Img/DirtBlock.png&#39;</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">checkImgUrl</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">varName</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">goto_url</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">errorUrl</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ajax</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span><span style="color: #a6e22e">goto_url</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">type</span><span style="color: #f92672">:</span><span style="color: #e6db74">&#39;HEAD&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">error</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+      <span style="color: #f8f8f2">window[</span><span style="color: #a6e22e">varName</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">errorUrl</span><span style="color: #f8f8f2">;</span>           
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">success</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+      <span style="color: #f8f8f2">window[</span><span style="color: #a6e22e">varName</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">goto_url</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">});</span>
+
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #75715e">//main game function</span>
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">gameSketch</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dirtBlockImg</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">angryFish</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+  <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">preload</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">dirtBlockImg</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">loadImage</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dirtBlockUrl</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">};</span>
+  <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setup</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>    
+    <span style="color: #75715e">// canvas size</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">canvas</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">createCanvas</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">400</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">400</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #75715e">// canvas.style.p.width = &#39;100%&#39;, canvas.style.p.height = &#39;100%&#39;;</span>
+  
+    <span style="color: #75715e">// Move the canvas so it’s inside our &lt;div id=&#39;canvas-holder&#39;&gt;.</span>
+    <span style="color: #a6e22e">canvas</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">parent</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;canvasHolderSmall&#39;</span><span style="color: #f8f8f2">);</span>
+      
+    <span style="color: #75715e">// smooth edges</span>
+    <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">smooth</span><span style="color: #f8f8f2">();</span>
+      
+    <span style="color: #75715e">// limit the number of frames per second</span>
+    <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">frameRate</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">60</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #75715e">//creating color array</span>
+    
+    <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">colorMode</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">RGB</span><span style="color: #f8f8f2">);</span>    
+
+    <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">startConfig</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #f8f8f2">};</span>
+
+  <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">startConfig</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #75715e">// when there is no predator, the fish swims forward</span>
+    <span style="color: #75715e">// when a predator comes, an angry fish attacks a predator and eats it</span>
+    <span style="color: #75715e">//prototypes</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">resetStartPos</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mouseX</span><span style="color: #f92672">=-</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mouseY</span><span style="color: #f92672">=-</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">redCol</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">140</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">greenCol</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">140</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">redColorArray</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">greenColorArray</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dumbPredatorFishX</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">500</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #75715e">//Prototypes</span>
+    <span style="color: #75715e">//angry fish prototype</span>
+    <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">angryFishF</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mass</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">20</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">G</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10.2</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Vector</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">startPosition</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Vector</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">velocity</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Vector</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">acceleration</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Vector</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dumbPredatorFishY</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">};</span>
+
+      <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">angryFishF</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">applyForce</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">force</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">f</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Vector</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">div</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">force</span><span style="color: #f8f8f2">,</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mass</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">acceleration</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">add</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">f</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">};</span>
+      <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">angryFishF</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stroke</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">245</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">triangle</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">+</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">,</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">-</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">-</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">,</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">-</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">+</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">triangle</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">-</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">,</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">-</span><span style="color: #ae81ff">25</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">-</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">-</span><span style="color: #ae81ff">25</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">+</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">quad</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">-</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">-</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">-</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">-</span><span style="color: #ae81ff">11</span><span style="color: #f8f8f2">,</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">-</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">+</span><span style="color: #ae81ff">11</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">-</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">+</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">240</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">240</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">240</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ellipse</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">-</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">};</span>
+      <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">angryFishF</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">calculateAttraction</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">mover</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #75715e">// Calculate direction of force</span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">force</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Vector</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sub</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">mover</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #75715e">// Distance between objects       </span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">distance</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">force</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mag</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #75715e">// Limiting the distance to eliminate &quot;extreme&quot;</span>
+        <span style="color: #75715e">// results for very close or very far objects                            </span>
+        <span style="color: #a6e22e">distance</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">constrain</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">distance</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">25</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #75715e">// Normalize vector                   </span>
+        <span style="color: #a6e22e">force</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">normalize</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #75715e">// Calculate gravitional force magnitude  </span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">strength</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">G</span> <span style="color: #f92672">*</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mass</span> <span style="color: #f92672">*</span> <span style="color: #a6e22e">mover</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mass</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">/</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">distance</span> <span style="color: #f92672">*</span> <span style="color: #a6e22e">distance</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #75715e">// Get force vector --&gt; magnitude * direction</span>
+        <span style="color: #a6e22e">force</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mult</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">strength</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">force</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">};</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">rx</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">ry</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">shyRadius</span><span style="color: #f92672">=</span><span style="color: #ae81ff">80</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">angryFishF</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">update</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dumbPredatorFishX</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">400</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">dumbPredatorFishX</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">200</span><span style="color: #f8f8f2">){</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">velocity</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">add</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">acceleration</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">add</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">velocity</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">velocity</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">limit</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8.7</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">acceleration</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mult</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">}</span>
+        <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">mouse</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Vector</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">startPosition</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">+</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">round</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #a6e22e">rx</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">rx</span><span style="color: #f8f8f2">)),</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">startPosition</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">+</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">round</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #a6e22e">ry</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">ry</span><span style="color: #f8f8f2">)));</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dir</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Vector</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sub</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">mouse</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">dir</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">normalize</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #a6e22e">dir</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mult</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0.046</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">acceleration</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dir</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">velocity</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">add</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">acceleration</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">velocity</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">limit</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1.0</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">add</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">velocity</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">}</span>          
+      <span style="color: #f8f8f2">};</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #75715e">//dumbPredator fish prototype</span>
+    <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">DAF</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">angryFishF</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">drawDumbPredator</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ellipseMode</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">CENTER</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dumbPredatorFishX</span><span style="color: #f92672">&gt;</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #75715e">/*dumb shark*/</span>
+          <span style="color: #75715e">//shark color</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">colorShark</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">86</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">203</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">232</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//shark eye color</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">colorSharkEye</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">colorShark</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">();</span>          
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">translate</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">280</span><span style="color: #f92672">+</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">250</span><span style="color: #f92672">+</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">scale</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1.35</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stroke</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//shark tail</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">translate</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">253</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">196</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">scale</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0.25</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">beginShape</span><span style="color: #f8f8f2">();</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">60</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">13</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">41</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">14</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">44</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">19</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">72</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">12</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">18</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">16</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">35</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">54</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">47</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">86</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">38</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">40</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">60</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">13</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">41</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">14</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">44</span><span style="color: #f8f8f2">);</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">endShape</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pop</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//top fin</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">210</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">189</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">40</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">166</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">78</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">PIE</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noFill</span><span style="color: #f8f8f2">();</span>          
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">colorShark</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//top shark</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">169</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">11</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//bot shark</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">183</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">208</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">190</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">182</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">345</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">228</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noStroke</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">196</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">189</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">63</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">205</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">185</span><span style="color: #f8f8f2">);</span>          
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>          
+          <span style="color: #75715e">//tooth</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stroke</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">122</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">122</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">122</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">colorSharkEye</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">ySharkTooth</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">ySharkTooth</span> <span style="color: #f92672">-=</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">;</span>
+            <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">triangle</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">181</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">207</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">179</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">204</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">182</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">204</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">+=</span><span style="color: #ae81ff">2.9</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">ySharkTooth</span> <span style="color: #f92672">-=</span> <span style="color: #ae81ff">0.9</span><span style="color: #f8f8f2">;</span>
+            <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">triangle</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">173</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">210</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">169</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">208</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">172</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">207</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stroke</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//eye</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ellipse</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">174</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">193</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">8</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">8</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ellipse</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">173</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">194</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">colorShark</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//bot fin</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">207</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">198</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">25</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">35</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">198</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noFill</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">215</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">213</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">22</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">35</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">187</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">114</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//gills</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">215</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">195</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">22</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">35</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">124</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">210</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">195</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">22</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">35</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">192</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">129</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">205</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">195</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">22</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">35</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">187</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">134</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">colorShark</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noStroke</span><span style="color: #f8f8f2">();</span>          
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pop</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #f8f8f2">}</span>
+        <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>    
+          <span style="color: #75715e">//shark color</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">colorShark</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//shark eye color</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">colorSharkEye</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">colorShark</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">();</span>    
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">translate</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">280</span><span style="color: #f92672">+</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">250</span><span style="color: #f92672">+</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">scale</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1.35</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stroke</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//shark tail</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">translate</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">253</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">196</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">scale</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0.25</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">beginShape</span><span style="color: #f8f8f2">();</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">60</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">13</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">41</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">14</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">44</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">19</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">72</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">12</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">18</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">16</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">35</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">54</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">47</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">86</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">38</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">40</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">60</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">13</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">41</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">);</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">14</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">44</span><span style="color: #f8f8f2">);</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">endShape</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pop</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>    
+          <span style="color: #75715e">//top shark</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">196</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">92</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">169</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">91</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//bot shark</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">192</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">88</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">198</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">180</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">198</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">190</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">92</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">35</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">249</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">219</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noFill</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">180</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">187</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">34</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">387</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">318</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noStroke</span><span style="color: #f8f8f2">();</span>
+          
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+          
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//mouth</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">line</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">168</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">185</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">196</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">line</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">181</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">205</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">185</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">196</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//tooth</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stroke</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">122</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">122</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">122</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">colorSharkEye</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">ySharkTooth</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">ySharkTooth</span> <span style="color: #f92672">-=</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">;</span>
+            <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">triangle</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">181</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">207</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">179</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">204</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">182</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">204</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">+=</span><span style="color: #ae81ff">2.9</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">ySharkTooth</span> <span style="color: #f92672">-=</span> <span style="color: #ae81ff">0.9</span><span style="color: #f8f8f2">;</span>
+            <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">triangle</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">173</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">210</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">169</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">208</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">172</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">207</span><span style="color: #f92672">+</span><span style="color: #a6e22e">ySharkTooth</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stroke</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #75715e">//eye</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ellipse</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">174</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">193</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">8</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">8</span><span style="color: #f8f8f2">);</span>    
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">colorShark</span><span style="color: #f8f8f2">);</span>    
+          <span style="color: #75715e">//skeleton</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noFill</span><span style="color: #f8f8f2">();</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">216</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">95</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">31</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">213</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">95</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">sharkSkeletonSize</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">strokeWeight</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1.5</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">8</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">+=</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">186</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f92672">*</span><span style="color: #ae81ff">4.5</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">187</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">34</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">387</span><span style="color: #f92672">+</span><span style="color: #a6e22e">sharkSkeletonSize</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">308</span><span style="color: #f92672">-</span><span style="color: #a6e22e">sharkSkeletonSize</span><span style="color: #f8f8f2">);</span>
+            <span style="color: #a6e22e">sharkSkeletonSize</span><span style="color: #f92672">+=</span><span style="color: #ae81ff">3.5</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pop</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #f8f8f2">}</span>
+
+        <span style="color: #66d9ef">while</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">DAF</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">){</span>
+          <span style="color: #a6e22e">DAF</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">=</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">round</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">500</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">800</span><span style="color: #f8f8f2">));</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span><span style="color: #f92672">=</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">round</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">350</span><span style="color: #f8f8f2">));</span>
+        <span style="color: #f8f8f2">}</span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">speedShark</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Vector</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sub</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">speedShark</span><span style="color: #f8f8f2">);</span>        
+        <span style="color: #a6e22e">dumbPredatorFishX</span><span style="color: #f92672">=</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span><span style="color: #f92672">&lt;-</span><span style="color: #ae81ff">80</span><span style="color: #f8f8f2">){</span>
+          <span style="color: #a6e22e">DAF</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #f8f8f2">}</span>    
+      <span style="color: #f8f8f2">};</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #75715e">//background gen prototype</span>
+    <span style="color: #f8f8f2">{</span> 
+      <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">backGrCol</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;};</span>
+      <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">backGrCol</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">create</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">while</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">i</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">410</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">redCol</span> <span style="color: #f92672">-=</span> <span style="color: #ae81ff">0.30</span><span style="color: #f8f8f2">;</span>
+            <span style="color: #a6e22e">greenCol</span> <span style="color: #f92672">-=</span> <span style="color: #ae81ff">0.30</span><span style="color: #f8f8f2">;</span>
+            <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+            <span style="color: #a6e22e">redColorArray</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">redCol</span><span style="color: #f8f8f2">);</span>
+            <span style="color: #a6e22e">greenColorArray</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">greenCol</span><span style="color: #f8f8f2">);</span>        
+        <span style="color: #f8f8f2">}</span>
+        <span style="color: #75715e">// println(greenColorArray);</span>
+      <span style="color: #f8f8f2">};</span>
+      <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">backGrCol</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">redColorArray</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+            <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noStroke</span><span style="color: #f8f8f2">();</span>
+            <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">redColorArray</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">j</span><span style="color: #f8f8f2">],</span> <span style="color: #a6e22e">greenColorArray</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">j</span><span style="color: #f8f8f2">],</span> <span style="color: #ae81ff">100</span><span style="color: #f8f8f2">);</span>
+            <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">rect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">j</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">400</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">}</span>    
+      <span style="color: #f8f8f2">};</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #75715e">//create background</span>
+    <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">backGrColor</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">backGrCol</span> <span style="color: #f8f8f2">();</span>
+      <span style="color: #a6e22e">backGrColor</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">create</span> <span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #75715e">//background - ocean floor</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">speed</span><span style="color: #f92672">=</span><span style="color: #ae81ff">1.5</span><span style="color: #f8f8f2">;</span> <span style="color: #75715e">//speed moving ocen floor</span>
+    <span style="color: #f8f8f2">{</span>   
+      <span style="color: #75715e">//bubbles draw function</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">max1</span><span style="color: #f92672">=</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">min1</span><span style="color: #f92672">=</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">bodyLength</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Math.</span><span style="color: #a6e22e">floor</span><span style="color: #f8f8f2">(Math.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">*</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">max1</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">min1</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">))</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">min1</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">bodyHeight</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Math.</span><span style="color: #a6e22e">floor</span><span style="color: #f8f8f2">(Math.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">*</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">max1</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">min1</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">))</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">min1</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">itemsQuantity</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">30</span><span style="color: #f8f8f2">;</span> <span style="color: #75715e">// quantity of bubbles</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">oceanBubblesPosX</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">oceanBubblesPosY</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">bodySizeArray</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">tx</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">ty</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">9999</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">xCoef</span> <span style="color: #f92672">=</span> <span style="color: #f92672">-</span><span style="color: #ae81ff">331</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">yCoef</span> <span style="color: #f92672">=</span> <span style="color: #f92672">-</span><span style="color: #ae81ff">218</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">itemsQuantity</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+          <span style="color: #a6e22e">bodySizeArray</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(Math.</span><span style="color: #a6e22e">floor</span><span style="color: #f8f8f2">(Math.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">*</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">max1</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">min1</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">))</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">min1</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">xStepSize</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noise</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">tx</span><span style="color: #f8f8f2">),</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span><span style="color: #f92672">*</span><span style="color: #ae81ff">2.95</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">yStepSize</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noise</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">ty</span><span style="color: #f8f8f2">),</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">height</span><span style="color: #f92672">*</span><span style="color: #ae81ff">2.95</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">oceanBubblesPosX</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">xStepSize</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">oceanBubblesPosY</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">yStepSize</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #a6e22e">tx</span> <span style="color: #f92672">+=</span> <span style="color: #ae81ff">0.58</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #a6e22e">ty</span> <span style="color: #f92672">+=</span> <span style="color: #ae81ff">0.26</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">bubblesDraw</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(){</span>     
+          <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">itemsQuantity</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noFill</span><span style="color: #f8f8f2">();</span>
+              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stroke</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ellipse</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">oceanBubblesPosX</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">-</span><span style="color: #a6e22e">bodyLength</span><span style="color: #f92672">/</span><span style="color: #ae81ff">4</span><span style="color: #f92672">+</span><span style="color: #a6e22e">xCoef</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">oceanBubblesPosY</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">+</span><span style="color: #a6e22e">yCoef</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">bodySizeArray</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">/</span><span style="color: #ae81ff">1.5</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">bodySizeArray</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">/</span><span style="color: #ae81ff">1.5</span><span style="color: #f8f8f2">);</span>
+              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">noStroke</span><span style="color: #f8f8f2">();</span>
+              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">252</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">252</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">252</span><span style="color: #f8f8f2">);</span>
+              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">oceanBubblesPosX</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">-</span><span style="color: #a6e22e">bodyLength</span><span style="color: #f92672">/</span><span style="color: #ae81ff">3</span><span style="color: #f92672">+</span><span style="color: #a6e22e">xCoef</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">oceanBubblesPosY</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">+</span><span style="color: #a6e22e">yCoef</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">bodySizeArray</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">/</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">bodySizeArray</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">/</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">111</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">260</span><span style="color: #f8f8f2">);</span>
+              <span style="color: #a6e22e">oceanBubblesPosY</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">-=</span><span style="color: #ae81ff">2.9</span><span style="color: #f8f8f2">;</span>
+              <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">oceanBubblesPosY</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">240</span><span style="color: #f8f8f2">){</span>
+                      <span style="color: #a6e22e">oceanBubblesPosY</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">round</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">600</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">700</span><span style="color: #f8f8f2">));</span>
+                  <span style="color: #f8f8f2">}</span>
+          <span style="color: #f8f8f2">}</span>
+          
+      <span style="color: #f8f8f2">};</span>
+      
+      <span style="color: #75715e">//seaweed draw function</span>
+      <span style="color: #f8f8f2">{</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">=</span><span style="color: #ae81ff">113</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">=</span><span style="color: #ae81ff">29</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">=</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">=</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">oceanSeaweedX</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+          <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">j</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">j</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+              <span style="color: #a6e22e">oceanSeaweedX</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">round</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">j</span><span style="color: #f92672">*</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">)));</span>
+          <span style="color: #f8f8f2">}</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Seaweed</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+              <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">i</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+                  <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">();</span>
+                  <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">translate</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">oceanSeaweedX</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">],</span><span style="color: #ae81ff">190</span><span style="color: #f8f8f2">);</span>
+                  <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">scale</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0.36</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0.5</span><span style="color: #f8f8f2">);</span>
+                      <span style="color: #75715e">//seaweed1</span>
+                      <span style="color: #f8f8f2">{</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">25</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">120</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+                          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">beginShape</span><span style="color: #f8f8f2">();</span> 
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">222</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">204</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">227</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">221</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">222</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">238</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">235</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">245</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">231</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">259</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">221</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">273</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">237</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">286</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">221</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">299</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">226</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">310</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">228</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">325</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">216</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">347</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">204</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">343</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">177</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">349</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">176</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">316</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">190</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">311</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">181</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">293</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">182</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">280</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">274</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">191</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">256</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">202</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">239</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">220</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">205</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">206</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">206</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">182</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">222</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">204</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">227</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">221</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">222</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos</span><span style="color: #f92672">+</span><span style="color: #ae81ff">238</span><span style="color: #f8f8f2">);</span> 
+                          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">endShape</span><span style="color: #f8f8f2">();}</span>
+                      <span style="color: #75715e">//seaweed2</span>
+                      <span style="color: #f8f8f2">{</span>
+                          
+                          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">();</span>
+                          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">133</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">194</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">);</span>
+                          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">translate</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">269</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">43</span><span style="color: #f8f8f2">);</span>
+                          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">scale</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0.26</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0.9</span><span style="color: #f8f8f2">);</span>
+                          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">rotate</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">);</span>
+                          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">beginShape</span><span style="color: #f8f8f2">();</span> 
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">222</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">204</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">227</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">221</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">222</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">238</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">235</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">245</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">231</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">259</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">221</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">273</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">237</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">286</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">221</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">299</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">226</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">310</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">228</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">325</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">216</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">347</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">204</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">343</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">177</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">349</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">176</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">316</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">190</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">311</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">181</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">293</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">182</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">280</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">274</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">191</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">256</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">202</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">239</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">197</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">220</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">205</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">206</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">206</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">182</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">222</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">204</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">227</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">221</span><span style="color: #f8f8f2">);</span>
+                              <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">curveVertex</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">seaweedXpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">222</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">seaweedYpos1</span><span style="color: #f92672">+</span><span style="color: #ae81ff">238</span><span style="color: #f8f8f2">);</span>
+                          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">endShape</span><span style="color: #f8f8f2">();</span>
+                          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pop</span><span style="color: #f8f8f2">();</span>
+                          <span style="color: #f8f8f2">}</span>
+                  <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pop</span><span style="color: #f8f8f2">();</span>
+                  <span style="color: #a6e22e">oceanSeaweedX</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">-=</span><span style="color: #a6e22e">speed</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">oceanSeaweedX</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">&lt;-</span><span style="color: #ae81ff">140</span><span style="color: #f8f8f2">){</span>
+                      <span style="color: #a6e22e">oceanSeaweedX</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #ae81ff">400</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #f8f8f2">}</span>
+              <span style="color: #f8f8f2">}</span>
+      <span style="color: #f8f8f2">};</span>   
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #75715e">//ocean floor draw function</span>
+      <span style="color: #f8f8f2">{</span>
+          <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">oceanFloorX</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+          <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">j</span><span style="color: #f92672">&lt;</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">j</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+              <span style="color: #a6e22e">oceanFloorX</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">j</span><span style="color: #f92672">*</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">);</span>
+          <span style="color: #f8f8f2">}</span>
+          
+          <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">oceanFloorDraw</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+              <span style="color: #a6e22e">bubblesDraw</span> <span style="color: #f8f8f2">();</span>
+              <span style="color: #a6e22e">Seaweed</span><span style="color: #f8f8f2">();</span>
+              <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">i</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">oceanFloorX</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span><span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+                  <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">image</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dirtBlockImg</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">oceanFloorX</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">],</span><span style="color: #ae81ff">360</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">33</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">40</span><span style="color: #f8f8f2">);</span>
+                  <span style="color: #a6e22e">oceanFloorX</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">-=</span><span style="color: #a6e22e">speed</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">oceanFloorX</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">&lt;-</span><span style="color: #ae81ff">40</span><span style="color: #f8f8f2">){</span>
+                      <span style="color: #a6e22e">oceanFloorX</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #ae81ff">400</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #f8f8f2">}</span>
+              <span style="color: #f8f8f2">}</span>
+          <span style="color: #f8f8f2">};</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #75715e">//create angry fish array</span>
+    <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">x</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">y</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">n</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">angryFishNum</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">angryFishPos</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">];</span>
+      <span style="color: #75715e">//create pos array</span>
+      <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">angryFishNum</span><span style="color: #f92672">/</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+          <span style="color: #a6e22e">x</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+             <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">angryFishNum</span><span style="color: #f92672">/</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+                  <span style="color: #a6e22e">y</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #a6e22e">n</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+                  <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">n</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Vector</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">125</span><span style="color: #f92672">+</span><span style="color: #a6e22e">i</span><span style="color: #f92672">*</span><span style="color: #ae81ff">46</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">131</span><span style="color: #f92672">+</span><span style="color: #a6e22e">j</span><span style="color: #f92672">*</span><span style="color: #ae81ff">35</span><span style="color: #f8f8f2">);</span>
+                  
+             <span style="color: #f8f8f2">}</span>
+      <span style="color: #f8f8f2">}</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">25</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">24</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">22</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">21</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">16</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #75715e">//println(angryFishPos.length);</span>
+
+      <span style="color: #75715e">//create angry fish      </span>
+
+      <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span> 
+        <span style="color: #a6e22e">angryFish</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">angryFishF</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #a6e22e">angryFish</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">add</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">angryFishPos</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]);</span>
+        <span style="color: #a6e22e">angryFish</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">startPosition</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">add</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">angryFish</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">position</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #75715e">//create dumbPredator fish</span>
+    <span style="color: #a6e22e">dumbPredator</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">angryFishF</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #f8f8f2">};</span> 
+
+  <span style="color: #75715e">//main programm</span>
+  <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">angleMode</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">DEGREES</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">background</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">backGrColor</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">draw</span> <span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">oceanFloorDraw</span> <span style="color: #f8f8f2">();</span>
+    <span style="color: #a6e22e">dumbPredator</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">drawDumbPredator</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">angryFish</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">force</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dumbPredator</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">calculateAttraction</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">angryFish</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]);</span>
+      <span style="color: #a6e22e">angryFish</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">applyForce</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">force</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFish</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">update</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dumbPredator</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">angryFish</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">draw</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>  
+  <span style="color: #f8f8f2">};</span>
+
+  <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;#canvasHolderSmall&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">contextmenu</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}).</span><span style="color: #a6e22e">css</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #e6db74">&#39;touch-action&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;manipulation&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;-webkit-touch-callout&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;none&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">/* iOS Safari */</span>
+    <span style="color: #e6db74">&#39;-webkit-user-select&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;none&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">/* Safari */</span>
+    <span style="color: #e6db74">&#39; -khtml-user-select&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;none&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">/* Konqueror HTML */</span>
+       <span style="color: #e6db74">&#39;-moz-user-select&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;none&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">/* Old versions of Firefox */</span>
+        <span style="color: #e6db74">&#39;-ms-user-select&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;none&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">/* Internet Explorer/Edge */</span>
+            <span style="color: #e6db74">&#39;user-select&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;none&#39;</span> <span style="color: #75715e">/* Non-prefixed version, currently</span>
+<span style="color: #75715e">                                  supported by Chrome, Edge, Opera and Firefox */</span>
+  <span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">};</span>
+
+<span style="color: #75715e">//check availability of the code txt version URL</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">checkTxtUrl</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">txt_url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;https://res.cloudinary.com/deah4rwon/raw/upload/v1603848143/js/code_project_angry_fish_lk9mb0.txt&#39;</span><span style="color: #f8f8f2">;</span> 
+  <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ajax</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span><span style="color: #a6e22e">txt_url</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">type</span><span style="color: #f92672">:</span><span style="color: #e6db74">&#39;HEAD&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">error</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+      <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.snippetWrapper&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">load</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;../../txt/code_project_angry_fish.txt&#39;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">success</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+      <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.snippetWrapper&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">load</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;https://res.cloudinary.com/deah4rwon/raw/upload/v1603848143/js/code_project_angry_fish_lk9mb0.txt&#39;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">});</span>   
+<span style="color: #f8f8f2">}</span>
+
+
+
+<span style="color: #75715e">//****main_programm*****</span>
+<span style="color: #a6e22e">checkTxtUrl</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">externalUrlsArray</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Object.</span><span style="color: #a6e22e">values</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">externalUrls</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">localUrlsArray</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Object.</span><span style="color: #a6e22e">values</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">localUrls</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">urlKeys</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Object.</span><span style="color: #a6e22e">keys</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">externalUrls</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">urlKeys</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">checkImgUrl</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">urlKeys</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">],</span> <span style="color: #a6e22e">externalUrlsArray</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">],</span> <span style="color: #a6e22e">localUrlsArray</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]);</span>    
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #75715e">//waiting until ajax is will complete, after that draw sketch is started</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">ajaxComplete</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+<span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(document).</span><span style="color: #a6e22e">ajaxComplete</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+  <span style="color: #a6e22e">ajaxComplete</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>  
+  <span style="color: #75715e">// console.log(ajaxComplete)</span>
+  <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">ajaxComplete</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">disableFriendlyErrors</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span> <span style="color: #75715e">// disables FES</span>
+    <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">myp5</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">p5</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">gameSketch</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>  
+<span style="color: #f8f8f2">});</span>
+</pre></td></tr></table></div>
+

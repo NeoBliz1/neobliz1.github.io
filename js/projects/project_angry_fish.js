@@ -1,14 +1,5 @@
-/*This programm based on the project: Hoppy Bever Extreme
-In this version has added next updates:
- - was change bever to the OhNoesGuy - done
- - was add sounds for OhNoesGuy hops - done
- - was add change gems to the gem - done
- - was add the screen of choose username  - done
- - was add level with holes in the ground - done
- - was add level include appearance enemies - done
- - was add change day and night - done
- - was add score screen - done
- - was add moving world acceleration*/
+// When there is no predator, the fishes swim forward.
+// When a predator swam in, angry fishes attack a predator and eat it.
 
 var dirtBlockUrl;
 //check availability of the image's URLs
@@ -225,7 +216,7 @@ let gameSketch = function(p) {
           //top shark
           p.arc(196,200,92,50,-169,-91);
           //bot shark
-          p.arc(190,195,92,50,-208,-190);
+          p.arc(197,192,88,30,-198,-180);
           p.arc(198,190,92,35,-249,-219);
           p.noFill();
           p.arc(180,187,34,50,-387,-318);
@@ -266,15 +257,13 @@ let gameSketch = function(p) {
           p.pop();
         }
 
-        // while (DAF<1){
-        //   DAF++;
-        //   this.position.x=p.round(p.random(500,800));
-        //   this.position.y=p.round(p.random(50,350));
-        // }
-        // var speedShark = new p5.Vector(1,0);
-        // this.position.sub(speedShark);
-        this.position.x=200;
-        this.position.y=200;
+        while (DAF<1){
+          DAF++;
+          this.position.x=p.round(p.random(500,800));
+          this.position.y=p.round(p.random(50,350));
+        }
+        var speedShark = new p5.Vector(1,0);
+        this.position.sub(speedShark);        
         dumbPredatorFishX=this.position.x;
         if (this.position.x<-80){
           DAF=0;
@@ -509,14 +498,14 @@ let gameSketch = function(p) {
     p.angleMode(p.DEGREES);
     p.background(255, 255, 255);
     backGrColor.draw ();
-    // p.oceanFloorDraw ();
+    p.oceanFloorDraw ();
     dumbPredator.drawDumbPredator();
-    // for (var i = 0; i < angryFish.length; i++) {
-    //   var force = dumbPredator.calculateAttraction(angryFish[i]);
-    //   angryFish[i].applyForce(force);
-    //   angryFish[i].update(dumbPredator);
-    //   angryFish[i].draw();
-    // }  
+    for (var i = 0; i < angryFish.length; i++) {
+      var force = dumbPredator.calculateAttraction(angryFish[i]);
+      angryFish[i].applyForce(force);
+      angryFish[i].update(dumbPredator);
+      angryFish[i].draw();
+    }  
   };
 
   $('#canvasHolderSmall').contextmenu(function() {
@@ -535,15 +524,15 @@ let gameSketch = function(p) {
 
 //check availability of the code txt version URL
 var checkTxtUrl = function () {
-  var txt_url = 'https://res.cloudinary.com/deah4rwon/raw/upload/v1602429596/js/code_project5_y5z2m7.txt'; 
+  var txt_url = 'https://res.cloudinary.com/deah4rwon/raw/upload/v1603848689/js/code_project_angry_fish_qawqjy.txt'; 
   $.ajax({
     url:txt_url,
     type:'HEAD',
     error: function(){
-      $('.snippetWrapper').load('../../txt/code_project5.txt');
+      $('.snippetWrapper').load('../../txt/code_project_angry_fish.txt');
     },
     success: function(){
-      $('.snippetWrapper').load('https://res.cloudinary.com/deah4rwon/raw/upload/v1602429596/js/code_project5_y5z2m7.txt');
+      $('.snippetWrapper').load('https://res.cloudinary.com/deah4rwon/raw/upload/v1603848689/js/code_project_angry_fish_qawqjy.txt');
     }
   });   
 }

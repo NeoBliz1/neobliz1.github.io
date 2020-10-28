@@ -115,7 +115,7 @@ var projectDivSizeHandler = function () { //function handle which window is on r
 		//set buttons font-size		
 		$('#rmb, #vpb').css('font-size', projectDivWidth*0.06);
 		//set button vpb position parameters, except project_1 and 2 divs
-		$projectDiv.not('.project_1, .project_2')
+		$projectDiv.not('.project_1, .project_2, .project_angry_fish')
 		.find('#vpb')
 		.css({
 			left: projectDivWidth*0.55,
@@ -126,6 +126,12 @@ var projectDivSizeHandler = function () { //function handle which window is on r
 	.css({
 		left: projectDivWidth*0.55,
 		bottom: projectDivHeight*0.1
+	});
+	//set button vpb position parameters in project_angry_fish div
+	$('.project_angry_fish').find('#vpb')
+	.css({
+		left: projectDivWidth*0.55,
+		bottom: 0
 	});
 	//set paragraph size in project divs
 	$('.paragraphMSD').css({
@@ -356,7 +362,7 @@ var mySkillsAnimation = function () {
 		var currentScroll = $(window).scrollTop();
 
 		//add overlay div
-		$('main .flex_box').append('<div id="fullSizeSkillBoxOverlay"></div>');		//adding overlay div to the end main div
+		$('body').append('<div id="fullSizeSkillBoxOverlay"></div>');		//adding overlay div to the end main div
 		$cloneDiv.attr('id', 'cloneDiv')
 		.appendTo('body') //adding clone div to the end main div
 		.append('<p class="closeButton hidden"><i class="far fa-times-circle"></i></p>')
