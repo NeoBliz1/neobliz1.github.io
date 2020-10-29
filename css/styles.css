@@ -413,8 +413,7 @@ h2.projectHeader {
   background-color: rgb(255, 145, 0);
   position: relative;  
   width: 100%;   
-  min-height: min-content;
-  z-index: 0;   
+  min-height: min-content;  
 }
 .smallCanvasContainer {
   position: relative;

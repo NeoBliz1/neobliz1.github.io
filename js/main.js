@@ -131,7 +131,7 @@ var projectDivSizeHandler = function () { //function handle which window is on r
 	$('.project_angry_fish').find('#vpb')
 	.css({
 		left: projectDivWidth*0.55,
-		bottom: 0
+		bottom: projectDivWidth*0.03*(-1)
 	});
 	//set paragraph size in project divs
 	$('.paragraphMSD').css({

@@ -43,7 +43,7 @@ let gameSketch = function(p) {
     p.smooth();
       
     // limit the number of frames per second
-    p.frameRate(60);
+    p.frameRate(30);
     //creating color array
     
     p.colorMode(p.RGB);    
@@ -63,12 +63,13 @@ let gameSketch = function(p) {
     var redColorArray = [];
     var greenColorArray = [];
     var dumbPredatorFishX = 500;
+    var fishSpeed = 2;
     //Prototypes
     //angry fish prototype
     {
       p.angryFishF = function() {
-        this.mass = 20;
-        this.G = 10.2;
+        this.mass = 20*fishSpeed;
+        this.G = 10.2*fishSpeed;
         this.position = new p5.Vector(0, 0);
         this.startPosition = new p5.Vector(0, 0);
         this.velocity = new p5.Vector(0, 0);
@@ -121,7 +122,7 @@ let gameSketch = function(p) {
           var mouse = new p5.Vector(this.startPosition.x+p.round(p.random(-rx,rx)), this.startPosition.y+p.round(p.random(-ry,ry)));
           var dir = p5.Vector.sub(mouse, this.position);
           dir.normalize();
-          dir.mult(0.046);
+          dir.mult(0.046*fishSpeed);
           this.acceleration = dir;
           this.velocity.add(this.acceleration);
           this.velocity.limit(1.0);
@@ -262,7 +263,7 @@ let gameSketch = function(p) {
           this.position.x=p.round(p.random(500,800));
           this.position.y=p.round(p.random(50,350));
         }
-        var speedShark = new p5.Vector(1,0);
+        var speedShark = new p5.Vector(1*fishSpeed,0);
         this.position.sub(speedShark);        
         dumbPredatorFishX=this.position.x;
         if (this.position.x<-80){
@@ -298,7 +299,7 @@ let gameSketch = function(p) {
       backGrColor.create ();
     }
     //background - ocean floor
-    var speed=1.5; //speed moving ocen floor
+    var speed=3; //speed moving ocen floor
     {   
       //bubbles draw function
       var max1=20;

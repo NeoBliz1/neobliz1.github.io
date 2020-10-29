@@ -37,6 +37,7 @@
   // Parallax Constructor
 
   function Parallax(element, options) {
+
     var self = this;
 
     if (typeof options == 'object') {
