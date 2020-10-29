@@ -498,8 +498,8 @@ let gameSketch = function(p) {
   p.draw = function() {
     let fps = p.frameRate();    
     p.angleMode(p.DEGREES);
-    p.background(255, 255, 255);
-    backGrColor.draw ();
+    p.background(40,146,245);
+    // backGrColor.draw ();    
     p.oceanFloorDraw ();
     dumbPredator.drawDumbPredator();
     for (var i = 0; i < angryFish.length; i++) {
