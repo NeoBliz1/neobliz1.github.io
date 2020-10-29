@@ -43,7 +43,7 @@ let gameSketch = function(p) {
     p.smooth();
       
     // limit the number of frames per second
-    p.frameRate(60);
+    p.frameRate(25);
     //creating color array
     
     p.colorMode(p.RGB);    
@@ -63,7 +63,7 @@ let gameSketch = function(p) {
     var redColorArray = [];
     var greenColorArray = [];
     var dumbPredatorFishX = 500;
-    var fishSpeed = 1;
+    var fishSpeed = 2.4;
     //Prototypes
     //angry fish prototype
     {
