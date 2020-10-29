@@ -43,7 +43,7 @@ let gameSketch = function(p) {
     p.smooth();
       
     // limit the number of frames per second
-    p.frameRate(30);
+    p.frameRate(60);
     //creating color array
     
     p.colorMode(p.RGB);    
@@ -63,7 +63,7 @@ let gameSketch = function(p) {
     var redColorArray = [];
     var greenColorArray = [];
     var dumbPredatorFishX = 500;
-    var fishSpeed = 2;
+    var fishSpeed = 1;
     //Prototypes
     //angry fish prototype
     {
@@ -299,7 +299,7 @@ let gameSketch = function(p) {
       backGrColor.create ();
     }
     //background - ocean floor
-    var speed=3; //speed moving ocen floor
+    var speed=1.5*fishSpeed; //speed moving ocen floor
     {   
       //bubbles draw function
       var max1=20;
@@ -331,7 +331,7 @@ let gameSketch = function(p) {
               p.noStroke();
               p.fill(252, 252, 252);
               p.arc(oceanBubblesPosX[i]-bodyLength/3+xCoef, oceanBubblesPosY[i]+yCoef,bodySizeArray[i]/3, bodySizeArray[i]/3,111,260);
-              oceanBubblesPosY[i]-=2.9;
+              oceanBubblesPosY[i]-=1.9*fishSpeed;
               if (oceanBubblesPosY[i]<240){
                       oceanBubblesPosY[i]=p.round(p.random(600,700));
                   }
@@ -493,9 +493,10 @@ let gameSketch = function(p) {
     //create dumbPredator fish
     dumbPredator = new p.angryFishF();
   }; 
-
+  
   //main programm
   p.draw = function() {
+    let fps = p.frameRate();    
     p.angleMode(p.DEGREES);
     p.background(255, 255, 255);
     backGrColor.draw ();
@@ -507,6 +508,10 @@ let gameSketch = function(p) {
       angryFish[i].update(dumbPredator);
       angryFish[i].draw();
     }  
+    p.fill(255);
+    // p.stroke(0);
+    p.textSize(32);
+    p.text("FPS: "+fps.toFixed(2), 40, 40);
   };
 
   $('#canvasHolderSmall').contextmenu(function() {
