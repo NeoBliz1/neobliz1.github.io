@@ -2,6 +2,31 @@
 // When a predator swam in, angry fishes attack a predator and eat it.
 
 var dirtBlockUrl;
+var backgroundIsGradient = true;
+var fishSpeed = 1;
+
+//check browser and platform
+
+if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+  if (!!window.chrome) {
+    backgroundIsGradient = true;    
+  }
+  else {
+    backgroundIsGradient = false; 
+  }
+  fishSpeed = 2;
+}
+
+if (navigator.userAgent.match(/(Android)/)) {
+  if (!!window.chrome) {
+    backgroundIsGradient = true;    
+  }
+  else {
+    backgroundIsGradient = false; 
+  }
+  fishSpeed = 2;  
+}
+
 //check availability of the image's URLs
 
 var externalUrls = {
@@ -28,6 +53,7 @@ var checkImgUrl = function (varName, goto_url, errorUrl) {
 //main game function
 let gameSketch = function(p) {
   let dirtBlockImg, angryFish = [];
+  
   p.preload = function () {
     dirtBlockImg = p.loadImage(dirtBlockUrl);
   };
@@ -43,7 +69,7 @@ let gameSketch = function(p) {
     p.smooth();
       
     // limit the number of frames per second
-    p.frameRate(25);
+    p.frameRate(60/fishSpeed);
     //creating color array
     
     p.colorMode(p.RGB);    
@@ -62,8 +88,7 @@ let gameSketch = function(p) {
     var greenCol = 140;
     var redColorArray = [];
     var greenColorArray = [];
-    var dumbPredatorFishX = 500;
-    var fishSpeed = 2.4;
+    var dumbPredatorFishX = 500;    
     //Prototypes
     //angry fish prototype
     {
@@ -125,7 +150,7 @@ let gameSketch = function(p) {
           dir.mult(0.046*fishSpeed);
           this.acceleration = dir;
           this.velocity.add(this.acceleration);
-          this.velocity.limit(1.0);
+          this.velocity.limit(1.0*fishSpeed);
           this.position.add(this.velocity);
         }          
       };
@@ -495,11 +520,14 @@ let gameSketch = function(p) {
   }; 
   
   //main programm
-  p.draw = function() {
-    let fps = p.frameRate();    
+  p.draw = function() {        
     p.angleMode(p.DEGREES);
-    p.background(40,146,245);
-    // backGrColor.draw ();    
+    if (backgroundIsGradient) {
+      backGrColor.draw ();
+    }
+    else {
+      p.background(40,146,245);
+    }    
     p.oceanFloorDraw ();
     dumbPredator.drawDumbPredator();
     for (var i = 0; i < angryFish.length; i++) {
@@ -507,11 +535,11 @@ let gameSketch = function(p) {
       angryFish[i].applyForce(force);
       angryFish[i].update(dumbPredator);
       angryFish[i].draw();
-    }  
-    p.fill(255);
-    // p.stroke(0);
-    p.textSize(32);
-    p.text("FPS: "+fps.toFixed(2), 40, 40);
+    }
+    // let fps = p.frameRate();  
+    // p.fill(255);    
+    // p.textSize(32);
+    // p.text("FPS: "+fps.toFixed(2), 40, 40);
   };
 
   $('#canvasHolderSmall').contextmenu(function() {
