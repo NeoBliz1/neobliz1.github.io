@@ -338,7 +338,8 @@ var mySkillsAnimation = function () {
 		var $cloneDiv = $(thisIs).clone();
 
 		//remove "read more" button
-		$cloneDiv.find('#rmb')
+		$cloneDiv.removeClass('projectDiv scrollAnimate')
+		.find('#rmb')
 		.remove();
 
 		$('.project_1 #cloneDiv').find('#vpb')

@@ -1,11 +1,11 @@
 // When there is no predator, the fishes swim forward.
-// When a predator swam in, angry fishes attack a predator and eat it.
+// When a predator has appeared, angry fishes attack a predator and devour it.
 
 var dirtBlockUrl;
 var backgroundIsGradient = true;
 var fishSpeed = 1;
 
-//check browser and platform
+//checking browser and platform, and if it is mobile then reduce fps 2 times
 
 if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
   if (!!window.chrome) {
@@ -47,10 +47,9 @@ var checkImgUrl = function (varName, goto_url, errorUrl) {
       window[varName] = goto_url;
     }
   });
-
 }
 
-//main game function
+//main sketch function
 let gameSketch = function(p) {
   let dirtBlockImg, angryFish = [];
   
@@ -78,8 +77,7 @@ let gameSketch = function(p) {
   };
 
   p.startConfig = function () {
-    // when there is no predator, the fish swims forward
-    // when a predator comes, an angry fish attacks a predator and eats it
+    
     //prototypes
     var resetStartPos = 0;
     p.mouseX=-10;
@@ -582,7 +580,7 @@ for (var i = 0; i < urlKeys.length; i++) {
   checkImgUrl(urlKeys[i], externalUrlsArray[i], localUrlsArray[i]);    
 }
 
-//waiting until ajax is will complete, after that draw sketch is started
+//waiting until ajax will be complete after that will start the drawing sketch 
 var ajaxComplete = 0;
 $(document).ajaxComplete(function(){
   ajaxComplete++;  

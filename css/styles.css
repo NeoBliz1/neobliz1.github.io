@@ -287,7 +287,13 @@ h2 {
   background-size: 100% 100%;
 }
 .project_angry_fish {
-  background-image: url(../img/project_angry_fish.png.png);
+  background-image: url(../img/project_angry_fish.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+.project_bees_awakening {
+  background-image: url(../img/project_angry_fish.png);
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
@@ -310,7 +316,7 @@ h2 {
   text-decoration:none;
   text-shadow:0px 1px 0px #ffee66;
   outline:none;
-  z-index: 7;
+  z-index: 7;  
 }
 .readMoreBtn:hover, .viewProject:hover {
   background:linear-gradient(to bottom, #fca314 5%, #ffec64 100%);
@@ -530,14 +536,10 @@ pre {
     padding: 0;
   }
   .readMoreBtn, .viewProject  {
-    border-radius:6px;    
-    padding:0px 2px 0px 0px;
+    border-radius: 20px;
+    padding: 1px 4px 1px 4px;
     margin: 2px;       
-  }
-  .readMoreBtn {    
-    padding: 0px 2px 0px 2px;
-    margin: 2px;        
-  }
+  } 
   .topParagraphMSD {    
     left: 3px;
     top: 3px;  
@@ -591,13 +593,10 @@ pre {
 
   
   .readMoreBtn, .viewProject  { 
-    border-radius:6px;   
-    padding:0px 3px 0px 3px;
+    border-radius:20px;   
+    padding: 1px 4px 1px 4px;
     margin: 6px;      
-  }
-  .readMoreBtn {    
-    padding: 0px 2px 0px 2px;
-  }
+  }  
   .topParagraphMSD {    
     left: 8px;
     top: 3px;  
@@ -678,13 +677,10 @@ pre {
   }  
   
   .readMoreBtn, .viewProject  {
-    border-radius: 18px; 
+    border-radius: 20px; 
     padding:2px 8px 2px 8px;
     margin: 15px;       
-  }
-  .readMoreBtn {    
-    padding: 2px 8px 2px 8px;       
-  }
+  }  
   .topParagraphMSD {    
     left: 10px;
     top: 10px;  
