@@ -536,6 +536,7 @@ let gameSketch = function(p) {
 				p.fill(35, 235, 0);
 				p.rect(0,200,400,300);
 				trees.drawTrees(-1115,19);
+				p.textFont('Arial');
 				p.stroke(0);
 				p.strokeWeight(0);
 				p.textSize(16);
@@ -696,24 +697,24 @@ let gameSketch = function(p) {
 				rifts[i].draw();
 			}
 		} 
-		let fps = p.frameRate();  
-    p.fill(255);    
-    p.textSize(32);
-    p.text("FPS: "+fps.toFixed(2), 40, 80);   
+		// let fps = p.frameRate();  
+  //   p.fill(255);    
+  //   p.textSize(32);
+  //   p.text("FPS: "+fps.toFixed(2), 40, 80);   
 	};
 };
 
 //check availability of the code txt version URL
 var checkTxtUrl = function () {
-  var txt_url = 'https://res.cloudinary.com/deah4rwon/raw/upload/v1603848689/js/code_project_angry_fish_qawqjy.txt'; 
+  var txt_url = 'https://res.cloudinary.com/deah4rwon/raw/upload/v1604198768/js/code_project_bees_awakening_i6tk7q.txt'; 
   $.ajax({
     url:txt_url,
     type:'HEAD',
     error: function(){
-      $('.snippetWrapper').load('../../txt/code_project_angry_fish.txt');
+      $('.snippetWrapper').load('../../txt/code_project_bees_awakening.txt');
     },
     success: function(){
-      $('.snippetWrapper').load('https://res.cloudinary.com/deah4rwon/raw/upload/v1603848689/js/code_project_angry_fish_qawqjy.txt');
+      $('.snippetWrapper').load('https://res.cloudinary.com/deah4rwon/raw/upload/v1604198768/js/code_project_bees_awakening_i6tk7q.txt');
     }
   });   
 }
