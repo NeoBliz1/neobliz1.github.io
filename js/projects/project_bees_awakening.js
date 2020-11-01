@@ -5,23 +5,21 @@ var animCoeff = 1;
 //checking browser and platform, and if it is mobile then reduce fps 2 times
 
 if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
-  // if (!!window.chrome) {
-  //   backgroundIsGradient = true;    
-  // }
-  // else {
-  //   backgroundIsGradient = false; 
-  // }
-  animCoeff = 2;
+  if (!!window.chrome) {
+    animCoeff = 2;      
+  }
+  else {
+    animCoeff = 3;   
+  } 
 }
 
 if (navigator.userAgent.match(/(Android)/)) {
-  // if (!!window.chrome) {
-  //   backgroundIsGradient = true;    
-  // }
-  // else {
-  //   backgroundIsGradient = false; 
-  // }
-  animCoeff = 2;  
+  if (!!window.chrome) {
+    animCoeff = 2;      
+  }
+  else {
+    animCoeff = 3;   
+  }  
 }
 
 var externalUrls = {
@@ -79,7 +77,7 @@ let gameSketch = function(p) {
     p.smooth();
       
     // limit the number of frames per second
-    p.frameRate(60);
+    p.frameRate(60/animCoeff);
     //creating color array
     
     p.colorMode(p.RGB);    
@@ -141,7 +139,7 @@ let gameSketch = function(p) {
 				//fly trajectory variables
 				//small fly radius
 				this.startAngle1 = 0;
-				this.period1 = p.random(0.8,1.5);//fly speed
+				this.period1 = p.random(0.8,1.5)/animCoeff;//fly speed
 				this.amplitude1 = p.random(20,35);//fly radius
 				this.angleVel1 = (p.TWO_PI / this.period1) * 5;
 				//big fly radius
@@ -152,7 +150,7 @@ let gameSketch = function(p) {
 				//wings flaps variable
 				this.startWingAngle =0;
 				this.wingsFlapAmplitude = 8;
-				this.wingsFlapPeriod = 0.13;
+				this.wingsFlapPeriod = 0.13/animCoeff;
 				this.angleWingVel = (p.TWO_PI / this.wingsFlapPeriod) * 5;
 				this.armLength = -20;
 				//limbs swing variables
@@ -169,8 +167,7 @@ let gameSketch = function(p) {
 						this.beeAtHome = false;
 						this.startAngle1 += p.TWO_PI / this.period1;//small fly radius
 						this.startAngle2 += p.TWO_PI / this.period2;//big fly radius
-						this.startWingAngle += p.TWO_PI / this.wingsFlapPeriod;//wings flaps
-						
+						this.startWingAngle += p.TWO_PI / this.wingsFlapPeriod;//wings flaps						
 					}
 					else if (beeGoHome && this.startAngle2>355 ){//&& !beeAtHome
 						while(this.decreaseDegrees<1){
@@ -182,9 +179,7 @@ let gameSketch = function(p) {
 						this.startAngle2 -= p.TWO_PI / this.period2;//big fly radius
 						this.startWingAngle -= p.TWO_PI / this.wingsFlapPeriod;//wings flaps
 						this.yOff+=0.2;
-						this.xOff+=0.2;
-						
-						
+						this.xOff+=0.2;		
 					}
 					else if (beeGoHome && this.startAngle2 < 355 && this.x2 > 95 && this.y2 < 30) {
 						//this.beeIncAtHome = 3;
@@ -621,7 +616,7 @@ let gameSketch = function(p) {
 		p.background(0, 180, 235);
 		p.drawBackground();
 		if (!beeAtHome){
-			var scaleSpeed = 2;
+			var scaleSpeed = 2*animCoeff;
 			if (!beeGoHome){
 				p.drawBeehive();
 			}
