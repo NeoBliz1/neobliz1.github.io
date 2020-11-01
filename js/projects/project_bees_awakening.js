@@ -507,8 +507,8 @@ let gameSketch = function(p) {
 						for (var i=0;i < itemsQuantity;i++){
 							var xStepSize = p.map(p.noise(this.tx),0,1,0,p.width*widthCoeff);
 							var yStepSize = p.map(p.noise(this.ty),0,1,0,p.height/heightCoeff);
-							console.log(xStepSize);
-							console.log(yStepSize);
+							// console.log(xStepSize);
+							// console.log(yStepSize);
 							this.x.push(xStepSize);
 							this.y.push(yStepSize);
 							this.tx += 1;
@@ -700,7 +700,11 @@ let gameSketch = function(p) {
 			for (var i=0;i<rifts.length;i++){
 				rifts[i].draw();
 			}
-		}    
+		} 
+		let fps = p.frameRate();  
+    p.fill(255);    
+    p.textSize(32);
+    p.text("FPS: "+fps.toFixed(2), 40, 80);   
 	};
 };
 

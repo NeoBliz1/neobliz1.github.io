@@ -429,7 +429,8 @@ var mySkillsAnimation = function () {
 	}
 	var divHoverHandler = function () {
 		//mouse in and out handler
-		$projectDiv.hover(function() {
+		$projectDiv.filter(':not(:animated)')
+		.hover(function() {
 			/* Stuff to do when the mouse enters the element */
 			var thisIs = this;					
 			zoomInAnimation(thisIs);			
