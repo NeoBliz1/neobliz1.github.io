@@ -1,5 +1,28 @@
 var treeUglyUrl, treeUglyImg, winstonUrl, winstonImg, treeTallUrl, treeTallImg;
 //check availability of the image's URLs
+var animCoeff = 1;
+
+//checking browser and platform, and if it is mobile then reduce fps 2 times
+
+if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+  // if (!!window.chrome) {
+  //   backgroundIsGradient = true;    
+  // }
+  // else {
+  //   backgroundIsGradient = false; 
+  // }
+  animCoeff = 2;
+}
+
+if (navigator.userAgent.match(/(Android)/)) {
+  // if (!!window.chrome) {
+  //   backgroundIsGradient = true;    
+  // }
+  // else {
+  //   backgroundIsGradient = false; 
+  // }
+  animCoeff = 2;  
+}
 
 var externalUrls = {
   treeUglyUrl : 'https://www.kasandbox.org/third_party/javascript-khansrc/live-editor/build/images/cute/TreeUgly.png',
@@ -466,7 +489,7 @@ let gameSketch = function(p) {
 			};
 				
 			//creating bees				
-			for (var i = 0; i<20; i++){
+			for (var i = 0; i<20/animCoeff; i++){
 				bees[i] = new p.bee();
 			}
 		}
@@ -480,20 +503,22 @@ let gameSketch = function(p) {
 					this.ty = 9999;            
 				};
 				{
-					p.noiseRandom.prototype.random = function (itemsQuantity,itemsWidth,itemsHeight) {
+					p.noiseRandom.prototype.random = function (itemsQuantity,widthCoeff,heightCoeff) {
 						for (var i=0;i < itemsQuantity;i++){
-							var xStepSize = p.map(p.noise(this.tx),0,1,0,p.width*itemsWidth);
-							var yStepSize = p.map(p.noise(this.ty),0,1,0,p.height*itemsHeight+548);
+							var xStepSize = p.map(p.noise(this.tx),0,1,0,p.width*widthCoeff);
+							var yStepSize = p.map(p.noise(this.ty),0,1,0,p.height/heightCoeff);
+							console.log(xStepSize);
+							console.log(yStepSize);
 							this.x.push(xStepSize);
 							this.y.push(yStepSize);
-							this.tx += 0.58;
-							this.ty += 0.26;
+							this.tx += 1;
+							this.ty += 0.5;
 						}
 					};
 
-					p.noiseRandom.prototype.drawTrees = function (xB,yB) {
+					p.noiseRandom.prototype.drawTrees = function () {
 						for (var j=0;j < this.x.length; j++){
-							p.image(treeUglyImg,10+this.x[j]+xB,10+this.y[j]+yB,20,30);
+							p.image(treeUglyImg,this.x[j]-100,this.y[j]+180,20,30);
 						}
 					};
 				}
@@ -503,8 +528,8 @@ let gameSketch = function(p) {
 				}
 				//main programm
 				{
-					trees.random(25,6.77,0.0401);
-					trees.drawTrees(-1027,0); 
+					trees.random(26/animCoeff,2,2);
+					trees.drawTrees(); 
 				}
 			}
 		//background part
