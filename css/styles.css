@@ -428,7 +428,8 @@ h2.projectHeader {
 .smallCanvas {
   background-color: rgb(255, 145, 0);
   position: relative;  
-  width: 100%;   
+  width: 100%; 
+  min-height: 100vh;  
 }
 .normalCanvas {    
   height: inherit;    

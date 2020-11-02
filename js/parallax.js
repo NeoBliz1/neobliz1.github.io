@@ -5,7 +5,7 @@
  */
 
 ;(function ( $, window, document, undefined ) {
-
+  var hCoeff = 1;
   // Polyfill for requestAnimationFrame
   // via: https://gist.github.com/paulirish/1579671
   
@@ -92,27 +92,35 @@
       this.positionX + (isNaN(this.positionX)? '' : 'px') + ' ' +
       this.positionY + (isNaN(this.positionY)? '' : 'px');
 
-    // if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
-    //   if (this.imageSrc && this.iosFix && !this.$element.is('img')) {
-    //     this.$element.css({
-    //       backgroundImage: 'url("' + this.imageSrc + '")',
-    //       backgroundSize: 'cover',
-    //       backgroundPosition: this.position
-    //     });
-    //   }
-    //   return this;
-    // }
+    if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {                 
+      hCoeff = 1.6; 
+      // if (this.imageSrc && this.iosFix && !this.$element.is('img')) {
+      //   this.$element.css({
+      //     backgroundImage: 'url("' + this.imageSrc + '")',
+      //     backgroundSize: 'cover',
+      //     backgroundPosition: this.position
+      //   });
+      // }
+      // return this;
+    }
+    else {      
+      hCoeff = 1;
+    }
 
-    // if (navigator.userAgent.match(/(Android)/)) {
-    //   if (this.imageSrc && this.androidFix && !this.$element.is('img')) {
-    //     this.$element.css({
-    //       backgroundImage: 'url("' + this.imageSrc + '")',
-    //       backgroundSize: 'cover',
-    //       backgroundPosition: this.position
-    //     });
-    //   }
-    //   return this;
-    // }
+    if (navigator.userAgent.match(/(Android)/)) {
+      hCoeff = 1.6; 
+      // if (this.imageSrc && this.androidFix && !this.$element.is('img')) {
+      //   this.$element.css({
+      //     backgroundImage: 'url("' + this.imageSrc + '")',
+      //     backgroundSize: 'cover',
+      //     backgroundPosition: this.position
+      //   });
+      // }
+      // return this;
+    }
+    else {      
+      hCoeff = 1;
+    }
 
     this.$mirror = $('<div />').prependTo(this.mirrorContainer);
 
@@ -173,7 +181,7 @@
 
     refresh: function() {      
       this.boxWidth        = this.$element.outerWidth();
-      this.boxHeight       = this.$element.outerHeight() + this.bleed * 2;
+      this.boxHeight       = this.$element.outerHeight()*hCoeff + this.bleed * 2;
       this.boxOffsetTop    = this.$element.offset().top - this.bleed;
       this.boxOffsetLeft   = this.$element.offset().left;
       this.boxOffsetBottom = this.boxOffsetTop + this.boxHeight;
@@ -236,7 +244,7 @@
       } else {
         this.visibility = 'hidden';
       }
-
+      
       this.$mirror.css({
         transform: 'translate3d('+this.mirrorLeft+'px, '+(this.mirrorTop - overScroll)+'px, 0px)',
         visibility: this.visibility,
@@ -244,14 +252,12 @@
         width: this.boxWidth,
         opacity: '0.2'
       });
-      
+
       this.$slider.css({
         transform: 'translate3d('+this.offsetLeft+'px, '+this.offsetTop+'px, 0px)',
         position: 'absolute',
-        // height: this.imageHeight,
-        // width: this.imageWidth,
-        height: this.boxHeight,
-        width: this.boxWidth,
+        height: this.imageHeight,
+        width: this.imageWidth,        
         maxWidth: 'none'
       });
     }

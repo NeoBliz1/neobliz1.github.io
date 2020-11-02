@@ -69,7 +69,7 @@ let gameSketch = function(p) {
 		p.smooth();
 			
 		// limit the number of frames per second
-		p.frameRate(60);
+		p.frameRate(60/animCoeff);
 		//creating color array
 		
 		p.colorMode(p.RGB);    
@@ -227,8 +227,8 @@ let gameSketch = function(p) {
 					this.velocity = new p5.Vector(2, 0);
 					this.carrotVelocity = new p5.Vector(0, 0);
 					this.acceleration = new p5.Vector(0, 0);
-					this.topspeed = 6;
-					this.rotateAntSpeed = 0.2;
+					this.topspeed = 6*animCoeff;
+					this.rotateAntSpeed = 0.2*animCoeff;
 					this.position = new p5.Vector(x, y);
 					this.carrotPosition = new p5.Vector(0, 0);
 					this.readyForBlastOff = false;
@@ -251,7 +251,7 @@ let gameSketch = function(p) {
 					this.normalizeDistForBubble = 0;//unit of vector of ant to the bubble
 					this.normalizeDistForCarrot = 0;//unit of vector of ant to the carrot
 					this.amplitudeLegsSwing = 10;
-					this.speedLegsSwing = 1.2;
+					this.speedLegsSwing = 1.2*animCoeff;
 						//left three legs
 						{
 								this.ll1x = 0;
