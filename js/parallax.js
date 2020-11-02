@@ -173,7 +173,7 @@
 
     refresh: function() {      
       this.boxWidth        = this.$element.outerWidth();
-      this.boxHeight       = this.$element.outerHeight()*1.2 + this.bleed * 2;
+      this.boxHeight       = this.$element.outerHeight() + this.bleed * 2;
       this.boxOffsetTop    = this.$element.offset().top - this.bleed;
       this.boxOffsetLeft   = this.$element.offset().left;
       this.boxOffsetBottom = this.boxOffsetTop + this.boxHeight;
@@ -248,8 +248,10 @@
       this.$slider.css({
         transform: 'translate3d('+this.offsetLeft+'px, '+this.offsetTop+'px, 0px)',
         position: 'absolute',
-        height: this.imageHeight,
-        width: this.imageWidth,
+        // height: this.imageHeight,
+        // width: this.imageWidth,
+        height: this.boxHeight,
+        width: this.boxWidth,
         maxWidth: 'none'
       });
     }

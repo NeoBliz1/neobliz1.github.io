@@ -69,7 +69,7 @@ let gameSketch = function(p) {
 		p.smooth();
 			
 		// limit the number of frames per second
-		p.frameRate(60/animCoeff);
+		p.frameRate(60);
 		//creating color array
 		
 		p.colorMode(p.RGB);    
@@ -867,6 +867,7 @@ let gameSketch = function(p) {
 				}
 				//text
 				p.fill(0, 0, 0);
+				p.textSize(14);
 				p.text("Press any mouse button to create a bubbles",176,17);
 			};
 		}
