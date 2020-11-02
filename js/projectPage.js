@@ -27,16 +27,18 @@ $('.home_container').css({
 
 
 var windowSizeHandler = function () {
-	var $wWidth = $(window).width();		
+	var $wWidth = $(window).width();
+	var $canvasHSWidth = $('#canvasHolderSmall').width();
+	console.log($canvasHSWidth);
 	//add parallax element	
 	var pathToParllaxImg;
-	if ($wWidth>0 && $wWidth<480){
+	if ($wWidth>0 && $wWidth<480 && $canvasHSWidth <= 400){
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3-small_size.png';
 		$('body').css('width', '440px');
 	}
-	else if ($wWidth>=480 && $wWidth<=1500) {
+	else if ($wWidth>0 && $wWidth<=640 && $canvasHSWidth > 400 && $canvasHSWidth <= 600) {
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
-		$('body').css('width', $wWidth);
+		$('body').css('width', '640px');
 	}
 	else {
 		pathToParllaxImg = '../img/cover_bg_3.svg';
