@@ -1042,10 +1042,10 @@ let gameSketch = function(p) {
 		antSystem.run();
 		carrotSystem.run();
 		p.anthillsDraw();
-		// let fps = p.frameRate();  
-		//   p.p.fill(255);    
-		//   p.textSize(32);
-		//   p.p.text("FPS: "+fps.toFixed(2), 40, 80);    
+		let fps = p.frameRate();  
+		p.p.fill(255);    
+		p.textSize(32);
+		p.p.text("FPS: "+fps.toFixed(2), 40, 80);    
 	};
 };
 
