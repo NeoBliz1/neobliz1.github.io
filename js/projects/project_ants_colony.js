@@ -1043,9 +1043,9 @@ let gameSketch = function(p) {
 		carrotSystem.run();
 		p.anthillsDraw();
 		let fps = p.frameRate();  
-		p.p.fill(255);    
+		p.fill(255);    
 		p.textSize(32);
-		p.p.text("FPS: "+fps.toFixed(2), 40, 80);    
+		p.text("FPS: "+fps.toFixed(2), 40, 80);    
 	};
 };
 
