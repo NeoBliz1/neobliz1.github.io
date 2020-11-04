@@ -632,6 +632,7 @@ var simpleParallax_SimpleParallax = /*#__PURE__*/function () {
   }, {
     key: "resizeIsDone",
     value: function resizeIsDone() {
+
       clearTimeout(resizeID);
       resizeID = setTimeout(this.refresh, 200);
     } // animation frame
@@ -687,7 +688,7 @@ var simpleParallax_SimpleParallax = /*#__PURE__*/function () {
     }
   }, {
     key: "refresh",
-    value: function refresh() {
+    value: function refresh() {      
       // re-get all the viewport positions
       viewport.setViewportAll(this.customContainer);
       instances.forEach(function (instance) {

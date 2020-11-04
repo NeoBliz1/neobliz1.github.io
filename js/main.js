@@ -1,5 +1,10 @@
 'use strict';
 
+jQuery.event.special.renewPage = {
+  bindType: 'resize',
+  delegateType: 'resize'
+};
+
 var zoomInHeader = function () {
 	//zoom in main header
 	$('.headerContent').addClass('zoomIn animated');
@@ -71,6 +76,7 @@ var windowSizeHandler = function () {
 		width: $wWidth,
 		height: $mySkillsDivHeight		
 	});	
+	
 	image1 = document.getElementsByClassName('slider1');
 	instance1 = new simpleParallax(image1, {
 		scale: parallaxScaleCoeff,
@@ -83,7 +89,6 @@ var windowSizeHandler = function () {
 		delay: .6,
 		transition: 'cubic-bezier(0,0,0,1)'
 	});		
-
 	//initialize waypoints script
 	Waypoint.destroyAll() //remove all waypoints	
 	var offsetNum=0;
@@ -473,14 +478,20 @@ var mySkillsAnimation = function () {
 var resizeHandler = function (argument) {
 	//resize handler
 	var resizeTimer;
-	$(window).resize(function(event) {
-		clearTimeout(resizeTimer);
-		resizeTimer = setTimeout(function() {			
-			// projectDivSizeHandler();
-			// windowSizeHandler();	
-			location.reload();		
-		}, 150);
-	});	
+	$(window).on('renewPage', function(event) {		
+		$(window).resize(function(event) {
+			clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(function() {			
+				projectDivSizeHandler();				
+				//refresh parallax script
+				$(window)
+				.off('renewPage')
+				.trigger('resize');							 	
+				resizeHandler();
+				windowSizeHandler();					
+			}, 250);
+		});
+	});		
 }
 var scrollTop = function () {
 	$("#button").click(function() {
