@@ -624,7 +624,7 @@ var simpleParallax_SimpleParallax = /*#__PURE__*/function () {
       if (!isInit) {
         // init the frame
         this.proceedRequestAnimationFrame();
-        // window.addEventListener('resize', this.resizeIsDone);
+        window.addEventListener('resize', this.resizeIsDone);
         isInit = true;
       }
     } // wait for resize to be completely done
@@ -712,13 +712,13 @@ var simpleParallax_SimpleParallax = /*#__PURE__*/function () {
           instancesToDestroy.push(instance);
           return false;
         }
-
+        console.log('destroy');
         return instance;
       });
       instancesToDestroy.forEach(function (instance) {
         // unset style
         instance.unSetStyle();
-
+        
         if (_this3.settings.overflow === false) {
           // if overflow option is set to false
           // unwrap the element from .simpleParallax wrapper container
@@ -731,7 +731,7 @@ var simpleParallax_SimpleParallax = /*#__PURE__*/function () {
         window.cancelAnimationFrame(frameID); // detach the resize event
 
         window.removeEventListener('resize', this.refresh); // Reset isInit
-
+        
         isInit = false;
       }
     }

@@ -69,6 +69,12 @@ h2 {
   justify-content: center;
 }
 /*header styles*/
+.overlayImgContainer {
+  visibility: visible; 
+  z-index: 1; 
+  position: absolute; 
+  opacity: 0.2;
+}
 .header {
   background-color: rgb(255, 145, 0);
   position: relative;  
@@ -216,8 +222,7 @@ h2 {
   visibility: hidden;
 }
 
-.mySkills {
-  padding-top: 1vh;
+.mySkills { 
   background-color: rgb(255, 145, 0);
   position: relative;  
   width: 100%;  

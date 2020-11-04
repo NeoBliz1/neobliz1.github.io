@@ -36,13 +36,14 @@ var loaderScreen = function () {
 
 
 //set main elements width and height
-var parallaxScaleCoeff = 2;
-
+var parallaxScaleCoeff = 1.8;
+var instance1, instance2;
 var windowSizeHandler = function () {
 	var $wWidth = $(window).width();
 	var $wHeight = $(window).height();
-
-	
+	var $mySkillsDivHeight = $('.mySkills').height();
+	var image1 = 0;
+	var image2 = 0;
 	$('body, .headerContent, .main').css('width', $wWidth);
 	
 	//add parallax element	
@@ -57,22 +58,32 @@ var windowSizeHandler = function () {
 		pathToParllaxImg = '../img/cover_bg_3.png';
 	}
 	
-	//initialize parallax script	
-	var image = document.getElementsByClassName('slider');
-	new simpleParallax(image, {
+	//initialize parallax script
+	//initial parameters for sliders img
+	
+	$('.slider1').attr('src', pathToParllaxImg)
+	.css({		
+		width: $wWidth,
+		height: $wHeight			
+	});
+	$('.slider2').attr('src', pathToParllaxImg)
+	.css({		
+		width: $wWidth,
+		height: $mySkillsDivHeight		
+	});	
+	image1 = document.getElementsByClassName('slider1');
+	instance1 = new simpleParallax(image1, {
 		scale: parallaxScaleCoeff,
 		delay: .6,
 		transition: 'cubic-bezier(0,0,0,1)'
 	});
+	image2 = document.getElementsByClassName('slider2');
+	instance2 = new simpleParallax(image2, {
+		scale: parallaxScaleCoeff,
+		delay: .6,
+		transition: 'cubic-bezier(0,0,0,1)'
+	});		
 
-	$('.slider').attr('src', pathToParllaxImg)
-	.css({		
-		position: 'absolute',
-		width: $wWidth/parallaxScaleCoeff,
-		height: $wHeight*1.2,
-		left: $wWidth/(parallaxScaleCoeff*2)*0.986		
-	});	
-	
 	//initialize waypoints script
 	Waypoint.destroyAll() //remove all waypoints	
 	var offsetNum=0;
@@ -464,10 +475,11 @@ var resizeHandler = function (argument) {
 	var resizeTimer;
 	$(window).resize(function(event) {
 		clearTimeout(resizeTimer);
-		resizeTimer = setTimeout(function() {
-			windowSizeHandler();
-			projectDivSizeHandler();				
-		}, 250);
+		resizeTimer = setTimeout(function() {			
+			// projectDivSizeHandler();
+			// windowSizeHandler();	
+			location.reload();		
+		}, 150);
 	});	
 }
 var scrollTop = function () {
