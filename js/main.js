@@ -1,10 +1,5 @@
 'use strict';
 
-jQuery.event.special.renewPage = {
-  bindType: 'resize',
-  delegateType: 'resize'
-};
-
 var zoomInHeader = function () {
 	//zoom in main header
 	$('.headerContent').addClass('zoomIn animated');
@@ -12,19 +7,8 @@ var zoomInHeader = function () {
 	$('.scrollAnimate').addClass('hidden');
 }
 /*use waypoint JQuery plugin for tracking scroll elements*/
-var scrollAnimate = function () {
-	var offsetNum=0;
-	//offset from window top
-	if ($(window).height() < 480) {
-		offsetNum = '110%';		
-	}
-	else if (($(window).height() > 2000)) {
-		offsetNum = '100%';		
-	}
-	else {
-		offsetNum = '90%';
-	};
-	// console.log(offsetNum);
+var scrollAnimate = function (offsetNum) {	
+		
 	$('.scrollAnimate')
 	.waypoint(
 		function(direction) {		
@@ -52,31 +36,57 @@ var loaderScreen = function () {
 
 
 //set main elements width and height
-
+var parallaxScaleCoeff = 2;
 var windowSizeHandler = function () {
 	var $wWidth = $(window).width();
-	$('body, .headerContent, .main').css('width', $wWidth);	
+	var $wHeight = $(window).height();
+
+	
+	$('body, .headerContent, .main').css('width', $wWidth);
+	
 	//add parallax element	
 	var pathToParllaxImg;
 	if ($wWidth>0 && $wWidth<480){
-		pathToParllaxImg = '../img/responsive_Img/cover_bg_3-small_size.png';
+		pathToParllaxImg = '../img/responsive_Img/cover_bg_3-small_size.png';		
 	}
 	else if ($wWidth>=480 && $wWidth<=1500) {
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
 	}
 	else {
-		pathToParllaxImg = '../img/cover_bg_3.svg';
+		pathToParllaxImg = '../img/cover_bg_3.png';
 	}
-
-	Waypoint.destroyAll() //remove all waypoints
-
-	//initialize parallax script
-	$('header, .mySkills').parallax({
-		imageSrc: pathToParllaxImg,
-		zIndex: 1
+	
+	//initialize parallax script	
+	var image = document.getElementsByClassName('slider');
+	new simpleParallax(image, {
+		scale: parallaxScaleCoeff,
+		delay: .6,
+		transition: 'cubic-bezier(0,0,0,1)'
 	});
+
+	$('.slider').attr('src', pathToParllaxImg)
+	.css({		
+		position: 'absolute',
+		width: $wWidth/parallaxScaleCoeff,
+		height: $wHeight*1.02,
+		left: $wWidth/(parallaxScaleCoeff*2)*0.986		
+	});	
+	
 	//initialize waypoints script
-	scrollAnimate();	
+	Waypoint.destroyAll() //remove all waypoints	
+	var offsetNum=0;
+	//offset from window top
+	if ($wHeight < 480) {
+		offsetNum = '95%';		
+	}
+	else if ($wHeight > 2000) {
+		offsetNum = '100%';		
+	}
+	else {
+		offsetNum = '90%';
+	};
+	
+	scrollAnimate(offsetNum);	
 }	
 
 
@@ -443,25 +453,19 @@ var mySkillsAnimation = function () {
 	/**************My skills animation main block*******************/
 	//add read more button to project divs
 	$projectDiv.prepend('<button class="readMoreBtn hidden" id="rmb" type="button">read more</button>');
-	windowSizeHandler(); //resize main blocks according to window width
 	projectDivSizeHandler(); //resize MySkills divs from window size
+	windowSizeHandler(); //resize main blocks according to window width
 	divHoverHandler();
 	resizeHandler();
 }
 var resizeHandler = function (argument) {
 	//resize handler
 	var resizeTimer;
-	$(window).on('renewPage', function(event) {		
+	$(window).resize(function(event) {
 		clearTimeout(resizeTimer);
 		resizeTimer = setTimeout(function() {
 			windowSizeHandler();
-			projectDivSizeHandler();
-			//refresh parallax script
-			$(window)
-			.off('renewPage')
-			.trigger('resize')			
-			.trigger('scroll');			 	
-			resizeHandler();	
+			projectDivSizeHandler();				
 		}, 250);
 	});	
 }
@@ -475,10 +479,9 @@ var scrollTop = function () {
 
 /**************main block*******************/
 $( window ).on( 'load', function() {
-  console.log( 'document loaded' );
   loaderScreen();
  	zoomInHeader();			
 	mySkillsAnimation();
-	scrollAnimate();
+	console.log( 'document loaded' );
 });
 

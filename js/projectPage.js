@@ -32,16 +32,16 @@ var windowSizeHandler = function () {
 	//add parallax element	
 	var pathToParllaxImg;
 	if ($wWidth>0 && $wWidth<480 && $canvasHSWidth <= 420){
-		pathToParllaxImg = '../img/responsive_Img/cover_bg_3-small_size.png';
+		pathToParllaxImg = '../img/responsive_Img/cover_bg_3-small_size.png';		
 		$('body').css('width', '440px');
 	}
 	else if ($wWidth>0 && $wWidth<=640 && $canvasHSWidth > 420 && $canvasHSWidth <= 600) {
-		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
+		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';		
 		$('body').css('width', '640px');
 	}
 	else {
 		pathToParllaxImg = '../img/cover_bg_3.svg';
-		$('body').css('width', $wWidth);
+		$('body').css('width', $wWidth);		
 	}
 	
 	//initialize parallax script
