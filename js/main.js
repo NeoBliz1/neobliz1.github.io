@@ -41,8 +41,7 @@ var loaderScreen = function () {
 
 
 //set main elements width and height
-var parallaxScaleCoeff = 1.8;
-var instance1, instance2;
+var parallaxScaleCoeff = 2;
 var windowSizeHandler = function () {
 	var $wWidth = $(window).width();
 	var $wHeight = $(window).height();
@@ -69,7 +68,7 @@ var windowSizeHandler = function () {
 	$('.slider1').attr('src', pathToParllaxImg)
 	.css({		
 		width: $wWidth,
-		height: $wHeight			
+		height: $wHeight*1.2			
 	});
 	$('.slider2').attr('src', pathToParllaxImg)
 	.css({		
@@ -78,13 +77,13 @@ var windowSizeHandler = function () {
 	});	
 	
 	image1 = document.getElementsByClassName('slider1');
-	instance1 = new simpleParallax(image1, {
+	new simpleParallax(image1, {
 		scale: parallaxScaleCoeff,
 		delay: .6,
 		transition: 'cubic-bezier(0,0,0,1)'
 	});
 	image2 = document.getElementsByClassName('slider2');
-	instance2 = new simpleParallax(image2, {
+	new simpleParallax(image2, {
 		scale: parallaxScaleCoeff,
 		delay: .6,
 		transition: 'cubic-bezier(0,0,0,1)'
