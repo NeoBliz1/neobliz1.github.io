@@ -37,6 +37,7 @@ var loaderScreen = function () {
 
 //set main elements width and height
 var parallaxScaleCoeff = 2;
+
 var windowSizeHandler = function () {
 	var $wWidth = $(window).width();
 	var $wHeight = $(window).height();
@@ -68,7 +69,7 @@ var windowSizeHandler = function () {
 	.css({		
 		position: 'absolute',
 		width: $wWidth/parallaxScaleCoeff,
-		height: $wHeight*1.02,
+		height: $wHeight*1.2,
 		left: $wWidth/(parallaxScaleCoeff*2)*0.986		
 	});	
 	
