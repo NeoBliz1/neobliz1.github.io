@@ -37,116 +37,109 @@ var scrollAnimate = function (offsetNum) {
 var loaderScreen = function () {
 	$('.loader-gif').fadeOut('slow');
 }
-
-
-
-//set main elements width and height
-var parallaxScaleCoeff = 2;
-var windowSizeHandler = function () {
-	var $wWidth = $(window).width();
-	var $wHeight = $(window).height();
-	var $mySkillsDivHeight = $('.mySkillsContent').height();
-	var image1 = 0;
-	var image2 = 0;
-	$('body, .headerContent, .main').css('width', $wWidth);
-	$('.mySkills').height('200px');
-	//add parallax element	
-	
+//set parallax img attributes
+var setParallaxImage = function (viewportWidth, viewportHeight) {
 	var pathToParllaxImg;
-	// if ($wWidth>0 && $wWidth<480){
+	// if (viewportWidth>0 && viewportWidth<480){
 	// 	pathToParllaxImg = '../img/responsive_Img/cover_bg_3_small.png';		
 	// }
-	// else if ($wWidth>=480 && $wWidth<=1500) {
+	// else if (viewportWidth>=480 && viewportWidth<=1500) {
 	// 	pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
 	// }
 	// else {
 	// 	pathToParllaxImg = '../img/cover_bg_3.png';
 	// }
-	if ($wWidth>0 && $wWidth<1500){	
+	if (viewportWidth>0 && viewportWidth<1500){	
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
 	}
 	else {
 		pathToParllaxImg = '../img/cover_bg_3.png';
 	}
-	//initialize parallax script	
-
-	//set img attribute
 	$('.slider1, .slider2').attr('src', pathToParllaxImg);
+	// console.log('setParallaxImage done');
+}
+	
+
+//set main elements width and height
+
+var windowSizeHandler = function (viewportWidth, viewportHeight) {
+	$('body, .headerContent, .main').width(viewportWidth);	
+	$('.mySkills').height('200px');
+	// console.log(viewportWidth);
+	// console.log($(window).width());
+	var $mySkillsDivHeight = $('.mySkillsContent').height();
+	var image1 = 0;
+	var image2 = 0;
+	
+	//add parallax element
+	//initialize parallax script	
 	var $sldr1 = $('.slider1');
 	var $sldr2 = $('.slider2');
 	//initial parameters for sliders img
 	let sldr1NW, sldr1NH, headerOverlayWidth;	
 	let headerOverlayHeight, mySkillsOverlayWidth, mySkillsOverlayHeight;
-	$sldr1.on('load', function(event) {		
-		sldr1NW = $sldr1.get(0).naturalWidth;
-		sldr1NH = $sldr1.get(0).naturalHeight;
-		// console.log(sldr1NW);
-		// console.log(sldr1NH);
-		// console.log($wWidth);
-		// console.log($wHeight);
-		if (sldr1NH <= $wHeight){			
-			headerOverlayWidth = 'auto';
-			headerOverlayHeight = $wHeight;			
-		}
-		else if (sldr1NW <= $wWidth){
-			headerOverlayWidth = $wWidth;
-			headerOverlayHeight = 'auto';
-		}
-		else if ($wWidth >= $wHeight) {
-			headerOverlayWidth = $wWidth;
-			headerOverlayHeight = 'auto';
-		}
-		else {
-			headerOverlayWidth = 'auto';
-			headerOverlayHeight = $wHeight;
-		}
-		
-		if ($wWidth>$mySkillsDivHeight) {		
-			mySkillsOverlayWidth = 'auto';
-			mySkillsOverlayHeight = $mySkillsDivHeight;
-		}
-		else {
-			mySkillsOverlayWidth = $wWidth;
-			mySkillsOverlayHeight = 'auto';
-		}
-		// console.log('summary');	
-		// console.log(headerOverlayWidth);	
-		// console.log(headerOverlayHeight);	
-		$sldr1
-		.css({		
-			width: headerOverlayWidth,
-			height: headerOverlayHeight			
-		});
-		$sldr2
-		.css({		
-			width: mySkillsOverlayWidth,
-			height: mySkillsOverlayHeight	
-		});
-		image1 = document.getElementsByClassName('slider1');
-		new simpleParallax(image1, {
-			scale: parallaxScaleCoeff,
-			delay: .6,
-			transition: 'cubic-bezier(0,0,0,1)',
-			overflow: false
-		});
-		image2 = document.getElementsByClassName('slider2');
-		new simpleParallax(image2, {
-			scale: parallaxScaleCoeff,
-			delay: .6,
-			transition: 'cubic-bezier(0,0,0,1)',
-			overflow: false
-		});		
-	});
 	
+	sldr1NW = $sldr1.get(0).naturalWidth;
+	sldr1NH = $sldr1.get(0).naturalHeight;
+	// console.log(sldr1NW);
+	// console.log(sldr1NH);
+	// console.log(viewportWidth);
+	// console.log(viewportHeight);	
+	if (sldr1NH/(sldr1NW/viewportWidth<viewportHeight)){			
+		headerOverlayWidth = 'auto';
+		headerOverlayHeight = viewportHeight;			
+	}
+	else {
+		headerOverlayWidth = viewportWidth;
+		headerOverlayHeight = 'auto';
+	}	
+	
+	if (viewportWidth>$mySkillsDivHeight) {		
+		mySkillsOverlayWidth = 'auto';
+		mySkillsOverlayHeight = $mySkillsDivHeight;
+	}
+	else {
+		mySkillsOverlayWidth = viewportWidth;
+		mySkillsOverlayHeight = 'auto';
+	}
+	// console.log('summary');	
+	// console.log(headerOverlayWidth);	
+	// console.log(headerOverlayHeight);	
+	$sldr1
+	.css({		
+		width: headerOverlayWidth,
+		height: headerOverlayHeight			
+	});
+	$sldr2
+	.css({		
+		width: mySkillsOverlayWidth,
+		height: mySkillsOverlayHeight	
+	});
+	var parallaxScaleCoeff = 2; //parallax image coeff which enhances parallax effect
+	image1 = document.getElementsByClassName('slider1');
+	new simpleParallax(image1, {
+		scale: parallaxScaleCoeff,
+		delay: .6,
+		transition: 'cubic-bezier(0,0,0,1)',
+		overflow: false
+	});
+	image2 = document.getElementsByClassName('slider2');
+	new simpleParallax(image2, {
+		scale: parallaxScaleCoeff,
+		delay: .6,
+		transition: 'cubic-bezier(0,0,0,1)',
+		overflow: false
+	});		
+		
 		
 	//initialize waypoints script
 	Waypoint.destroyAll() //remove all waypoints	
 	var offsetNum=0;
 	//offset from window top
-	if ($wHeight < 480) {
+	if (viewportHeight < 480) {
 		offsetNum = '95%';		
 	}
-	else if ($wHeight > 2000) {
+	else if (viewportHeight > 2000) {
 		offsetNum = '100%';		
 	}
 	else {
@@ -154,6 +147,7 @@ var windowSizeHandler = function () {
 	};
 	
 	scrollAnimate(offsetNum);	
+	// console.log('windowSizeHandler done');
 }	
 
 
@@ -163,9 +157,7 @@ var $projectDiv = $('.projectDiv');
 var durationTime = 500;
 var viewportWidth, viewportHeight, projectDivZoomInCoeff, projectDivWidth, projectDivHeight, vpbFontSize, vpbMarginValue;
 
-var projectDivSizeHandler = function () { //function handle which window is on resize
-	viewportWidth = $(window).width();
-	viewportHeight = $(window).height();
+var projectDivSizeHandler = function (viewportWidth, viewportHeight) { //function handle which window is on resize
 	if (viewportWidth>=980) {
 		projectDivZoomInCoeff = 1.3/viewportWidth;
 	}
@@ -517,23 +509,25 @@ var mySkillsAnimation = function () {
 			zoomOutAnimation(thisIs);			
 		});	
 	}
-	/**************My skills animation main block*******************/
 	//add read more button to project divs
 	$projectDiv.prepend('<button class="readMoreBtn hidden" id="rmb" type="button">read more</button>');
-	projectDivSizeHandler(); //resize MySkills divs from window size
-	windowSizeHandler(); //resize main blocks according to window width
 	divHoverHandler();
-	resizeHandler();
 }
+
 var resizeHandler = function (argument) {
 	//resize handler
-	var resizeTimer;
+	var resizeTimer;	
 	$(window).on('renewPage', function(event) {				
 		$(window).resize(function(event) {			
 			clearTimeout(resizeTimer);
-			resizeTimer = setTimeout(function() {			
-				projectDivSizeHandler();				
-				windowSizeHandler();					
+			resizeTimer = setTimeout(function() {	
+				var viewportWidth = $(window).width();
+				var viewportHeight = $(window).height();		
+				projectDivSizeHandler(viewportWidth, viewportHeight);
+				setParallaxImage(viewportWidth, viewportHeight);
+				$('.slider1').on('load', function(event) {
+					windowSizeHandler(viewportWidth, viewportHeight);		
+				});							
 			}, 250);
 		});
 		$(window)
@@ -552,10 +546,18 @@ var scrollTop = function () {
 }
 
 /**************main block*******************/
-$( window ).on( 'load', function() {
-  loaderScreen();
- 	zoomInHeader();			
+$(window).on( 'load', function() {
+	var viewportWidth = $(window).width();
+	var viewportHeight = $(window).height();
 	mySkillsAnimation();
-	console.log( 'document loaded' );
+	projectDivSizeHandler(viewportWidth, viewportHeight); //resize MySkills divs from window size	
+	setParallaxImage(viewportWidth, viewportHeight);
+	$('.slider1').one('load', function(event) {
+		windowSizeHandler(viewportWidth, viewportHeight); //resize main blocks according to window width	
+		resizeHandler();
+	  loaderScreen();
+	 	zoomInHeader();	
+		console.log( 'document loaded' );
+	});
 });
 
