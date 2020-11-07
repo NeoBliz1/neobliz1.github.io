@@ -517,12 +517,14 @@ var resizeHandler = function (argument) {
 	$(window).on('renewPage', function(event) {				
 		$(window).resize(function(event) {			
 			clearTimeout(resizeTimer);
-			resizeTimer = setTimeout(function() {	
+			resizeTimer = setTimeout(function() {
+				$('.loader-gif').css('display', 'initial');
 				var viewportWidth = $(window).width();
 				var viewportHeight = $(window).height();		
 				projectDivSizeHandler(viewportWidth, viewportHeight);
 				setParallaxImage(viewportWidth, viewportHeight);
 				$('.slider1').on('load', function(event) {
+					loaderScreen();
 					windowSizeHandler(viewportWidth, viewportHeight);		
 				});							
 			}, 250);
