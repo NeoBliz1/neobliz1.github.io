@@ -45,15 +45,16 @@ var parallaxScaleCoeff = 2;
 var windowSizeHandler = function () {
 	var $wWidth = $(window).width();
 	var $wHeight = $(window).height();
-	var $mySkillsDivHeight = $('.mySkills').height();
+	var $mySkillsDivHeight = $('.mySkillsContent').height();
 	var image1 = 0;
 	var image2 = 0;
 	$('body, .headerContent, .main').css('width', $wWidth);
-	
+	$('.mySkills').height('200px');
 	//add parallax element	
+	
 	var pathToParllaxImg;
 	if ($wWidth>0 && $wWidth<480){
-		pathToParllaxImg = '../img/responsive_Img/cover_bg_3-small_size.png';		
+		pathToParllaxImg = '../img/responsive_Img/cover_bg_3_small.png';		
 	}
 	else if ($wWidth>=480 && $wWidth<=1500) {
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
@@ -62,31 +63,67 @@ var windowSizeHandler = function () {
 		pathToParllaxImg = '../img/cover_bg_3.png';
 	}
 	
-	//initialize parallax script
+	//initialize parallax script	
+
+	//set img attribute
+	$('.slider1, .slider2').attr('src', pathToParllaxImg);
+	var $sldr1 = $('.slider1');
+	var $sldr2 = $('.slider2');
 	//initial parameters for sliders img
+	let sldr1NW, sldr1NH, headerOverlayWidth;	
+	let headerOverlayHeight, mySkillsOverlayWidth, mySkillsOverlayHeight;
+	$sldr1.on('load', function(event) {		
+		sldr1NW = $sldr1.get(0).naturalWidth;
+		sldr1NH = $sldr1.get(0).naturalHeight;
+		console.log(sldr1NW);
+		console.log(sldr1NH);
+		console.log($wWidth);
+		console.log($wHeight);
+		if ($wWidth>$wHeight || sldr1NH <= $wHeight){		
+			headerOverlayWidth = 'auto';
+			headerOverlayHeight = $wHeight;
+		}
+		else {
+			headerOverlayWidth = $wWidth;
+			headerOverlayHeight = 'auto';	
+		}
+		
+		if ($wWidth>$mySkillsDivHeight) {		
+			mySkillsOverlayWidth = 'auto';
+			mySkillsOverlayHeight = $mySkillsDivHeight;
+		}
+		else {
+			mySkillsOverlayWidth = $wWidth;
+			mySkillsOverlayHeight = 'auto';
+		}
+		$sldr1
+		.css({		
+			width: headerOverlayWidth,
+			height: headerOverlayHeight			
+		});
+		$sldr2
+		.css({		
+			width: mySkillsOverlayWidth,
+			height: mySkillsOverlayHeight	
+		});	
+	});		
 	
-	$('.slider1').attr('src', pathToParllaxImg)
-	.css({		
-		width: $wWidth,
-		height: $wHeight*1.2			
-	});
-	$('.slider2').attr('src', pathToParllaxImg)
-	.css({		
-		width: $wWidth,
-		height: $mySkillsDivHeight		
-	});	
+
+	
 	
 	image1 = document.getElementsByClassName('slider1');
 	new simpleParallax(image1, {
 		scale: parallaxScaleCoeff,
 		delay: .6,
-		transition: 'cubic-bezier(0,0,0,1)'
+		transition: 'cubic-bezier(0,0,0,1)',
+		overflow: false
 	});
 	image2 = document.getElementsByClassName('slider2');
 	new simpleParallax(image2, {
 		scale: parallaxScaleCoeff,
 		delay: .6,
-		transition: 'cubic-bezier(0,0,0,1)'
+		transition: 'cubic-bezier(0,0,0,1)',
+		overflow: false
 	});		
 	//initialize waypoints script
 	Waypoint.destroyAll() //remove all waypoints	
@@ -477,19 +514,19 @@ var mySkillsAnimation = function () {
 var resizeHandler = function (argument) {
 	//resize handler
 	var resizeTimer;
-	$(window).on('renewPage', function(event) {		
-		$(window).resize(function(event) {
+	$(window).on('renewPage', function(event) {				
+		$(window).resize(function(event) {			
 			clearTimeout(resizeTimer);
 			resizeTimer = setTimeout(function() {			
 				projectDivSizeHandler();				
-				//refresh parallax script
-				$(window)
-				.off('renewPage')
-				.trigger('resize');							 	
-				resizeHandler();
 				windowSizeHandler();					
 			}, 250);
 		});
+		$(window)
+		.off('renewPage')
+		.trigger('resize')
+		.off('resize'); //refresh parallax script						 	
+		resizeHandler();
 	});		
 }
 var scrollTop = function () {
