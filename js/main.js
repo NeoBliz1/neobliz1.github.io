@@ -85,9 +85,10 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 	// console.log(sldr1NH);
 	// console.log(viewportWidth);
 	// console.log(viewportHeight);	
+	var headerHeight = $('.header').height();
 	if (sldr1NH/(sldr1NW/viewportWidth<viewportHeight)){			
 		headerOverlayWidth = 'auto';
-		headerOverlayHeight = viewportHeight;			
+		headerOverlayHeight = headerHeight;			
 	}
 	else {
 		headerOverlayWidth = viewportWidth;
