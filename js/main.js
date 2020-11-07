@@ -51,17 +51,17 @@ var windowSizeHandler = function () {
 	$('body, .headerContent, .main').css('width', $wWidth);
 	$('.mySkills').height('200px');
 	//add parallax element	
-	
-	var pathToParllaxImg;
-	if ($wWidth>0 && $wWidth<480){
-		pathToParllaxImg = '../img/responsive_Img/cover_bg_3_small.png';		
-	}
-	else if ($wWidth>=480 && $wWidth<=1500) {
-		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
-	}
-	else {
-		pathToParllaxImg = '../img/cover_bg_3.png';
-	}
+	var pathToParllaxImg = '../img/cover_bg_3.png';
+	// var pathToParllaxImg;
+	// if ($wWidth>0 && $wWidth<480){
+	// 	pathToParllaxImg = '../img/responsive_Img/cover_bg_3_small.png';		
+	// }
+	// else if ($wWidth>=480 && $wWidth<=1500) {
+	// 	pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
+	// }
+	// else {
+		
+	// }
 	
 	//initialize parallax script	
 
