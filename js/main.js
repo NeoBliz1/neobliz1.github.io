@@ -75,17 +75,17 @@ var windowSizeHandler = function () {
 	$sldr1.on('load', function(event) {		
 		sldr1NW = $sldr1.get(0).naturalWidth;
 		sldr1NH = $sldr1.get(0).naturalHeight;
-		// console.log(sldr1NW);
-		// console.log(sldr1NH);
-		// console.log($wWidth);
-		// console.log($wHeight);
-		if ($wWidth>$wHeight || sldr1NH <= $wHeight){		
+		console.log(sldr1NW);
+		console.log(sldr1NH);
+		console.log($wWidth);
+		console.log($wHeight);
+		if (sldr1NH <= $wHeight){			
 			headerOverlayWidth = 'auto';
-			headerOverlayHeight = $wHeight;
+			headerOverlayHeight = $wHeight;			
 		}
-		else {
+		else if (sldr1NW <= $wWidth){
 			headerOverlayWidth = $wWidth;
-			headerOverlayHeight = 'auto';	
+			headerOverlayHeight = 'auto';
 		}
 		
 		if ($wWidth>$mySkillsDivHeight) {		
@@ -105,26 +105,24 @@ var windowSizeHandler = function () {
 		.css({		
 			width: mySkillsOverlayWidth,
 			height: mySkillsOverlayHeight	
-		});	
-	});		
-	
-
-	
-	
-	image1 = document.getElementsByClassName('slider1');
-	new simpleParallax(image1, {
-		scale: parallaxScaleCoeff,
-		delay: .6,
-		transition: 'cubic-bezier(0,0,0,1)',
-		overflow: false
+		});
+		image1 = document.getElementsByClassName('slider1');
+		new simpleParallax(image1, {
+			scale: parallaxScaleCoeff,
+			delay: .6,
+			transition: 'cubic-bezier(0,0,0,1)',
+			overflow: false
+		});
+		image2 = document.getElementsByClassName('slider2');
+		new simpleParallax(image2, {
+			scale: parallaxScaleCoeff,
+			delay: .6,
+			transition: 'cubic-bezier(0,0,0,1)',
+			overflow: false
+		});		
 	});
-	image2 = document.getElementsByClassName('slider2');
-	new simpleParallax(image2, {
-		scale: parallaxScaleCoeff,
-		delay: .6,
-		transition: 'cubic-bezier(0,0,0,1)',
-		overflow: false
-	});		
+	
+		
 	//initialize waypoints script
 	Waypoint.destroyAll() //remove all waypoints	
 	var offsetNum=0;
