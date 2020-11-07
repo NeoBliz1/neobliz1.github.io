@@ -38,25 +38,22 @@ var loaderScreen = function () {
 	$('.loader-gif').fadeOut('slow');
 }
 //set parallax img attributes
-var setParallaxImage = function (viewportWidth, viewportHeight) {
+var setParallaxImage = function () {
 	var pathToParllaxImg;
-	// if (viewportWidth>0 && viewportWidth<480){
-	// 	pathToParllaxImg = '../img/responsive_Img/cover_bg_3_small.png';		
-	// }
-	// else if (viewportWidth>=480 && viewportWidth<=1500) {
-	// 	pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
-	// }
-	// else {
-	// 	pathToParllaxImg = '../img/cover_bg_3.png';
-	// }
-	if (viewportWidth>0 && viewportWidth<1500){	
+	var wSW = window.screen.width;
+	var wDPR = window.devicePixelRatio;
+	if ( wSW >= 1800 &&  wDPR === 1) {
+		pathToParllaxImg = '../img/cover_bg_3.png';
+	}
+	else if (wSW < 1800 && wSW >=640 && wDPR > 1 && wDPR <= 3) {
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
 	}
 	else {
-		pathToParllaxImg = '../img/cover_bg_3.png';
+		pathToParllaxImg = '../img/responsive_Img/cover_bg_3_small.png';
 	}
+	
 	$('.slider1, .slider2').attr('src', pathToParllaxImg);
-	// console.log('setParallaxImage done');
+	
 }
 	
 
