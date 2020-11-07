@@ -75,10 +75,10 @@ var windowSizeHandler = function () {
 	$sldr1.on('load', function(event) {		
 		sldr1NW = $sldr1.get(0).naturalWidth;
 		sldr1NH = $sldr1.get(0).naturalHeight;
-		console.log(sldr1NW);
-		console.log(sldr1NH);
-		console.log($wWidth);
-		console.log($wHeight);
+		// console.log(sldr1NW);
+		// console.log(sldr1NH);
+		// console.log($wWidth);
+		// console.log($wHeight);
 		if (sldr1NH <= $wHeight){			
 			headerOverlayWidth = 'auto';
 			headerOverlayHeight = $wHeight;			
@@ -86,6 +86,14 @@ var windowSizeHandler = function () {
 		else if (sldr1NW <= $wWidth){
 			headerOverlayWidth = $wWidth;
 			headerOverlayHeight = 'auto';
+		}
+		else if ($wWidth >= $wHeight) {
+			headerOverlayWidth = $wWidth;
+			headerOverlayHeight = 'auto';
+		}
+		else {
+			headerOverlayWidth = 'auto';
+			headerOverlayHeight = $wHeight;
 		}
 		
 		if ($wWidth>$mySkillsDivHeight) {		
@@ -96,6 +104,9 @@ var windowSizeHandler = function () {
 			mySkillsOverlayWidth = $wWidth;
 			mySkillsOverlayHeight = 'auto';
 		}
+		// console.log('summary');	
+		// console.log(headerOverlayWidth);	
+		// console.log(headerOverlayHeight);	
 		$sldr1
 		.css({		
 			width: headerOverlayWidth,
