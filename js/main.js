@@ -75,10 +75,10 @@ var windowSizeHandler = function () {
 	$sldr1.on('load', function(event) {		
 		sldr1NW = $sldr1.get(0).naturalWidth;
 		sldr1NH = $sldr1.get(0).naturalHeight;
-		console.log(sldr1NW);
-		console.log(sldr1NH);
-		console.log($wWidth);
-		console.log($wHeight);
+		// console.log(sldr1NW);
+		// console.log(sldr1NH);
+		// console.log($wWidth);
+		// console.log($wHeight);
 		if ($wWidth>$wHeight || sldr1NH <= $wHeight){		
 			headerOverlayWidth = 'auto';
 			headerOverlayHeight = $wHeight;
