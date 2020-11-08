@@ -60,8 +60,9 @@ var setParallaxImage = function () {
 //set main elements width and height
 
 var windowSizeHandler = function (viewportWidth, viewportHeight) {
-	$('body, .headerContent, .main').width(viewportWidth);	
-	$('.mySkills').height('200px');
+	$('body, .headerContent, .main').width(viewportWidth);
+	var FMheight = $('.fluidMeterContainer1').height();
+	$('.mySkills').height(FMheight*1.2);
 	// console.log(viewportWidth);
 	// console.log($(window).width());
 	var $mySkillsDivHeight = $('.mySkillsContent').height();
@@ -82,7 +83,7 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 	// console.log(sldr1NH);
 	// console.log(viewportWidth);
 	// console.log(viewportHeight);		
-	if (sldr1NH/(sldr1NW/viewportWidth<viewportHeight)){			
+	if (sldr1NH/(sldr1NW/viewportWidth) < viewportHeight){			
 		headerOverlayWidth = 'auto';
 		headerOverlayHeight = '100vh';			
 	}
@@ -210,7 +211,17 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight) { //functio
 			margin: vpbMarginValue
 		});	
 		$('#cloneDiv').center().scaleDivMax();
-	}
+	}	
+	var FMcanvasSize = projectDivWidth*0.7;
+	var FMborderSize = projectDivWidth/30;
+	var FMfontSize = projectDivWidth/10+'px';	
+	$('canvas').attr({
+		width: FMcanvasSize,
+		height: FMcanvasSize
+	});
+	htmlFM.setProperties(75, FMcanvasSize, FMborderSize, FMfontSize, 'HTML');
+	jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, 'JavaScript');
+	pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');
 }	
 
 var mySkillsAnimation = function () {
@@ -508,7 +519,7 @@ var mySkillsAnimation = function () {
 	}
 	//add read more button to project divs
 	$projectDiv.prepend('<button class="readMoreBtn hidden" id="rmb" type="button">read more</button>');
-	divHoverHandler();
+	divHoverHandler();	
 }
 
 var resizeHandler = function (argument) {
@@ -517,8 +528,8 @@ var resizeHandler = function (argument) {
 	$(window).on('renewPage', function(event) {				
 		$(window).resize(function(event) {			
 			clearTimeout(resizeTimer);
-			resizeTimer = setTimeout(function() {
-				$('.loader-gif').css('display', 'initial');
+			$('.loader-gif').css('display', 'initial');
+			resizeTimer = setTimeout(function() {				
 				var viewportWidth = $(window).width();
 				var viewportHeight = $(window).height();		
 				projectDivSizeHandler(viewportWidth, viewportHeight);
@@ -536,6 +547,100 @@ var resizeHandler = function (argument) {
 		resizeHandler();
 	});		
 }
+
+//initialization HTML fluid meter
+	var htmlFM = new FluidMeter();
+    htmlFM.init({
+      targetContainer: document.getElementById('HTML-fluid-meter'),
+      fillPercentage: 75,
+      options: {
+        fontFamily: 'Caveat',
+        drawPercentageSign: true,
+        drawBubbles: true,
+        drawShadow: true,
+        size: 300,
+        borderWidth: 15,
+        backgroundColor: "#e2e2e2",
+        foregroundColor: "#fafafa",
+        foregroundFluidLayer: {
+          fillStyle: "red",
+          angularSpeed: 100,
+          maxAmplitude: 12,
+          frequency: 30,
+          horizontalSpeed: -75
+        },
+        backgroundFluidLayer: {
+          fillStyle: "pink",
+          angularSpeed: 100,
+          maxAmplitude: 9,
+          frequency: 30,
+          horizontalSpeed: 75
+        }
+      }
+    });
+
+//initialization JS fluid meter
+	var jsFM = new FluidMeter();
+    jsFM.init({
+      targetContainer: document.getElementById('JS-fluid-meter'),
+      fillPercentage: 75,
+      options: {
+        fontFamily: 'Caveat',
+        drawPercentageSign: true,
+        drawBubbles: true,
+        drawShadow: true,
+        size: 300,
+        borderWidth: 15,
+        backgroundColor: "#e2e2e2",
+        foregroundColor: "#fafafa",
+        foregroundFluidLayer: {
+          fillStyle: "#f1e05a",
+          angularSpeed: 100,
+          maxAmplitude: 12,
+          frequency: 30,
+          horizontalSpeed: -75
+        },
+        backgroundFluidLayer: {
+          fillStyle: "#f2e68d",
+          angularSpeed: 100,
+          maxAmplitude: 9,
+          frequency: 30,
+          horizontalSpeed: 75
+        }
+      }
+    });
+
+//initialization HTML fluid meter
+	var pythonFM = new FluidMeter();
+    pythonFM.init({
+      targetContainer: document.getElementById('python-fluid-meter'),
+      fillPercentage: 75,
+      options: {
+        fontFamily: 'Caveat',
+        drawPercentageSign: true,
+        drawBubbles: true,
+        drawShadow: true,
+        size: 300,
+        borderWidth: 15,
+        backgroundColor: "#e2e2e2",
+        foregroundColor: "#fafafa",
+        foregroundFluidLayer: {
+          fillStyle: "#3572a5",
+          angularSpeed: 100,
+          maxAmplitude: 12,
+          frequency: 30,
+          horizontalSpeed: -75
+        },
+        backgroundFluidLayer: {
+          fillStyle: "#70b5ef",
+          angularSpeed: 100,
+          maxAmplitude: 9,
+          frequency: 30,
+          horizontalSpeed: 75
+        }
+      }
+    });
+
 var scrollTop = function () {
 	$("#button").click(function() {
 		$([document.documentElement, document.body]).animate({
