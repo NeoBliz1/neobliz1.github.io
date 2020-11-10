@@ -40,32 +40,44 @@ var loaderScreen = function () {
 //set parallax img attributes
 var setParallaxImage = function () {
 	var pathToParllaxImg;
+	var pathToThmbImg;
 	var wSW = window.screen.width;
 	var wDPR = window.devicePixelRatio;
-	if ( wSW >= 1800 &&  wDPR === 1) {
+	if ( wSW >= 1800 && wDPR >= 1 && wDPR <= 5) {
 		pathToParllaxImg = '../img/cover_bg_3.png';
+		pathToThmbImg = '../img/thmb.png';
 	}
-	else if (wSW < 1800 && wSW >=640 && wDPR > 1 && wDPR <= 3) {
+	else if (wSW < 1800 && wSW >=640 && wDPR >= 1 && wDPR <= 5) {
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
+		pathToThmbImg = '../img/responsive_Img/thmb_small.png';
 	}
 	else {
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3_small.png';
+		pathToThmbImg = '../img/responsive_Img/thmb_small.png';				
 	}
-	
-	$('.slider1, .slider2').attr('src', pathToParllaxImg);
-	
+
+	$('.blizThumbnail').css('background-image', 'url('+pathToThmbImg+')');	
+	$('.slider1, .slider2').attr('src', pathToParllaxImg);	
 }
 	
-
 //set main elements width and height
-
 var windowSizeHandler = function (viewportWidth, viewportHeight) {
+	//set responsive font-size
+	$('h1, h2, p').each(function(index) {
+		var $this = $(this);
+		$this.css('font-size', '');
+		var elFontSize=$this.css('font-size');
+		$this.css('font-size', elFontSize);		
+	});
+
 	$('body, .headerContent, .main').width(viewportWidth);
+	$('.blizThumbnail').width(viewportHeight*0.3).height(viewportHeight*0.3);	
+
 	var FMheight = $('.fluidMeterContainer1').height();
 	$('.mySkills').height(FMheight*1.2);
-	// console.log(viewportWidth);
-	// console.log($(window).width());
-	var $mySkillsDivHeight = $('.mySkillsContent').height();
+	
+	var mySkillsDivHeight = $('.mySkills').height();
+	var mySkillsDivWidth = $('.mySkills').width();
 	var image1 = 0;
 	var image2 = 0;
 	
@@ -79,30 +91,25 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 	
 	sldr1NW = $sldr1.get(0).naturalWidth;
 	sldr1NH = $sldr1.get(0).naturalHeight;
-	// console.log(sldr1NW);
-	// console.log(sldr1NH);
-	// console.log(viewportWidth);
-	// console.log(viewportHeight);		
+		
 	if (sldr1NH/(sldr1NW/viewportWidth) < viewportHeight){			
 		headerOverlayWidth = 'auto';
-		headerOverlayHeight = '100vh';			
+		headerOverlayHeight = '100vh';		
 	}
 	else {
 		headerOverlayWidth = '100vw';
-		headerOverlayHeight = 'auto';
+		headerOverlayHeight = 'auto';		
 	}	
-	
-	if (viewportWidth>$mySkillsDivHeight) {		
+
+	if (sldr1NH/(sldr1NW/mySkillsDivWidth) < mySkillsDivHeight){			
 		mySkillsOverlayWidth = 'auto';
-		mySkillsOverlayHeight = $mySkillsDivHeight;
+		mySkillsOverlayHeight = mySkillsDivHeight;
 	}
-	else {
-		mySkillsOverlayWidth = viewportWidth;
+	else {		
+		mySkillsOverlayWidth = '100vw';
 		mySkillsOverlayHeight = 'auto';
-	}
-	// console.log('summary');	
-	// console.log(headerOverlayWidth);	
-	// console.log(headerOverlayHeight);	
+	}		
+	
 	$sldr1
 	.css({		
 		width: headerOverlayWidth,
@@ -145,11 +152,10 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 	};
 	
 	scrollAnimate(offsetNum);	
-	// console.log('windowSizeHandler done');
 }	
 
 
-/*functions which handle MySkills areas divs
+/*functions which handling MySkills areas divs
 and applying zommIn animation on it*/
 var $projectDiv = $('.projectDiv');	
 var durationTime = 500;
@@ -166,7 +172,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight) { //functio
 		projectDivZoomInCoeff = 1.2/viewportWidth;			
 	}
 	//set project div size
-	projectDivWidth = Math.pow(viewportWidth*30000, 1/3);
+	projectDivWidth = Math.pow(viewportWidth*30000, 1/3);	
 	projectDivHeight = projectDivWidth*0.8;
 	$projectDiv.css({
 		'min-width': projectDivWidth,
@@ -212,22 +218,24 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight) { //functio
 		});	
 		$('#cloneDiv').center().scaleDivMax();
 	}	
-	var FMcanvasSize = projectDivWidth*0.7;
-	var FMborderSize = projectDivWidth/30;
+	var FMcanvasSize = projectDivWidth*0.6;
+	var FMborderSize = projectDivWidth/40;
 	var FMfontSize = projectDivWidth/10+'px';	
 	$('canvas').attr({
 		width: FMcanvasSize,
 		height: FMcanvasSize
 	});
 	htmlFM.setProperties(75, FMcanvasSize, FMborderSize, FMfontSize, 'HTML');
+	cssFM.setProperties(70, FMcanvasSize, FMborderSize, FMfontSize, 'CSS');
 	jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, 'JavaScript');
+	jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, 'jQuery');
 	pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');
 }	
 
 var mySkillsAnimation = function () {
 	
 	$($projectDiv).addClass('scrollAnimate hidden');	
-	
+	var viewportWidth = $(window).width();
 	var zoomInAnimation = function (thisIs){
 		durationTime=500;
 		$(thisIs).removeClass('fadeInUp animated')
@@ -572,7 +580,38 @@ var resizeHandler = function (argument) {
         backgroundFluidLayer: {
           fillStyle: "pink",
           angularSpeed: 100,
-          maxAmplitude: 9,
+          maxAmplitude: 15,
+          frequency: 30,
+          horizontalSpeed: 75
+        }
+      }
+    });
+
+//initialization CSS fluid meter
+	var cssFM = new FluidMeter();
+    cssFM.init({
+      targetContainer: document.getElementById('CSS-fluid-meter'),
+      fillPercentage: 75,
+      options: {
+        fontFamily: 'Caveat',
+        drawPercentageSign: true,
+        drawBubbles: true,
+        drawShadow: true,
+        size: 300,
+        borderWidth: 15,
+        backgroundColor: "#e2e2e2",
+        foregroundColor: "#fafafa",
+        foregroundFluidLayer: {
+          fillStyle: "#563d7c",
+          angularSpeed: 100,
+          maxAmplitude: 12,
+          frequency: 30,
+          horizontalSpeed: -75
+        },
+        backgroundFluidLayer: {
+          fillStyle: "#ae7bfb",
+          angularSpeed: 100,
+          maxAmplitude: 15,
           frequency: 30,
           horizontalSpeed: 75
         }
@@ -603,14 +642,45 @@ var resizeHandler = function (argument) {
         backgroundFluidLayer: {
           fillStyle: "#f2e68d",
           angularSpeed: 100,
-          maxAmplitude: 9,
+          maxAmplitude: 15,
           frequency: 30,
           horizontalSpeed: 75
         }
       }
     });
 
-//initialization HTML fluid meter
+//initialization jQuery fluid meter
+	var jQueryFM = new FluidMeter();
+    jQueryFM.init({
+      targetContainer: document.getElementById('jQuery-fluid-meter'),
+      fillPercentage: 75,
+      options: {
+        fontFamily: 'Caveat',
+        drawPercentageSign: true,
+        drawBubbles: true,
+        drawShadow: true,
+        size: 300,
+        borderWidth: 15,
+        backgroundColor: "#e2e2e2",
+        foregroundColor: "#fafafa",
+        foregroundFluidLayer: {
+          fillStyle: "#ff9000",
+          angularSpeed: 100,
+          maxAmplitude: 12,
+          frequency: 30,
+          horizontalSpeed: -75
+        },
+        backgroundFluidLayer: {
+          fillStyle: "#ffc880",
+          angularSpeed: 100,
+          maxAmplitude: 15,
+          frequency: 30,
+          horizontalSpeed: 75
+        }
+      }
+    });
+
+//initialization python fluid meter
 	var pythonFM = new FluidMeter();
     pythonFM.init({
       targetContainer: document.getElementById('python-fluid-meter'),
@@ -634,7 +704,7 @@ var resizeHandler = function (argument) {
         backgroundFluidLayer: {
           fillStyle: "#70b5ef",
           angularSpeed: 100,
-          maxAmplitude: 9,
+          maxAmplitude: 15,
           frequency: 30,
           horizontalSpeed: 75
         }

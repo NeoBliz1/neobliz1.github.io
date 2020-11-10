@@ -33,17 +33,14 @@ a:active {
 }
 h1 {
   font-family: 'Big Shoulders Display', cursive;
-  font-size: 3.5vh;
+  font-size: 2.5vw;
 }
 h2 {
   font-size: 3vh;
   font-family: 'Biryani', sans-serif;
 }
-.blizThumbnail {
-  background-image: url(../img/thmb.png);
-  border-radius: 50%;
-  width: 30vh;
-  height: 30vh;
+.blizThumbnail {  
+  border-radius: 50%;  
   background-position: 60% 0%;
   background-repeat: no-repeat;
   background-size: 130%;
@@ -518,10 +515,7 @@ pre {
 /*****************************************************/
 /*****************************************************/
 /*****************************************************/
-@media screen and (max-width: 480px) {
-  .blizThumbnail {
-    background-image: url(../img/responsive_Img/thmb_small.png);
-  } 
+@media screen and (max-width: 480px) {  
   .flex_box {
     flex-flow: column nowrap;    
   }
@@ -593,10 +587,7 @@ pre {
 /*****************************************************/
 /*****************************************************/
 @media screen and (min-width: 500px) {
-  /*grid box area for "wicd" article*/
-  .blizThumbnail {
-    background-image: url(../img/responsive_Img/thmb_small.png);
-  }
+  /*grid box area for "wicd" article*/  
   .gridBoxWicd {
     display: grid;
     grid-template-areas: 'empt1 cont empt2';    
@@ -650,10 +641,7 @@ pre {
 /*****************************************************/
 /*****************************************************/
 @media screen and (min-width: 860px) {
-  /*grid box area for "wicd" article*/
-  .blizThumbnail {
-    background-image: url(../img/responsive_Img/thmb_small.png);
-  }  
+  /*grid box area for "wicd" article*/  
   .justifySelfCenter {
     justify-self: center;
   }
@@ -724,17 +712,6 @@ pre {
   }
   .bottomPart {    
     bottom: 0px;
-    left: 10px;
+    left: 10px;    
   } 
-}
-
-/*****************************************************/
-/*****************************************************/
-/*****************************************************/
-/*****************************************************/
-/*****************************************************/
-@media screen and (min-width: 1500px) {
-  .blizThumbnail {
-    background-image: url(../img/thmb.png);
-  }  
 }
