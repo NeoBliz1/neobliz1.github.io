@@ -1,9 +1,19 @@
 'use strict';
-
+//srt named event for refresh parallax imgs
 jQuery.event.special.renewPage = {
   bindType: 'resize',
   delegateType: 'resize'
 };
+
+//checking browser and platform
+var platformIsMobile = false;
+if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+  platformIsMobile = true;
+}
+
+if (navigator.userAgent.match(/(Android)/)) {
+  platformIsMobile = true; 
+}
 
 var zoomInHeader = function () {
 	//zoom in main header
@@ -38,16 +48,15 @@ var loaderScreen = function () {
 	$('.loader-gif').fadeOut('slow');
 }
 //set parallax img attributes
-var setParallaxImage = function () {
+var setParallaxImage = function (wSW, wDPR) {
 	var pathToParllaxImg;
-	var pathToThmbImg;
-	var wSW = window.screen.width;
-	var wDPR = window.devicePixelRatio;
-	if ( wSW >= 1800 && wDPR >= 1 && wDPR <= 5) {
+	var pathToThmbImg;	
+	
+	if ( wSW >= 1800 && wDPR >= 0.25 && wDPR < 3) {
 		pathToParllaxImg = '../img/cover_bg_3.png';
 		pathToThmbImg = '../img/thmb.png';
 	}
-	else if (wSW < 1800 && wSW >=640 && wDPR >= 1 && wDPR <= 5) {
+	else if (wSW < 1800 && wSW >=640 && wDPR >= 3) {
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
 		pathToThmbImg = '../img/responsive_Img/thmb_small.png';
 	}
@@ -60,18 +69,9 @@ var setParallaxImage = function () {
 	$('.slider1, .slider2').attr('src', pathToParllaxImg);	
 }
 	
-//set main elements width and height
 var windowSizeHandler = function (viewportWidth, viewportHeight) {
-	//set responsive font-size
-	$('h1, h2, p').each(function(index) {
-		var $this = $(this);
-		$this.css('font-size', '');
-		var elFontSize=$this.css('font-size');
-		$this.css('font-size', elFontSize);		
-	});
-
+	//set main elements width and height
 	$('body, .headerContent, .main').width(viewportWidth);
-	$('.blizThumbnail').width(viewportHeight*0.3).height(viewportHeight*0.3);	
 
 	var FMheight = $('.fluidMeterContainer1').height();
 	$('.mySkills').height(FMheight*1.2);
@@ -151,7 +151,8 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 		offsetNum = '90%';
 	};
 	
-	scrollAnimate(offsetNum);	
+	scrollAnimate(offsetNum);
+
 }	
 
 
@@ -161,7 +162,18 @@ var $projectDiv = $('.projectDiv');
 var durationTime = 500;
 var viewportWidth, viewportHeight, projectDivZoomInCoeff, projectDivWidth, projectDivHeight, vpbFontSize, vpbMarginValue;
 
-var projectDivSizeHandler = function (viewportWidth, viewportHeight) { //function handle which window is on resize
+var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR) { //function handle which window is on resize
+	//set thumbnail size in px;
+	$('.blizThumbnail').width(viewportHeight*0.3).height(viewportHeight*0.3);	
+
+	//set responsive font-size
+	$('h1, h2, p, a').each(function(index) {
+		var $this = $(this);
+		$this.css('font-size', '');
+		var elFontSize=$this.css('font-size');
+		$this.css('font-size', elFontSize);	//set font size in pixels
+	});
+	//coeefficient for zooming project divs
 	if (viewportWidth>=980) {
 		projectDivZoomInCoeff = 1.3/viewportWidth;
 	}
@@ -185,15 +197,16 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight) { //functio
 	//set font-size property for view project button in scale state
 	vpbFontSize = projectDivWidth*0.04;
 	vpbMarginValue = projectDivWidth*0.03;
-		//set buttons font-size		
-		$('#rmb, #vpb').css('font-size', projectDivWidth*0.06);
-		//set button vpb position parameters, except project_1 and 2 divs
-		$projectDiv.not('.project_1, .project_2')
-		.find('#vpb')
-		.css({
-			left: projectDivWidth*0.55,
-			bottom: projectDivHeight*0.08
-		});
+	//set buttons font-size		
+	$('#rmb, #vpb').css('font-size', projectDivWidth*0.06);
+	//set button vpb position parameters, except project_1 and 2 divs
+	$projectDiv.not('.project_1, .project_2')
+	.find('#vpb')
+	.css({
+		left: projectDivWidth*0.55,
+		bottom: projectDivHeight*0.08
+	});
+	
 	//set button vpb position parameters in project_2 div
 	$('.project_2').find('#vpb')
 	.css({
@@ -204,23 +217,16 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight) { //functio
 	$('.paragraphMSD').css({
 		'text-indent': projectDivWidth*0.02,
 		'font-size': projectDivWidth*0.025		  
-	});
+	});	
 
-	//handle clone div if it exist	
-	if ( $('#cloneDiv').length ) {			
-		$('#cloneDiv').find('#vpb')
-		.css({
-			'font-size': vpbFontSize				
-		});
-		$('.project_1 #cloneDiv').find('#vpb')
-		.css({
-			margin: vpbMarginValue
-		});	
-		$('#cloneDiv').center().scaleDivMax();
-	}	
 	var FMcanvasSize = projectDivWidth*0.6;
 	var FMborderSize = projectDivWidth/40;
 	var FMfontSize = projectDivWidth/10+'px';	
+	if (platformIsMobile && viewportWidth < 1000 && wDPR<3) {
+		FMcanvasSize /= 1.5;
+		FMborderSize /= 1.5;
+		FMfontSize /= 1.5;	
+	}	
 	$('canvas').attr({
 		width: FMcanvasSize,
 		height: FMcanvasSize
@@ -231,6 +237,18 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight) { //functio
 	jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, 'jQuery');
 	pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');
 }	
+
+var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
+	//handle clone div if it exist
+	var $cloneDiv = $('#cloneDiv');
+	if ( $cloneDiv.length ) {
+		var divCurrentHeight = $cloneDiv.outerHeight();
+		var divCurrentWidth = $cloneDiv.outerWidth();	
+		$cloneDiv.center(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth)
+		.scaleDivMax(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth);
+		console.log('rescaling is happened')	
+	}	
+}
 
 var mySkillsAnimation = function () {
 	
@@ -318,12 +336,7 @@ var mySkillsAnimation = function () {
 	}
 	var DSdurationTime = 1000;//div skill full size animation duration time
 	//jQuery function for centering div
-	jQuery.fn.center = function () {
-		var viewportHeight = $(window).height();
-		var viewportWidth = $(window).width();
-		var divCurrentHeight = $(this).outerHeight();
-		var divCurrentWidth = $(this).outerWidth();
-		var divCurrentOffset = $(this).offset();			
+	jQuery.fn.center = function (viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth) {
 		var targetTopOffset = Math.max(0, ((viewportHeight - divCurrentHeight) / 2) + $(window).scrollTop());//defining the target position from the div top to the viewport
 		var targetLeftOffset = Math.max(0, ((viewportWidth - divCurrentWidth) / 2) + $(window).scrollLeft());//defining the target position from the div left to the viewport		
 		this.animate({
@@ -337,11 +350,7 @@ var mySkillsAnimation = function () {
 		return this;
 	}
 	//jQuery function for scaling div
-	jQuery.fn.scaleDivMax = function () {
-		var viewportHeight = $(window).height();
-		var viewportWidth = $(window).width();
-		var divCurrentHeight = $(this).outerHeight();
-		var divCurrentWidth = $(this).outerWidth();
+	jQuery.fn.scaleDivMax = function (viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth) {		
 		var divTargetWidthCoeff = viewportWidth*0.9/divCurrentWidth;
 		var divTargetHeightCoeff = viewportHeight*0.9/divCurrentHeight;
 		if (viewportWidth>viewportHeight && (viewportWidth-viewportHeight)>200) {
@@ -410,12 +419,18 @@ var mySkillsAnimation = function () {
     	left: projectDivWidth*0.99,
     	'text-indent': 0
 		});
+		console.log('close button is scaled')
 		return this;
 	}
 
 	//scaling project div for more description
 	var projectDivFullSize = function (thisIs) {
 		var currentDivOffset = $(thisIs).offset();
+		var viewportHeight = $(window).height();
+		var viewportWidth = $(window).width();
+		var divCurrentHeight = $(thisIs).outerHeight();
+		var divCurrentWidth = $(thisIs).outerWidth();	
+
 		//forced triggering mouse leave handler for minimizing current div
 		$(thisIs).trigger('mouseleave'); 
 
@@ -455,8 +470,8 @@ var mySkillsAnimation = function () {
     	'border-style' : 'double',
   		'border-color': 'white'  		
 		})
-		.center()
-		.scaleDivMax();
+		.center(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth)
+		.scaleDivMax(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth);
 
 		//show description 
 		$cloneDiv.find('.paragraphMSD').removeClass('hidden')
@@ -539,9 +554,16 @@ var resizeHandler = function (argument) {
 			$('.loader-gif').css('display', 'initial');
 			resizeTimer = setTimeout(function() {				
 				var viewportWidth = $(window).width();
-				var viewportHeight = $(window).height();		
-				projectDivSizeHandler(viewportWidth, viewportHeight);
-				setParallaxImage(viewportWidth, viewportHeight);
+				var viewportHeight = $(window).height();
+				var wSW = window.screen.width;
+				var wDPR = window.devicePixelRatio;	
+				// console.log(viewportWidth);
+				// console.log(viewportHeight);
+				if(platformIsMobile){
+					projectDivSizeHandler(viewportWidth, viewportHeight, wDPR);
+				}
+				cloneDivSizeHandler(viewportHeight, viewportWidth);
+				setParallaxImage(wSW, wDPR);
 				$('.slider1').on('load', function(event) {
 					loaderScreen();
 					windowSizeHandler(viewportWidth, viewportHeight);		
@@ -565,7 +587,7 @@ var resizeHandler = function (argument) {
         fontFamily: 'Caveat',
         drawPercentageSign: true,
         drawBubbles: true,
-        drawShadow: true,
+        drawShadow: false,
         size: 300,
         borderWidth: 15,
         backgroundColor: "#e2e2e2",
@@ -596,7 +618,7 @@ var resizeHandler = function (argument) {
         fontFamily: 'Caveat',
         drawPercentageSign: true,
         drawBubbles: true,
-        drawShadow: true,
+        drawShadow: false,
         size: 300,
         borderWidth: 15,
         backgroundColor: "#e2e2e2",
@@ -627,7 +649,7 @@ var resizeHandler = function (argument) {
         fontFamily: 'Caveat',
         drawPercentageSign: true,
         drawBubbles: true,
-        drawShadow: true,
+        drawShadow: false,
         size: 300,
         borderWidth: 15,
         backgroundColor: "#e2e2e2",
@@ -658,7 +680,7 @@ var resizeHandler = function (argument) {
         fontFamily: 'Caveat',
         drawPercentageSign: true,
         drawBubbles: true,
-        drawShadow: true,
+        drawShadow: false,
         size: 300,
         borderWidth: 15,
         backgroundColor: "#e2e2e2",
@@ -689,7 +711,7 @@ var resizeHandler = function (argument) {
         fontFamily: 'Caveat',
         drawPercentageSign: true,
         drawBubbles: true,
-        drawShadow: true,
+        drawShadow: false,
         size: 300,
         borderWidth: 15,
         backgroundColor: "#e2e2e2",
@@ -723,9 +745,11 @@ var scrollTop = function () {
 $(window).on( 'load', function() {
 	var viewportWidth = $(window).width();
 	var viewportHeight = $(window).height();
+	var wSW = window.screen.width;
+	var wDPR = window.devicePixelRatio;
 	mySkillsAnimation();
-	projectDivSizeHandler(viewportWidth, viewportHeight); //resize MySkills divs from window size	
-	setParallaxImage(viewportWidth, viewportHeight);
+	projectDivSizeHandler(viewportWidth, viewportHeight, wDPR); //resize MySkills divs from window size	
+	setParallaxImage(wSW, wDPR);
 	$('.slider1').one('load', function(event) {
 		windowSizeHandler(viewportWidth, viewportHeight); //resize main blocks according to window width	
 		resizeHandler();
