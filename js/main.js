@@ -139,6 +139,7 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 		
 	//initialize waypoints script
 	Waypoint.destroyAll() //remove all waypoints	
+	
 	var offsetNum=0;
 	//offset from window top
 	if (viewportHeight < 480) {
@@ -150,9 +151,8 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 	else {
 		offsetNum = '90%';
 	};
-	
-	scrollAnimate(offsetNum);
-
+		
+	scrollAnimate(offsetNum);	
 }	
 
 
@@ -161,6 +161,7 @@ and applying zommIn animation on it*/
 var $projectDiv = $('.projectDiv');	
 var durationTime = 500;
 var viewportWidth, viewportHeight, projectDivZoomInCoeff, projectDivWidth, projectDivHeight, vpbFontSize, vpbMarginValue;
+var projectDivFullSizeState = false;
 
 var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR) { //function handle which window is on resize
 	//set thumbnail size in px;
@@ -173,16 +174,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR) { //f
 		var elFontSize=$this.css('font-size');
 		$this.css('font-size', elFontSize);	//set font size in pixels
 	});
-	//coeefficient for zooming project divs
-	if (viewportWidth>=980) {
-		projectDivZoomInCoeff = 1.3/viewportWidth;
-	}
-	else if (viewportWidth>=350){
-		projectDivZoomInCoeff = 1.4/viewportWidth;
-	}		
-	else {
-		projectDivZoomInCoeff = 1.2/viewportWidth;			
-	}
+
 	//set project div size
 	projectDivWidth = Math.pow(viewportWidth*30000, 1/3);	
 	projectDivHeight = projectDivWidth*0.8;
@@ -236,6 +228,17 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR) { //f
 	jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, 'JavaScript');
 	jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, 'jQuery');
 	pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');
+
+	//coeefficient for zooming project divs
+	if (viewportWidth>=980) {
+		projectDivZoomInCoeff = 1.3/viewportWidth;
+	}
+	else if (viewportWidth>=350){
+		projectDivZoomInCoeff = 1.4/viewportWidth;
+	}		
+	else {
+		projectDivZoomInCoeff = 1.2/viewportWidth;			
+	}
 }	
 
 var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
@@ -243,10 +246,13 @@ var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
 	var $cloneDiv = $('#cloneDiv');
 	if ( $cloneDiv.length ) {
 		var divCurrentHeight = $cloneDiv.outerHeight();
-		var divCurrentWidth = $cloneDiv.outerWidth();	
+		var divCurrentWidth = $cloneDiv.outerWidth();
+		// console.log(viewportWidth);
+		// console.log(divCurrentWidth);
+		// console.log(divCurrentHeight);
 		$cloneDiv.center(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth)
 		.scaleDivMax(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth);
-		console.log('rescaling is happened')	
+		// console.log('rescaling is happened')	
 	}	
 }
 
@@ -292,6 +298,7 @@ var mySkillsAnimation = function () {
 					.click(function(event) {						
 						if (event.currentTarget.id==='rmb') {
 							/*alert('Your clicked button 'Read more'');*/
+							projectDivFullSizeState = true;
 							projectDivFullSize(thisIs);
 						}							
 					});
@@ -334,18 +341,28 @@ var mySkillsAnimation = function () {
 		.addClass('rollOut animated');
 		return this;
 	}
-	var DSdurationTime = 1000;//div skill full size animation duration time
+	var DSdurationTime = 500;//div skill full size animation duration time
 	//jQuery function for centering div
 	jQuery.fn.center = function (viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth) {
-		var targetTopOffset = Math.max(0, ((viewportHeight - divCurrentHeight) / 2) + $(window).scrollTop());//defining the target position from the div top to the viewport
+		var $windowScrollTo = $(window).scrollTop();
+		$([document.documentElement, document.body]).animate({
+      scrollTop: $windowScrollTo
+    }, 
+    DSdurationTime);
+		var targetTopOffset = Math.max(0, ((viewportHeight - divCurrentHeight) / 2) + $windowScrollTo);//defining the target position from the div top to the viewport
 		var targetLeftOffset = Math.max(0, ((viewportWidth - divCurrentWidth) / 2) + $(window).scrollLeft());//defining the target position from the div left to the viewport		
+		console.log(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth, $(window).scrollTop());
 		this.animate({
 			top : targetTopOffset, 
 			left : targetLeftOffset					
 		},		 
 		{
 			duration: DSdurationTime, 
-			queue: false
+			queue: false,
+			complete: function(){
+				loaderScreen();
+				console.log('end')				
+			}
 		})
 		return this;
 	}
@@ -360,7 +377,7 @@ var mySkillsAnimation = function () {
 			var divTargetCoeff = divTargetWidthCoeff;
 		}
 		// console.log(viewportWidth);
-		// console.log(viewportHeight);
+		// console.log(viewportHeight);		
 		this.animate(
 			{  
 				textIndent: divTargetCoeff
@@ -418,8 +435,7 @@ var mySkillsAnimation = function () {
     	bottom: projectDivHeight*1.02,
     	left: projectDivWidth*0.99,
     	'text-indent': 0
-		});
-		console.log('close button is scaled')
+		});		
 		return this;
 	}
 
@@ -501,7 +517,8 @@ var mySkillsAnimation = function () {
 			
 		//overlay click handler
 		$('#fullSizeSkillBoxOverlay, .closeButton, #vpb').click(function(event) {
-			/* Act on the event */			
+			/* Act on the event */
+			projectDivFullSizeState = false;		
 			projectDivMinimize(this, currentDivOffset);
 		});
 		//scrolling to current position after hiding scroll bar
@@ -559,16 +576,17 @@ var resizeHandler = function (argument) {
 				var wDPR = window.devicePixelRatio;	
 				// console.log(viewportWidth);
 				// console.log(viewportHeight);
-				if(platformIsMobile){
-					projectDivSizeHandler(viewportWidth, viewportHeight, wDPR);
-				}
 				cloneDivSizeHandler(viewportHeight, viewportWidth);
+				if(platformIsMobile &&  !projectDivFullSizeState){
+					projectDivSizeHandler(viewportWidth, viewportHeight, wDPR);
+					console.log('mobile resize is happend');
+				}				
 				setParallaxImage(wSW, wDPR);
 				$('.slider1').on('load', function(event) {
 					loaderScreen();
 					windowSizeHandler(viewportWidth, viewportHeight);		
 				});							
-			}, 250);
+			}, 100 );
 		});
 		$(window)
 		.off('renewPage')
