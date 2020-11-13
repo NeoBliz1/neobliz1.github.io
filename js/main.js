@@ -45,7 +45,7 @@ var scrollAnimate = function (offsetNum) {
 }
 /*fadingOut loader screen*/
 var loaderScreen = function () {
-	$('.loader-gif').fadeOut('slow');
+	$('.loader-gif').css('display', 'initial').fadeOut('slow');	
 }
 //set parallax img attributes
 var setParallaxImage = function (wSW, wDPR) {
@@ -351,7 +351,7 @@ var mySkillsAnimation = function () {
     DSdurationTime);
 		var targetTopOffset = Math.max(0, ((viewportHeight - divCurrentHeight) / 2) + $windowScrollTo);//defining the target position from the div top to the viewport
 		var targetLeftOffset = Math.max(0, ((viewportWidth - divCurrentWidth) / 2) + $(window).scrollLeft());//defining the target position from the div left to the viewport		
-		console.log(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth, $(window).scrollTop());
+		// console.log(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth, $(window).scrollTop());
 		this.animate({
 			top : targetTopOffset, 
 			left : targetLeftOffset					
@@ -359,11 +359,10 @@ var mySkillsAnimation = function () {
 		{
 			duration: DSdurationTime, 
 			queue: false,
-			complete: function(){
-				loaderScreen();
-				console.log('end')				
+			complete: function(){										
 			}
 		})
+		// console.log('center finished')
 		return this;
 	}
 	//jQuery function for scaling div
@@ -565,34 +564,34 @@ var mySkillsAnimation = function () {
 var resizeHandler = function (argument) {
 	//resize handler
 	var resizeTimer;	
-	$(window).on('renewPage', function(event) {				
-		$(window).resize(function(event) {			
-			clearTimeout(resizeTimer);
-			$('.loader-gif').css('display', 'initial');
-			resizeTimer = setTimeout(function() {				
-				var viewportWidth = $(window).width();
-				var viewportHeight = $(window).height();
-				var wSW = window.screen.width;
-				var wDPR = window.devicePixelRatio;	
-				// console.log(viewportWidth);
-				// console.log(viewportHeight);
-				cloneDivSizeHandler(viewportHeight, viewportWidth);
-				if(platformIsMobile &&  !projectDivFullSizeState){
-					projectDivSizeHandler(viewportWidth, viewportHeight, wDPR);
-					console.log('mobile resize is happend');
-				}				
-				setParallaxImage(wSW, wDPR);
-				$('.slider1').on('load', function(event) {
-					loaderScreen();
-					windowSizeHandler(viewportWidth, viewportHeight);		
-				});							
-			}, 100 );
-		});
-		$(window)
-		.off('renewPage')
-		.trigger('resize')
-		.off('resize'); //refresh parallax script						 	
-		resizeHandler();
+	$(window).on('renewPage', function(event) {
+		//refresh parallax script			
+		clearTimeout(resizeTimer);	
+		//main resize part		
+		resizeTimer = setTimeout(function() {				
+			var viewportWidth = $(window).width();
+			var viewportHeight = $(window).height();
+			var wSW = window.screen.width;
+			var wDPR = window.devicePixelRatio;	
+			// console.log(viewportWidth);
+			// console.log(viewportHeight);
+			cloneDivSizeHandler(viewportHeight, viewportWidth);
+			if(platformIsMobile &&  !projectDivFullSizeState){
+				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR);
+				// console.log('mobile resize is happend');
+			}				
+			setParallaxImage(wSW, wDPR);
+			$('.slider1').one('load', function(event) {
+				loaderScreen();
+				windowSizeHandler(viewportWidth, viewportHeight);	
+				// console.log('windowSizeHandler finished');
+				$(window)
+				.off('renewPage')
+				.trigger('resize');
+				resizeHandler();				
+				console.log('renewPage is finished');	
+			});
+		}, 250 );							
 	});		
 }
 
@@ -773,7 +772,7 @@ $(window).on( 'load', function() {
 		resizeHandler();
 	  loaderScreen();
 	 	zoomInHeader();	
-		console.log( 'document loaded' );
+		console.log( 'document loaded' );		
 	});
 });
 
