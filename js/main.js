@@ -582,7 +582,9 @@ var resizeHandler = function (argument) {
 			}				
 			setParallaxImage(wSW, wDPR);
 			$('.slider1').one('load', function(event) {
-				loaderScreen();
+				if (!platformIsMobile) {
+					loaderScreen();
+				}				
 				windowSizeHandler(viewportWidth, viewportHeight);	
 				// console.log('windowSizeHandler finished');
 				$(window)
