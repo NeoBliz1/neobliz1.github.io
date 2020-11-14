@@ -235,20 +235,24 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	});	
 
 	var FMcanvasSize, FMborderSize, FMfontSize;	
-	if (platformIsMobile && viewportWidth < 1000 && wDPR<3) {
+	// console.log(platformIsMobile, viewportWidth, wDPR)
+	if (platformIsMobile && viewportWidth < 1000 && wDPR<=3) {
 		FMcanvasSize = (projectDivWidth*0.6)/1.5;
 		FMborderSize = (projectDivWidth/40)/1.5;
-		FMfontSize = (projectDivWidth/10+'px')/1.5;	
+		FMfontSize = (projectDivWidth/10+'px')/1.5;
+		// console.log('1')
 	}
 	else if (viewportWidth > viewportHeight) {
 		FMcanvasSize = projectDivWidth*0.6;
 		FMborderSize = projectDivWidth/40;
 		FMfontSize = projectDivWidth/10+'px';
+		// console.log('2')
 	}
 	else if (viewportWidth < viewportHeight) {
 		FMcanvasSize = projectDivWidth*0.5;
 		FMborderSize = projectDivWidth/50;
 		FMfontSize = projectDivWidth/15+'px';
+		// console.log('3')
 	}
 	// console.log('project div size changed')
 	$('canvas').attr({
@@ -582,10 +586,11 @@ var mySkillsAnimation = function () {
 	divHoverHandler();	
 }
 
-var resizeHandler = function (windowOuterHeight) {
+var resizeHandler = function () {
 	//resize handler
 	var resizeTimer;
-	var browserInitialWidth = window.outerWidth;	
+	var browserInitialWidth = window.outerWidth;
+	var windowOuterHeight = window.outerHeight;	
 	$(window).on('renewPage', function(event) {
 		if (!platformIsMobile) {
 			$('.loader-gif').css('display', 'initial');
@@ -605,13 +610,13 @@ var resizeHandler = function (windowOuterHeight) {
 			var currBrowserHeight = window.outerHeight;			
 			var bWratio = browserInitialWidth/currBrowserWidth;
 			var bHratio = windowOuterHeight/currBrowserHeight;
-			console.log(windowOuterHeight, currBrowserHeight);
-			console.log(bWratio, bHratio);
+			// console.log(windowOuterHeight, currBrowserHeight);
+			// console.log(bWratio, bHratio);
 			if(platformIsMobile && !projectDivFullSizeState || bWratio !== 1 || bHratio !== 1){
 				browserInitialWidth = currBrowserWidth;
 				windowOuterHeight = currBrowserHeight;
 				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight);
-				console.log('font and divs resize is happend');				
+				// console.log('font and divs resize is happend');				
 			}				
 			setParallaxImage(wSW, wDPR);
 			$('.slider1').one('load', function(event) {
@@ -799,10 +804,10 @@ var scrollTop = function () {
 /**************main block*******************/
 $(window).on( 'load', function() {
 	var viewportWidth = $(window).width();
-	var viewportHeight = $(window).height();
-	var windowOuterHeight = window.outerHeight;
+	var viewportHeight = $(window).height();	
 	var wSW = window.screen.width;
-	var wDPR = window.devicePixelRatio;			
+	var wDPR = window.devicePixelRatio;
+	var windowOuterHeight = window.outerHeight;			
 	mySkillsAnimation();
 	projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight); //resize MySkills divs from window size	
 	setParallaxImage(wSW, wDPR);
