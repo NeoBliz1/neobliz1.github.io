@@ -236,9 +236,9 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 
 	var FMcanvasSize, FMborderSize, FMfontSize;	
 	if (platformIsMobile && viewportWidth < 1000 && wDPR<3) {
-		FMcanvasSize /= 1.5;
-		FMborderSize /= 1.5;
-		FMfontSize /= 1.5;	
+		FMcanvasSize = (projectDivWidth*0.6)/1.5;
+		FMborderSize = (projectDivWidth/40)/1.5;
+		FMfontSize = (projectDivWidth/10+'px')/1.5;	
 	}
 	else if (viewportWidth > viewportHeight) {
 		FMcanvasSize = projectDivWidth*0.6;
