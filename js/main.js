@@ -1,18 +1,18 @@
 'use strict';
 //srt named event for refresh parallax imgs
 jQuery.event.special.renewPage = {
-  bindType: 'resize',
-  delegateType: 'resize'
+	bindType: 'resize',
+	delegateType: 'resize'
 };
 
 //checking browser and platform
 var platformIsMobile = false;
 var orientationIsChange = false;
 if (navigator.userAgent.match(/(iPod|iPhone|iPad)/) || navigator.userAgent.match(/(Android)/)) {
-  platformIsMobile = true;
-  $( window ).on( 'orientationchange', function( event ) {
-  	$('.loader-gif').css('display', 'initial');
-	  orientationIsChange = true;
+	platformIsMobile = true;
+	$( window ).on( 'orientationchange', function( event ) {
+		$('.loader-gif').css('display', 'initial');
+		orientationIsChange = true;
 	});
 }
 
@@ -175,16 +175,27 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 /*functions which handling MySkills areas divs
 and applying zommIn animation on it*/
 
-var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR) { //function handle which window is on resize
+var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windowOuterHeight) { //function handle which window is on resize
 	//set thumbnail size in px;
 	$('.blizThumbnail').width(viewportHeight*0.3).height(viewportHeight*0.3);	
 
 	//set responsive font-size
-	$('h1, h2, p, a').each(function(index) {
-		var $this = $(this);
-		$this.css('font-size', '');
-		var elFontSize=$this.css('font-size');
-		$this.css('font-size', elFontSize);	//set font size in pixels
+
+	$('h1').each(function(index) {			
+		var elFontSize = windowOuterHeight*0.025;
+		$(this).css('font-size', elFontSize);	//set font size in pixels
+	})
+	.filter('.mainHeader')
+	.css('font-size', windowOuterHeight*0.04);
+
+	$('h2').each(function(index) {
+		var elFontSize = windowOuterHeight*0.02;
+		$(this).css('font-size', elFontSize);	//set font size in pixels
+	});
+
+	$('p, a').each(function(index) {
+		var elFontSize = windowOuterHeight*0.015;
+		$(this).css('font-size', elFontSize);	//set font size in pixels
 	});
 
 	//set project div size
@@ -223,14 +234,23 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR) { //f
 		'font-size': projectDivWidth*0.025		  
 	});	
 
-	var FMcanvasSize = projectDivWidth*0.5;
-	var FMborderSize = projectDivWidth/40;
-	var FMfontSize = projectDivWidth/15+'px';	
+	var FMcanvasSize, FMborderSize, FMfontSize;	
 	if (platformIsMobile && viewportWidth < 1000 && wDPR<3) {
 		FMcanvasSize /= 1.5;
 		FMborderSize /= 1.5;
 		FMfontSize /= 1.5;	
-	}	
+	}
+	else if (viewportWidth > viewportHeight) {
+		FMcanvasSize = projectDivWidth*0.6;
+		FMborderSize = projectDivWidth/40;
+		FMfontSize = projectDivWidth/10+'px';
+	}
+	else if (viewportWidth < viewportHeight) {
+		FMcanvasSize = projectDivWidth*0.5;
+		FMborderSize = projectDivWidth/50;
+		FMfontSize = projectDivWidth/15+'px';
+	}
+	// console.log('project div size changed')
 	$('canvas').attr({
 		width: FMcanvasSize,
 		height: FMcanvasSize
@@ -266,8 +286,8 @@ var mySkillsAnimation = function () {
 		$(thisIs).removeClass('fadeInUp animated')
 		.filter(':not(:animated)')
 		.css({
-		 	'z-index': 4,		 	
-  		'text-indent': '1px'
+			'z-index': 4,		 	
+			'text-indent': '1px'
 		})
 		//using step function for animate skill boxes
 		.animate(
@@ -324,8 +344,8 @@ var mySkillsAnimation = function () {
 				}, 
 				duration: durationTime,
 				complete: function() {
-  				$(thisIs).css('z-index', '3');
-  			}			 				
+					$(thisIs).css('z-index', '3');
+				}			 				
 			},'linear'
 		);
 	}	
@@ -347,9 +367,9 @@ var mySkillsAnimation = function () {
 	jQuery.fn.center = function (viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth) {
 		var $windowScrollTo = $(window).scrollTop();
 		$([document.documentElement, document.body]).animate({
-      scrollTop: $windowScrollTo
-    }, 
-    DSdurationTime);
+			scrollTop: $windowScrollTo
+		}, 
+		DSdurationTime);
 		var targetTopOffset = Math.max(0, ((viewportHeight - divCurrentHeight) / 2) + $windowScrollTo);//defining the target position from the div top to the viewport
 		var targetLeftOffset = Math.max(0, ((viewportWidth - divCurrentWidth) / 2) + $(window).scrollLeft());//defining the target position from the div left to the viewport		
 		// console.log(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth, $(window).scrollTop());
@@ -432,9 +452,9 @@ var mySkillsAnimation = function () {
 	jQuery.fn.scaleCloseButton = function () {		
 		this.css({
 			'font-size': projectDivWidth*0.03,    	
-    	bottom: projectDivHeight*1.02,
-    	left: projectDivWidth*0.99,
-    	'text-indent': 0
+			bottom: projectDivHeight*1.02,
+			left: projectDivWidth*0.99,
+			'text-indent': 0
 		});		
 		return this;
 	}
@@ -482,9 +502,9 @@ var mySkillsAnimation = function () {
 			top : currentDivOffset.top,
 			left : currentDivOffset.left,
 			'z-index' : 10,
-    	margin : 0,
-    	'border-style' : 'double',
-  		'border-color': 'white'  		
+			margin : 0,
+			'border-style' : 'double',
+			'border-color': 'white'  		
 		})
 		.center(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth)
 		.scaleDivMax(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth);
@@ -562,10 +582,14 @@ var mySkillsAnimation = function () {
 	divHoverHandler();	
 }
 
-var resizeHandler = function (argument) {
+var resizeHandler = function (windowOuterHeight) {
 	//resize handler
-	var resizeTimer;	
+	var resizeTimer;
+	var browserInitialWidth = window.outerWidth;	
 	$(window).on('renewPage', function(event) {
+		if (!platformIsMobile) {
+			$('.loader-gif').css('display', 'initial');
+		}		
 		//refresh parallax script			
 		clearTimeout(resizeTimer);	
 		//main resize part		
@@ -574,12 +598,20 @@ var resizeHandler = function (argument) {
 			var viewportHeight = $(window).height();
 			var wSW = window.screen.width;
 			var wDPR = window.devicePixelRatio;	
-			// console.log(viewportWidth);
-			// console.log(viewportHeight);
+			// console.log(wDPR);
+			// console.log(viewportHeight);			
 			cloneDivSizeHandler(viewportHeight, viewportWidth);
-			if(platformIsMobile && !projectDivFullSizeState || wDPR === 1 && !projectDivFullSizeState){
-				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR);
-				// console.log('mobile resize is happend');
+			var currBrowserWidth = window.outerWidth;
+			var currBrowserHeight = window.outerHeight;			
+			var bWratio = browserInitialWidth/currBrowserWidth;
+			var bHratio = windowOuterHeight/currBrowserHeight;
+			console.log(windowOuterHeight, currBrowserHeight);
+			console.log(bWratio, bHratio);
+			if(platformIsMobile && !projectDivFullSizeState || bWratio !== 1 || bHratio !== 1){
+				browserInitialWidth = currBrowserWidth;
+				windowOuterHeight = currBrowserHeight;
+				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight);
+				console.log('font and divs resize is happend');				
 			}				
 			setParallaxImage(wSW, wDPR);
 			$('.slider1').one('load', function(event) {
@@ -598,162 +630,164 @@ var resizeHandler = function (argument) {
 		}, 250 );							
 	});		
 }
+//initialize my skills fluid meter
+{
 
-//initialization HTML fluid meter
+	//initialization HTML fluid meter
 	var htmlFM = new FluidMeter();
-    htmlFM.init({
-      targetContainer: document.getElementById('HTML-fluid-meter'),
-      fillPercentage: 75,
-      options: {
-        fontFamily: 'Caveat',
-        drawPercentageSign: true,
-        drawBubbles: true,
-        drawShadow: false,
-        size: 300,
-        borderWidth: 15,
-        backgroundColor: "#e2e2e2",
-        foregroundColor: "#fafafa",
-        foregroundFluidLayer: {
-          fillStyle: "red",
-          angularSpeed: 100,
-          maxAmplitude: 12,
-          frequency: 30,
-          horizontalSpeed: -75
-        },
-        backgroundFluidLayer: {
-          fillStyle: "pink",
-          angularSpeed: 100,
-          maxAmplitude: 15,
-          frequency: 30,
-          horizontalSpeed: 75
-        }
-      }
-    });
+		htmlFM.init({
+			targetContainer: document.getElementById('HTML-fluid-meter'),
+			fillPercentage: 75,
+			options: {
+				fontFamily: 'Caveat',
+				drawPercentageSign: true,
+				drawBubbles: true,
+				drawShadow: false,
+				size: 300,
+				borderWidth: 15,
+				backgroundColor: "#e2e2e2",
+				foregroundColor: "#fafafa",
+				foregroundFluidLayer: {
+					fillStyle: "red",
+					angularSpeed: 100,
+					maxAmplitude: 12,
+					frequency: 30,
+					horizontalSpeed: -75
+				},
+				backgroundFluidLayer: {
+					fillStyle: "pink",
+					angularSpeed: 100,
+					maxAmplitude: 15,
+					frequency: 30,
+					horizontalSpeed: 75
+				}
+			}
+		});
 
-//initialization CSS fluid meter
+	//initialization CSS fluid meter
 	var cssFM = new FluidMeter();
-    cssFM.init({
-      targetContainer: document.getElementById('CSS-fluid-meter'),
-      fillPercentage: 75,
-      options: {
-        fontFamily: 'Caveat',
-        drawPercentageSign: true,
-        drawBubbles: true,
-        drawShadow: false,
-        size: 300,
-        borderWidth: 15,
-        backgroundColor: "#e2e2e2",
-        foregroundColor: "#fafafa",
-        foregroundFluidLayer: {
-          fillStyle: "#563d7c",
-          angularSpeed: 100,
-          maxAmplitude: 12,
-          frequency: 30,
-          horizontalSpeed: -75
-        },
-        backgroundFluidLayer: {
-          fillStyle: "#ae7bfb",
-          angularSpeed: 100,
-          maxAmplitude: 15,
-          frequency: 30,
-          horizontalSpeed: 75
-        }
-      }
-    });
+		cssFM.init({
+			targetContainer: document.getElementById('CSS-fluid-meter'),
+			fillPercentage: 75,
+			options: {
+				fontFamily: 'Caveat',
+				drawPercentageSign: true,
+				drawBubbles: true,
+				drawShadow: false,
+				size: 300,
+				borderWidth: 15,
+				backgroundColor: "#e2e2e2",
+				foregroundColor: "#fafafa",
+				foregroundFluidLayer: {
+					fillStyle: "#563d7c",
+					angularSpeed: 100,
+					maxAmplitude: 12,
+					frequency: 30,
+					horizontalSpeed: -75
+				},
+				backgroundFluidLayer: {
+					fillStyle: "#ae7bfb",
+					angularSpeed: 100,
+					maxAmplitude: 15,
+					frequency: 30,
+					horizontalSpeed: 75
+				}
+			}
+		});
 
-//initialization JS fluid meter
+	//initialization JS fluid meter
 	var jsFM = new FluidMeter();
-    jsFM.init({
-      targetContainer: document.getElementById('JS-fluid-meter'),
-      fillPercentage: 75,
-      options: {
-        fontFamily: 'Caveat',
-        drawPercentageSign: true,
-        drawBubbles: true,
-        drawShadow: false,
-        size: 300,
-        borderWidth: 15,
-        backgroundColor: "#e2e2e2",
-        foregroundColor: "#fafafa",
-        foregroundFluidLayer: {
-          fillStyle: "#f1e05a",
-          angularSpeed: 100,
-          maxAmplitude: 12,
-          frequency: 30,
-          horizontalSpeed: -75
-        },
-        backgroundFluidLayer: {
-          fillStyle: "#f2e68d",
-          angularSpeed: 100,
-          maxAmplitude: 15,
-          frequency: 30,
-          horizontalSpeed: 75
-        }
-      }
-    });
+		jsFM.init({
+			targetContainer: document.getElementById('JS-fluid-meter'),
+			fillPercentage: 75,
+			options: {
+				fontFamily: 'Caveat',
+				drawPercentageSign: true,
+				drawBubbles: true,
+				drawShadow: false,
+				size: 300,
+				borderWidth: 15,
+				backgroundColor: "#e2e2e2",
+				foregroundColor: "#fafafa",
+				foregroundFluidLayer: {
+					fillStyle: "#f1e05a",
+					angularSpeed: 100,
+					maxAmplitude: 12,
+					frequency: 30,
+					horizontalSpeed: -75
+				},
+				backgroundFluidLayer: {
+					fillStyle: "#f2e68d",
+					angularSpeed: 100,
+					maxAmplitude: 15,
+					frequency: 30,
+					horizontalSpeed: 75
+				}
+			}
+		});
 
-//initialization jQuery fluid meter
+	//initialization jQuery fluid meter
 	var jQueryFM = new FluidMeter();
-    jQueryFM.init({
-      targetContainer: document.getElementById('jQuery-fluid-meter'),
-      fillPercentage: 75,
-      options: {
-        fontFamily: 'Caveat',
-        drawPercentageSign: true,
-        drawBubbles: true,
-        drawShadow: false,
-        size: 300,
-        borderWidth: 15,
-        backgroundColor: "#e2e2e2",
-        foregroundColor: "#fafafa",
-        foregroundFluidLayer: {
-          fillStyle: "#ff9000",
-          angularSpeed: 100,
-          maxAmplitude: 12,
-          frequency: 30,
-          horizontalSpeed: -75
-        },
-        backgroundFluidLayer: {
-          fillStyle: "#ffc880",
-          angularSpeed: 100,
-          maxAmplitude: 15,
-          frequency: 30,
-          horizontalSpeed: 75
-        }
-      }
-    });
+		jQueryFM.init({
+			targetContainer: document.getElementById('jQuery-fluid-meter'),
+			fillPercentage: 75,
+			options: {
+				fontFamily: 'Caveat',
+				drawPercentageSign: true,
+				drawBubbles: true,
+				drawShadow: false,
+				size: 300,
+				borderWidth: 15,
+				backgroundColor: "#e2e2e2",
+				foregroundColor: "#fafafa",
+				foregroundFluidLayer: {
+					fillStyle: "#ff9000",
+					angularSpeed: 100,
+					maxAmplitude: 12,
+					frequency: 30,
+					horizontalSpeed: -75
+				},
+				backgroundFluidLayer: {
+					fillStyle: "#ffc880",
+					angularSpeed: 100,
+					maxAmplitude: 15,
+					frequency: 30,
+					horizontalSpeed: 75
+				}
+			}
+		});
 
-//initialization python fluid meter
+	//initialization python fluid meter
 	var pythonFM = new FluidMeter();
-    pythonFM.init({
-      targetContainer: document.getElementById('python-fluid-meter'),
-      fillPercentage: 75,
-      options: {
-        fontFamily: 'Caveat',
-        drawPercentageSign: true,
-        drawBubbles: true,
-        drawShadow: false,
-        size: 300,
-        borderWidth: 15,
-        backgroundColor: "#e2e2e2",
-        foregroundColor: "#fafafa",
-        foregroundFluidLayer: {
-          fillStyle: "#3572a5",
-          angularSpeed: 100,
-          maxAmplitude: 12,
-          frequency: 30,
-          horizontalSpeed: -75
-        },
-        backgroundFluidLayer: {
-          fillStyle: "#70b5ef",
-          angularSpeed: 100,
-          maxAmplitude: 15,
-          frequency: 30,
-          horizontalSpeed: 75
-        }
-      }
-    });
-
+		pythonFM.init({
+			targetContainer: document.getElementById('python-fluid-meter'),
+			fillPercentage: 75,
+			options: {
+				fontFamily: 'Caveat',
+				drawPercentageSign: true,
+				drawBubbles: true,
+				drawShadow: false,
+				size: 300,
+				borderWidth: 15,
+				backgroundColor: "#e2e2e2",
+				foregroundColor: "#fafafa",
+				foregroundFluidLayer: {
+					fillStyle: "#3572a5",
+					angularSpeed: 100,
+					maxAmplitude: 12,
+					frequency: 30,
+					horizontalSpeed: -75
+				},
+				backgroundFluidLayer: {
+					fillStyle: "#70b5ef",
+					angularSpeed: 100,
+					maxAmplitude: 15,
+					frequency: 30,
+					horizontalSpeed: 75
+				}
+			}
+		});
+}
 var scrollTop = function () {
 	$("#button").click(function() {
 		$([document.documentElement, document.body]).animate({
@@ -766,10 +800,11 @@ var scrollTop = function () {
 $(window).on( 'load', function() {
 	var viewportWidth = $(window).width();
 	var viewportHeight = $(window).height();
+	var windowOuterHeight = window.outerHeight;
 	var wSW = window.screen.width;
-	var wDPR = window.devicePixelRatio;
+	var wDPR = window.devicePixelRatio;			
 	mySkillsAnimation();
-	projectDivSizeHandler(viewportWidth, viewportHeight, wDPR); //resize MySkills divs from window size	
+	projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight); //resize MySkills divs from window size	
 	setParallaxImage(wSW, wDPR);
 	$('.slider1').one('load', function(event) {
 		windowSizeHandler(viewportWidth, viewportHeight); //resize main blocks according to window width	

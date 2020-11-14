@@ -15,12 +15,12 @@ html {
 p {
   color: rgb(77, 77, 77);
   font-family: 'Biryani', sans-serif;
-  font-size: 2.5vh;
+  font-size: 2vh;
 }
 a {
   color: rgb(77, 77, 77);
   font-family: 'Biryani', sans-serif;
-  font-size: 2.5vh;
+  font-size: 2vh;
   color: purple; 
   cursor: pointer;
   text-decoration: underline;
@@ -33,10 +33,10 @@ a:active {
 }
 h1 {
   font-family: 'Big Shoulders Display', cursive;
-  font-size: 2.5vh;
+  font-size: 3vh;
 }
 h2 {
-  font-size: 3vh;
+  font-size: 2.5vh;
   font-family: 'Biryani', sans-serif;
 }
 .blizThumbnail {  
