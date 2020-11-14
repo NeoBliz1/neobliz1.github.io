@@ -7,12 +7,13 @@ jQuery.event.special.renewPage = {
 
 //checking browser and platform
 var platformIsMobile = false;
-if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+var orientationIsChange = false;
+if (navigator.userAgent.match(/(iPod|iPhone|iPad)/) || navigator.userAgent.match(/(Android)/)) {
   platformIsMobile = true;
-}
-
-if (navigator.userAgent.match(/(Android)/)) {
-  platformIsMobile = true; 
+  $( window ).on( 'orientationchange', function( event ) {
+  	$('.loader-gif').css('display', 'initial');
+	  orientationIsChange = true;
+	});
 }
 
 var zoomInHeader = function () {
@@ -582,8 +583,9 @@ var resizeHandler = function (argument) {
 			}				
 			setParallaxImage(wSW, wDPR);
 			$('.slider1').one('load', function(event) {
-				if (!platformIsMobile) {
+				if (!platformIsMobile || orientationIsChange) {
 					loaderScreen();
+					orientationIsChange = false;
 				}				
 				windowSizeHandler(viewportWidth, viewportHeight);	
 				// console.log('windowSizeHandler finished');
