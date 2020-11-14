@@ -68,7 +68,12 @@ var setParallaxImage = function (wSW, wDPR) {
 	$('.blizThumbnail').css('background-image', 'url('+pathToThmbImg+')');	
 	$('.slider1, .slider2').attr('src', pathToParllaxImg);	
 }
-	
+
+var $projectDiv = $('.projectDiv');	
+var durationTime = 500;
+var viewportWidth, viewportHeight, projectDivZoomInCoeff, projectDivWidth, projectDivHeight, vpbFontSize, vpbMarginValue;
+var projectDivFullSizeState = false;
+
 var windowSizeHandler = function (viewportWidth, viewportHeight) {
 	//set main elements width and height
 	$('body, .headerContent, .main').width(viewportWidth);
@@ -152,16 +157,22 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 		offsetNum = '90%';
 	};
 		
-	scrollAnimate(offsetNum);	
+	scrollAnimate(offsetNum);
+	//coeefficient for zooming project divs
+	if (viewportWidth>=980) {
+		projectDivZoomInCoeff = 1.3/viewportWidth;
+	}
+	else if (viewportWidth>=350){
+		projectDivZoomInCoeff = 1.4/viewportWidth;
+	}		
+	else {
+		projectDivZoomInCoeff = 1.2/viewportWidth;			
+	}	
 }	
 
 
 /*functions which handling MySkills areas divs
 and applying zommIn animation on it*/
-var $projectDiv = $('.projectDiv');	
-var durationTime = 500;
-var viewportWidth, viewportHeight, projectDivZoomInCoeff, projectDivWidth, projectDivHeight, vpbFontSize, vpbMarginValue;
-var projectDivFullSizeState = false;
 
 var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR) { //function handle which window is on resize
 	//set thumbnail size in px;
@@ -211,9 +222,9 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR) { //f
 		'font-size': projectDivWidth*0.025		  
 	});	
 
-	var FMcanvasSize = projectDivWidth*0.6;
+	var FMcanvasSize = projectDivWidth*0.5;
 	var FMborderSize = projectDivWidth/40;
-	var FMfontSize = projectDivWidth/10+'px';	
+	var FMfontSize = projectDivWidth/15+'px';	
 	if (platformIsMobile && viewportWidth < 1000 && wDPR<3) {
 		FMcanvasSize /= 1.5;
 		FMborderSize /= 1.5;
@@ -227,18 +238,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR) { //f
 	cssFM.setProperties(70, FMcanvasSize, FMborderSize, FMfontSize, 'CSS');
 	jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, 'JavaScript');
 	jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, 'jQuery');
-	pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');
-
-	//coeefficient for zooming project divs
-	if (viewportWidth>=980) {
-		projectDivZoomInCoeff = 1.3/viewportWidth;
-	}
-	else if (viewportWidth>=350){
-		projectDivZoomInCoeff = 1.4/viewportWidth;
-	}		
-	else {
-		projectDivZoomInCoeff = 1.2/viewportWidth;			
-	}
+	pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');	
 }	
 
 var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
@@ -259,9 +259,9 @@ var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
 var mySkillsAnimation = function () {
 	
 	$($projectDiv).addClass('scrollAnimate hidden');	
-	var viewportWidth = $(window).width();
 	var zoomInAnimation = function (thisIs){
 		durationTime=500;
+		var viewportWidth = $(window).width();
 		$(thisIs).removeClass('fadeInUp animated')
 		.filter(':not(:animated)')
 		.css({
@@ -576,7 +576,7 @@ var resizeHandler = function (argument) {
 			// console.log(viewportWidth);
 			// console.log(viewportHeight);
 			cloneDivSizeHandler(viewportHeight, viewportWidth);
-			if(platformIsMobile &&  !projectDivFullSizeState){
+			if(platformIsMobile && !projectDivFullSizeState || wDPR === 1 && !projectDivFullSizeState){
 				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR);
 				// console.log('mobile resize is happend');
 			}				
@@ -589,7 +589,7 @@ var resizeHandler = function (argument) {
 				.off('renewPage')
 				.trigger('resize');
 				resizeHandler();				
-				console.log('renewPage is finished');	
+				// console.log('renewPage is finished');	
 			});
 		}, 250 );							
 	});		
