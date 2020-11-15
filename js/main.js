@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 //srt named event for refresh parallax imgs
 jQuery.event.special.renewPage = {
 	bindType: 'resize',
@@ -115,7 +115,7 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 		mySkillsOverlayWidth = '100vw';
 		mySkillsOverlayHeight = 'auto';
 	}		
-	
+	// initialize parallax
 	$sldr1
 	.css({		
 		width: headerOverlayWidth,
@@ -233,7 +233,6 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		'text-indent': projectDivWidth*0.02,
 		'font-size': projectDivWidth*0.025		  
 	});	
-
 	var FMcanvasSize, FMborderSize, FMfontSize;	
 	// console.log(platformIsMobile, viewportWidth, wDPR)
 	if (platformIsMobile && viewportWidth < 1000 && wDPR<=3) {
@@ -254,16 +253,37 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		FMfontSize = projectDivWidth/15+'px';
 		// console.log('3')
 	}
-	// console.log('project div size changed')
-	$('canvas').attr({
-		width: FMcanvasSize,
-		height: FMcanvasSize
-	});
-	htmlFM.setProperties(75, FMcanvasSize, FMborderSize, FMfontSize, 'HTML');
-	cssFM.setProperties(70, FMcanvasSize, FMborderSize, FMfontSize, 'CSS');
-	jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, 'JavaScript');
-	jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, 'jQuery');
-	pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');	
+
+	if (!platformIsMobile) {
+		
+		// console.log('project div size changed')
+		$('canvas').attr({
+			width: FMcanvasSize,
+			height: FMcanvasSize
+		});
+		htmlFM.setProperties(75, FMcanvasSize, FMborderSize, FMfontSize, 'HTML');
+		cssFM.setProperties(70, FMcanvasSize, FMborderSize, FMfontSize, 'CSS');
+		jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, 'JavaScript');
+		jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, 'jQuery');
+		pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');	
+	}
+	else {
+		var $fluid_meters = $('.HTML-fluid-meter, .CSS-fluid-meter, .JS-fluid-meter, .jQuery-fluid-meter, .python-fluid-meter');
+		if ($fluid_meters.length){
+			$fluid_meters.width(FMcanvasSize)
+			.height(FMcanvasSize);
+		}
+		else {
+			$('#HTML-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/html.gif" alt="HTML-fluid-meter" class="HTML-fluid-meter">');
+			$('#CSS-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/css.gif" alt="CSS-fluid-meter" class="CSS-fluid-meter">');
+			$('#JS-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/JS.gif" alt="JS-fluid-meter" class="JS-fluid-meter">');
+			$('#jQuery-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/jQuery.gif" alt="jQuery-fluid-meter" class="jQuery-fluid-meter">');
+			$('#python-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/Python.gif" alt="python-fluid-meter" class="python-fluid-meter">');
+			$('.HTML-fluid-meter, .CSS-fluid-meter, .JS-fluid-meter, .jQuery-fluid-meter, .python-fluid-meter').width(FMcanvasSize)
+			.height(FMcanvasSize)
+			.css('margin', '10px');
+		}	
+	}	
 }	
 
 var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
@@ -636,7 +656,7 @@ var resizeHandler = function () {
 	});		
 }
 //initialize my skills fluid meter
-{
+if (!platformIsMobile){
 
 	//initialization HTML fluid meter
 	var htmlFM = new FluidMeter();
@@ -793,6 +813,7 @@ var resizeHandler = function () {
 			}
 		});
 }
+
 var scrollTop = function () {
 	$("#button").click(function() {
 		$([document.documentElement, document.body]).animate({
@@ -802,7 +823,7 @@ var scrollTop = function () {
 }
 
 /**************main block*******************/
-$(window).on( 'load', function() {
+$(window).on( 'load', function() {	
 	var viewportWidth = $(window).width();
 	var viewportHeight = $(window).height();	
 	var wSW = window.screen.width;
@@ -819,4 +840,3 @@ $(window).on( 'load', function() {
 		console.log( 'document loaded' );		
 	});
 });
-
