@@ -22,12 +22,13 @@ var zoomInHeader = function () {
 	//hide elements which will be animated
 	$('.scrollAnimate').addClass('hidden');
 }
+this.doAnim = false;
 /*use waypoint JQuery plugin for tracking scroll elements*/
 var scrollAnimate = function (offsetNum) {	
 		
 	$('.scrollAnimate')
 	.waypoint(
-		function(direction) {		
+		function(direction) {
 			if (direction === 'up') {			
 				//animated fadeOut elements when their are scrolling 
 				$(this.element)			
@@ -43,7 +44,48 @@ var scrollAnimate = function (offsetNum) {
 		}, 
 		{	offset: offsetNum}
 	);
+	var $fluidMeterScroll = $('.fluidMeterScroll')
+	//activated canvas when it is in the visible state
+	$fluidMeterScroll
+	.waypoint(
+		function(direction) {		
+			if (direction === 'up') {			
+				doAnim = false;//global anim variable
+				// console.log('anim stop')
+			}
+			else {
+				doAnim = true;//global anim variable
+				htmlFM.restart();
+				cssFM.restart();
+				jsFM.restart();
+				jQueryFM.restart();
+				pythonFM.restart();	
+				// console.log('anim start1')				
+			}			
+		}, 
+		{	offset: '100%'}
+	);
+	$fluidMeterScroll.waypoint(
+		function(direction) {		
+			if (direction === 'down') {			
+				doAnim = false;//global anim variable
+				// console.log('anim stop')
+			}
+			else {
+				doAnim = true;//global anim variable
+				htmlFM.restart();
+				cssFM.restart();
+				jsFM.restart();
+				jQueryFM.restart();
+				pythonFM.restart();
+				// console.log('anim start2')						
+			}	
+		// console.log(direction);
+		}, 
+		{	offset: '-30%'}
+	);
 }
+
 /*fadingOut loader screen*/
 var loaderScreen = function () {
 	$('.loader-gif').css('display', 'initial').fadeOut('slow');	
@@ -254,8 +296,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		// console.log('3')
 	}
 
-	if (!platformIsMobile) {
-		
+	if (!platformIsMobile) {		
 		// console.log('project div size changed')
 		$('canvas').attr({
 			width: FMcanvasSize,
@@ -265,7 +306,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		cssFM.setProperties(70, FMcanvasSize, FMborderSize, FMfontSize, 'CSS');
 		jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, 'JavaScript');
 		jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, 'jQuery');
-		pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');	
+		pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');		
 	}
 	else {
 		var $fluid_meters = $('.HTML-fluid-meter, .CSS-fluid-meter, .JS-fluid-meter, .jQuery-fluid-meter, .python-fluid-meter');

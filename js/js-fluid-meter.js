@@ -92,13 +92,15 @@ function FluidMeter() {
   /**
    * initializes and mount the canvas element on the document
    */
+  var canvas;
   function setupCanvas() {
-    var canvas = document.createElement('canvas');
+    canvas = document.createElement('canvas');
     canvas.width = options.size;
     canvas.height = options.size;
     canvas.imageSmoothingEnabled = true;
-    context = canvas.getContext("2d");
+    context = canvas.getContext("2d");    
     targetContainer.appendChild(canvas);
+
 
     // shadow is not required  to be on the draw loop
     //#region shadow
@@ -113,11 +115,16 @@ function FluidMeter() {
     }
     //#endregion
   }
+  function restartContext (){
+    context = canvas.getContext("2d");
+  }
 
   /**
    * draw cycle
    */
+  this.doAnim=true;
   function draw() {
+    if(!this.doAnim){context=null; return;}
     var now = new Date().getTime();
     dt = (now - (time || now)) / 1000;
     time = now;
@@ -366,6 +373,10 @@ function FluidMeter() {
       options.borderWidth = borderSize;
       options.fontSize = fontSize;
       options.text1 = text;
+    },
+    restart: function (env) {
+      restartContext();
+      draw();
     }
   }
 };
