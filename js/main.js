@@ -82,7 +82,7 @@ var scrollAnimate = function (offsetNum) {
 			}	
 		// console.log(direction);
 		}, 
-		{	offset: '-30%'}
+		{	offset: '-15%'}
 	);
 }
 
@@ -296,7 +296,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		// console.log('3')
 	}
 
-	if (!platformIsMobile) {		
+	if (platformIsMobile) {		
 		// console.log('project div size changed')
 		$('canvas').attr({
 			width: FMcanvasSize,
@@ -697,7 +697,7 @@ var resizeHandler = function () {
 	});		
 }
 //initialize my skills fluid meter
-if (!platformIsMobile){
+if (platformIsMobile){
 
 	//initialization HTML fluid meter
 	var htmlFM = new FluidMeter();
