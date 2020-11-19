@@ -45,7 +45,7 @@ var scrollAnimate = function (offsetNum) {
 		{	offset: offsetNum}
 	);
 	// if (!platformIsMobile) {
-	if (true) {
+	// if (true) {
 		var $fluidMeterScroll = $('.fluidMeterScroll')
 		//activated canvas when it is in the visible state
 		$fluidMeterScroll
@@ -86,7 +86,7 @@ var scrollAnimate = function (offsetNum) {
 			}, 
 			{	offset: '-15%'}
 		);
-	}		
+	// }		
 }
 
 /*fadingOut loader screen*/
@@ -281,7 +281,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	var FMcanvasSize, FMborderSize, FMfontSize;	
 	// console.log(platformIsMobile, viewportWidth, wDPR)
 	if (platformIsMobile && viewportWidth < 1000 && wDPR<=3) {
-		FMcanvasSize = (projectDivWidth*0.6)/1.3;
+		FMcanvasSize = (projectDivWidth*0.6)/1.5;
 		FMborderSize = (projectDivWidth/40)/1.5;
 		FMfontSize = (projectDivWidth/15+'px')/1.5;
 		// console.log('1')
@@ -300,7 +300,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	}
 
 	// if (!platformIsMobile) {
-	if (true) {		
+	// if (true) {		
 		// console.log('project div size changed')
 		$('canvas').attr({
 			width: FMcanvasSize,
@@ -311,24 +311,24 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, 'JavaScript');
 		jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, 'jQuery');
 		pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');		
-	}
-	else {
-		var $fluid_meters = $('.HTML-fluid-meter, .CSS-fluid-meter, .JS-fluid-meter, .jQuery-fluid-meter, .python-fluid-meter');
-		if ($fluid_meters.length){
-			$fluid_meters.width(FMcanvasSize)
-			.height(FMcanvasSize);
-		}
-		else {
-			$('#HTML-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/html.gif" alt="HTML-fluid-meter" class="HTML-fluid-meter">');
-			$('#CSS-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/css.gif" alt="CSS-fluid-meter" class="CSS-fluid-meter">');
-			$('#JS-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/JS.gif" alt="JS-fluid-meter" class="JS-fluid-meter">');
-			$('#jQuery-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/jQuery.gif" alt="jQuery-fluid-meter" class="jQuery-fluid-meter">');
-			$('#python-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/Python.gif" alt="python-fluid-meter" class="python-fluid-meter">');
-			$('.HTML-fluid-meter, .CSS-fluid-meter, .JS-fluid-meter, .jQuery-fluid-meter, .python-fluid-meter').width(FMcanvasSize)
-			.height(FMcanvasSize)
-			.css('margin', '10px');
-		}	
-	}	
+	// }
+	// else {
+	// 	var $fluid_meters = $('.HTML-fluid-meter, .CSS-fluid-meter, .JS-fluid-meter, .jQuery-fluid-meter, .python-fluid-meter');
+	// 	if ($fluid_meters.length){
+	// 		$fluid_meters.width(FMcanvasSize)
+	// 		.height(FMcanvasSize);
+	// 	}
+	// 	else {
+	// 		$('#HTML-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/html.gif" alt="HTML-fluid-meter" class="HTML-fluid-meter">');
+	// 		$('#CSS-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/css.gif" alt="CSS-fluid-meter" class="CSS-fluid-meter">');
+	// 		$('#JS-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/JS.gif" alt="JS-fluid-meter" class="JS-fluid-meter">');
+	// 		$('#jQuery-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/jQuery.gif" alt="jQuery-fluid-meter" class="jQuery-fluid-meter">');
+	// 		$('#python-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/Python.gif" alt="python-fluid-meter" class="python-fluid-meter">');
+	// 		$('.HTML-fluid-meter, .CSS-fluid-meter, .JS-fluid-meter, .jQuery-fluid-meter, .python-fluid-meter').width(FMcanvasSize)
+	// 		.height(FMcanvasSize)
+	// 		.css('margin', '10px');
+	// 	}	
+	// }	
 }	
 
 var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
@@ -717,7 +717,7 @@ var resizeHandler = function () {
 }
 //initialize my skills fluid meter
 // if (!platformIsMobile){
-if (true){
+// if (true){
 	//initialization HTML fluid meter
 	var htmlFM = new FluidMeter();
 		htmlFM.init({
@@ -872,7 +872,7 @@ if (true){
 				}
 			}
 		});
-}
+// }
 
 var scrollTop = function () {
 	$("#button").click(function() {

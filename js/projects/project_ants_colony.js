@@ -224,7 +224,7 @@ let gameSketch = function(p) {
 			{
 				p.Ant = function(x, y) {
 					this.power = 250;
-					this.velocity = new p5.Vector(2, 0);
+					this.velocity = new p5.Vector(2*animCoeff, 0);//ant speed
 					this.carrotVelocity = new p5.Vector(0, 0);
 					this.acceleration = new p5.Vector(0, 0);
 					this.topspeed = 6*animCoeff;
