@@ -376,7 +376,7 @@ function FluidMeter() {
     },
     restart: function (env) {
       restartContext();
-      draw();
+      draw();      
     }
   }
 };

@@ -44,46 +44,49 @@ var scrollAnimate = function (offsetNum) {
 		}, 
 		{	offset: offsetNum}
 	);
-	var $fluidMeterScroll = $('.fluidMeterScroll')
-	//activated canvas when it is in the visible state
-	$fluidMeterScroll
-	.waypoint(
-		function(direction) {		
-			if (direction === 'up') {			
-				doAnim = false;//global anim variable
-				// console.log('anim stop')
-			}
-			else {
-				doAnim = true;//global anim variable
-				htmlFM.restart();
-				cssFM.restart();
-				jsFM.restart();
-				jQueryFM.restart();
-				pythonFM.restart();	
-				// console.log('anim start1')				
-			}			
-		}, 
-		{	offset: '100%'}
-	);
-	$fluidMeterScroll.waypoint(
-		function(direction) {		
-			if (direction === 'down') {			
-				doAnim = false;//global anim variable
-				// console.log('anim stop')
-			}
-			else {
-				doAnim = true;//global anim variable
-				htmlFM.restart();
-				cssFM.restart();
-				jsFM.restart();
-				jQueryFM.restart();
-				pythonFM.restart();
-				// console.log('anim start2')						
-			}	
-		// console.log(direction);
-		}, 
-		{	offset: '-15%'}
-	);
+	// if (!platformIsMobile) {
+	if (true) {
+		var $fluidMeterScroll = $('.fluidMeterScroll')
+		//activated canvas when it is in the visible state
+		$fluidMeterScroll
+		.waypoint(
+			function(direction) {		
+				if (direction === 'up') {			
+					doAnim = false;//global anim variable
+					// console.log('anim stop')
+				}
+				else {
+					doAnim = true;//global anim variable
+					htmlFM.restart();
+					cssFM.restart();
+					jsFM.restart();
+					jQueryFM.restart();
+					pythonFM.restart();	
+					// console.log('anim start1')				
+				}			
+			}, 
+			{	offset: '100%'}
+		);
+		$fluidMeterScroll.waypoint(
+			function(direction) {		
+				if (direction === 'down') {			
+					doAnim = false;//global anim variable
+					// console.log('anim stop')
+				}
+				else {
+					doAnim = true;//global anim variable
+					htmlFM.restart();
+					cssFM.restart();
+					jsFM.restart();
+					jQueryFM.restart();
+					pythonFM.restart();
+					// console.log('anim start2')						
+				}	
+			// console.log(direction);
+			}, 
+			{	offset: '-15%'}
+		);
+	}		
 }
 
 /*fadingOut loader screen*/
@@ -296,7 +299,8 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		// console.log('3')
 	}
 
-	if (platformIsMobile) {		
+	// if (!platformIsMobile) {
+	if (true) {		
 		// console.log('project div size changed')
 		$('canvas').attr({
 			width: FMcanvasSize,
@@ -333,12 +337,26 @@ var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
 	if ( $cloneDiv.length ) {
 		var divCurrentHeight = $cloneDiv.outerHeight();
 		var divCurrentWidth = $cloneDiv.outerWidth();
+		var vpbFontSize = divCurrentWidth*0.04;
 		// console.log(viewportWidth);
 		// console.log(divCurrentWidth);
 		// console.log(divCurrentHeight);
 		$cloneDiv.center(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth)
-		.scaleDivMax(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth);
-		// console.log('rescaling is happened')	
+		.scaleDivMax(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth)
+		.find('#vpb')	
+		.css({
+			margin: vpbMarginValue,
+			'font-size': vpbFontSize					
+		});
+		//set close button font-size
+		$('.closeButton').scaleCloseButton(divCurrentHeight, divCurrentWidth);
+		// console.log('rescaling is happened')
+		$cloneDiv
+		.find('.paragraphMSD')		
+		.css({
+			'text-indent': divCurrentWidth*0.02,
+			'font-size': divCurrentWidth*0.025		  
+		});			
 	}	
 }
 
@@ -431,11 +449,13 @@ var mySkillsAnimation = function () {
 	//jQuery function for centering div
 	jQuery.fn.center = function (viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth) {
 		var $windowScrollTo = $(window).scrollTop();
-		$([document.documentElement, document.body]).animate({
-			scrollTop: $windowScrollTo
-		}, 
-		DSdurationTime);
+		//scrolling to current position after hiding scroll bar
+		$(window).on('scroll.fixedCurrentView', function() {					
+			$(window).scrollTop($windowScrollTo);
+		});		
+		// console.log($windowScrollTo)
 		var targetTopOffset = Math.max(0, ((viewportHeight - divCurrentHeight) / 2) + $windowScrollTo);//defining the target position from the div top to the viewport
+		// console.log('targetTopOffset - '+targetTopOffset)
 		var targetLeftOffset = Math.max(0, ((viewportWidth - divCurrentWidth) / 2) + $(window).scrollLeft());//defining the target position from the div left to the viewport		
 		// console.log(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth, $(window).scrollTop());
 		this.animate({
@@ -445,7 +465,7 @@ var mySkillsAnimation = function () {
 		{
 			duration: DSdurationTime, 
 			queue: false,
-			complete: function(){										
+			complete: function(){											
 			}
 		})
 		// console.log('center finished')
@@ -514,13 +534,14 @@ var mySkillsAnimation = function () {
 		)
 		return this;
 	}
-	jQuery.fn.scaleCloseButton = function () {		
+	jQuery.fn.scaleCloseButton = function (divCurrentHeight, divCurrentWidth) {		
 		this.css({
-			'font-size': projectDivWidth*0.03,    	
-			bottom: projectDivHeight*1.02,
-			left: projectDivWidth*0.99,
+			'font-size': divCurrentWidth*0.03,    	
+			bottom: divCurrentHeight*1.02,
+			left: divCurrentWidth*0.99,
 			'text-indent': 0
 		});		
+		// console.log(this.css('font-size'))
 		return this;
 	}
 
@@ -580,7 +601,7 @@ var mySkillsAnimation = function () {
 		.fadeIn(DSdurationTime);
 
 		//set close button font-size
-		$('.closeButton').scaleCloseButton();
+		$('.closeButton').scaleCloseButton(divCurrentHeight, divCurrentWidth);
 
 		//show close button
 		$('.closeButton')
@@ -605,11 +626,7 @@ var mySkillsAnimation = function () {
 			/* Act on the event */
 			projectDivFullSizeState = false;		
 			projectDivMinimize(this, currentDivOffset);
-		});
-		//scrolling to current position after hiding scroll bar
-		$(window).on('scroll.fixedCurrentView', function() {					
-			$(window).scrollTop(currentScroll);
-		});
+		});		
 		// $('body').css('overflow', 'hidden');//hiding scroll bar
 		$projectDiv.off('mouseenter mouseleave');//shutdown mouse event handler from skills divs
 	}
@@ -663,20 +680,22 @@ var resizeHandler = function () {
 			var viewportWidth = $(window).width();
 			var viewportHeight = $(window).height();
 			var wSW = window.screen.width;
-			var wDPR = window.devicePixelRatio;	
+			var wDPR = window.devicePixelRatio;
+			doAnim = false;
 			// console.log(wDPR);
 			// console.log(viewportHeight);			
-			cloneDivSizeHandler(viewportHeight, viewportWidth);
 			var currBrowserWidth = window.outerWidth;
 			var currBrowserHeight = window.outerHeight;			
 			var bWratio = browserInitialWidth/currBrowserWidth;
 			var bHratio = windowOuterHeight/currBrowserHeight;
-			// console.log(windowOuterHeight, currBrowserHeight);
+			// console.log('viewportHeight' + viewportHeight);
+			// console.log('windowOuterHeight'+windowOuterHeight, 'currBrowserHeight'+currBrowserHeight);
 			// console.log(bWratio, bHratio);
 			if(platformIsMobile && !projectDivFullSizeState || bWratio !== 1 || bHratio !== 1){
 				browserInitialWidth = currBrowserWidth;
 				windowOuterHeight = currBrowserHeight;
 				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight);
+				cloneDivSizeHandler(viewportHeight, viewportWidth);
 				// console.log('font and divs resize is happend');				
 			}				
 			setParallaxImage(wSW, wDPR);
@@ -697,8 +716,8 @@ var resizeHandler = function () {
 	});		
 }
 //initialize my skills fluid meter
-if (platformIsMobile){
-
+// if (!platformIsMobile){
+if (true){
 	//initialization HTML fluid meter
 	var htmlFM = new FluidMeter();
 		htmlFM.init({
