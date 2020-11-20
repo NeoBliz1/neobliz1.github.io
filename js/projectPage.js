@@ -22,18 +22,26 @@ $('.home_container').css({
 
 var windowSizeHandler = function () {
 	var $wWidth = $(window).width();
-	var $canvasHSWidth = $('#canvasHolderSmall').width();		
+	var $canvasHSWidth = $('#canvasHolderSmall').width();
+	if ($wWidth >= $canvasHSWidth) {
+		$('.smallCanvas').width($wWidth);
+	} else {
+		$('.smallCanvas').width($canvasHSWidth+20);
+	}
+		
 };
 
 //resize handler
 var resizeHandler = function () {	
-	//resize handler
-	var resizeTimer;
-	clearTimeout(resizeTimer);
-	resizeTimer = setTimeout(function() {
-		windowSizeHandler();					
-	}, 250);
-	
+	$(window).resize(function() {
+		$('.loader-gif').css('display', 'initial');
+		var resizeTimer;
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(function() {
+			windowSizeHandler();
+			loaderScreen();							
+		}, 250);
+	});	
 }
 
 /**************main block*******************/

@@ -52,7 +52,7 @@ let gameSketch = function(p) {
 	var angleLeaves = []; 
 
 	p.preload = function () {
-		leafOrangeImg = p.loadImage(leafOrangeUrl);	 
+		leafOrangeImg = p.loadImage(leafOrangeUrl);		 
 	};
 
 	p.setup = function() {  	
@@ -870,6 +870,7 @@ let gameSketch = function(p) {
 				}					
 				//text
 				p.fill(0, 0, 0);
+				p.textFont('Arial');
 				p.textSize(14);
 				p.text("Press any mouse button to create a bubbles",176,17);
 			};
@@ -1046,10 +1047,10 @@ let gameSketch = function(p) {
 		antSystem.run();
 		carrotSystem.run();
 		p.anthillsDraw();
-		let fps = p.frameRate();  
-		p.fill(255);    
-		p.textSize(32);
-		p.text("FPS: "+fps.toFixed(2), 40, 80);    
+		// let fps = p.frameRate();  
+		// p.fill(255);    
+		// p.textSize(32);
+		// p.text("FPS: "+fps.toFixed(2), 40, 80);    
 	};
 };
 
