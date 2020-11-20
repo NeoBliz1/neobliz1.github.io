@@ -624,12 +624,12 @@ let gameSketch = function(p) {
 										this.readyCarryCarrot = true;
 								}
 								else if (this.distForCarrot>0 && this.distForCarrot<25 && this.takeCarrotFlag === 0){
-										this.takeCarrotFlag = carrotsArr[i].takeCarrotFlag;
+										this.takeCarrotFlag = carrotsArr[i].takeCarrotFlag;										
 										this.calculatedVectorDirCarrot=false;
 								}
 								else if (this.distForCarrot>0 && this.distForCarrot<30 && this.takeCarrotFlag !== 0){
 										this.readyCarryCarrot = false;
-										this.outOfZone=true;
+										this.outOfZone=true;										
 								}
 								else if (this.outOfZone){
 										this.countCarryCarrot++;
