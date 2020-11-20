@@ -614,8 +614,9 @@ let gameSketch = function(p) {
 										//calculated unit of vector to the home										
 										while (!this.calculatedVectorDirCarrot){
 												this.normalizeDistForCarrot=p5.Vector.sub(this.position,this.origin);
-												this.normalizeDistForCarrot.normalize();
+												this.normalizeDistForCarrot.normalize();												
 												this.velocity = this.normalizeDistForCarrot.copy();
+												this.normalizeDistForCarrot.mult(animCoeff);//ant speed with carrot
 												this.velocity.mult(-1);
 												carrotsArr[i].takeCarrotFlag +=1;
 												this.takeCarrotFlag +=1;
@@ -670,11 +671,11 @@ let gameSketch = function(p) {
 				p.Ant.prototype.movingIntoAnthill = function (){
 						//moving carrot into the anthill
 						if (this.readyCarryCarrot && this.distToOrigin>30){
-								this.position.sub(this.normalizeDistForCarrot);															
-								this.distToOrigin = this.position.dist(this.origin);								
+							this.position.sub(this.normalizeDistForCarrot);															
+							this.distToOrigin = this.position.dist(this.origin);								
 						}
 						else {
-								this.readyCarryCarrot = false;
+							this.readyCarryCarrot = false;
 						}
 				};		    
 			}
@@ -857,14 +858,16 @@ let gameSketch = function(p) {
 		{
 			p.backgroundInit = function (){
 				p.background(184, 219, 9);
-				//leaves
-				for (var i = 0; i < leaves.length; i++) {
-									p.push();
-										p.translate(316,430);
-										p.rotate(angleLeaves[i]);
-										p.image(leafOrangeImg, leaves[i].x, leaves[i].y, 30, 30);
-									p.pop();
-				}
+				if (animCoeff!==3) {
+					//leaves
+					for (var i = 0; i < leaves.length; i++) {
+						p.push();
+						p.translate(316,430);
+						p.rotate(angleLeaves[i]);
+						p.image(leafOrangeImg, leaves[i].x, leaves[i].y, 30, 30);
+						p.pop();
+					}
+				}					
 				//text
 				p.fill(0, 0, 0);
 				p.textSize(14);
