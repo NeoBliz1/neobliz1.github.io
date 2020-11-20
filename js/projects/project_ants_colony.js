@@ -4,22 +4,13 @@ var animCoeff = 1;
 
 //checking browser and platform, and if it is mobile then reduce fps 2 times
 
-if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+if (navigator.userAgent.match(/(iPod|iPhone|iPad)/) || navigator.userAgent.match(/(Android)/)) {
 	if (!!window.chrome) {
 		animCoeff = 2;      
 	}
 	else {
 		animCoeff = 3;   
-	} 
-}
-
-if (navigator.userAgent.match(/(Android)/)) {
-	if (!!window.chrome) {
-		animCoeff = 2;      
-	}
-	else {
-		animCoeff = 3;   
-	}  
+	}	 
 }
 
 var externalUrls = {
@@ -870,7 +861,11 @@ let gameSketch = function(p) {
 				}					
 				//text
 				p.fill(0, 0, 0);
-				p.textFont('Arial');
+				if (animCoeff!==1) {
+					p.textFont('Roboto');
+				} else {
+					p.textFont('Arial');
+				}				
 				p.textSize(14);
 				p.text("Press any mouse button to create a bubbles",176,17);
 			};

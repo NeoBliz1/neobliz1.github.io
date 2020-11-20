@@ -26,7 +26,7 @@ var windowSizeHandler = function () {
 	if ($wWidth >= $canvasHSWidth) {
 		$('.smallCanvas').width($wWidth);
 	} else {
-		$('.smallCanvas').width($canvasHSWidth+20);
+		$('.smallCanvas').width($canvasHSWidth+40);
 	}
 		
 };
