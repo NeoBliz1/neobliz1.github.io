@@ -104,13 +104,13 @@ let gameSketch = function(p) {
 
 			p.Particle.prototype.update = function() {
 					if (this.countToStart < 300 && !this.readyForBlastOff){
-							this.countToStart += 1;
+							this.countToStart += 1*animCoeff;
 							this.shakeBubbles = true;
 					}
 					else if (this.countToStart >= 300 || this.readyForBlastOff){
 							this.fullBubble = true;
-							this.timeToLive -= 1;
-							this.sizeOfBubble += 2;
+							this.timeToLive -= 1*animCoeff;
+							this.sizeOfBubble += 2*animCoeff;
 							this.shakeBubbles = false;
 					}
 					
@@ -118,7 +118,7 @@ let gameSketch = function(p) {
 
 			p.Particle.prototype.shakeBubble = function() {
 					if (this.shakeBubbles && this.bubbleHeightFactor < 0.1){
-							this.bubbleHeightFactor += 0.02;
+							this.bubbleHeightFactor += 0.02*animCoeff;
 					}
 					else {
 							this.bubbleHeightFactor = 0;
@@ -215,8 +215,7 @@ let gameSketch = function(p) {
 			{
 				p.Ant = function(x, y) {
 					this.power = 250;
-					this.velocity = new p5.Vector(2*animCoeff, 0);//ant speed
-					this.currentVelocity = this.velocity;
+					this.velocity = new p5.Vector(2*animCoeff, 0);//ant speed					
 					this.carrotVelocity = new p5.Vector(0, 0);
 					this.acceleration = new p5.Vector(0, 0);
 					this.topspeed = 6*animCoeff;
@@ -262,8 +261,8 @@ let gameSketch = function(p) {
 								this.rl2y = 0;
 								this.rl3y = 0;
 						}
-						this.antColor = p.color(255, 8, 255);
-						this.antEyeColor = p.color(0, 0, 0);
+						this.antColor = p.color(255, 8, 255, this.antTransparency);
+						this.antEyeColor = p.color(0, 0, 0, this.antTransparency);
 						this.antRotateAngle = p.PI;
 						this.turnSide = 0;
 						this.antMovingAngleCoeff = 0;//used for update angle of velocity
@@ -275,6 +274,8 @@ let gameSketch = function(p) {
 
 				p.Ant.prototype.display = function() {
 						this.antAngle = this.velocity.heading();
+						this.antColor.setAlpha(this.antTransparency);
+						this.antEyeColor.setAlpha(this.antTransparency);
 						p.push();
 						p.translate(this.position.x+this.velocity.x*this.offV, this.position.y+this.velocity.y*this.offV);
 						p.rotate(this.antAngle);
@@ -282,7 +283,7 @@ let gameSketch = function(p) {
 								p.rotate(this.antRotateAngle);
 								 p.scale(this.antSize);
 										p.noStroke();
-										p.fill(this.antColor,this.antTransparency);
+										p.fill(this.antColor);
 										//head
 										p.ellipse(0, 0, 40, 35);
 										//middle body
@@ -411,40 +412,40 @@ let gameSketch = function(p) {
 										/**eyes**/
 										//left eye
 										{
-										p.push();
-										p.fill(this.antEyeColor,this.antTransparency);
-										p.translate(-6,42);
-										p.scale(0.55);
-												p.beginShape(); 
-												p.curveVertex(22,-92);
-												p.curveVertex(15,-109);
-												p.curveVertex(-11,-101);
-												p.curveVertex(-19,-90);
-												p.curveVertex(22,-92);
-												p.curveVertex(15,-109);
-												p.curveVertex(-11,-101); 
-												p.endShape();
-										p.pop();
+											p.push();
+											p.fill(this.antEyeColor);
+											p.translate(-6,42);
+											p.scale(0.55);
+													p.beginShape(); 
+													p.curveVertex(22,-92);
+													p.curveVertex(15,-109);
+													p.curveVertex(-11,-101);
+													p.curveVertex(-19,-90);
+													p.curveVertex(22,-92);
+													p.curveVertex(15,-109);
+													p.curveVertex(-11,-101); 
+													p.endShape();
+											p.pop();
 										p.fill(this.antColor);
 										}
 										//right eye
 										{
-										p.push();
-										p.fill(this.antEyeColor,this.antTransparency);
-										p.translate(-6,-42);
-										p.scale(0.55);
-										p.scale(1,-1);
-												p.beginShape(); 
-												p.curveVertex(22,-92);
-												p.curveVertex(15,-109);
-												p.curveVertex(-11,-101);
-												p.curveVertex(-19,-90);
-												p.curveVertex(22,-92);
-												p.curveVertex(15,-109);
-												p.curveVertex(-11,-101); 
-												p.endShape();
-										p.pop();
-										p.fill(this.antColor);
+											p.push();
+											p.fill(this.antEyeColor);
+											p.translate(-6,-42);
+											p.scale(0.55);
+											p.scale(1,-1);
+													p.beginShape(); 
+													p.curveVertex(22,-92);
+													p.curveVertex(15,-109);
+													p.curveVertex(-11,-101);
+													p.curveVertex(-19,-90);
+													p.curveVertex(22,-92);
+													p.curveVertex(15,-109);
+													p.curveVertex(-11,-101); 
+													p.endShape();
+											p.pop();
+											p.fill(this.antColor);
 										}
 								p.pop();
 						p.pop();
@@ -526,29 +527,29 @@ let gameSketch = function(p) {
 
 				p.Ant.prototype.obstacleOvercome = function () {
 						if (this.stuckOfEdge){
-								this.velocity.mult(-1);
-								this.antRotateAngle=0;
-								this.addAntMovingAngle = false;
-								this.turnSide = p.random(0,1);
+							this.velocity.mult(-1);
+							this.antRotateAngle=0;
+							this.addAntMovingAngle = false;
+							this.turnSide = p.random(0,1);
 						}
 						else if (!this.stuckOfEdge && !this.addAntMovingAngle && this.antStepsBackward<14){
-								this.antStepsBackward += 1;
+							this.antStepsBackward += 1;
 						}
 						else if (this.antStepsBackward===14 && !this.addAntMovingAngle){
-								this.velocity.mult(-1);
-								this.antRotateAngle=p.PI;
-								this.addAntMovingAngle = true;
-								//println(this.addAntMovingAngle);
+							this.velocity.mult(-1);
+							this.antRotateAngle=p.PI;
+							this.addAntMovingAngle = true;
+							//println(this.addAntMovingAngle);
 						}
 						else if (this.antStepsBackward>0 && this.addAntMovingAngle){
-								if (this.turnSide>0.5){
-										this.velocity.rotate(p.random(0,this.rotateAntSpeed));
-										this.antStepsBackward-=1;
-								}
-								else {
-										this.velocity.rotate(p.random(-this.rotateAntSpeed,0));
-										this.antStepsBackward-=1;
-								}
+							if (this.turnSide>0.5){
+								this.velocity.rotate(p.random(0,this.rotateAntSpeed));
+								this.antStepsBackward-=1;
+							}
+							else {
+								this.velocity.rotate(p.random(-this.rotateAntSpeed,0));
+								this.antStepsBackward-=1;
+							}
 						}
 				};
 
@@ -591,8 +592,8 @@ let gameSketch = function(p) {
 
 				p.Ant.prototype.antBlastOff = function (){
 						if (this.readyForBlastOff){
-								this.antSize += 0.0035*animCoeff;//size of the ant
-								this.antTransparency -= 1*animCoeff;
+							this.antSize += 0.0035*animCoeff;//size of the ant
+							this.antTransparency -= 1*animCoeff;							
 						}
 				};
 
@@ -606,8 +607,7 @@ let gameSketch = function(p) {
 										//calculated unit of vector to the home										
 										while (!this.calculatedVectorDirCarrot){
 												this.normalizeDistForCarrot=p5.Vector.sub(this.position,this.origin);
-												this.normalizeDistForCarrot.normalize();
-												this.currentVelocity = this.velocity.copy();											
+												this.normalizeDistForCarrot.normalize();																							
 												this.velocity = this.normalizeDistForCarrot.copy();
 												this.normalizeDistForCarrot.mult(animCoeff);//ant speed with carrot
 												this.velocity.mult(-1);
@@ -647,9 +647,9 @@ let gameSketch = function(p) {
 								if (carrotsArr[i].distToOrigin>0 && carrotsArr[i].distToOrigin<10){
 										this.readyCarryCarrot = false;
 										this.calculatedVectorDirCarrot=false;
-										this.antAdd = true;
+										this.antAdd = true;										
 										carrotsArr.splice(i,1);
-								}
+										this.velocity = new p5.Vector(2*animCoeff, 0);								}
 						}
 				};
 
@@ -666,11 +666,10 @@ let gameSketch = function(p) {
 						//moving carrot into the anthill
 						if (this.readyCarryCarrot && this.distToOrigin>30){
 							this.position.sub(this.normalizeDistForCarrot);															
-							this.distToOrigin = this.position.dist(this.origin);								
+							this.distToOrigin = this.position.dist(this.origin);															
 						}
 						else {
-							this.readyCarryCarrot = false;
-							this.velocity = this.currentVelocity;								
+							this.readyCarryCarrot = false;																			
 						}
 				};		    
 			}
@@ -680,7 +679,7 @@ let gameSketch = function(p) {
 				p.YellowAnt = function(position) {
 					p.Ant.call(this, position);
 					this.origin = new p5.Vector(550,50);
-					this.antColor = p.color(255, 255, 20);
+					this.antColor = p.color(255, 255, 20, this.antTransparency);
 					this.position = position.copy()
 					this.yellowAnts = [];
 					this.antAngle = p.random(0,6);
@@ -701,8 +700,8 @@ let gameSketch = function(p) {
 				p.BlackAnt = function(position) {
 					this.origin = new p5.Vector(50,50);
 					p.Ant.call(this, position);
-					this.antColor = p.color(0, 0, 0);
-					this.antEyeColor = p.color(0, 231, 252);
+					this.antColor = p.color(0, 0, 0,  this.antTransparency);
+					this.antEyeColor = p.color(0, 231, 252,  this.antTransparency);
 					this.position = position.copy()
 					this.blackAnts = [];
 					this.antAngle = p.random(0,6);
@@ -724,8 +723,8 @@ let gameSketch = function(p) {
 				p.RedAnt = function(position) {
 						this.origin = new p5.Vector(50,550);
 						p.Ant.call(this, position);
-						this.antColor = p.color(255, 0, 0);
-						this.antEyeColor = p.color(0, 0, 0);
+						this.antColor = p.color(255, 0, 0, this.antTransparency);
+						this.antEyeColor = p.color(0, 0, 0, this.antTransparency);
 						this.position = position.copy()
 						this.redAnts = [];
 						this.antAngle = p.random(0,6);
@@ -745,8 +744,8 @@ let gameSketch = function(p) {
 				p.WhiteAnt = function(position) {
 						this.origin = new p5.Vector(550,550);
 						p.Ant.call(this, position);
-						this.antColor = p.color(255, 255, 255);
-						this.antEyeColor = p.color(0, 0, 0);
+						this.antColor = p.color(255, 255, 255, this.antTransparency);
+						this.antEyeColor = p.color(0, 0, 0, this.antTransparency);
 						this.position = position.copy()
 						this.whiteAnts = [];
 						this.antAngle = p.random(0,6);
@@ -866,7 +865,7 @@ let gameSketch = function(p) {
 				//text
 				p.fill(0, 0, 0);
 				if (animCoeff!==1) {
-					p.textFont('Roboto');
+					p.textFont('sans-serif');
 				} else {
 					p.textFont('Arial');
 				}				
