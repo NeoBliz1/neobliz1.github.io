@@ -216,6 +216,7 @@ let gameSketch = function(p) {
 				p.Ant = function(x, y) {
 					this.power = 250;
 					this.velocity = new p5.Vector(2*animCoeff, 0);//ant speed
+					this.currentVelocity = this.velocity;
 					this.carrotVelocity = new p5.Vector(0, 0);
 					this.acceleration = new p5.Vector(0, 0);
 					this.topspeed = 6*animCoeff;
@@ -590,8 +591,8 @@ let gameSketch = function(p) {
 
 				p.Ant.prototype.antBlastOff = function (){
 						if (this.readyForBlastOff){
-								this.antSize += 0.0035;//size of the ant
-								this.antTransparency -= 1;
+								this.antSize += 0.0035*animCoeff;//size of the ant
+								this.antTransparency -= 1*animCoeff;
 						}
 				};
 
@@ -605,7 +606,8 @@ let gameSketch = function(p) {
 										//calculated unit of vector to the home										
 										while (!this.calculatedVectorDirCarrot){
 												this.normalizeDistForCarrot=p5.Vector.sub(this.position,this.origin);
-												this.normalizeDistForCarrot.normalize();												
+												this.normalizeDistForCarrot.normalize();
+												this.currentVelocity = this.velocity.copy();											
 												this.velocity = this.normalizeDistForCarrot.copy();
 												this.normalizeDistForCarrot.mult(animCoeff);//ant speed with carrot
 												this.velocity.mult(-1);
@@ -629,7 +631,7 @@ let gameSketch = function(p) {
 								}
 								else if (this.distForCarrot>0 && this.distForCarrot<30 && this.takeCarrotFlag !== 0){
 										this.readyCarryCarrot = false;
-										this.outOfZone=true;										
+										this.outOfZone=true;																		
 								}
 								else if (this.outOfZone){
 										this.countCarryCarrot++;
@@ -637,8 +639,9 @@ let gameSketch = function(p) {
 												this.takeCarrotFlag = 0;
 												this.countCarryCarrot = 0;
 												this.outOfZone=false;
-												this.calculatedVectorDirCarrot=false;
+												this.calculatedVectorDirCarrot=false;												
 										}
+
 								}
 								//if carrot into the anthill splice carrot from array
 								if (carrotsArr[i].distToOrigin>0 && carrotsArr[i].distToOrigin<10){
@@ -667,6 +670,7 @@ let gameSketch = function(p) {
 						}
 						else {
 							this.readyCarryCarrot = false;
+							this.velocity = this.currentVelocity;								
 						}
 				};		    
 			}
