@@ -524,32 +524,31 @@ let gameSketch = function(p) {
 						}
 						
 				};
-
 				p.Ant.prototype.obstacleOvercome = function () {
 						if (this.stuckOfEdge){
-							this.velocity.mult(-1);
-							this.antRotateAngle=0;
-							this.addAntMovingAngle = false;
-							this.turnSide = p.random(0,1);
+								this.velocity.mult(-1);
+								this.antRotateAngle=0;
+								this.addAntMovingAngle = false;
+								this.turnSide = p.random(0,1);
 						}
 						else if (!this.stuckOfEdge && !this.addAntMovingAngle && this.antStepsBackward<14){
-							this.antStepsBackward += 1;
+								this.antStepsBackward += 1;
 						}
 						else if (this.antStepsBackward===14 && !this.addAntMovingAngle){
-							this.velocity.mult(-1);
-							this.antRotateAngle=p.PI;
-							this.addAntMovingAngle = true;
-							//println(this.addAntMovingAngle);
+								this.velocity.mult(-1);
+								this.antRotateAngle=p.PI;
+								this.addAntMovingAngle = true;
+								//println(this.addAntMovingAngle);
 						}
 						else if (this.antStepsBackward>0 && this.addAntMovingAngle){
-							if (this.turnSide>0.5){
-								this.velocity.rotate(p.random(0,this.rotateAntSpeed));
-								this.antStepsBackward-=1;
-							}
-							else {
-								this.velocity.rotate(p.random(-this.rotateAntSpeed,0));
-								this.antStepsBackward-=1;
-							}
+								if (this.turnSide>0.5){
+										this.velocity.rotate(p.random(0,this.rotateAntSpeed));
+										this.antStepsBackward-=1;
+								}
+								else {
+										this.velocity.rotate(p.random(-this.rotateAntSpeed,0));
+										this.antStepsBackward-=1;
+								}
 						}
 				};
 
@@ -598,59 +597,77 @@ let gameSketch = function(p) {
 				};
 
 				p.Ant.prototype.checkCarrots = function (){
-						for (var i=0;i<carrotsArr.length;i++){
-								
-								//calculated the distance between two points, point of ant and point of the carrot
-								this.distForCarrot = this.position.dist(carrotsArr[i].position);																
-								//carrot interception algorithm
-								if (this.distForCarrot>0 && this.distForCarrot<25 && this.takeCarrotFlag === carrotsArr[i].takeCarrotFlag){
-										//calculated unit of vector to the home										
-										while (!this.calculatedVectorDirCarrot){
-												this.normalizeDistForCarrot=p5.Vector.sub(this.position,this.origin);
-												this.normalizeDistForCarrot.normalize();																							
-												this.velocity = this.normalizeDistForCarrot.copy();
-												this.normalizeDistForCarrot.mult(animCoeff);//ant speed with carrot
-												this.velocity.mult(-1);
-												carrotsArr[i].takeCarrotFlag +=1;
-												this.takeCarrotFlag +=1;
-												this.calculatedVectorDirCarrot=true;																			
-												this.distToOrigin = this.position.dist(this.origin);																							
-										}
-										this.carrotVelocity = this.velocity.copy();
-										this.carrotVelocity.mult(20);
-										this.carrotPosition = this.position.copy();
-										this.carrotPosition = p5.Vector.add(this.carrotPosition,this.carrotVelocity);
-										carrotsArr[i].position = this.carrotPosition.copy()
-										carrotsArr[i].origin = this.origin.copy();																		
-										carrotsArr[i].distToOrigin = carrotsArr[i].position.dist(carrotsArr[i].origin);																				
-										this.readyCarryCarrot = true;
+					this.distFlag=0;
+					for (var i=0;i<carrotsArr.length;i++){								
+						//calculated the distance between two points, point of ant and point of the carrot
+						this.distForCarrot = this.position.dist(carrotsArr[i].position);
+						if (this.distForCarrot>30){
+							this.distFlag +=1
+						}																			
+					}					
+					if (this.distFlag!==4){
+						for (var i=0;i<carrotsArr.length;i++){								
+							//calculated the distance between two points, point of ant and point of the carrot
+							this.distForCarrot = this.position.dist(carrotsArr[i].position);
+							//carrot interception algorithm
+							if (this.distForCarrot>0 && this.distForCarrot<25 && this.takeCarrotFlag === carrotsArr[i].takeCarrotFlag){
+								//calculated unit of vector to the home										
+								while (!this.calculatedVectorDirCarrot){
+									this.normalizeDistForCarrot=p5.Vector.sub(this.position,this.origin);
+									this.normalizeDistForCarrot.normalize();												
+									this.velocity = this.normalizeDistForCarrot.copy();
+									this.normalizeDistForCarrot.mult(animCoeff);//ant speed with carrot
+									this.velocity.mult(-1);
+									carrotsArr[i].takeCarrotFlag +=1;
+									this.takeCarrotFlag +=1;
+									this.calculatedVectorDirCarrot=true;																			
+									this.distToOrigin = this.position.dist(this.origin);																							
 								}
-								else if (this.distForCarrot>0 && this.distForCarrot<25 && this.takeCarrotFlag === 0){
-										this.takeCarrotFlag = carrotsArr[i].takeCarrotFlag;										
-										this.calculatedVectorDirCarrot=false;
-								}
-								else if (this.distForCarrot>0 && this.distForCarrot<30 && this.takeCarrotFlag !== 0){
-										this.readyCarryCarrot = false;
-										this.outOfZone=true;																		
-								}
-								else if (this.outOfZone){
-										this.countCarryCarrot++;
-										if (this.countCarryCarrot>100){
-												this.takeCarrotFlag = 0;
-												this.countCarryCarrot = 0;
-												this.outOfZone=false;
-												this.calculatedVectorDirCarrot=false;												
-										}
-
-								}
+								this.carrotVelocity = this.velocity.copy();
+								this.carrotVelocity.mult(20);
+								this.carrotPosition = this.position.copy();
+								this.carrotPosition = p5.Vector.add(this.carrotPosition,this.carrotVelocity);
+								carrotsArr[i].position = this.carrotPosition.copy()
+								carrotsArr[i].origin = this.origin.copy();																		
+								carrotsArr[i].distToOrigin = carrotsArr[i].position.dist(carrotsArr[i].origin);																				
+								this.readyCarryCarrot = true;	
 								//if carrot into the anthill splice carrot from array
 								if (carrotsArr[i].distToOrigin>0 && carrotsArr[i].distToOrigin<10){
-										this.readyCarryCarrot = false;
-										this.calculatedVectorDirCarrot=false;
-										this.antAdd = true;										
-										carrotsArr.splice(i,1);
-										this.velocity = new p5.Vector(2*animCoeff, 0);								}
-						}
+									this.readyCarryCarrot = false;
+									this.outOfZone=true;
+									this.calculatedVectorDirCarrot=false;
+									this.antAdd = true;
+									carrotsArr.splice(i,1);
+								}															
+							} 		//intersection
+							else if (this.distForCarrot>0 && this.distForCarrot<25 && this.takeCarrotFlag === 0){
+								this.takeCarrotFlag = carrotsArr[i].takeCarrotFlag;										
+								this.calculatedVectorDirCarrot=false;
+								console.log('2')
+							}						
+						}												
+					}
+					else if(this.readyCarryCarrot){
+						this.readyCarryCarrot = false;
+						this.outOfZone=true;
+						this.calculatedVectorDirCarrot=false
+					}
+					else if (this.outOfZone){
+						this.countCarryCarrot++;
+						if (this.countCarryCarrot>100){
+							this.takeCarrotFlag = 0;
+							this.countCarryCarrot = 0;
+							this.outOfZone=false;
+							this.calculatedVectorDirCarrot=false;
+							this.speedRestart = true;
+						}						
+					}
+					else if (this.speedRestart) {
+						console.log('speedRestart')
+						console.log(this.takeCarrotFlag)
+						this.velocity = new p5.Vector(2*animCoeff, 0);//ant speed	
+						this.speedRestart = false;
+					}									
 				};
 
 
@@ -866,11 +883,14 @@ let gameSketch = function(p) {
 				p.fill(0, 0, 0);
 				if (animCoeff!==1) {
 					p.textFont('sans-serif');
+					p.textSize(14);
+					p.text("Tap canvas to create bubbles",176,17);
 				} else {
-					p.textFont('Arial');
+					p.textFont('sans-serif');
+					p.textSize(14);
+					p.text("Press any mouse button to create bubbles",176,17);
 				}				
-				p.textSize(14);
-				p.text("Press any mouse button to create a bubbles",176,17);
+				
 			};
 		}
 		//anthills
