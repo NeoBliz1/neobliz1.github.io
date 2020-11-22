@@ -117,7 +117,7 @@ var setParallaxImage = function (wSW, wDPR) {
 
 var $projectDiv = $('.projectDiv');	
 var durationTime = 500;
-var viewportWidth, viewportHeight, projectDivZoomInCoeff, projectDivWidth, projectDivHeight, vpbFontSize, vpbMarginValue;
+var viewportWidth, viewportHeight, projectDivZoomInCoeff, projectDivWidth, projectDivHeight;
 var projectDivFullSizeState = false;
 
 var windowSizeHandler = function (viewportWidth, viewportHeight) {
@@ -253,26 +253,18 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		height: projectDivHeight,
 		'margin-left': 0.05*projectDivWidth,
 		'margin-right': 0.05*projectDivWidth
-	});
-	//set font-size property for view project button in scale state
-	vpbFontSize = projectDivWidth*0.04;
-	vpbMarginValue = projectDivWidth*0.03;
+	});	
 	//set buttons font-size		
 	$('#rmb, #vpb').css('font-size', projectDivWidth*0.06);
 	//set button vpb position parameters, except project_1 and 2 divs
-	$projectDiv.not('.project_1, .project_2')
+	$projectDiv.not('.project_1')
 	.find('#vpb')
 	.css({
 		left: projectDivWidth*0.55,
-		bottom: projectDivHeight*0.08
+		bottom: 0,
+		'margin-bottom': projectDivWidth*0.02
 	});
-	
-	//set button vpb position parameters in project_2 div
-	$('.project_2').find('#vpb')
-	.css({
-		left: projectDivWidth*0.55,
-		bottom: projectDivHeight*0.1
-	});	
+		
 	//set paragraph size in project divs
 	$('.paragraphMSD').css({
 		'text-indent': projectDivWidth*0.02,
@@ -338,14 +330,14 @@ var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
 		var divCurrentHeight = $cloneDiv.outerHeight();
 		var divCurrentWidth = $cloneDiv.outerWidth();
 		var vpbFontSize = divCurrentWidth*0.04;
+		var vpbMarginValue = divCurrentWidth*0.03;
 		// console.log(viewportWidth);
 		// console.log(divCurrentWidth);
 		// console.log(divCurrentHeight);
 		$cloneDiv.center(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth)
 		.scaleDivMax(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth)
 		.find('#vpb')	
-		.css({
-			margin: vpbMarginValue,
+		.css({			
 			'font-size': vpbFontSize					
 		});
 		//set close button font-size
@@ -393,8 +385,8 @@ var mySkillsAnimation = function () {
 						$(this).animate({
 								bottom: currentBottomProp-3+'px'
 							},
-							speed
-							, function() {
+							speed,
+							function() {
 								$(this).animate({bottom: currentBottomProp+'px'}, speed)
 							}
 						);
@@ -435,14 +427,14 @@ var mySkillsAnimation = function () {
 
 	jQuery.fn.rollInBtnAnimation = function () {
 		//button animated In
-		this.removeClass('hidden rollOut animated')
-		.addClass('rollIn animated');
+		this.removeClass('hidden rollOut animated faster')
+		.addClass('rollIn animated faster');
 		return this;
 	}
 	jQuery.fn.rollOutBtnAnimation = function () {
 		//button animated Out
-		this.removeClass('rollIn animated')
-		.addClass('rollOut animated');
+		this.removeClass('rollIn animated faster')
+		.addClass('rollOut animated faster');
 		return this;
 	}
 	var DSdurationTime = 500;//div skill full size animation duration time
@@ -552,7 +544,8 @@ var mySkillsAnimation = function () {
 		var viewportWidth = $(window).width();
 		var divCurrentHeight = $(thisIs).outerHeight();
 		var divCurrentWidth = $(thisIs).outerWidth();	
-
+		var vpbMarginValue = projectDivWidth*0.03;
+		var vpbFontSize = projectDivWidth*0.04;
 		//forced triggering mouse leave handler for minimizing current div
 		$(thisIs).trigger('mouseleave'); 
 
@@ -562,18 +555,19 @@ var mySkillsAnimation = function () {
 		//remove "read more" button
 		$cloneDiv.removeClass('projectDiv scrollAnimate')
 		.find('#rmb')
-		.remove();
-
-		$('.project_1 #cloneDiv').find('#vpb')
-		.css({
-			margin: vpbMarginValue
-		});	
+		.remove();		
+		
 		//roll in "view project" button		
 		$cloneDiv.find('#vpb')	
 		.css({
-			'font-size': vpbFontSize					
+			'font-size': vpbFontSize							
 		})
 		.rollInBtnAnimation();
+		$cloneDiv
+		.find('.project_1 > .bottomPart, #vpb')		
+		.css({
+			margin: vpbMarginValue
+		});	
 
 		//taking current scroll pos
 		var currentScroll = $(window).scrollTop();
@@ -593,7 +587,22 @@ var mySkillsAnimation = function () {
 			'border-color': 'white'  		
 		})
 		.center(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth)
-		.scaleDivMax(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth);
+		.scaleDivMax(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth)
+		.find('button, a')
+		.mousedown(function(event) { //animate press button, I use this method because animate.css is a conflict with translateY
+			var speed = 50;
+			var currentBottomProp = parseFloat($(this).css('bottom'));
+			$(this).animate({
+					bottom: currentBottomProp-3+'px'
+				},
+				speed, 
+				function() {
+					$(this).animate({bottom: currentBottomProp+'px'}, speed)
+				}
+			);
+		});
+					
+
 
 		//show description 
 		$cloneDiv.find('.paragraphMSD').removeClass('hidden')

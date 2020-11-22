@@ -1072,15 +1072,15 @@ let gameSketch = function(p) {
 
 //check availability of the code txt version URL
 var checkTxtUrl = function () {
-	var txt_url = 'https://res.cloudinary.com/deah4rwon/raw/upload/v1604198768/js/code_project_bees_awakening_i6tk7q.txt'; 
+	var txt_url = 'https://res.cloudinary.com/deah4rwon/raw/upload/v1606018712/js/code_project_ants_colony_bcyzhb.txt'; 
 	$.ajax({
 		url:txt_url,
 		type:'HEAD',
 		error: function(){
-			$('.snippetWrapper').load('../../txt/code_project_bees_awakening.txt');
+			$('.snippetWrapper').load('../../txt/code_project_ants_colony.txt');
 		},
 		success: function(){
-			$('.snippetWrapper').load('https://res.cloudinary.com/deah4rwon/raw/upload/v1604198768/js/code_project_bees_awakening_i6tk7q.txt');
+			$('.snippetWrapper').load('https://res.cloudinary.com/deah4rwon/raw/upload/v1606018712/js/code_project_ants_colony_bcyzhb.txt');
 		}
 	});   
 }
