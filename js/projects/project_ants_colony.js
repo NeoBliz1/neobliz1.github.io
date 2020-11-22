@@ -501,9 +501,29 @@ let gameSketch = function(p) {
 				p.Ant.prototype.updatePosition = function () {
 						//update angle of moving
 						if (!this.readyForMoving && !this.readyCarryCarrot){
+							if(!this.velocityBackward){
 								this.velocity.add(this.acceleration);
 								this.position.add(this.velocity);
 								this.acceleration.mult(0);
+							}
+							else {
+								this.velocity.sub(this.acceleration);
+								this.position.sub(this.velocity);
+								this.acceleration.mult(0);
+								this.antStepsBackward += 1*animCoeff;
+								// console.log(this.antStepsBackward)
+								if (this.antStepsBackward > 15) {
+									this.turnSide = p.random(0,1);
+									if (this.turnSide>0.5){
+										this.velocity.rotate(p.random(0,2));								
+									}
+									else {
+										this.velocity.rotate(p.random(-2,0));								
+									}			
+									this.velocityBackward = false;
+									this.antStepsBackward = 0;
+								}
+							}
 						}
 				};
 
@@ -514,42 +534,20 @@ let gameSketch = function(p) {
 						this.d=v1.dist(v2);
 					 
 						//checking what is the edge of canvas we stuck
-						if (this.position.x < this.distanceByEdge+10 || this.position.x > p.height-this.distanceByEdge || this.position.y < this.distanceByEdge+20 || this.position.y > p.width-this.distanceByEdge || this.d>340 && !this.readyCarryCarrot)
+						if (this.position.x < this.distanceByEdge+10 || this.position.x > p.width-this.distanceByEdge || this.position.y < this.distanceByEdge+20 || this.position.y > p.height-this.distanceByEdge || this.d>340 && !this.readyCarryCarrot)
 						{
-								this.stuckOfEdge = true;
-						
+							this.stuckOfEdge = true;						
 						}
 						else{
-								this.stuckOfEdge = false;
+							this.stuckOfEdge = false;								
 						}
 						
 				};
+				
 				p.Ant.prototype.obstacleOvercome = function () {
-						if (this.stuckOfEdge){
-								this.velocity.mult(-1);
-								this.antRotateAngle=0;
-								this.addAntMovingAngle = false;
-								this.turnSide = p.random(0,1);
-						}
-						else if (!this.stuckOfEdge && !this.addAntMovingAngle && this.antStepsBackward<14){
-								this.antStepsBackward += 1;
-						}
-						else if (this.antStepsBackward===14 && !this.addAntMovingAngle){
-								this.velocity.mult(-1);
-								this.antRotateAngle=p.PI;
-								this.addAntMovingAngle = true;
-								//println(this.addAntMovingAngle);
-						}
-						else if (this.antStepsBackward>0 && this.addAntMovingAngle){
-								if (this.turnSide>0.5){
-										this.velocity.rotate(p.random(0,this.rotateAntSpeed));
-										this.antStepsBackward-=1;
-								}
-								else {
-										this.velocity.rotate(p.random(-this.rotateAntSpeed,0));
-										this.antStepsBackward-=1;
-								}
-						}
+						if (this.stuckOfEdge){							
+							this.velocityBackward=true;
+						}						
 				};
 
 				p.Ant.prototype.checkBubbles = function (){
@@ -643,7 +641,7 @@ let gameSketch = function(p) {
 							else if (this.distForCarrot>0 && this.distForCarrot<25 && this.takeCarrotFlag === 0){
 								this.takeCarrotFlag = carrotsArr[i].takeCarrotFlag;										
 								this.calculatedVectorDirCarrot=false;
-								console.log('2')
+								// console.log('2')
 							}						
 						}												
 					}
@@ -663,8 +661,8 @@ let gameSketch = function(p) {
 						}						
 					}
 					else if (this.speedRestart) {
-						console.log('speedRestart')
-						console.log(this.takeCarrotFlag)
+						// console.log('speedRestart')
+						// console.log(this.takeCarrotFlag)
 						this.velocity = new p5.Vector(2*animCoeff, 0);//ant speed	
 						this.speedRestart = false;
 					}									
