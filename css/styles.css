@@ -11,6 +11,7 @@ body {
 body,
 html {  
   font-size: 2.5vh;
+  overflow-x: hidden; //horizontal
 }
 p {
   color: rgb(77, 77, 77);
@@ -284,7 +285,6 @@ h2 {
   background-position: 50% 0%;  
 }
 
-
 .project_5 {
   background-image: url(../img/project5.png);
   background-repeat: no-repeat;
@@ -509,6 +509,38 @@ pre {
   background-color: #E8E8E8;
   text-align: left;
 }
+
+/*UP_button styles*/
+.upButton {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 50px;  
+  height: 50px;
+  z-index: 6;
+  box-shadow: 1px 2px 8px -1px;
+  background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+  background-color:#ffec64;
+  border-radius:50%;
+  border:1px solid #ffaa22;
+  display:inline-block;
+  cursor:pointer;
+  color:black;  
+  font-size:15px;
+  font-weight:bold;
+  padding-top: 5px;
+  text-decoration:none;
+  text-align: center;
+  text-shadow:0px 2px 0px #ffee66;
+}
+.upButton:hover {
+  background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+  background-color:#ffab23;
+}
+.upButton:active {  
+  bottom: 50px;
+}
+
 
 /*****************************************************/
 /*****************************************************/

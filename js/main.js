@@ -243,6 +243,14 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		$(this).css('font-size', elFontSize);	//set font size in pixels
 	});
 
+	var upButtonFontSize = windowOuterHeight*0.045;
+	$('.upButton').css({
+		'font-size': upButtonFontSize,
+		width: windowOuterHeight*0.06,
+		height: windowOuterHeight*0.06,
+		'padding-top': windowOuterHeight*0.008
+	});
+
 	//set project div size
 	projectDivWidth = Math.pow(viewportWidth*30000, 1/3);	
 	projectDivHeight = projectDivWidth*0.8;
