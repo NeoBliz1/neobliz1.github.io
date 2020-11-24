@@ -13,6 +13,9 @@ html {
   font-size: 2.5vh;
   overflow-x: hidden; //horizontal
 }
+button:focus {
+  outline: unset;
+}
 p {
   color: rgb(77, 77, 77);
   font-family: 'Biryani', sans-serif;
@@ -529,6 +532,7 @@ pre {
   font-size:15px;
   font-weight:bold;
   padding-top: 5px;
+  padding-left: 0px; 
   text-decoration:none;
   text-align: center;
   text-shadow:0px 2px 0px #ffee66;
@@ -536,9 +540,11 @@ pre {
 .upButton:hover {
   background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
   background-color:#ffab23;
+  color: gray;
 }
 .upButton:active {  
   bottom: 50px;
+  color: white;
 }
 
 

@@ -24,7 +24,7 @@ var zoomInHeader = function () {
 }
 this.doAnim = false;
 /*use waypoint JQuery plugin for tracking scroll elements*/
-var scrollAnimate = function (offsetNum) {	
+var scrollAnimate = function (offsetNum, upButOffsetNum) {	
 		
 	$('.scrollAnimate')
 	.waypoint(
@@ -43,6 +43,25 @@ var scrollAnimate = function (offsetNum) {
 			}					
 		}, 
 		{	offset: offsetNum}
+	);
+
+	$('.upButton')
+	.waypoint(
+		function(direction) {
+			if (direction === 'up') {			
+				//animated fadeOut elements when their are scrolling 
+				$(this.element)			
+				.removeClass('fadeInUp animated slow')
+				.addClass('fadeOutDown animated');
+			}
+			else {			
+				//animated fadIn elements when their are scrolling 
+				$(this.element)
+				.removeClass('hidden fadeOutDown animated')
+				.addClass('fadeInUp animated slow');			
+			}					
+		}, 
+		{	offset: upButOffsetNum}
 	);
 	// if (!platformIsMobile) {
 	// if (true) {
@@ -191,19 +210,22 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 	//initialize waypoints script
 	Waypoint.destroyAll() //remove all waypoints	
 	
-	var offsetNum=0;
+	var upButOffsetNum=0, offsetNum=0;
 	//offset from window top
 	if (viewportHeight < 480) {
-		offsetNum = '95%';		
+		offsetNum = '95%';
+		upButOffsetNum = '60%';
 	}
 	else if (viewportHeight > 2000) {
-		offsetNum = '100%';		
+		offsetNum = '100%';
+		upButOffsetNum = '50%';	
 	}
 	else {
 		offsetNum = '90%';
+		upButOffsetNum = '40%';
 	};
 		
-	scrollAnimate(offsetNum);
+	scrollAnimate(offsetNum, upButOffsetNum);
 	//coeefficient for zooming project divs
 	if (viewportWidth>=980) {
 		projectDivZoomInCoeff = 1.3/viewportWidth;
@@ -219,7 +241,7 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 
 /*functions which handling MySkills areas divs
 and applying zommIn animation on it*/
-
+var DSdurationTime = 500;//div skill full size animation duration time
 var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windowOuterHeight) { //function handle which window is on resize
 	//set thumbnail size in px;
 	$('.blizThumbnail').width(viewportHeight*0.3).height(viewportHeight*0.3);	
@@ -242,14 +264,17 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		var elFontSize = windowOuterHeight*0.015;
 		$(this).css('font-size', elFontSize);	//set font size in pixels
 	});
-
+	//upButton size handler
 	var upButtonFontSize = windowOuterHeight*0.045;
 	$('.upButton').css({
 		'font-size': upButtonFontSize,
 		width: windowOuterHeight*0.06,
 		height: windowOuterHeight*0.06,
-		'padding-top': windowOuterHeight*0.008
-	});
+		'padding-top': windowOuterHeight*0.005,
+		'padding-left': windowOuterHeight*0.005,
+		bottom:  windowOuterHeight*0.04,
+		right:  windowOuterHeight*0.04
+	});	
 
 	//set project div size
 	projectDivWidth = Math.pow(viewportWidth*30000, 1/3);	
@@ -444,8 +469,7 @@ var mySkillsAnimation = function () {
 		this.removeClass('rollIn animated faster')
 		.addClass('rollOut animated faster');
 		return this;
-	}
-	var DSdurationTime = 500;//div skill full size animation duration time
+	}	
 	//jQuery function for centering div
 	jQuery.fn.center = function (viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth) {
 		var $windowScrollTo = $(window).scrollTop();
@@ -635,7 +659,7 @@ var mySkillsAnimation = function () {
 			.removeClass('fas')
 			.addClass('far')			
 			.fadeIn(DSdurationTime);
-		});;
+		});
 		
 			
 		//overlay click handler
@@ -733,8 +757,7 @@ var resizeHandler = function () {
 	});		
 }
 //initialize my skills fluid meter
-// if (!platformIsMobile){
-// if (true){
+{
 	//initialization HTML fluid meter
 	var htmlFM = new FluidMeter();
 		htmlFM.init({
@@ -889,14 +912,36 @@ var resizeHandler = function () {
 				}
 			}
 		});
-// }
+}
 
 var scrollTop = function () {
-	$("#button").click(function() {
-		$([document.documentElement, document.body]).animate({
-			scrollTop: $("#elementtoScrollToID").offset().top
-		}, 2000);
-	});
+	if (platformIsMobile){
+		$('.upButton')	
+		.click(function() {
+			event.preventDefault();		
+			$('html, body').animate({
+				scrollTop: $('.header').offset().top
+			}, 900);		
+		});
+	}
+	else {
+		$('.upButton')
+		.hover(function() {
+			$(this).find('.fa-arrow-alt-circle-up')
+			.removeClass('far')
+			.addClass('fas');
+		}, function() {
+			$(this).find('.fa-arrow-alt-circle-up')
+			.removeClass('fas')
+			.addClass('far');
+		})
+		.click(function() {
+			event.preventDefault();		
+			$('html, body').animate({
+				scrollTop: $('.header').offset().top
+			}, 900);		
+		});
+	}	
 }
 
 /**************main block*******************/
@@ -905,7 +950,8 @@ $(window).on( 'load', function() {
 	var viewportHeight = $(window).height();	
 	var wSW = window.screen.width;
 	var wDPR = window.devicePixelRatio;
-	var windowOuterHeight = window.outerHeight;			
+	var windowOuterHeight = window.outerHeight;
+	scrollTop();//handler for up button			
 	mySkillsAnimation();
 	projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight); //resize MySkills divs from window size	
 	setParallaxImage(wSW, wDPR);
