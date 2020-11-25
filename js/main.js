@@ -917,6 +917,22 @@ var resizeHandler = function () {
 var scrollTop = function () {
 	if (platformIsMobile){
 		$('.upButton')	
+		.mousedown(function(event) { //animate press button, I use this method because animate.css is a conflict with translateY
+			var $this = $(this);
+			var speed = 50;
+			var currentBottomProp = parseFloat($(this).css('bottom'));			
+			
+			$this
+			.animate(
+				{
+					bottom: currentBottomProp-3+'px'
+				},
+				speed,
+				function() {					
+					$this.animate({bottom: currentBottomProp+'px'}, speed)
+				}
+			);
+		})
 		.click(function() {
 			event.preventDefault();		
 			$('html, body').animate({
@@ -927,11 +943,15 @@ var scrollTop = function () {
 	else {
 		$('.upButton')
 		.hover(function() {
-			$(this).find('.fa-arrow-alt-circle-up')
+			$(this)
+			.addClass('upButton-hover')
+			.find('.fa-arrow-alt-circle-up')
 			.removeClass('far')
 			.addClass('fas');
 		}, function() {
-			$(this).find('.fa-arrow-alt-circle-up')
+			$(this)
+			.removeClass('upButton-hover')
+			.find('.fa-arrow-alt-circle-up')
 			.removeClass('fas')
 			.addClass('far');
 		})
