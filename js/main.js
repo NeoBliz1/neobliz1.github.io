@@ -13,7 +13,7 @@ if (navigator.userAgent.match(/(iPod|iPhone|iPad)/) || navigator.userAgent.match
 	$(window).on( 'orientationchange', function( event ) {
 		$('.loader-gif').css('display', 'initial');
 		orientationIsChange = true;
-		console.log(orientationIsChange);
+		// console.log(orientationIsChange);
 	});
 }
 
@@ -723,7 +723,7 @@ var resizeHandler = function () {
 			var viewportHeight = $(window).height();
 			var wSW = window.screen.width;
 			var wDPR = window.devicePixelRatio;
-			doAnim = false;
+			doAnim = false;//fluid meters state variable
 			// console.log(wDPR);
 			// console.log(viewportHeight);			
 			var currBrowserWidth = window.outerWidth;
@@ -733,7 +733,7 @@ var resizeHandler = function () {
 			// console.log('viewportHeight' + viewportHeight);
 			// console.log('windowOuterHeight'+windowOuterHeight, 'currBrowserHeight'+currBrowserHeight);
 			// console.log(bWratio, bHratio);
-			if(platformIsMobile && !projectDivFullSizeState || bWratio !== 1 || bHratio !== 1){
+			if(orientationIsChange || bWratio !== 1 || bHratio !== 1){
 				browserInitialWidth = currBrowserWidth;
 				windowOuterHeight = currBrowserHeight;
 				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight);
