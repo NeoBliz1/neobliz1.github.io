@@ -10,9 +10,10 @@ var platformIsMobile = false;
 var orientationIsChange = false;
 if (navigator.userAgent.match(/(iPod|iPhone|iPad)/) || navigator.userAgent.match(/(Android)/)) {
 	platformIsMobile = true;
-	$( window ).on( 'orientationchange', function( event ) {
+	$(window).on( 'orientationchange', function( event ) {
 		$('.loader-gif').css('display', 'initial');
 		orientationIsChange = true;
+		console.log(orientationIsChange);
 	});
 }
 
