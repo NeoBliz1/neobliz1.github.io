@@ -243,38 +243,46 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 /*functions which handling MySkills areas divs
 and applying zommIn animation on it*/
 var DSdurationTime = 500;//div skill full size animation duration time
-var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windowOuterHeight) { //function handle which window is on resize
+var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windowOuterHeight, windowOuterWidth) { //function handle which window is on resize
+	var fontScaleCoeff;
+	if (windowOuterHeight > windowOuterWidth) {
+		fontScaleCoeff = windowOuterHeight;
+	}
+	else {
+		fontScaleCoeff = windowOuterWidth;
+	}
+
 	//set thumbnail size in px;
-	$('.blizThumbnail').width(viewportHeight*0.3).height(viewportHeight*0.3);	
+	$('.blizThumbnail').width(fontScaleCoeff*0.3).height(fontScaleCoeff*0.3);	
 
 	//set responsive font-size
 
 	$('h1').each(function(index) {			
-		var elFontSize = windowOuterHeight*0.025;
+		var elFontSize = fontScaleCoeff*0.025;
 		$(this).css('font-size', elFontSize);	//set font size in pixels
 	})
 	.filter('.mainHeader')
-	.css('font-size', windowOuterHeight*0.04);
+	.css('font-size', fontScaleCoeff*0.04);
 
 	$('h2').each(function(index) {
-		var elFontSize = windowOuterHeight*0.02;
+		var elFontSize = fontScaleCoeff*0.02;
 		$(this).css('font-size', elFontSize);	//set font size in pixels
 	});
 
 	$('p, a').each(function(index) {
-		var elFontSize = windowOuterHeight*0.015;
+		var elFontSize = fontScaleCoeff*0.015;
 		$(this).css('font-size', elFontSize);	//set font size in pixels
 	});
 	//upButton size handler
-	var upButtonFontSize = windowOuterHeight*0.045;
+	var upButtonFontSize = fontScaleCoeff*0.045;
 	$('.upButton').css({
 		'font-size': upButtonFontSize,
-		width: windowOuterHeight*0.06,
-		height: windowOuterHeight*0.06,
-		'padding-top': windowOuterHeight*0.005,
-		'padding-left': windowOuterHeight*0.005,
-		bottom:  windowOuterHeight*0.04,
-		right:  windowOuterHeight*0.04
+		width: fontScaleCoeff*0.06,
+		height: fontScaleCoeff*0.06,
+		'padding-top': fontScaleCoeff*0.005,
+		'padding-left': fontScaleCoeff*0.005,
+		bottom:  fontScaleCoeff*0.04,
+		right:  fontScaleCoeff*0.04
 	});	
 
 	//set project div size
@@ -307,22 +315,23 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	var FMcanvasSize, FMborderSize, FMfontSize;	
 	// console.log(platformIsMobile, viewportWidth, wDPR)
 	if (platformIsMobile && viewportWidth < 1000 && wDPR<=3) {
-		FMcanvasSize = (projectDivWidth*0.6)/1.5;
-		FMborderSize = (projectDivWidth/40)/1.5;
-		FMfontSize = (projectDivWidth/15+'px')/1.5;
-		// console.log('1')
+		var FMScaleCoeff = 1.8;
+		FMcanvasSize = (projectDivWidth*0.6)/FMScaleCoeff;
+		FMborderSize = (projectDivWidth/40)/FMScaleCoeff;
+		FMfontSize = (projectDivWidth/15+'px')/FMScaleCoeff;
+		console.log('1')
 	}
 	else if (viewportWidth > viewportHeight) {
 		FMcanvasSize = projectDivWidth*0.6;
 		FMborderSize = projectDivWidth/40;
 		FMfontSize = projectDivWidth/10+'px';
-		// console.log('2')
+		console.log('2')
 	}
 	else if (viewportWidth < viewportHeight) {
 		FMcanvasSize = projectDivWidth*0.5;
 		FMborderSize = projectDivWidth/50;
 		FMfontSize = projectDivWidth/15+'px';
-		// console.log('3')
+		console.log('3')
 	}
 
 	// if (!platformIsMobile) {
@@ -739,7 +748,7 @@ var resizeHandler = function () {
 			if(orientationIsChange || bWratio !== 1 || bHratio !== 1){
 				browserInitialWidth = currBrowserWidth;
 				windowOuterHeight = currBrowserHeight;
-				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight);
+				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, browserInitialWidth);
 				cloneDivSizeHandler(viewportHeight, viewportWidth);
 				// console.log('font and divs resize is happend');				
 			}				
