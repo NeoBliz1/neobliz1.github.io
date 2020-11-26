@@ -729,7 +729,10 @@ var resizeHandler = function () {
 			var currBrowserWidth = window.outerWidth;
 			var currBrowserHeight = window.outerHeight;			
 			var bWratio = browserInitialWidth/currBrowserWidth;
-			var bHratio = windowOuterHeight/currBrowserHeight;
+			var bHratio = 1;
+			if (!platformIsMobile){			
+				var bHratio = windowOuterHeight/currBrowserHeight;
+			}			
 			// console.log('viewportHeight' + viewportHeight);
 			// console.log('windowOuterHeight'+windowOuterHeight, 'currBrowserHeight'+currBrowserHeight);
 			// console.log(bWratio, bHratio);
