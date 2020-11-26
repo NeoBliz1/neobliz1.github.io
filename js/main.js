@@ -244,19 +244,21 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 and applying zommIn animation on it*/
 var DSdurationTime = 500;//div skill full size animation duration time
 var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windowOuterHeight, windowOuterWidth) { //function handle which window is on resize
-	var fontScaleCoeff;
+	var fontScaleCoeff, blizThumbnailScaleCoeff;
 	if (windowOuterHeight > windowOuterWidth) {
 		fontScaleCoeff = windowOuterHeight;
+		blizThumbnailScaleCoeff = windowOuterHeight;
 	}
 	else {
 		fontScaleCoeff = windowOuterWidth;
+		blizThumbnailScaleCoeff = windowOuterWidth*0.7;
 	}
 
 	//set thumbnail size in px;
-	$('.blizThumbnail').width(fontScaleCoeff*0.3).height(fontScaleCoeff*0.3);	
-
+	$('.blizThumbnail').width(blizThumbnailScaleCoeff*0.3).height(blizThumbnailScaleCoeff*0.3);	
+	//set responsive size for social networks logos 
+	$('.logo_prop').width(blizThumbnailScaleCoeff*0.08).height(blizThumbnailScaleCoeff*0.08);	
 	//set responsive font-size
-
 	$('h1').each(function(index) {			
 		var elFontSize = fontScaleCoeff*0.025;
 		$(this).css('font-size', elFontSize);	//set font size in pixels
@@ -319,19 +321,19 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		FMcanvasSize = (projectDivWidth*0.6)/FMScaleCoeff;
 		FMborderSize = (projectDivWidth/40)/FMScaleCoeff;
 		FMfontSize = (projectDivWidth/15+'px')/FMScaleCoeff;
-		console.log('1')
+		// console.log('1')
 	}
 	else if (viewportWidth > viewportHeight) {
 		FMcanvasSize = projectDivWidth*0.6;
 		FMborderSize = projectDivWidth/40;
 		FMfontSize = projectDivWidth/10+'px';
-		console.log('2')
+		// console.log('2')
 	}
 	else if (viewportWidth < viewportHeight) {
 		FMcanvasSize = projectDivWidth*0.5;
 		FMborderSize = projectDivWidth/50;
 		FMfontSize = projectDivWidth/15+'px';
-		console.log('3')
+		// console.log('3')
 	}
 
 	// if (!platformIsMobile) {
@@ -983,10 +985,11 @@ $(window).on( 'load', function() {
 	var viewportHeight = $(window).height();	
 	var wSW = window.screen.width;
 	var wDPR = window.devicePixelRatio;
+	var windowOuterWidth = window.outerWidth;
 	var windowOuterHeight = window.outerHeight;
 	scrollTop();//handler for up button			
 	mySkillsAnimation();
-	projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight); //resize MySkills divs from window size	
+	projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, windowOuterWidth); //resize MySkills divs from window size	
 	setParallaxImage(wSW, wDPR);
 	$('.slider1').one('load', function(event) {
 		windowSizeHandler(viewportWidth, viewportHeight); //resize main blocks according to window width	
