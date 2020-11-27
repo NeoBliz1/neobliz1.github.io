@@ -227,6 +227,7 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 	};
 		
 	scrollAnimate(offsetNum, upButOffsetNum);
+
 	//coeefficient for zooming project divs
 	if (viewportWidth>=980) {
 		projectDivZoomInCoeff = 1.3/viewportWidth;
@@ -693,16 +694,31 @@ var mySkillsAnimation = function () {
 			/* Stuff to do when the mouse enters the element */
 			var thisIs = this;					
 			zoomInAnimation(thisIs);
-			var $windowScrollTo = $(window).scrollTop();
+			if (platformIsMobile){
+				var divCurrentHeight = $(thisIs).outerHeight();
+				var viewportHeight = $(window).height();
+				var currentDivOffset = $(thisIs).offset();
+				var windowScrollTo = currentDivOffset.top;
+				var targetTopOffset = Math.max(0, (windowScrollTo - (viewportHeight - divCurrentHeight) / 2));//defining the target position from the div top to the viewport	
+				$('html, body').animate({
+					scrollTop: targetTopOffset
+				}, 500);
+				// console.log(windowScrollTo)
+			}			
+			
 			//scrolling to current position after hiding scroll bar
-			$(window).on('scroll.fixedCurrentView', function() {					
-				$(window).scrollTop($windowScrollTo);
-			});					
+			
+			// $(window).on('scroll.fixedCurrentView', function() {					
+			// 	$(window).scrollTop(windowScrollTo);
+			// });
+			//disable all scroll
+			// Waypoint.disableAll()				
 		}, function() {		
 			/* Stuff to do when the mouse leaves the element */
 			var thisIs = this;
 			zoomOutAnimation(thisIs);	
-			$(window).off('scroll.fixedCurrentView');
+			// $(window).off('scroll.fixedCurrentView');
+			// Waypoint.enableAll()
 		});	
 	}
 	//add read more button to project divs
