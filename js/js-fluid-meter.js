@@ -18,7 +18,7 @@ function FluidMeter() {
     drawPercentageSign: true,
     drawBubbles: true,
     fontSize: "70px",
-    fontFamily: "Arial",
+    fontFamily: "Big Shoulders Display",
     fontFillStyle: "white",
     size: 300,
     borderWidth: 25,
@@ -291,7 +291,7 @@ function FluidMeter() {
       currentFillPercentage.toFixed(0) + "%" : currentFillPercentage.toFixed(0);
     var text1 = options.text1
     context.save();
-    context.font = getFontSize();
+    context.font = getFontSize();       
     context.fillStyle = options.fontFillStyle;
     context.textAlign = "center";
     context.textBaseline = 'middle';

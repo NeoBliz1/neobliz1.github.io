@@ -325,54 +325,34 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	// console.log(platformIsMobile, viewportWidth, wDPR)
 	if (platformIsMobile && viewportWidth < 1000 && wDPR<=3) {
 		var FMScaleCoeff = 1.8;
-		FMcanvasSize = (projectDivWidth*0.65)/FMScaleCoeff;
-		FMborderSize = (projectDivWidth/40)/FMScaleCoeff;
-		FMfontSize = (projectDivWidth/15+'px')/FMScaleCoeff;
-		console.log('1')
+		FMcanvasSize = (projectDivWidth*0.40);
+		FMborderSize = (projectDivWidth*0.015);
+		FMfontSize = (projectDivWidth*0.06+'px');
+		// console.log('123')
 	}
 	else if (viewportWidth > viewportHeight) {
 		FMcanvasSize = projectDivWidth*0.6;
 		FMborderSize = projectDivWidth/40;
-		FMfontSize = projectDivWidth/10+'px';
-		console.log('2')
+		FMfontSize = projectDivWidth/12+'px';
+		// console.log('2')
 	}
 	else if (viewportWidth < viewportHeight) {
 		FMcanvasSize = projectDivWidth*0.5;
 		FMborderSize = projectDivWidth/50;
 		FMfontSize = projectDivWidth/15+'px';
-		console.log('3')
+		// console.log('3')
 	}
 
-	// if (!platformIsMobile) {
-	// if (true) {		
-		// console.log('project div size changed')
-		$('canvas').attr({
-			width: FMcanvasSize,
-			height: FMcanvasSize
-		});
-		htmlFM.setProperties(75, FMcanvasSize, FMborderSize, FMfontSize, 'HTML');
-		cssFM.setProperties(70, FMcanvasSize, FMborderSize, FMfontSize, 'CSS');
-		jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, 'JavaScript');
-		jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, 'jQuery');
-		pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');		
-	// }
-	// else {
-	// 	var $fluid_meters = $('.HTML-fluid-meter, .CSS-fluid-meter, .JS-fluid-meter, .jQuery-fluid-meter, .python-fluid-meter');
-	// 	if ($fluid_meters.length){
-	// 		$fluid_meters.width(FMcanvasSize)
-	// 		.height(FMcanvasSize);
-	// 	}
-	// 	else {
-	// 		$('#HTML-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/html.gif" alt="HTML-fluid-meter" class="HTML-fluid-meter">');
-	// 		$('#CSS-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/css.gif" alt="CSS-fluid-meter" class="CSS-fluid-meter">');
-	// 		$('#JS-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/JS.gif" alt="JS-fluid-meter" class="JS-fluid-meter">');
-	// 		$('#jQuery-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/jQuery.gif" alt="jQuery-fluid-meter" class="jQuery-fluid-meter">');
-	// 		$('#python-fluid-meter').append('<img src="../img/responsive_Img/gifs_for_mobile_version/Python.gif" alt="python-fluid-meter" class="python-fluid-meter">');
-	// 		$('.HTML-fluid-meter, .CSS-fluid-meter, .JS-fluid-meter, .jQuery-fluid-meter, .python-fluid-meter').width(FMcanvasSize)
-	// 		.height(FMcanvasSize)
-	// 		.css('margin', '10px');
-	// 	}	
-	// }	
+	$('canvas').attr({
+		width: FMcanvasSize,
+		height: FMcanvasSize
+	});
+	htmlFM.setProperties(75, FMcanvasSize, FMborderSize, FMfontSize, 'HTML');
+	cssFM.setProperties(70, FMcanvasSize, FMborderSize, FMfontSize, 'CSS');
+	jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, 'JavaScript');
+	jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, 'jQuery');
+	pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');		
+	
 }	
 
 var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
@@ -787,12 +767,13 @@ var resizeHandler = function () {
 //initialize my skills fluid meter
 {
 	//initialization HTML fluid meter
+	var FMfont = 'Big Shoulders Display';
 	var htmlFM = new FluidMeter();
 		htmlFM.init({
 			targetContainer: document.getElementById('HTML-fluid-meter'),
 			fillPercentage: 75,
 			options: {
-				fontFamily: 'Caveat',
+				fontFamily: FMfont,
 				drawPercentageSign: true,
 				drawBubbles: true,
 				drawShadow: false,
@@ -823,7 +804,7 @@ var resizeHandler = function () {
 			targetContainer: document.getElementById('CSS-fluid-meter'),
 			fillPercentage: 75,
 			options: {
-				fontFamily: 'Caveat',
+				fontFamily: FMfont,
 				drawPercentageSign: true,
 				drawBubbles: true,
 				drawShadow: false,
@@ -854,7 +835,7 @@ var resizeHandler = function () {
 			targetContainer: document.getElementById('JS-fluid-meter'),
 			fillPercentage: 75,
 			options: {
-				fontFamily: 'Caveat',
+				fontFamily: FMfont,
 				drawPercentageSign: true,
 				drawBubbles: true,
 				drawShadow: false,
@@ -885,7 +866,7 @@ var resizeHandler = function () {
 			targetContainer: document.getElementById('jQuery-fluid-meter'),
 			fillPercentage: 75,
 			options: {
-				fontFamily: 'Caveat',
+				fontFamily: FMfont,
 				drawPercentageSign: true,
 				drawBubbles: true,
 				drawShadow: false,
@@ -916,7 +897,7 @@ var resizeHandler = function () {
 			targetContainer: document.getElementById('python-fluid-meter'),
 			fillPercentage: 75,
 			options: {
-				fontFamily: 'Caveat',
+				fontFamily: FMfont,
 				drawPercentageSign: true,
 				drawBubbles: true,
 				drawShadow: false,
