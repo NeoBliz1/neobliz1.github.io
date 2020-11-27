@@ -394,7 +394,7 @@ var mySkillsAnimation = function () {
 		$(thisIs).removeClass('fadeInUp animated')
 		.filter(':not(:animated)')
 		.css({
-			'z-index': 4,		 	
+			'z-index': 8,		 	
 			'text-indent': '1px'
 		})
 		//using step function for animate skill boxes
@@ -452,7 +452,7 @@ var mySkillsAnimation = function () {
 				}, 
 				duration: durationTime,
 				complete: function() {
-					$(thisIs).css('z-index', '3');
+					$(thisIs).css('z-index', '7');
 				}			 				
 			},'linear'
 		);

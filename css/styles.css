@@ -238,7 +238,7 @@ h2 {
 }
 .mySkillsContent {
   position: relative;
-  z-index: 3;
+  z-index: 5;
 }
 .examplesContainer {  
   display: flex;
@@ -246,6 +246,8 @@ h2 {
   flex-direction: row;  
   justify-content: space-around;
   padding: 40px;
+  overflow: hidden;
+  z-index: 6;
 }
 .examplesContainer > div {
   flex: 0;
@@ -255,6 +257,7 @@ h2 {
   -webkit-box-shadow: 10px 13px 33px 8px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 13px 33px 8px rgba(0,0,0,0.75);
   box-shadow: 10px 13px 33px 8px rgba(0,0,0,0.75); 
+  z-index: 7;
 }
 .project_1 {
   background-image: url(../img/project1.png);
@@ -603,6 +606,8 @@ pre {
   
   .examplesContainer {
     padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
   .readMoreBtn, .viewProject  {
     border-radius: 20px;
