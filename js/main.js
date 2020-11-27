@@ -325,22 +325,22 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	// console.log(platformIsMobile, viewportWidth, wDPR)
 	if (platformIsMobile && viewportWidth < 1000 && wDPR<=3) {
 		var FMScaleCoeff = 1.8;
-		FMcanvasSize = (projectDivWidth*0.6)/FMScaleCoeff;
+		FMcanvasSize = (projectDivWidth*0.65)/FMScaleCoeff;
 		FMborderSize = (projectDivWidth/40)/FMScaleCoeff;
 		FMfontSize = (projectDivWidth/15+'px')/FMScaleCoeff;
-		// console.log('1')
+		console.log('1')
 	}
 	else if (viewportWidth > viewportHeight) {
 		FMcanvasSize = projectDivWidth*0.6;
 		FMborderSize = projectDivWidth/40;
 		FMfontSize = projectDivWidth/10+'px';
-		// console.log('2')
+		console.log('2')
 	}
 	else if (viewportWidth < viewportHeight) {
 		FMcanvasSize = projectDivWidth*0.5;
 		FMborderSize = projectDivWidth/50;
 		FMfontSize = projectDivWidth/15+'px';
-		// console.log('3')
+		console.log('3')
 	}
 
 	// if (!platformIsMobile) {
