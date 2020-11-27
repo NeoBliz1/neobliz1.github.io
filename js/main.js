@@ -245,14 +245,21 @@ and applying zommIn animation on it*/
 var DSdurationTime = 500;//div skill full size animation duration time
 var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windowOuterHeight, windowOuterWidth) { //function handle which window is on resize
 	var fontScaleCoeff, blizThumbnailScaleCoeff;
-	if (windowOuterHeight > windowOuterWidth) {
+	if (platformIsMobile){
+		if (windowOuterWidth > windowOuterHeight) {
+			fontScaleCoeff = windowOuterWidth;
+			blizThumbnailScaleCoeff = windowOuterWidth*0.7;			
+		}
+		else {
+			fontScaleCoeff = windowOuterHeight;
+			blizThumbnailScaleCoeff = windowOuterHeight;
+		}
+	}
+	else {
 		fontScaleCoeff = windowOuterHeight;
 		blizThumbnailScaleCoeff = windowOuterHeight;
 	}
-	else {
-		fontScaleCoeff = windowOuterWidth;
-		blizThumbnailScaleCoeff = windowOuterWidth*0.7;
-	}
+		
 
 	//set thumbnail size in px;
 	$('.blizThumbnail').width(blizThumbnailScaleCoeff*0.3).height(blizThumbnailScaleCoeff*0.3);	
@@ -705,11 +712,17 @@ var mySkillsAnimation = function () {
 		.hover(function() {
 			/* Stuff to do when the mouse enters the element */
 			var thisIs = this;					
-			zoomInAnimation(thisIs);			
+			zoomInAnimation(thisIs);
+			var $windowScrollTo = $(window).scrollTop();
+			//scrolling to current position after hiding scroll bar
+			$(window).on('scroll.fixedCurrentView', function() {					
+				$(window).scrollTop($windowScrollTo);
+			});					
 		}, function() {		
 			/* Stuff to do when the mouse leaves the element */
 			var thisIs = this;
-			zoomOutAnimation(thisIs);			
+			zoomOutAnimation(thisIs);	
+			$(window).off('scroll.fixedCurrentView');
 		});	
 	}
 	//add read more button to project divs
