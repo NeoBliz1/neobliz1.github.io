@@ -410,7 +410,17 @@ var mySkillsAnimation = function () {
 				}, 
 				duration:durationTime,
 				complete: function(){
-					$(thisIs).find('button, a')
+					var $btns;
+					if (platformIsMobile) {
+						$btns = $(thisIs).find('a');
+						console.log('a')
+					}
+					else {
+						$btns = $(thisIs).find('button, a');
+						console.log('button, a')
+
+					}					
+					$btns
 					.rollInBtnAnimation()
 					.mousedown(function(event) { //animate press button, I use this method because animate.css is a conflict with translateY
 						var speed = 50;
@@ -446,7 +456,14 @@ var mySkillsAnimation = function () {
 				{
 					$(thisIs).css('-webkit-transform','scale3d('+now+', '+now+', '+now+')'); 
 					$(thisIs).css('transform','scale3d('+now+', '+now+', '+now+')');  					
-					$(thisIs).find('button, a')
+					var $btns;
+					if (platformIsMobile) {
+						$btns = $(thisIs).find('a');
+					}
+					else {
+						$btns = $(thisIs).find('button, a');
+					}
+					$btns
 					.rollOutBtnAnimation()
 					.off('click');
 				}, 
@@ -702,23 +719,26 @@ var mySkillsAnimation = function () {
 				var targetTopOffset = Math.max(0, (windowScrollTo - (viewportHeight - divCurrentHeight) / 2));//defining the target position from the div top to the viewport	
 				$('html, body').animate({
 					scrollTop: targetTopOffset
-				}, 500);
+				}, DSdurationTime);		
+				if ($(thisIs).hasClass('project_1')){
+					$('.examplesContainer').css('overflow', 'visible');
+				}
+				$(thisIs).find('.paragraphMSD').removeClass('hidden')
+				.hide()
+				.fadeIn(DSdurationTime);			
 				// console.log(windowScrollTo)
-			}			
-			
-			//scrolling to current position after hiding scroll bar
-			
-			// $(window).on('scroll.fixedCurrentView', function() {					
-			// 	$(window).scrollTop(windowScrollTo);
-			// });
-			//disable all scroll
-			// Waypoint.disableAll()				
+			}						
 		}, function() {		
 			/* Stuff to do when the mouse leaves the element */
 			var thisIs = this;
 			zoomOutAnimation(thisIs);	
-			// $(window).off('scroll.fixedCurrentView');
-			// Waypoint.enableAll()
+			if (platformIsMobile){
+				if ($(thisIs).hasClass('project_1')){
+					$('.examplesContainer').css('overflow', 'hidden');
+				}
+				$(thisIs).find('.paragraphMSD')
+				.fadeOut(DSdurationTime);
+			}		
 		});	
 	}
 	//add read more button to project divs

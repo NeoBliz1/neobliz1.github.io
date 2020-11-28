@@ -18,7 +18,7 @@ $('.home_container').css({
   top: '10px',
   right: '10px'
 });
-
+$('body').css('overflow-x', 'visible');
 
 var windowSizeHandler = function () {
 	var $wWidth = $(window).width();

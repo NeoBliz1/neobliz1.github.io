@@ -607,12 +607,12 @@ pre {
   .examplesContainer {
     padding: 0;
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 40px;
   }
   .readMoreBtn, .viewProject  {
     border-radius: 20px;
     padding: 1px 4px 1px 4px;
-    margin: 2px;       
+    margin: 6px;       
   } 
   .topParagraphMSD {    
     left: 3px;
