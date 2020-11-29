@@ -411,14 +411,11 @@ var mySkillsAnimation = function () {
 				duration:durationTime,
 				complete: function(){
 					var $btns;
-					if (platformIsMobile) {
-						$btns = $(thisIs).find('a');
-						console.log('a')
+					if (platformIsMobile && viewportWidth < 1000) {
+						$btns = $(thisIs).find('a');						
 					}
 					else {
-						$btns = $(thisIs).find('button, a');
-						console.log('button, a')
-
+						$btns = $(thisIs).find('button, a');						
 					}					
 					$btns
 					.rollInBtnAnimation()
@@ -439,7 +436,12 @@ var mySkillsAnimation = function () {
 							/*alert('Your clicked button 'Read more'');*/
 							projectDivFullSizeState = true;
 							projectDivFullSize(thisIs);
-						}							
+						}
+						if (event.currentTarget.id==='vpb') {
+							event.preventDefault()
+							$('.upButton').trigger('click');
+							$('.hovered').trigger('mouseleave');							
+						}					
 					});
 				}
 			},
@@ -457,7 +459,7 @@ var mySkillsAnimation = function () {
 					$(thisIs).css('-webkit-transform','scale3d('+now+', '+now+', '+now+')'); 
 					$(thisIs).css('transform','scale3d('+now+', '+now+', '+now+')');  					
 					var $btns;
-					if (platformIsMobile) {
+					if (platformIsMobile && viewportWidth < 1000) {
 						$btns = $(thisIs).find('a');
 					}
 					else {
@@ -686,7 +688,7 @@ var mySkillsAnimation = function () {
 			projectDivMinimize(this, currentDivOffset);
 		});		
 		// $('body').css('overflow', 'hidden');//hiding scroll bar
-		$projectDiv.off('mouseenter mouseleave');//shutdown mouse event handler from skills divs
+		$projectDiv.off('mouseenter mouseleave vmouseover vmouseout');//shutdown mouse event handler from skills divs
 	}
 	//minimize fullSize div
 	var projectDivMinimize = function (thisIs, currentDivOffset) {		
@@ -706,12 +708,12 @@ var mySkillsAnimation = function () {
 	}
 	var divHoverHandler = function () {
 		//mouse in and out handler
-		$projectDiv.filter(':not(:animated)')
+		$projectDiv
 		.hover(function() {
 			/* Stuff to do when the mouse enters the element */
 			var thisIs = this;					
 			zoomInAnimation(thisIs);
-			if (platformIsMobile){
+			if (platformIsMobile) {
 				var divCurrentHeight = $(thisIs).outerHeight();
 				var viewportHeight = $(window).height();
 				var currentDivOffset = $(thisIs).offset();
@@ -723,23 +725,35 @@ var mySkillsAnimation = function () {
 				if ($(thisIs).hasClass('project_1')){
 					$('.examplesContainer').css('overflow', 'visible');
 				}
-				$(thisIs).find('.paragraphMSD').removeClass('hidden')
-				.hide()
-				.fadeIn(DSdurationTime);			
-				// console.log(windowScrollTo)
-			}						
+				$(thisIs).addClass('hovered');
+				if ($(window).width() < 1000){
+					$(thisIs)	
+					.find('.paragraphMSD')
+					.removeClass('hidden')
+					.hide()
+					.fadeIn(DSdurationTime);
+				}				
+			}									
 		}, function() {		
 			/* Stuff to do when the mouse leaves the element */
 			var thisIs = this;
-			zoomOutAnimation(thisIs);	
-			if (platformIsMobile){
+			zoomOutAnimation(thisIs);
+			if (platformIsMobile) {
 				if ($(thisIs).hasClass('project_1')){
 					$('.examplesContainer').css('overflow', 'hidden');
 				}
-				$(thisIs).find('.paragraphMSD')
+				$(thisIs).removeClass('hovered')
+				.find('.paragraphMSD')
 				.fadeOut(DSdurationTime);
-			}		
-		});	
+			}				
+		});
+		if (platformIsMobile) {
+			// console.log('swipe1');
+			$('.examplesContainer').on('scrollstart', function(event) {
+				// console.log('swipe');
+				$('.hovered').trigger('mouseleave');
+			});
+		}		
 	}
 	//add read more button to project divs
 	$projectDiv.prepend('<button class="readMoreBtn hidden" id="rmb" type="button">read more</button>');
