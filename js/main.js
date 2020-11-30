@@ -802,6 +802,7 @@ var resizeHandler = function () {
 				windowOuterHeight = currBrowserHeight;
 				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, browserInitialWidth);
 				cloneDivSizeHandler(viewportHeight, viewportWidth);
+				windowSizeHandler(viewportWidth, viewportHeight);
 				// console.log('font and divs resize is happend');				
 			}				
 			setParallaxImage(wSW, wDPR);
@@ -810,7 +811,6 @@ var resizeHandler = function () {
 					loaderScreen();
 					orientationIsChange = false;
 				}				
-				windowSizeHandler(viewportWidth, viewportHeight);	
 				// console.log('windowSizeHandler finished');
 				$(window)
 				.off('renewPage')
