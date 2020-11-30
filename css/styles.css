@@ -4,6 +4,10 @@
 *:after {
   box-sizing: border-box;
 }
+*:focus{ 
+  outline: none; 
+}
+
 body {
   font-family: sans-serif;
   margin: 0;
@@ -548,6 +552,9 @@ pre {
 .upButton:active {  
   bottom: 50px;
   color: white;
+}
+.upButton:focus {
+  outline: none;
 }
 
 

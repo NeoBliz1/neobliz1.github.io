@@ -289,6 +289,8 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		'font-size': upButtonFontSize,
 		width: fontScaleCoeff*0.06,
 		height: fontScaleCoeff*0.06,
+		'min-width': fontScaleCoeff*0.06,
+    'min-height': fontScaleCoeff*0.06,
 		'padding-top': fontScaleCoeff*0.005,
 		'padding-left': fontScaleCoeff*0.005,
 		bottom:  fontScaleCoeff*0.04,
@@ -614,14 +616,19 @@ var mySkillsAnimation = function () {
 			'font-size': vpbFontSize							
 		})
 		.rollInBtnAnimation();
+
 		$cloneDiv
 		.find('.project_1 > .bottomPart, #vpb')		
 		.css({
 			margin: vpbMarginValue
-		});	
+		});
 
-		//taking current scroll pos
-		var currentScroll = $(window).scrollTop();
+		if ($cloneDiv.hasClass('project_1')) {
+			$cloneDiv.find('#vpb').click(function(event) {
+				event.preventDefault()
+				$('.upButton').trigger('click');
+			});			
+		}	
 
 		//add overlay div
 		$('body').append('<div id="fullSizeSkillBoxOverlay"></div>');		//adding overlay div to the end main div
@@ -687,7 +694,7 @@ var mySkillsAnimation = function () {
 			projectDivFullSizeState = false;		
 			projectDivMinimize(this, currentDivOffset);
 		});		
-		// $('body').css('overflow', 'hidden');//hiding scroll bar
+		
 		$projectDiv.off('mouseenter mouseleave vmouseover vmouseout');//shutdown mouse event handler from skills divs
 	}
 	//minimize fullSize div
