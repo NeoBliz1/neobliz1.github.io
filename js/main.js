@@ -802,14 +802,14 @@ var resizeHandler = function () {
 				cloneDivSizeHandler(viewportHeight, viewportWidth);
 				windowSizeHandler(viewportWidth, viewportHeight);
 			}
-			// if(bWratio !== 1 || bHratio !== 1){
-			// 	browserInitialWidth = currBrowserWidth;
-			// 	windowOuterHeight = currBrowserHeight;
-			// 	projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, browserInitialWidth);
-			// 	cloneDivSizeHandler(viewportHeight, viewportWidth);
-			// 	windowSizeHandler(viewportWidth, viewportHeight);
-			// 	// console.log('font and divs resize is happend');				
-			// }				
+			if(bWratio !== 1 || bHratio !== 1){
+				browserInitialWidth = currBrowserWidth;
+				windowOuterHeight = currBrowserHeight;
+				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, browserInitialWidth);
+				cloneDivSizeHandler(viewportHeight, viewportWidth);
+				windowSizeHandler(viewportWidth, viewportHeight);
+				// console.log('font and divs resize is happend');				
+			}				
 			setParallaxImage(wSW, wDPR);
 			$('.slider1').one('load', function(event) {
 				if (!platformIsMobile || orientationIsChange) {
