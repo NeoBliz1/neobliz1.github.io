@@ -211,7 +211,8 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 		
 		
 	//initialize waypoints script
-	Waypoint.destroyAll() //remove all waypoints	
+	// Waypoint.destroyAll();
+	 //remove all waypoints	
 	
 	var upButOffsetNum=0, offsetNum=0;
 	//offset from window top
@@ -228,7 +229,7 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 		upButOffsetNum = '40%';
 	};
 		
-	scrollAnimate(offsetNum, upButOffsetNum);
+	// scrollAnimate(offsetNum, upButOffsetNum);
 
 	//coeefficient for zooming project divs
 	if (viewportWidth>=980) {
