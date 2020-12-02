@@ -26,7 +26,9 @@ var zoomInHeader = function () {
 this.doAnim = false;
 /*use waypoint JQuery plugin for tracking scroll elements*/
 var scrollAnimate = function (offsetNum, upButOffsetNum) {	
-		
+	$(window).scroll(function(event) {
+		console.log($(window).scrollTop())
+	});
 	$('.scrollAnimate')
 	.waypoint(
 		function(direction) {
