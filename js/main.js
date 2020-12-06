@@ -87,7 +87,65 @@ var scrollAnimate = function (offsetNum, upButOffsetNum) {
 				}				
 			});
 		}
-	});		
+	});
+	// init controller
+	var upButtonController = new ScrollMagic.Controller();
+		// create a scene	
+	var	upButtonScene = new ScrollMagic.Scene();
+	.addTo(upButtonController);
+	var upButtonScene;
+	var $upButton = $('.upButton');
+	upButtonScene
+	.triggerElement(window)
+	.offset($(window).height() + $upButton.height())
+	.duration(100)
+	.on('start', function (event) {					
+	 	if (event.scrollDirection === 'FORWARD') {
+	 		// console.log(event.scrollDirection);	
+	 		$upButton
+			.removeClass('hidden fadeOutDown')
+			.addClass('fadeInUp slow');			
+	 	}
+	 	else {
+	 		// console.log(event.scrollDirection);	
+	 		$upButton
+			.removeClass('fadeInUp slow')
+			.addClass('fadeOutDown');			
+	 	}		 	
+	});
+	if (platformIsMobile) {
+			// configure iScroll
+			var myScroll = new IScroll('#example-wrapper',
+						{
+							// don't scroll horizontal
+							scrollX: false,
+							// but do scroll vertical
+							scrollY: true,
+							// show scrollbars
+							scrollbars: true,
+							// deactivating -webkit-transform because pin wouldn't work because of a webkit bug: https://code.google.com/p/chromium/issues/detail?id=20574
+							// if you dont use pinning, keep "useTransform" set to true, as it is far better in terms of performance.
+							useTransform: false,
+							// deativate css-transition to force requestAnimationFrame (implicit with probeType 3)
+							useTransition: false,
+							// set to highest probing level to get scroll events even during momentum and bounce
+							// requires inclusion of iscroll-probe.js
+							probeType: 3,
+							// pass through clicks inside scroll container
+							click: true 
+						}
+					);
+			
+			// overwrite scroll position calculation to use child's offset instead of container's scrollTop();
+			controller.scrollPos(function () {
+				return -myScroll.y;
+			});
+
+			// thanks to iScroll 5 we now have a real onScroll event (with some performance drawbacks)
+			myScroll.on("scroll", function () {
+				controller.update(true);
+			});			
+		}
 }
 
 /*fadingOut loader screen*/
