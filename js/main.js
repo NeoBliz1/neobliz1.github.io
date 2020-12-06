@@ -22,125 +22,72 @@ var zoomInHeader = function () {
 	//hide are elements which will be animated
 	$('.scrollAnimate').addClass('hidden');	
 }
+var fluidMeterRestart = function () {
+	doAnim = true;//global anim variable
+	htmlFM.restart();
+	cssFM.restart();
+	jsFM.restart();
+	jQueryFM.restart();
+	pythonFM.restart();
+	// console.log('anim start')
+}
+
 this.doAnim = false;
 /*use waypoint JQuery plugin for tracking scroll elements*/
 var scrollAnimate = function (offsetNum, upButOffsetNum) {	
-	var scrollEventOffset = -300;
-
-	// init controller
-	var controller1 = new ScrollMagic.Controller();
-	
-	$('.scrollAnimate').addClass('animated')
+	var scrollEventOffset = -290;	
+	var controller = [];
+	var scenesArr = [];	
+	$('.scrollAnimate, .fluidMeter').addClass('animated')
 	.each(function(index, el) {
 		var stickyId = 'myStickyEl'+index;
-		var sceneNameindex;
-		console.log(sceneName+index)
-		
-		$(this).attr('id', stickyId);
-		// create a scene	
-		sceneName = new ScrollMagic.Scene({
-			triggerElement: stickyId,												
-			offset: scrollEventOffset // move trigger to value
-		})	
-		.addTo(controller1);
+		// scenesArr.push('scene'+index);		
+		var $this = $(this);
+		$this.attr('id', stickyId);
 
-		sceneName.on("start", function (event) {
-		 	if (event.scrollDirection === 'FORWARD') {	 		
-		 		console.log('scrollDirection FORWARD');	 		
-		 		$(stickyId)
+		// init controller
+		controller[index] = new ScrollMagic.Controller();
+		// create a scene	
+		scenesArr[index] = new ScrollMagic.Scene()
+		.addTo(controller[index]);
+
+		scenesArr[index].triggerElement('#'+stickyId)
+		.offset(scrollEventOffset)
+		.duration(100)
+		.on('start', function (event) {				
+		 	if (event.scrollDirection === 'FORWARD') {
+		 		$('#'+stickyId)
 				.removeClass('hidden fadeOutDown')
 				.addClass('fadeInUp slow');
+				if ($this.hasClass('fluidMeter') && !doAnim) {
+					fluidMeterRestart();
+				}
 		 	}
 		 	else {
-		 		$(stickyId)
+		 		$('#'+stickyId)
 				.removeClass('fadeInUp slow')
 				.addClass('fadeOutDown');
-		 	}
-		});	
-	});
-
-	
-
-	// $('.scrollAnimate')
-	// .waypoint(
-	// 	function(direction) {
-	// 		if (direction === 'up') {			
-	// 			//animated fadeOut elements when their are scrolling 
-	// 			$(this.element)			
-	// 			.removeClass('fadeInUp animated slow')
-	// 			.addClass('fadeOutDown animated');
-	// 		}
-	// 		else {			
-	// 			//animated fadIn elements when their are scrolling 
-	// 			$(this.element)
-	// 			.removeClass('hidden fadeOutDown animated')
-	// 			.addClass('fadeInUp animated slow');			
-	// 		}					
-	// 	}, 
-	// 	{	offset: offsetNum}
-	// );
-
-	// $('.upButton')
-	// .waypoint(
-	// 	function(direction) {
-	// 		if (direction === 'up') {			
-	// 			//animated fadeOut elements when their are scrolling 
-	// 			$(this.element)			
-	// 			.removeClass('fadeInUp animated slow')
-	// 			.addClass('fadeOutDown animated');
-	// 		}
-	// 		else {			
-	// 			//animated fadIn elements when their are scrolling 
-	// 			$(this.element)
-	// 			.removeClass('hidden fadeOutDown animated')
-	// 			.addClass('fadeInUp animated slow');			
-	// 		}					
-	// 	}, 
-	// 	{	offset: upButOffsetNum}
-	// );
-	// // if (!platformIsMobile) {
-	// // if (true) {
-	// 	var $fluidMeterScroll = $('.fluidMeterScroll')
-	// 	//activated canvas when it is in the visible state
-	// 	$fluidMeterScroll
-	// 	.waypoint(
-	// 		function(direction) {		
-	// 			if (direction === 'up') {			
-	// 				doAnim = false;//global anim variable
-	// 				// console.log('anim stop')
-	// 			}
-	// 			else {
-	// 				doAnim = true;//global anim variable
-	// 				htmlFM.restart();
-	// 				cssFM.restart();
-	// 				jsFM.restart();
-	// 				jQueryFM.restart();
-	// 				pythonFM.restart();	
-	// 				// console.log('anim start1')				
-	// 			}			
-	// 		}, 
-	// 		{	offset: '100%'}
-	// 	);
-	// 	$fluidMeterScroll.waypoint(
-	// 		function(direction) {		
-	// 			if (direction === 'down') {			
-	// 				doAnim = false;//global anim variable
-	// 				// console.log('anim stop')
-	// 			}
-	// 			else {
-	// 				doAnim = true;//global anim variable
-	// 				htmlFM.restart();
-	// 				cssFM.restart();
-	// 				jsFM.restart();
-	// 				jQueryFM.restart();
-	// 				pythonFM.restart();
-	// 				// console.log('anim start2')						
-	// 			}	
-	// 		// console.log(direction);
-	// 		}, 
-	// 		{	offset: '-15%'}
-	// 	);
-	// // }		
+				if ($this.hasClass('fluidMeter') && doAnim) {
+					doAnim = false;//global anim variable
+					// console.log('anim end')
+				}
+		 	}		 	
+		});
+		if ($this.hasClass('fluidMeter')) {
+			var FMsceneDuration = $(window).height() + $this.height();
+			scenesArr[index]
+			.duration(FMsceneDuration)
+			.on('end', function(event) {				
+				if (doAnim && event.scrollDirection === 'FORWARD'){
+					doAnim = false;//global anim variable				
+					// console.log('anim end')
+				}
+				else if (!doAnim && event.scrollDirection === 'REVERSE') {
+				 	fluidMeterRestart();
+				}				
+			});
+		}
+	});		
 }
 
 /*fadingOut loader screen*/
@@ -294,8 +241,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	else {
 		fontScaleCoeff = windowOuterHeight;
 		blizThumbnailScaleCoeff = windowOuterHeight;
-	}
-		
+	}		
 
 	//set thumbnail size in px;
 	$('.blizThumbnail').width(blizThumbnailScaleCoeff*0.3).height(blizThumbnailScaleCoeff*0.3);	
@@ -428,7 +374,7 @@ var mySkillsAnimation = function () {
 	var zoomInAnimation = function (thisIs){
 		durationTime=500;
 		var viewportWidth = $(window).width();
-		$(thisIs).removeClass('fadeInUp animated')
+		$(thisIs).removeClass('fadeInUp')
 		.filter(':not(:animated)')
 		.css({
 			'z-index': 8,		 	
@@ -1072,15 +1018,15 @@ $(window).on( 'load', function() {
 	var wSW = window.screen.width;
 	var wDPR = window.devicePixelRatio;
 	var windowOuterWidth = window.outerWidth;
-	var windowOuterHeight = window.outerHeight;
-	scrollAnimate();//scroll handler for divs
+	var windowOuterHeight = window.outerHeight;	
 	scrollTop();//handler for up button			
-	mySkillsAnimation();
+	mySkillsAnimation();	
 	projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, windowOuterWidth); //resize MySkills divs from window size	
-	setParallaxImage(wSW, wDPR);
+	setParallaxImage(wSW, wDPR);	
 	$('.slider1').one('load', function(event) {
 		windowSizeHandler(viewportWidth, viewportHeight); //resize main blocks according to window width	
 		resizeHandler();
+		scrollAnimate();//scroll handler for divs
 	  loaderScreen();
 	 	zoomInHeader();	
 		console.log( 'document loaded' );		
