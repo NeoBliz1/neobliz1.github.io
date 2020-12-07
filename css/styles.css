@@ -15,7 +15,7 @@ body {
 body,
 html {  
   font-size: 2.5vh;
-  overflow-x: hidden; /*horizontal*/
+  overflow-x: hidden; /*horizontal*/  
 }
 button:focus {
   outline: unset;

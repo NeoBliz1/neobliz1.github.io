@@ -46,14 +46,6 @@ var scrollAnimate = function (offsetNum, upButOffsetNum) {
 		var $this = $(this);
 		$this.attr('id', stickyId);
 
-		// // init controller
-		// if (platformIsMobile) {
-		// 	$this.wrap('<div id=#wrapper'+index+'></div>');
-		// 	controller[index] = new ScrollMagic.Controller({container: '#wrapper'+index});
-		// }
-		// else {
-		// 	controller[index] = new ScrollMagic.Controller();
-		// }
 		controller[index] = new ScrollMagic.Controller();
 		// create a scene	
 		scenesArr[index] = new ScrollMagic.Scene()
@@ -90,47 +82,11 @@ var scrollAnimate = function (offsetNum, upButOffsetNum) {
 					doAnim = false;//global anim variable				
 					// console.log('anim end')
 				}
-				else if (!doAnim && event.scrollDirection === 'REVERSE') {
+				else if (!doAnim) {
 				 	fluidMeterRestart();
 				}				
 			});
-		}
-
-		// if (platformIsMobile) {
-		// 	// configure iScroll	
-		// 	console.log($this.attr('id'));
-		// 	iScrollArr[index] = new IScroll('#wrapper'+index,
-		// 		{
-		// 			// don't scroll horizontal
-		// 			scrollX: false,
-		// 			// but do scroll vertical
-		// 			scrollY: true,
-		// 			// show scrollbars
-		// 			scrollbars: true,
-		// 			// deactivating -webkit-transform because pin wouldn't work because of a webkit bug: https://code.google.com/p/chromium/issues/detail?id=20574
-		// 			// if you dont use pinning, keep "useTransform" set to true, as it is far better in terms of performance.
-		// 			useTransform: false,
-		// 			// deativate css-transition to force requestAnimationFrame (implicit with probeType 3)
-		// 			useTransition: false,
-		// 			// set to highest probing level to get scroll events even during momentum and bounce
-		// 			// requires inclusion of iscroll-probe.js
-		// 			probeType: 3,
-		// 			// pass through clicks inside scroll container
-		// 			click: true 
-		// 		}
-		// 	);
-			
-				
-		// 	// overwrite scroll position calculation to use child's offset instead of container's scrollTop();
-		// 	controller[index].scrollPos(function () {
-		// 		return -iScrollArr[index].y;
-		// 	});
-
-		// 	// thanks to iScroll 5 we now have a real onScroll event (with some performance drawbacks)
-		// 	iScrollArr[index].on('scroll', function () {
-		// 		controller[index].update(true);
-		// 	});			
-		// }			
+		}				
 	});
 
 	// init controller
@@ -236,7 +192,8 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 	$sldr1
 	.css({		
 		width: headerOverlayWidth,
-		height: headerOverlayHeight			
+		height: headerOverlayHeight,
+		'will-change': 'auto' 		
 	});
 	$sldr2
 	.css({		
@@ -476,8 +433,9 @@ var mySkillsAnimation = function () {
 					.mousedown(function(event) { //animate press button, I use this method because animate.css is a conflict with translateY
 						var speed = 50;
 						var currentBottomProp = parseFloat($(this).css('bottom'));
+						var currentBottomPropD = currentBottomProp;
 						$(this).animate({
-								bottom: currentBottomProp-3+'px'
+								bottom: currentBottomPropD-3+'px'
 							},
 							speed,
 							function() {
@@ -491,9 +449,11 @@ var mySkillsAnimation = function () {
 							projectDivFullSizeState = true;
 							projectDivFullSize(thisIs);
 						}
-						if (event.currentTarget.id==='vpb') {
-							event.preventDefault()
-							$('.upButton').trigger('click');
+						if (event.currentTarget.id==='vpb') {							
+							if ($(thisIs).hasClass('project_1')){
+								event.preventDefault();
+								$('.upButton').trigger('click');
+							}							
 							$('.hovered').trigger('mouseleave');							
 						}					
 					});
