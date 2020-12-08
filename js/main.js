@@ -295,11 +295,8 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	//upButton size handler
 	var upButtonFontSize = fontScaleCoeff*0.045;
 	$('.upButton').css({
-		'font-size': upButtonFontSize,
-		width: 'auto',
-		height: 'auto',
-		'min-width': fontScaleCoeff*0.06,
-    'min-height': fontScaleCoeff*0.06,
+		'font-size': upButtonFontSize,		
+		height: 'auto',		
 		'padding-top': fontScaleCoeff*0.005,
 		'padding-left': fontScaleCoeff*0.006,
 		bottom:  fontScaleCoeff*0.04,
