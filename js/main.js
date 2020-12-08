@@ -300,7 +300,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		width: '-moz-min-content',
 		'padding': fontScaleCoeff*0.005,		    
     'padding-bottom': 'initial',    
-		bottom:  fontScaleCoeff*0.04,
+		// bottom:  fontScaleCoeff*0.04,
 		right:  fontScaleCoeff*0.04
 	});	
 
