@@ -299,8 +299,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		height: 'auto',		
 		width: '-moz-min-content',
 		'padding': fontScaleCoeff*0.005,		    
-    'padding-bottom': 'initial',
-    'padding-right': 'revert',
+    'padding-bottom': 'initial',    
 		bottom:  fontScaleCoeff*0.04,
 		right:  fontScaleCoeff*0.04
 	});	
