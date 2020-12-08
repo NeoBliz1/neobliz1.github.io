@@ -297,8 +297,10 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	$('.upButton').css({
 		'font-size': upButtonFontSize,		
 		height: 'auto',		
-		'padding-top': fontScaleCoeff*0.005,
-		'padding-left': fontScaleCoeff*0.006,
+		width: '-moz-min-content',
+		'padding': fontScaleCoeff*0.005,		    
+    'padding-bottom': 'initial',
+    'padding-right': 'revert',
 		bottom:  fontScaleCoeff*0.04,
 		right:  fontScaleCoeff*0.04
 	});	

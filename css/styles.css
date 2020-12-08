@@ -522,11 +522,9 @@ pre {
 
 /*UP_button styles*/
 .upButton {
-  position: fixed;
+  position: fixed;  
   bottom: 50px;
-  right: 50px;
-  width: auto;  
-  height: auto;
+  right: 50px;  
   z-index: 6;
   box-shadow: 1px 2px 8px -1px;
   background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
