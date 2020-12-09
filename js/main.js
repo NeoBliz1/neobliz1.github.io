@@ -56,6 +56,7 @@ var scrollAnimate = function (offsetNum, upButOffsetNum) {
 		.duration(100)
 		.on('start', function (event) {				
 		 	if (event.scrollDirection === 'FORWARD') {
+		 		
 		 		$('#'+stickyId)
 				.removeClass('hidden fadeOutDown')
 				.addClass('fadeInUp slow');
@@ -63,10 +64,7 @@ var scrollAnimate = function (offsetNum, upButOffsetNum) {
 					fluidMeterRestart();
 				}
 		 	}
-		 	else {
-		 		$('#'+stickyId)
-				.removeClass('fadeInUp slow')
-				.addClass('fadeOutDown');
+		 	else {		 		
 				if ($this.hasClass('fluidMeter') && doAnim) {
 					doAnim = false;//global anim variable
 					// console.log('anim end')
@@ -215,29 +213,7 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 		transition: 'cubic-bezier(0,0,0,1)',
 		overflow: false
 	});		
-		
-		
-	//initialize waypoints script
-	// Waypoint.destroyAll();
-	 //remove all waypoints	
 	
-	// var upButOffsetNum=0, offsetNum=0;
-	// //offset from window top
-	// if (viewportHeight < 480) {
-	// 	offsetNum = '95%';
-	// 	upButOffsetNum = '60%';
-	// }
-	// else if (viewportHeight > 2000) {
-	// 	offsetNum = '100%';
-	// 	upButOffsetNum = '50%';	
-	// }
-	// else {
-	// 	offsetNum = '90%';
-	// 	upButOffsetNum = '40%';
-	// };
-		
-	// scrollAnimate(offsetNum, upButOffsetNum);
-
 	//coeefficient for zooming project divs
 	if (viewportWidth>=980) {
 		projectDivZoomInCoeff = 1.3/viewportWidth;
@@ -302,7 +278,20 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
     'padding-bottom': 'initial',    
 		// bottom:  fontScaleCoeff*0.04,
 		right:  fontScaleCoeff*0.04
-	});	
+	});
+	//messageButton size handler
+	var messageButtonFontSize = fontScaleCoeff*0.04;
+	$('.messageButton').css({
+		'font-size': messageButtonFontSize,		
+		width: messageButtonFontSize*1.5,		
+		height: messageButtonFontSize*1.5,
+		'padding-top': fontScaleCoeff*0.005,		    
+    'padding-bottom': 'initial',    
+		// bottom:  fontScaleCoeff*0.04,
+		left:  fontScaleCoeff*0.04
+	});
+
+
 
 	//set project div size
 	projectDivWidth = Math.pow(viewportWidth*30000, 1/3);	
