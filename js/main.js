@@ -56,10 +56,11 @@ var scrollAnimate = function (offsetNum, upButOffsetNum) {
 		.duration(100)
 		.on('start', function (event) {				
 		 	if (event.scrollDirection === 'FORWARD') {
-		 		
-		 		$('#'+stickyId)
-				.removeClass('hidden fadeOutDown')
-				.addClass('fadeInUp slow');
+		 		if ($this.hasClass('hidden')){
+		 			$('#'+stickyId)
+					.removeClass('hidden fadeOutDown')
+					.addClass('fadeInUp slow');
+		 		}		 		
 				if ($this.hasClass('fluidMeter') && !doAnim) {
 					fluidMeterRestart();
 				}
@@ -978,7 +979,7 @@ var resizeHandler = function () {
 			}
 		});
 }
-
+//handler for scroll top button
 var scrollTop = function () {
 	if (platformIsMobile){
 		$('.upButton')	
@@ -1028,6 +1029,28 @@ var scrollTop = function () {
 		});
 	}	
 }
+//handler for tMessage box
+var tMessageDialogBox = function () {
+	$('#tMessageDialog').dialog({
+		position: { my: 'left+40% bottom-60%', at: 'left bottom', of: window },
+		resizable: true,
+    autoOpen: false,
+    show: {
+      effect: 'blind',
+      direction: 'down',    
+      duration: 1000
+    },
+    hide: {
+      effect: 'blind',
+      direction: 'down',            
+      duration: 1000
+    }
+  });
+ 
+	$('.messageButton').click(function(event) {
+		$('#tMessageDialog').dialog('open');
+	});  
+}
 
 /**************main block*******************/
 $(window).on( 'load', function() {	
@@ -1037,7 +1060,8 @@ $(window).on( 'load', function() {
 	var wDPR = window.devicePixelRatio;
 	var windowOuterWidth = window.outerWidth;
 	var windowOuterHeight = window.outerHeight;	
-	scrollTop();//handler for up button			
+	scrollTop();//handler for up button
+	tMessageDialogBox();//handler for tMessage box		
 	mySkillsAnimation();	
 	projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, windowOuterWidth); //resize MySkills divs from window size	
 	setParallaxImage(wSW, wDPR);	
