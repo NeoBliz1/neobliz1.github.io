@@ -796,13 +796,13 @@ var resizeHandler = function () {
 			}			
 			// console.log('viewportHeight' + viewportHeight);
 			// console.log('windowOuterHeight'+windowOuterHeight, 'currBrowserHeight'+currBrowserHeight);
-			// console.log(bWratio, bHratio);			
+			// console.log(bWratio, bHratio);
+			windowSizeHandler(viewportWidth, viewportHeight);			
 			if(platformIsMobile && orientationIsChange || bWratio !== 1 || bHratio !== 1){
 				browserInitialWidth = currBrowserWidth;
 				windowOuterHeight = currBrowserHeight;
 				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, browserInitialWidth);
-				cloneDivSizeHandler(viewportHeight, viewportWidth);
-				windowSizeHandler(viewportWidth, viewportHeight);
+				cloneDivSizeHandler(viewportHeight, viewportWidth);				
 				// console.log('font and divs resize is happend');				
 			}				
 			setParallaxImage(wSW, wDPR);
@@ -1032,7 +1032,7 @@ var scrollTop = function () {
 //handler for tMessage box
 var tMessageDialogBox = function () {
 	$('#tMessageDialog').dialog({
-		position: { my: 'left+40% bottom-60%', at: 'left bottom', of: window },
+		position: { my: 'left+35% bottom-50%', at: 'left bottom', of: window },
 		resizable: true,
     autoOpen: false,
     show: {
@@ -1045,7 +1045,12 @@ var tMessageDialogBox = function () {
       direction: 'down',            
       duration: 1000
     }
-  });
+  })
+  // prevents triggering to resize the entire page
+  $('.ui-dialog').on('resize', function (e) {
+  	// console.log('stop prop');
+  	e.stopPropagation(); 
+	});
  
 	$('.messageButton').click(function(event) {
 		$('#tMessageDialog').dialog('open');
