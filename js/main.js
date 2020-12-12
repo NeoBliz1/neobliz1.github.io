@@ -1032,7 +1032,7 @@ var scrollTop = function () {
 //handler for tMessage box
 var tMessageDialogBox = function () {
 	$('#tMessageDialog').dialog({
-		position: { my: 'left+35% bottom-50%', at: 'left bottom', of: window },
+		position: { my: 'left+20% bottom-20%', at: 'left bottom', of: '.messageButton' },
 		resizable: true,
     autoOpen: false,
     show: {
@@ -1050,8 +1050,13 @@ var tMessageDialogBox = function () {
   $('.ui-dialog').on('resize', function (e) {
   	// console.log('stop prop');
   	e.stopPropagation(); 
+	})
+	.css({
+		position: 'fixed'
 	});
- 
+ 	//set to close button icon and style
+  $('.ui-icon-closethick').addClass('far fa-times-circle')
+
 	$('.messageButton').click(function(event) {
 		$('#tMessageDialog').dialog('open');
 	});  

@@ -563,7 +563,9 @@ pre {
   border-radius: 4%;
   border: 2px solid #ffaa22;  
 }
-
+.ui-dialog-titlebar {
+  background-color: #ffec64;
+}
 #tMessageArea {
   resize: none;
   width: auto;
