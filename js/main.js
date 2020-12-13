@@ -34,112 +34,146 @@ var fluidMeterRestart = function () {
 
 this.doAnim = false;
 /*use waypoint JQuery plugin for tracking scroll elements*/
-var scrollAnimate = function (offsetNum, upButOffsetNum) {	
-	var scrollEventOffset = -290;	
-	var controller = [];
-	var scenesArr = [];
-	var iScrollArr = [];	
-	$('.scrollAnimate, .fluidMeter').addClass('animated')
-	.each(function(index, el) {
-		var stickyId = 'myStickyEl'+index;
-		// scenesArr.push('scene'+index);		
-		var $this = $(this);
-		$this.attr('id', stickyId);
+var controller = [];
+var scenesArr = [];
+var iScrollArr = [];
+var	upButtonScene;
+var scrollAnimate = function (viewportHeight, refreshOffset) {	
+	// console.log(viewportHeight*0.48*(-1))
+	var scrollEventOffset = viewportHeight*0.48*(-1);	
+	if (!refreshOffset){
+		// console.log('magick scroll initialize');			
+		$('.scrollAnimate, .fluidMeter').addClass('animated')
+		.each(function(index, el) {
+			var stickyId = 'myStickyEl'+index;
+			// scenesArr.push('scene'+index);		
+			var $this = $(this);
+			$this.attr('id', stickyId);
 
-		controller[index] = new ScrollMagic.Controller();
-		// create a scene	
-		scenesArr[index] = new ScrollMagic.Scene()
-		.addTo(controller[index]);
+			controller[index] = new ScrollMagic.Controller();
+			// create a scene	
+			scenesArr[index] = new ScrollMagic.Scene()
+			.addTo(controller[index]);
 
-		scenesArr[index].triggerElement('#'+stickyId)
-		.offset(scrollEventOffset)
-		.duration(100)
-		.on('start', function (event) {				
-		 	if (event.scrollDirection === 'FORWARD') {
-		 		if ($this.hasClass('hidden')){
-		 			$('#'+stickyId)
-					.removeClass('hidden fadeOutDown')
-					.addClass('fadeInUp slow');
-		 		}		 		
-				if ($this.hasClass('fluidMeter') && !doAnim) {
-					fluidMeterRestart();
-				}
-		 	}
-		 	else {		 		
-				if ($this.hasClass('fluidMeter') && doAnim) {
-					doAnim = false;//global anim variable
-					// console.log('anim end')
-				}
-		 	}		 	
-		});
-		if ($this.hasClass('fluidMeter')) {
-			var FMsceneDuration = $(window).height() + $this.height();
-			scenesArr[index]
-			.duration(FMsceneDuration)
-			.on('end', function(event) {				
-				if (doAnim && event.scrollDirection === 'FORWARD'){
-					doAnim = false;//global anim variable				
-					// console.log('anim end')
-				}
-				else if (!doAnim) {
-				 	fluidMeterRestart();
-				}				
+			scenesArr[index].triggerElement('#'+stickyId)
+			.offset(scrollEventOffset)
+			.duration(100)
+			.on('start', function (event) {				
+			 	if (event.scrollDirection === 'FORWARD') {
+			 		if ($this.hasClass('hidden')){
+			 			$('#'+stickyId)
+						.removeClass('hidden fadeOutDown')
+						.addClass('fadeInUp slow');
+			 		}		 		
+					if ($this.hasClass('fluidMeter') && !doAnim) {
+						fluidMeterRestart();
+					}
+			 	}
+			 	else {		 		
+					if ($this.hasClass('fluidMeter') && doAnim) {
+						doAnim = false;//global anim variable
+						// console.log('anim end')
+					}
+			 	}		 	
 			});
-		}				
-	});
+			if ($this.hasClass('fluidMeter')) {
+				var FMsceneDuration = $(window).height() + $this.height();
+				scenesArr[index]
+				.duration(FMsceneDuration)
+				.on('end', function(event) {				
+					if (doAnim && event.scrollDirection === 'FORWARD'){
+						doAnim = false;//global anim variable				
+						// console.log('anim end')
+					}
+					else if (!doAnim) {
+					 	fluidMeterRestart();
+					}				
+				});
+			}				
+		});
 
-	// init controller
-	var upButtonController = new ScrollMagic.Controller();
-		// create a scene	
-	var	upButtonScene = new ScrollMagic.Scene()	
-	.addTo(upButtonController);
-	var upButtonScene;
-	var $upButton = $('.upButton');
-	upButtonScene
-	.triggerElement(window)
-	.offset($(window).height() + $upButton.height())
-	.duration(100)
-	.on('start', function (event) {					
-	 	if (event.scrollDirection === 'FORWARD') {
-	 		// console.log(event.scrollDirection);	
-	 		$upButton
-			.removeClass('hidden fadeOutDown')
-			.addClass('fadeInUp slow');			
-	 	}
-	 	else {
-	 		// console.log(event.scrollDirection);	
-	 		$upButton
-			.removeClass('fadeInUp slow')
-			.addClass('fadeOutDown');			
-	 	}		 	
-	});
-	
+		// init controller
+		var upButtonController = new ScrollMagic.Controller();
+			// create a scene	
+		upButtonScene = new ScrollMagic.Scene()	
+		.addTo(upButtonController);
+		
+		var $upButton = $('.upButton');
+		upButtonScene
+		.triggerElement(window)
+		.offset($(window).height() + $upButton.height())
+		.duration(100)
+		.on('start', function (event) {					
+		 	if (event.scrollDirection === 'FORWARD') {
+		 		// console.log(event.scrollDirection);	
+		 		$upButton
+				.removeClass('hidden fadeOutDown')
+				.addClass('fadeInUp slow');			
+		 	}
+		 	else {
+		 		// console.log(event.scrollDirection);	
+		 		$upButton
+				.removeClass('fadeInUp slow')
+				.addClass('fadeOutDown');			
+		 	}		 	
+		});	
+	}
+	else if (refreshOffset) {				
+		for(var i = 0, length1 = scenesArr.length; i < length1; i++){
+			scenesArr[i].offset(scrollEventOffset);			
+		}
+		upButtonScene.offset(scrollEventOffset);
+		// console.log('offset is update');
+	}
 }
 
 /*fadingOut loader screen*/
 var loaderScreen = function () {
 	$('.loader-gif').css('display', 'initial').fadeOut('slow');	
 }
+
 //set parallax img attributes
-var setParallaxImage = function (wSW, wDPR) {
+var setParallaxImage = function (wSW, wDPR) {	
 	var pathToParllaxImg;
 	var pathToThmbImg;	
-	
-	if ( wSW >= 1800 && wDPR >= 0.25 && wDPR < 3) {
+	var setImgPassway = function () {
+		$('.blizThumbnail').css('background-image', 'url('+pathToThmbImg+')');	
+		$('.slider1, .slider2').attr('src', pathToParllaxImg);
+	}
+	if (wSW >= 2400) {
+		var cover_bgUrl = 'https://res.cloudinary.com/deah4rwon/image/upload/v1607826257/imgs/responsive_Img/cover_bg_3-4k_oji9x8.png';
+		$.ajax({
+			url:cover_bgUrl,
+			type:'HEAD',
+			error: function(){
+				pathToParllaxImg = '../img/cover_bg_3.png';
+				setImgPassway();
+				console.log('img is not available');    
+			},
+			success: function(){
+				pathToParllaxImg = cover_bgUrl;
+				setImgPassway();
+				console.log(' img available');
+			}
+		});
+		pathToThmbImg = '../img/thmb.png';	
+		console.log(pathToParllaxImg);
+	}
+	else if ( wSW >= 1800 && wDPR >= 0.25 && wDPR < 3) {
 		pathToParllaxImg = '../img/cover_bg_3.png';
 		pathToThmbImg = '../img/thmb.png';
+		setImgPassway();
 	}
 	else if (wSW < 1800 && wSW >=640 && wDPR >= 3) {
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
 		pathToThmbImg = '../img/responsive_Img/thmb_small.png';
+		setImgPassway();
 	}
 	else {
 		pathToParllaxImg = '../img/responsive_Img/cover_bg_3_small.png';
-		pathToThmbImg = '../img/responsive_Img/thmb_small.png';				
-	}
-
-	$('.blizThumbnail').css('background-image', 'url('+pathToThmbImg+')');	
-	$('.slider1, .slider2').attr('src', pathToParllaxImg);	
+		pathToThmbImg = '../img/responsive_Img/thmb_small.png';	
+		setImgPassway();			
+	}		
 }
 
 var $projectDiv = $('.projectDiv');	
@@ -153,7 +187,7 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 
 	var FMheight = $('.fluidMeterContainer1').height();
 	$('.mySkills').height(FMheight*1.2);
-	
+	// console.log(FMheight*1.2);
 	var mySkillsDivHeight = $('.mySkills').height();
 	var mySkillsDivWidth = $('.mySkills').width();
 	var image1 = 0;
@@ -198,7 +232,8 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 	.css({		
 		width: mySkillsOverlayWidth,
 		height: mySkillsOverlayHeight	
-	});
+	});	
+
 	var parallaxScaleCoeff = 2; //parallax image coeff which enhances parallax effect
 	image1 = document.getElementsByClassName('slider1');
 	new simpleParallax(image1, {
@@ -227,25 +262,31 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
 	}	
 }	
 
-
 /*functions which handling MySkills areas divs
 and applying zommIn animation on it*/
 var DSdurationTime = 500;//div skill full size animation duration time
 var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windowOuterHeight, windowOuterWidth) { //function handle which window is on resize
 	var fontScaleCoeff, blizThumbnailScaleCoeff;
 	if (platformIsMobile){
-		if (windowOuterWidth > windowOuterHeight) {
-			fontScaleCoeff = windowOuterWidth;
-			blizThumbnailScaleCoeff = windowOuterWidth*0.7;			
+		if (viewportWidth > viewportHeight) {
+			fontScaleCoeff = viewportWidth;
+			blizThumbnailScaleCoeff = viewportWidth*0.7;			
 		}
 		else {
-			fontScaleCoeff = windowOuterHeight;
-			blizThumbnailScaleCoeff = windowOuterHeight;
+			fontScaleCoeff = viewportHeight;
+			blizThumbnailScaleCoeff = viewportHeight;
 		}
 	}
 	else {
-		fontScaleCoeff = windowOuterHeight;
-		blizThumbnailScaleCoeff = windowOuterHeight;
+		if (viewportWidth > viewportHeight && viewportWidth < 1000) {
+			console.log(viewportWidth);
+			fontScaleCoeff = viewportWidth;
+			blizThumbnailScaleCoeff = viewportWidth;			
+		}
+		else {
+			fontScaleCoeff = viewportHeight;
+			blizThumbnailScaleCoeff = viewportHeight;
+		}
 	}		
 
 	//set thumbnail size in px;
@@ -266,7 +307,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	});
 
 	$('p, a').each(function(index) {
-		var elFontSize = fontScaleCoeff*0.015;
+		var elFontSize = fontScaleCoeff*0.018;
 		$(this).css('font-size', elFontSize);	//set font size in pixels
 	});
 	//upButton size handler
@@ -291,8 +332,6 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 		// bottom:  fontScaleCoeff*0.04,
 		left:  fontScaleCoeff*0.04
 	});
-
-
 
 	//set project div size
 	projectDivWidth = Math.pow(viewportWidth*30000, 1/3);	
@@ -351,8 +390,12 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	cssFM.setProperties(70, FMcanvasSize, FMborderSize, FMfontSize, 'CSS');
 	jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, 'JavaScript');
 	jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, 'jQuery');
-	pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');		
-	
+	pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, 'Python');
+	// console.log('project div is done');
+	// console.log('platformIsMobile '+platformIsMobile);
+	// console.log(fontScaleCoeff, blizThumbnailScaleCoeff);
+	// console.log('viewportHeight' + viewportHeight);
+	// console.log('windowOuterHeight'+windowOuterHeight);	
 }	
 
 var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
@@ -775,50 +818,46 @@ var resizeHandler = function () {
 	$(window).on('renewPage', function(event) {
 		if (!platformIsMobile) {
 			$('.loader-gif').css('display', 'initial');
-		}		
-		//refresh parallax script			
-		clearTimeout(resizeTimer);	
+		}
 		//main resize part		
-		resizeTimer = setTimeout(function() {				
-			var viewportWidth = $(window).width();
-			var viewportHeight = $(window).height();
-			var wSW = window.screen.width;
-			var wDPR = window.devicePixelRatio;
-			doAnim = false;//fluid meters state variable
-			// console.log(wDPR);
-			// console.log(viewportHeight);			
-			var currBrowserWidth = window.outerWidth;
-			var currBrowserHeight = window.outerHeight;			
-			var bWratio = browserInitialWidth/currBrowserWidth;
-			var bHratio = 1;
-			if (!platformIsMobile){			
-				var bHratio = windowOuterHeight/currBrowserHeight;
-			}			
-			// console.log('viewportHeight' + viewportHeight);
-			// console.log('windowOuterHeight'+windowOuterHeight, 'currBrowserHeight'+currBrowserHeight);
-			// console.log(bWratio, bHratio);
-			windowSizeHandler(viewportWidth, viewportHeight);			
-			if(platformIsMobile && orientationIsChange || bWratio !== 1 || bHratio !== 1){
-				browserInitialWidth = currBrowserWidth;
-				windowOuterHeight = currBrowserHeight;
-				projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, browserInitialWidth);
-				cloneDivSizeHandler(viewportHeight, viewportWidth);				
-				// console.log('font and divs resize is happend');				
+		var viewportWidth = $(window).width();
+		var viewportHeight = $(window).height();
+		var wSW = window.screen.width;
+		var wDPR = window.devicePixelRatio;			
+		// console.log(wDPR);
+		// console.log(viewportHeight);			
+		var currBrowserWidth = window.outerWidth;
+		var currBrowserHeight = window.outerHeight;			
+		var bWratio = browserInitialWidth/currBrowserWidth;
+		var bHratio = windowOuterHeight/currBrowserHeight;				
+		// console.log('viewportHeight' + viewportHeight);
+		// console.log('windowOuterHeight'+windowOuterHeight, 'currBrowserHeight'+currBrowserHeight);
+		// console.log(bWratio, bHratio);
+		windowSizeHandler(viewportWidth, viewportHeight);
+		scrollAnimate(viewportHeight, true);
+		if(platformIsMobile && orientationIsChange || bWratio !== 1 || bHratio !== 1){
+			browserInitialWidth = currBrowserWidth;
+			windowOuterHeight = currBrowserHeight;
+			projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, browserInitialWidth);
+			cloneDivSizeHandler(viewportHeight, viewportWidth);
+			if (!doAnim) {
+				fluidMeterRestart();
+			}	
+			// console.log('font and divs resize is happend');				
+		}				
+		setParallaxImage(wSW, wDPR);
+		$('.slider1').one('load', function(event) {
+			if (!platformIsMobile || orientationIsChange) {
+				loaderScreen();
+				orientationIsChange = false;
 			}				
-			setParallaxImage(wSW, wDPR);
-			$('.slider1').one('load', function(event) {
-				if (!platformIsMobile || orientationIsChange) {
-					loaderScreen();
-					orientationIsChange = false;
-				}				
-				// console.log('windowSizeHandler finished');
-				$(window)
-				.off('renewPage')
-				.trigger('resize');
-				resizeHandler();				
-				// console.log('renewPage is finished');	
-			});
-		}, 250 );							
+			// console.log('windowSizeHandler finished');
+			$(window)
+			.off('renewPage')
+			.trigger('resize');
+			resizeHandler();				
+			// console.log('renewPage is finished');	
+		});								
 	});		
 }
 //initialize my skills fluid meter
@@ -1038,12 +1077,12 @@ var tMessageDialogBox = function () {
     show: {
       effect: 'blind',
       direction: 'down',    
-      duration: 1000
+      duration: DSdurationTime
     },
     hide: {
       effect: 'blind',
       direction: 'down',            
-      duration: 1000
+      duration: DSdurationTime
     }
   })
   // prevents triggering to resize the entire page
@@ -1053,9 +1092,7 @@ var tMessageDialogBox = function () {
 	})
 	.css({
 		position: 'fixed'
-	});
- 	//set to close button icon and style
-  $('.ui-icon-closethick').addClass('far fa-times-circle')
+	}); 	
 
 	$('.messageButton').click(function(event) {
 		$('#tMessageDialog').dialog('open');
@@ -1078,7 +1115,7 @@ $(window).on( 'load', function() {
 	$('.slider1').one('load', function(event) {
 		windowSizeHandler(viewportWidth, viewportHeight); //resize main blocks according to window width	
 		resizeHandler();
-		scrollAnimate();//scroll handler for divs
+		scrollAnimate(viewportHeight, false);//scroll handler for divs
 	  loaderScreen();
 	 	zoomInHeader();	
 		console.log( 'document loaded' );		

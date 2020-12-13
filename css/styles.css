@@ -756,6 +756,7 @@ pre {
   }
   .invertIcon {
     grid-area: icon;
+    margin-left: 1vw; 
   }
   .projectDiv {
     min-width: 320px; 
