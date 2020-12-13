@@ -279,7 +279,7 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	}
 	else {
 		if (viewportWidth > viewportHeight && viewportWidth < 1000) {
-			console.log(viewportWidth);
+			// console.log(viewportWidth);
 			fontScaleCoeff = viewportWidth;
 			blizThumbnailScaleCoeff = viewportWidth;			
 		}
@@ -1092,7 +1092,13 @@ var tMessageDialogBox = function () {
 	})
 	.css({
 		position: 'fixed'
-	}); 	
+	})
+	.find('.ui-dialog-titlebar')
+	.css({
+		'margin-top': '-20px',
+    'margin-left': '10px',
+    'margin-right': '10px'
+	});
 
 	$('.messageButton').click(function(event) {
 		$('#tMessageDialog').dialog('open');
