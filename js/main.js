@@ -1074,57 +1074,84 @@ var scrollTop = function () {
 }
 //handler for tMessage box
 var tMessageDialogBox = function (viewportWidth, viewportHeight) {
+	var titleFontSize, messagesFontSize, robotFontsize;
 	var targetWidth = $('.messageButton').width();
 	var targetHeight = $('.messageButton').height();
 	if (platformIsMobile){
 		targetWidth*=20;
-		targetHeight*=13;
+		targetHeight*=13;		 		
 	}
 	else {
-		targetWidth*=36;
+		targetWidth*=33;
 		targetHeight*=25;
 	}
-	$('#tMessageDialog').dialog({
-		position: { my: 'left bottom', at: 'left bottom-110%', of: '.messageButton' },
-		width: targetWidth,
-		height: targetHeight,
-		resizable: true,
-    autoOpen: false,
-    show: {
-      effect: 'blind',
-      direction: 'down', 
-      duration: DSdurationTime
-    },
-    hide: {
-      effect: 'blind',
-      direction: 'down',            
-      duration: DSdurationTime
-    }
-  })
+	titleFontSize = targetHeight*0.05;
+	messagesFontSize = titleFontSize*0.8;
+	robotFontsize = targetHeight*0.1;
+
+	//initizlize dialog widget
+
+	var $tMessageDialog = $('#tMessageDialog');
+	console.log($tMessageDialog.dialog('instance'));
+	if ($tMessageDialog.dialog('instance') === undefined) {
+		$tMessageDialog.dialog({
+			position: { my: 'left bottom', at: 'left bottom-110%', of: '.messageButton' },
+			width: targetWidth,
+			height: targetHeight,
+			resizable: true,
+	    autoOpen: false,
+	    show: {
+	      effect: 'blind',
+	      direction: 'down', 
+	      duration: DSdurationTime
+	    },
+	    hide: {
+	      effect: 'blind',
+	      direction: 'down',            
+	      duration: DSdurationTime
+	    }
+	  })
+
+		//toggle message box view
+		$('.messageButton').click(function(event) {
+			var isOpen = $tMessageDialog.dialog( "isOpen" );
+			if (isOpen) {
+				$tMessageDialog.dialog('close');
+			}
+			else {
+				$tMessageDialog.dialog('open');
+			}
+		});
+		$('.sendBtn').click(function(event) {
+			preventDefault();		
+		})
+		.css('font-size', titleFontSize);
+	}	
+
+	
+
   // prevents triggering to resize the entire page
-  $('.ui-dialog').on('resize', function (e) {
+ 	var $dialogBox = $('.ui-dialog');
+  $dialogBox.on('resize', function (e) {
   	// console.log('stop prop');
+  	$('#tMessageDialog').css('width', $(this).width());
   	e.stopPropagation(); 
-	})
-	.css({
-		position: 'fixed'
-	})
+	})	
 	.find('.ui-dialog-titlebar')
 	.css({
+		'font-size': titleFontSize,
 		'margin-top': '-20px',
     'margin-left': '10px',
     'margin-right': '10px'
 	});
-	//toggle message box view
-	$('.messageButton').click(function(event) {
-		var isOpen = $('#tMessageDialog').dialog( "isOpen" );
-		if (isOpen) {
-			$('#tMessageDialog').dialog('close');
-		}
-		else {
-			$('#tMessageDialog').dialog('open');
-		}
-	});	
+
+	$dialogBox.find('.thought')
+	.css('font-size', messagesFontSize*20);
+
+	$('.fa-robot').css({
+		'font-size': robotFontsize
+	});
+	
 }
 
 /**************main block*******************/

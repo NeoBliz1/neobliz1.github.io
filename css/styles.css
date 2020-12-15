@@ -323,7 +323,7 @@ h2 {
 
 /*buttons in the "My skills" area*/
 
-.readMoreBtn, .viewProject  {
+.readMoreBtn, .viewProject, .sendBtn  {
   box-shadow: 0px 1px 0px 0px #fff6af;
   background:linear-gradient(to bottom, #FED761 5%, #fca314 100%);
   background-color:#ffec64;  
@@ -339,11 +339,14 @@ h2 {
   outline:none;
   z-index: 7;  
 }
-.readMoreBtn:hover, .viewProject:hover {
+.sendBtn {
+  border-radius: 10%;
+}
+.readMoreBtn:hover, .viewProject:hover, .sendBtn:hover {
   background:linear-gradient(to bottom, #fca314 5%, #ffec64 100%);
   background-color:#fca314;
 }
-.readMoreBtn:active, .viewProject:active  {
+.readMoreBtn:active, .viewProject:active, .sendBtn:active  {
   -webkit-transform: translateY(4px);
   transform: translateY(4px);
   color: white;  
@@ -568,8 +571,59 @@ pre {
 }
 #tMessageArea {
   resize: none;
-  width: auto;
+  width: 100%;
   height: auto;
+}
+.thoughtContainer {
+  display:flex;
+  flex-flow:column wrap;
+  justify-content:flex-end;
+  margin:0;  
+  align-items:flex-end;
+  align-content:center;
+}
+.thought {
+  display:flex;
+  background-color:#fff;
+  padding:20px;
+  border-radius:30px;
+  min-width:40px;
+  max-width: max-c
+  min-height:40px;
+  margin:20px;
+  position:relative;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.thought:before,
+.thought:after {
+  content:"";
+  background-color:#fff;
+  border-radius:50%;
+  display:block;
+  position:absolute;
+  z-index:-1;
+}
+.thought:before {
+  width:44px;
+  height:44px;
+  top:-12px;
+  left:28px;
+  box-shadow:-50px 30px 0 -12px #fff;
+}
+.thought:after {
+  bottom:-10px;
+  right:26px;
+  width:30px;
+  height:30px;
+  box-shadow:40px -34px 0 0 #fff,
+             -28px -6px 0 -2px #fff,
+             -24px 17px 0 -6px #fff,
+             -5px 25px 0 -10px #fff;  
+}
+#nickName{
+  margin: 1vh 1vh 1vh 0;
 }
 /*****************************************************/
 /*****************************************************/
