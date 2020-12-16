@@ -840,13 +840,13 @@ var resizeHandler = function () {
 		// console.log('windowOuterHeight'+windowOuterHeight, 'currBrowserHeight'+currBrowserHeight);
 		// console.log(bWratio, bHratio);
 		windowSizeHandler(viewportWidth, viewportHeight);
-		scrollAnimate(viewportHeight, true);
-		$('#tMessageDialog').dialog('close');//close current message dialog
+		scrollAnimate(viewportHeight, true);		
 		if(platformIsMobile && orientationIsChange || bWratio !== 1 || bHratio !== 1){
 			browserInitialWidth = currBrowserWidth;
 			windowOuterHeight = currBrowserHeight;
+			$('#tMessageDialog').dialog('close');//close current message dialog
 			projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, browserInitialWidth);
-			cloneDivSizeHandler(viewportHeight, viewportWidth);			
+			cloneDivSizeHandler(viewportHeight, viewportWidth);
 			// console.log('font and divs resize is happend');				
 		}				
 		setParallaxImage(wSW, wDPR);
@@ -1092,7 +1092,7 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 	//initizlize dialog widget
 
 	var $tMessageDialog = $('#tMessageDialog');
-	console.log($tMessageDialog.dialog('instance'));
+	// console.log($tMessageDialog.dialog('instance'));
 	if ($tMessageDialog.dialog('instance') === undefined) {
 		$tMessageDialog.dialog({
 			position: { my: 'left bottom', at: 'left bottom-110%', of: '.messageButton' },
@@ -1123,20 +1123,18 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 			}
 		});
 		$('.sendBtn').click(function(event) {
-			preventDefault();		
-		})
-		.css('font-size', titleFontSize);
+			event.preventDefault();	
+		})		
 	}	
-
-	
-
+	$('.sendBtn').css('font-size', titleFontSize);
   // prevents triggering to resize the entire page
  	var $dialogBox = $('.ui-dialog');
   $dialogBox.on('resize', function (e) {
   	// console.log('stop prop');
   	$('#tMessageDialog').css('width', $(this).width());
   	e.stopPropagation(); 
-	})	
+	})
+	.css('position', 'fixed')
 	.find('.ui-dialog-titlebar')
 	.css({
 		'font-size': titleFontSize,
