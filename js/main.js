@@ -835,7 +835,13 @@ var resizeHandler = function () {
 		var currBrowserWidth = window.outerWidth;
 		var currBrowserHeight = window.outerHeight;			
 		var bWratio = browserInitialWidth/currBrowserWidth;
-		var bHratio = windowOuterHeight/currBrowserHeight;				
+		var bHratio;
+		if(platformIsMobile){
+			bHratio = 1;
+		}
+		else {
+			bHratio = windowOuterHeight/currBrowserHeight;	
+		}				
 		// console.log('viewportHeight' + viewportHeight);
 		// console.log('windowOuterHeight'+windowOuterHeight, 'currBrowserHeight'+currBrowserHeight);
 		// console.log(bWratio, bHratio);
