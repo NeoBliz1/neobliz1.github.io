@@ -269,11 +269,11 @@ var projectDivSizeHandler = function (viewportWidth, viewportHeight, wDPR, windo
 	var fontScaleCoeff, blizThumbnailScaleCoeff;
 	if (platformIsMobile){
 		if (viewportWidth > viewportHeight) {
-			fontScaleCoeff = viewportWidth;
+			fontScaleCoeff = viewportWidth*1.2;
 			blizThumbnailScaleCoeff = viewportWidth*0.7;			
 		}
 		else {
-			fontScaleCoeff = viewportHeight;
+			fontScaleCoeff = viewportHeight*1.2;
 			blizThumbnailScaleCoeff = viewportHeight;
 		}
 	}
@@ -850,9 +850,10 @@ var resizeHandler = function () {
 		if(platformIsMobile && orientationIsChange || bWratio !== 1 || bHratio !== 1){
 			browserInitialWidth = currBrowserWidth;
 			windowOuterHeight = currBrowserHeight;
-			$('#tMessageDialog').dialog('close');//close current message dialog
+			$('#tMessageDialog').dialog('close');//close current message dialog			
 			projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, browserInitialWidth);
 			cloneDivSizeHandler(viewportHeight, viewportWidth);
+			tMessageDialogBox();
 			// console.log('font and divs resize is happend');				
 		}				
 		setParallaxImage(wSW, wDPR);
@@ -1079,19 +1080,21 @@ var scrollTop = function () {
 	}	
 }
 //handler for tMessage box
-var tMessageDialogBox = function (viewportWidth, viewportHeight) {
+var tMessageDialogBox = function () {
 	var titleFontSize, messagesFontSize, robotFontsize;
 	var targetWidth = $('.messageButton').width();
 	var targetHeight = $('.messageButton').height();
+	console.log(targetHeight)
 	if (platformIsMobile){
-		targetWidth*=20;
-		targetHeight*=13;		 		
+		targetWidth*=5;
+		targetHeight*=3;		 		
 	}
 	else {
-		targetWidth*=33;
-		targetHeight*=25;
+		targetWidth*=8;
+		targetHeight*=7;
 	}
-	titleFontSize = targetHeight*0.05;
+	console.log(targetHeight)
+	titleFontSize = targetHeight*0.06;
 	messagesFontSize = titleFontSize*0.8;
 	robotFontsize = targetHeight*0.1;
 
@@ -1100,6 +1103,7 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 	var $tMessageDialog = $('#tMessageDialog');
 	// console.log($tMessageDialog.dialog('instance'));
 	if ($tMessageDialog.dialog('instance') === undefined) {
+		// console.log('t box initialized');
 		$tMessageDialog.dialog({
 			position: { my: 'left bottom', at: 'left bottom-110%', of: '.messageButton' },
 			width: targetWidth,
@@ -1132,7 +1136,9 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 			event.preventDefault();	
 		})		
 	}	
+	
 	$('.sendBtn').css('font-size', titleFontSize);
+
   // prevents triggering to resize the entire page
  	var $dialogBox = $('.ui-dialog');
   $dialogBox.on('resize', function (e) {
@@ -1149,8 +1155,8 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
     'margin-right': '10px'
 	});
 
-	$dialogBox.find('.thought')
-	.css('font-size', messagesFontSize*20);
+	$dialogBox.find('.thought, label, input, textarea')
+	.css('font-size', messagesFontSize);
 
 	$('.fa-robot').css({
 		'font-size': robotFontsize
@@ -1166,8 +1172,7 @@ $(window).on( 'load', function() {
 	var wDPR = window.devicePixelRatio;
 	var windowOuterWidth = window.outerWidth;
 	var windowOuterHeight = window.outerHeight;	
-	scrollTop();//handler for up button
-	tMessageDialogBox(viewportWidth, viewportHeight);//handler for tMessage box		
+	scrollTop();//handler for up button			
 	mySkillsAnimation();	
 	projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, windowOuterWidth); //resize MySkills divs from window size	
 	setParallaxImage(wSW, wDPR);	
@@ -1176,7 +1181,8 @@ $(window).on( 'load', function() {
 		resizeHandler();
 		scrollAnimate(viewportHeight, false);//scroll handler for divs
 	  loaderScreen();
-	 	zoomInHeader();	
+	 	zoomInHeader();
+	 	tMessageDialogBox(viewportWidth, viewportHeight);//handler for tMessage box
 		console.log( 'document loaded' );		
 	});
 });
