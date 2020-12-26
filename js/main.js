@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 //srt named event for refresh parallax imgs
 jQuery.event.special.renewPage = {
 	bindType: 'resize',
@@ -1084,7 +1084,7 @@ var tMessageDialogBox = function () {
 	var titleFontSize, messagesFontSize, robotFontsize;
 	var targetWidth = $('.messageButton').width();
 	var targetHeight = $('.messageButton').height();
-	console.log(targetHeight)
+	// console.log(targetHeight)
 	if (platformIsMobile){
 		targetWidth*=5;
 		targetHeight*=3;		 		
@@ -1093,7 +1093,7 @@ var tMessageDialogBox = function () {
 		targetWidth*=8;
 		targetHeight*=7;
 	}
-	console.log(targetHeight)
+	// console.log(targetHeight)
 	titleFontSize = targetHeight*0.06;
 	messagesFontSize = titleFontSize*0.8;
 	robotFontsize = targetHeight*0.1;
@@ -1133,7 +1133,8 @@ var tMessageDialogBox = function () {
 			}
 		});
 		$('.sendBtn').click(function(event) {
-			event.preventDefault();	
+			event.preventDefault();			
+			$('form').serialize()
 		})		
 	}	
 	
