@@ -1135,14 +1135,14 @@ var tMessageDialogBox = function () {
 		$('.sendBtn').click(function(event) {
 			event.preventDefault();
 			var formDate = JSON.stringify($('form').serializeArray());
-			$.post('https://t-portfolio-message-bot.herokuapp.com/getmsg/', formDate);     
+			// $.post('https://t-portfolio-message-bot.herokuapp.com/getmsg/', formDate);     
 			$.ajax({
 				type: 'POST',
-				url: 'http://127.0.0.1:5000/getmsg/',
+				url: 'http://127.0.0.1:5000/getmsg',
 				data: formDate,
 				crossDomain:true,
-				success: function(msg) {
-					alert(msg);
+				success: function(data) {
+					console.log(data)
 				}
 			});
 		})    
