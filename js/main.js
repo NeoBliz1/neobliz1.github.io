@@ -1138,7 +1138,7 @@ var tMessageDialogBox = function () {
 			// $.post('https://t-portfolio-message-bot.herokuapp.com/getmsg/', formDate);     
 			$.ajax({
 				type: 'POST',
-				url: 'http://127.0.0.1:5000/getmsg',
+				url: 'http://127.0.0.1:5000/post_msg',
 				data: formDate,
 				crossDomain:true,
 				success: function(data) {
