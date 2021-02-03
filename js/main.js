@@ -932,7 +932,7 @@ var tMessageDialogBox = function () {
 		} )
 		.on( 'dialogopen', function( event, ui ) {
 			chatUpdateTimer = setInterval( function() {
-				updateChat()
+				updateChat();
 			  // console.log('startInterval');
 			}, 5000);
 		} )		
@@ -955,7 +955,7 @@ var tMessageDialogBox = function () {
 		$('.sendBtn').click(function(event) {
 			event.preventDefault();
 			var formDate = JSON.stringify($('form').serializeArray());
-			// $.post('https://t-portfolio-message-bot.herokuapp.com/getmsg/', formDate);     
+			    
 			$.ajax({
 				type: 'POST',
 				url: 'https://t-msg-bot.space/post_msg',
@@ -963,6 +963,7 @@ var tMessageDialogBox = function () {
 				crossDomain:true,
 				success: function(data) {
 					console.log(data)
+					// $('.thoughtContainer').append('Some text')
 				}
 			});			 
 		});		
