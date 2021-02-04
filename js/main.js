@@ -954,18 +954,25 @@ var tMessageDialogBox = function () {
 		//send message
 		$('.sendBtn').click(function(event) {
 			event.preventDefault();
-			var formDate = JSON.stringify($('form').serializeArray());
-			    
-			$.ajax({
+			var formDateArr = $('form').serializeArray();
+			// var formDate = JSON.stringify(formDateArr);
+			console.log(formDateArr[1].value);
+			var curThoughtFontSize = $('.thought').css('font-size');
+			$('.thoughtContainer').append('<p class="thought userThought">'+formDateArr[1].value+'</p>')
+			.append("<p class='thought robotThought'>I forwarded your messge. If you don't have time to wait for an answer, just give me the contact information, master contact with you later.</p>");
+
+			$('.thought').css('font-size', curThoughtFontSize);
+
+			
+			/*$.ajax({
 				type: 'POST',
 				url: 'https://t-msg-bot.space/post_msg',
 				data: formDate,
 				crossDomain:true,
 				success: function(data) {
-					console.log(data)
-					// $('.thoughtContainer').append('Some text')
+					console.log(data)					
 				}
-			});			 
+			});	*/		 
 		});		
 	}
 	

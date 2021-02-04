@@ -596,6 +596,10 @@ pre {
   justify-content:center;
   text-align:center;
 }
+.userThought {
+  align-self: flex-start;
+  margin-bottom: 30px;
+}
 .thought:before,
 .thought:after {
   content:"";
@@ -612,7 +616,7 @@ pre {
   left:28px;
   box-shadow:-50px 30px 0 -12px #fff;
 }
-.thought:after {
+.roboutThought:after {
   bottom:-10px;
   right:26px;
   width:30px;
@@ -621,6 +625,16 @@ pre {
              -28px -6px 0 -2px #fff,
              -24px 17px 0 -6px #fff,
              -5px 25px 0 -10px #fff;  
+}
+.userThought:after {
+  bottom:-10px;
+  right:26px;
+  width:30px;
+  height:30px;
+  box-shadow: 40px -34px 0 0 #fff,
+              28px -6px 0 -2px #fff,
+              24px 17px 0 -6px #fff,
+              5px 25px 0 -10px #fff;  
 }
 #nickName{
   margin: 1vh 1vh 1vh 0;
