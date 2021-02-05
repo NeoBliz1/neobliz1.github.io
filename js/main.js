@@ -886,12 +886,12 @@ var tMessageDialogBox = function () {
 	}
 	else {
 		targetWidth*=8;
-		targetHeight*=7;
+		targetHeight*=9;
 	}
 	// console.log(targetHeight)
-	titleFontSize = targetHeight*0.06;
-	messagesFontSize = titleFontSize*0.8;
-	robotFontsize = targetHeight*0.1;
+	titleFontSize = targetHeight*0.05;
+	messagesFontSize = titleFontSize*0.7;
+	robotFontsize = targetHeight*0.08;
 
 	//initizlize dialog widget
 	var $tMessageDialog = $('#tMessageDialog');	
@@ -952,16 +952,27 @@ var tMessageDialogBox = function () {
 			}
 		});
 		//send message
+		var execOnce = false;
 		$('.sendBtn').click(function(event) {
 			event.preventDefault();
 			var formDateArr = $('form').serializeArray();
 			// var formDate = JSON.stringify(formDateArr);
 			console.log(formDateArr[1].value);
 			var curThoughtFontSize = $('.thought').css('font-size');
-			$('.thoughtContainer').append('<p class="thought userThought">'+formDateArr[1].value+'</p>')
-			.append("<p class='thought robotThought'>I forwarded your messge. If you don't have time to wait for an answer, just give me the contact information, master contact with you later.</p>");
-
+			var curRobotFontSize = $('.fa-robot').css('font-size');
+			var $tCont = $('.thoughtContainer');
+			$tCont.append('<p class="thought userThought">'+formDateArr[1].value+'</p>');
+			
+			if (!execOnce) {
+				$tCont.append("<p class='thought robotThought'>I forwarded your messge. If you don't have time, just give me the contact information, master contact with you later.</p>")
+				.append('<i class="fas fa-robot"></i>');
+				execOnce = true;
+			}
+			
 			$('.thought').css('font-size', curThoughtFontSize);
+			$('.fa-robot').css('font-size', curRobotFontSize);
+			$tCont.scrollTop($('.thoughtContainer')[0].scrollHeight);
+
 
 			
 			/*$.ajax({

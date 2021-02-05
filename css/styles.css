@@ -576,59 +576,69 @@ pre {
 }
 .thoughtContainer {
   display:flex;
-  flex-flow:column wrap;
+  flex-flow:row wrap;
   justify-content:flex-end;
   margin:0;  
-  align-items:flex-end;
-  align-content:center;
+  align-content:flex-start;
+  overflow-y: scroll;
+  height: 60%;
 }
 .thought {
-  display:flex;
-  background-color:#fff;
+  display:flex;  
   padding:20px;
   border-radius:30px;
   min-width:40px;
   max-width: max-c
   min-height:40px;
-  margin:20px;
   position:relative;
   align-items:center;
   justify-content:center;
   text-align:center;
 }
+.robotThought {
+  background-color:#fde2a4e0;;
+}
 .userThought {
   align-self: flex-start;
+  background-color:#fff;
   margin-bottom: 30px;
 }
 .thought:before,
 .thought:after {
   content:"";
-  background-color:#fff;
   border-radius:50%;
   display:block;
   position:absolute;
   z-index:-1;
 }
-.thought:before {
+.userThought:before {
   width:44px;
   height:44px;
   top:-12px;
   left:28px;
   box-shadow:-50px 30px 0 -12px #fff;
 }
-.roboutThought:after {
+.robotThought:before {
+  width:44px;
+  height:44px;
+  top:-12px;
+  left:28px;
+  box-shadow:-50px 30px 0 -12px #fde2a4e0;
+}
+.robotThought:after {
+  background-color:#fde2a4e0;
   bottom:-10px;
   right:26px;
   width:30px;
   height:30px;
-  box-shadow:40px -34px 0 0 #fff,
-             -28px -6px 0 -2px #fff,
-             -24px 17px 0 -6px #fff,
-             -5px 25px 0 -10px #fff;  
+  box-shadow:40px -34px 0 0 #fde2a4e0,
+             -28px -6px 0 -2px #fde2a4e0,
+             -24px 17px 0 -6px #fde2a4e0,
+             -5px 25px 0 -10px #fde2a4e0;  
 }
 .userThought:after {
   bottom:-10px;
-  right:26px;
+  left: -14px;
   width:30px;
   height:30px;
   box-shadow: 40px -34px 0 0 #fff,
