@@ -576,8 +576,7 @@ pre {
 }
 .thoughtContainer {
   display:flex;
-  flex-flow:row wrap;
-  justify-content:flex-end;
+  flex-flow:column nowrap;
   margin:0;  
   align-content:flex-start;
   overflow-y: scroll;
@@ -597,6 +596,9 @@ pre {
 }
 .robotThought {
   background-color:#fde2a4e0;;
+}
+.fa-robot {
+  align-self: end;
 }
 .userThought {
   align-self: flex-start;
@@ -648,6 +650,14 @@ pre {
 }
 #nickName{
   margin: 1vh 1vh 1vh 0;
+}
+.userIcon {  
+  background-image: url('../img/responsive_Img/thmb_small.png');
+  border-radius: 50%;
+  background-position: 60% 0%;
+  background-repeat: no-repeat;
+  background-size: 130%;
+  align-self: end;
 }
 /*****************************************************/
 /*****************************************************/

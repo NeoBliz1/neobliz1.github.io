@@ -876,7 +876,8 @@ var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
 //handler for tMessage box
 //this function is sensitive to resize event
 var tMessageDialogBox = function () {
-	var titleFontSize, messagesFontSize, robotFontsize;
+	//dialog init variables
+	var titleFontSize, messagesFontSize, robotFontsize, userIconSize;
 	var targetWidth = $('.messageButton').width();
 	var targetHeight = $('.messageButton').height();
 	// console.log(targetHeight)
@@ -892,6 +893,22 @@ var tMessageDialogBox = function () {
 	titleFontSize = targetHeight*0.05;
 	messagesFontSize = titleFontSize*0.7;
 	robotFontsize = targetHeight*0.08;
+	userIconSize = targetHeight*0.1;
+
+	jQuery.fn.scrollToLastMsg = function (text) {
+		var $this = $(this);
+		$this.scrollTop($this[0].scrollHeight);
+		return this
+	};
+	jQuery.fn.fixUserIconSize = function (text) {
+		var $this = $(this);
+		$this.css({
+			width : userIconSize,
+			height : userIconSize,
+			'min-height': userIconSize
+		});
+		return this
+	};
 
 	//initizlize dialog widget
 	var $tMessageDialog = $('#tMessageDialog');	
@@ -916,13 +933,22 @@ var tMessageDialogBox = function () {
 			}
 		});		
 		var chatUpdateTimer;
-		var updateChat = function () {
+		var $tCont = $('.thoughtContainer');
+		var updateChat = function () {			
 			$.ajax({
 				type: 'GET',
 				url: 'https://t-msg-bot.space/get_msg',
 				crossDomain:true,
 				success: function(data) {
 					console.log(data)
+					if (!jQuery.isEmptyObject(data)) {
+						// console.log(Object.values(data));
+						var textMsg = Object.values(data)[0];
+						$tCont.append('<p class="thought robotThought">'+textMsg+'</p>')
+						.append('<i class="userIcon"></i>');						
+						$('.userIcon').fixUserIconSize();
+						$tCont.scrollToLastMsg();
+					}
 				}
 			});			 
 		}
@@ -939,7 +965,7 @@ var tMessageDialogBox = function () {
 		.on('resize', function (e) {
 			// console.log('stop prop');
 			$('#tMessageDialog').css('width', $(this).width());
-			e.stopPropagation(); 
+			e.stopPropagation(); // prevents triggering to resize the entire page
 		});
 		//toggle message box view
 		$('.messageButton').click(function(event) {
@@ -956,11 +982,10 @@ var tMessageDialogBox = function () {
 		$('.sendBtn').click(function(event) {
 			event.preventDefault();
 			var formDateArr = $('form').serializeArray();
-			// var formDate = JSON.stringify(formDateArr);
+			var formDate = JSON.stringify(formDateArr);
 			console.log(formDateArr[1].value);
 			var curThoughtFontSize = $('.thought').css('font-size');
 			var curRobotFontSize = $('.fa-robot').css('font-size');
-			var $tCont = $('.thoughtContainer');
 			$tCont.append('<p class="thought userThought">'+formDateArr[1].value+'</p>');
 			
 			if (!execOnce) {
@@ -971,10 +996,8 @@ var tMessageDialogBox = function () {
 			
 			$('.thought').css('font-size', curThoughtFontSize);
 			$('.fa-robot').css('font-size', curRobotFontSize);
-			$tCont.scrollTop($('.thoughtContainer')[0].scrollHeight);
-
-
-			
+			/*$tCont.scrollTop($('.thoughtContainer')[0].scrollHeight); //scroll to the last text msg*/
+			$tCont.scrollToLastMsg();
 			/*$.ajax({
 				type: 'POST',
 				url: 'https://t-msg-bot.space/post_msg',
@@ -987,9 +1010,9 @@ var tMessageDialogBox = function () {
 		});		
 	}
 	
+	//refresh fornt sizes of dialog content
 	$('.sendBtn').css('font-size', titleFontSize);
-
-	// prevents triggering to resize the entire page	
+	
 	$('.ui-dialog')
 	.css('position', 'fixed')
 	.find('.ui-dialog-titlebar')
@@ -1006,6 +1029,8 @@ var tMessageDialogBox = function () {
 	$('.fa-robot').css({
 		'font-size': robotFontsize
 	});
+
+	$('.userIcon').fixUserIconSize();
 	
 }
 //initialize my skills fluid meter
