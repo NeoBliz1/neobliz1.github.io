@@ -998,7 +998,7 @@ var tMessageDialogBox = function () {
 			$('.fa-robot').css('font-size', curRobotFontSize);
 			/*$tCont.scrollTop($('.thoughtContainer')[0].scrollHeight); //scroll to the last text msg*/
 			$tCont.scrollToLastMsg();
-			/*$.ajax({
+			$.ajax({
 				type: 'POST',
 				url: 'https://t-msg-bot.space/post_msg',
 				data: formDate,
@@ -1006,7 +1006,7 @@ var tMessageDialogBox = function () {
 				success: function(data) {
 					console.log(data)					
 				}
-			});	*/		 
+			});			 
 		});		
 	}
 	
