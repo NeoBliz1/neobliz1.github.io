@@ -580,7 +580,7 @@ pre {
   margin:0;  
   align-content:flex-start;
   overflow-y: scroll;
-  height: 60%;
+  padding-right: 20px;
 }
 .thought {
   display:flex;  
@@ -598,7 +598,7 @@ pre {
   background-color:#fde2a4e0;;
 }
 .fa-robot {
-  align-self: end;
+  align-self: flex-end;
 }
 .userThought {
   align-self: flex-start;

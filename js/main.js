@@ -606,7 +606,7 @@ var resizeHandler = function () {
 			$('#tMessageDialog').dialog('close');//close current message dialog     
 			projectDivSizeHandler(viewportWidth, viewportHeight, wDPR, windowOuterHeight, browserInitialWidth);
 			cloneDivSizeHandler(viewportHeight, viewportWidth);
-			tMessageDialogBox();
+			tMessageDialogBox(viewportWidth, viewportHeight);
 			// console.log('font and divs resize is happend');        
 		}       
 		setParallaxImage(wSW, wDPR);
@@ -875,26 +875,46 @@ var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
 }
 //handler for tMessage box
 //this function is sensitive to resize event
-var tMessageDialogBox = function () {
+var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 	//dialog init variables
-	var titleFontSize, messagesFontSize, robotFontsize, userIconSize;
-	var targetWidth = $('.messageButton').width();
-	var targetHeight = $('.messageButton').height();
-	// console.log(targetHeight)
+	var titleFontSize, messagesFontSize, robotFontsize, userIconSize, targetWidth, targetHeight, thHeight;
+	var dialogPos, pOf, pAt, pMy;
 	if (platformIsMobile){
-		targetWidth*=5;
-		targetHeight*=3;        
+		targetWidth=viewportWidth*0.8;
+		targetHeight=viewportHeight*0.7;
+		// console.log(targetWidth)
+		if (viewportWidth>viewportHeight) {
+			titleFontSize = targetHeight/18;
+			messagesFontSize = titleFontSize/1.5;
+			robotFontsize = targetHeight/15;
+			userIconSize = targetHeight/10;
+		}
+		else {
+			titleFontSize = targetHeight/25;
+			messagesFontSize = titleFontSize/1.5;
+			robotFontsize = targetHeight/20;
+			userIconSize = targetHeight/10;
+		}		
+		thHeight = '70%';
+		pMy = 'center';
+		pAt = 'center';
+		pOf = window;
 	}
 	else {
+		targetWidth = $('.messageButton').width();
+		targetHeight = $('.messageButton').height();
 		targetWidth*=8;
 		targetHeight*=9;
+		titleFontSize = targetHeight*0.05;
+		messagesFontSize = titleFontSize*0.7;
+		robotFontsize = targetHeight*0.08;
+		userIconSize = targetHeight*0.1;
+		thHeight = '60%'; //height of thought area
+		pMy = 'left bottom';
+		pAt = 'left bottom-60';
+		pOf = '.messageButton';
 	}
-	// console.log(targetHeight)
-	titleFontSize = targetHeight*0.05;
-	messagesFontSize = titleFontSize*0.7;
-	robotFontsize = targetHeight*0.08;
-	userIconSize = targetHeight*0.1;
-
+	
 	jQuery.fn.scrollToLastMsg = function (text) {
 		var $this = $(this);
 		$this.scrollTop($this[0].scrollHeight);
@@ -912,11 +932,12 @@ var tMessageDialogBox = function () {
 
 	//initizlize dialog widget
 	var $tMessageDialog = $('#tMessageDialog');	
+	var $tCont = $('.thoughtContainer');
 	// console.log($tMessageDialog.dialog('instance'));
 	if ($tMessageDialog.dialog('instance') === undefined) {
 		// console.log('t box initialized');
 		$tMessageDialog.dialog({
-			position: { my: 'left bottom', at: 'left bottom-110%', of: '.messageButton' },
+			position: { my: pMy, at: pAt, of: pOf },
 			width: targetWidth,
 			height: targetHeight,
 			resizable: true,
@@ -932,8 +953,7 @@ var tMessageDialogBox = function () {
 				duration: DSdurationTime
 			}
 		});		
-		var chatUpdateTimer;
-		var $tCont = $('.thoughtContainer');
+		var chatUpdateTimer;		
 		var updateChat = function () {			
 			$.ajax({
 				type: 'GET',
@@ -1009,7 +1029,12 @@ var tMessageDialogBox = function () {
 			});			 
 		});		
 	}
-	
+
+	//update size of dialog box
+	$tMessageDialog.dialog('option', 'height', targetHeight)
+	.dialog('option', 'width', targetWidth);
+	//update size thought area
+	$tCont.height(thHeight);
 	//refresh fornt sizes of dialog content
 	$('.sendBtn').css('font-size', titleFontSize);
 	
