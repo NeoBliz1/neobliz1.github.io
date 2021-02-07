@@ -1024,10 +1024,17 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 				data: formDate,
 				crossDomain:true,
 				success: function(data) {
-					console.log(data)					
+					console.log(data)
+					$('#tMessageArea').val('')				
 				}
 			});			 
-		});		
+		});
+		$('#tMessageArea').keypress(function(event) {
+			var key = event.keyCode;
+			if (key == 13) {
+				$('.sendBtn').click();
+			}
+		});
 	}
 
 	//update size of dialog box
