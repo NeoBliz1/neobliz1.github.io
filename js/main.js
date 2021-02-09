@@ -1002,8 +1002,8 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 		$('.sendBtn').click(function(event) {
 			event.preventDefault();
 			var formDateArr = $('form').serializeArray();
-			var formDate = JSON.stringify(formDateArr);
-			console.log(formDateArr[1].value);
+			var formDate = JSON.stringify(formDateArr);			
+			console.log(formDate);
 			var curThoughtFontSize = $('.thought').css('font-size');
 			var curRobotFontSize = $('.fa-robot').css('font-size');
 			$tCont.append('<p class="thought userThought">'+formDateArr[1].value+'</p>');
@@ -1018,7 +1018,7 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 			$('.fa-robot').css('font-size', curRobotFontSize);
 			/*$tCont.scrollTop($('.thoughtContainer')[0].scrollHeight); //scroll to the last text msg*/
 			$tCont.scrollToLastMsg();
-			$.ajax({
+			/*$.ajax({
 				type: 'POST',
 				url: 'https://t-msg-bot.space/post_msg',
 				data: formDate,
@@ -1027,7 +1027,7 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 					console.log(data)
 					$('#tMessageArea').val('')				
 				}
-			});			 
+			});		*/	 
 		});
 		$('#tMessageArea').keypress(function(event) {
 			var key = event.keyCode;
