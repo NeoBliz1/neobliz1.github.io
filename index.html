@@ -207,10 +207,14 @@
         <form action="">
           <label for="nickName">Enter your nickname:</label>
           <input type="text" id="nickName" name="nickName" placeholder="nickName" required minlength="1">
+          <span class="errNN"></span>
           <textarea name="tMessageArea" id="tMessageArea" placeholder="Type there!!)" cols="40" rows="2" spellcheck="true" required minlength="1"></textarea>
-          <button class="sendBtn">send</button>
-          <div class="g-recaptcha" data-sitekey="6LfhIFAaAAAAADP9r_20uuqTdqvKQUH4hsWzTLGT"></div>
-          <input type="hidden" autofocus="true" />
+          <span class="errMsg"></span>
+          <div class="sendBlock">
+            <button class="sendBtn">send</button>
+            <div class="g-recaptcha" data-sitekey="6LfhIFAaAAAAADP9r_20uuqTdqvKQUH4hsWzTLGT"></div>
+            <input type="hidden" autofocus="true" />
+          </div>          
         </form>
       </div>
       <!-- tMessage button -->

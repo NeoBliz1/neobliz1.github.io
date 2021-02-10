@@ -904,8 +904,8 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 		targetWidth = $('.messageButton').width();
 		targetHeight = $('.messageButton').height();
 		targetWidth*=8;
-		targetHeight*=9;
-		titleFontSize = targetHeight*0.05;
+		targetHeight*=11;
+		titleFontSize = targetHeight*0.04;
 		messagesFontSize = titleFontSize*0.7;
 		robotFontsize = targetHeight*0.08;
 		userIconSize = targetHeight*0.1;
@@ -1000,34 +1000,48 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 		//send message
 		var execOnce = false;
 		$('.sendBtn').click(function(event) {
-			event.preventDefault();
-			var formDateArr = $('form').serializeArray();
-			var formDate = JSON.stringify(formDateArr);			
-			console.log(formDate);
-			var curThoughtFontSize = $('.thought').css('font-size');
-			var curRobotFontSize = $('.fa-robot').css('font-size');
-			$tCont.append('<p class="thought userThought">'+formDateArr[1].value+'</p>');
-			
-			if (!execOnce) {
-				$tCont.append("<p class='thought robotThought'>I forwarded your messge. If you don't have time, just give me the contact information, master contact with you later.</p>")
-				.append('<i class="fas fa-robot"></i>');
-				execOnce = true;
+			var nnV = $('#nickName').val();
+			var tMV = $('#tMessageArea').val();
+			var gCR = $('')
+			if (nnV === null || nnV === "") {
+				console.log("Nick name can't be empty")
 			}
-			
-			$('.thought').css('font-size', curThoughtFontSize);
-			$('.fa-robot').css('font-size', curRobotFontSize);
-			/*$tCont.scrollTop($('.thoughtContainer')[0].scrollHeight); //scroll to the last text msg*/
-			$tCont.scrollToLastMsg();
-			/*$.ajax({
-				type: 'POST',
-				url: 'https://t-msg-bot.space/post_msg',
-				data: formDate,
-				crossDomain:true,
-				success: function(data) {
-					console.log(data)
-					$('#tMessageArea').val('')				
+			else if (tMV === null || tMV === "") {
+				console.log("Message field can't be empty")
+			}
+			else if (condition) {
+				
+			}
+			else {
+				event.preventDefault();
+				var formDateArr = $('form').serializeArray();
+				var formDate = JSON.stringify(formDateArr);			
+				console.log(formDate);
+				var curThoughtFontSize = $('.thought').css('font-size');
+				var curRobotFontSize = $('.fa-robot').css('font-size');
+				$tCont.append('<p class="thought userThought">'+formDateArr[1].value+'</p>');
+				
+				if (!execOnce) {
+					$tCont.append("<p class='thought robotThought'>I forwarded your messge. If you don't have time, just give me the contact information, master contact with you later.</p>")
+					.append('<i class="fas fa-robot"></i>');
+					execOnce = true;
 				}
-			});		*/	 
+				
+				$('.thought').css('font-size', curThoughtFontSize);
+				$('.fa-robot').css('font-size', curRobotFontSize);
+				/*$tCont.scrollTop($('.thoughtContainer')[0].scrollHeight); //scroll to the last text msg*/
+				$tCont.scrollToLastMsg();
+				/*$.ajax({
+					type: 'POST',
+					url: 'https://t-msg-bot.space/post_msg',
+					data: formDate,
+					crossDomain:true,
+					success: function(data) {
+						console.log(data)
+						$('#tMessageArea').val('')				
+					}
+				});		*/	 
+			}			
 		});
 		$('#tMessageArea').keypress(function(event) {
 			var key = event.keyCode;
