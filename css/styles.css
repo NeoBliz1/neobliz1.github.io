@@ -659,16 +659,29 @@ pre {
   background-size: 130%;
   align-self: end;
 }
-.sendBlock{
-  display: flex;  
+.sendBlock {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-.g-recaptcha {
+.g-recaptcha-container {
   height: 70px;
-  width: 210px;
+  width: auto;
   overflow: hidden;
   margin: 5px;
 }
+#recaptchaCheck {
+  width: 283px;
+  height: 73px;
+  /* opacity: 0; */
+  pointer-events: none;
+  position: relative;
+  /* bottom: 35px; */
+  z-index: -10;
+  left: -3px;
+  top: -119px;
+}
+
 /*****************************************************/
 /*****************************************************/
 /*****************************************************/
