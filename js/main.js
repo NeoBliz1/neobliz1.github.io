@@ -910,7 +910,7 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 			robotFontsize = targetHeight/20;
 			userIconSize = targetHeight/10;
 		}		
-		thHeight = '70%';
+		thHeight = '65%';
 		pMy = 'center';
 		pAt = 'center';
 		pOf = window;
@@ -997,6 +997,7 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 		});
 		//send message
 		var execOnce = false;
+		var rcHlC = $('#recaptchaCheck'); //recaptcha highlighter container
 		$('.sendBtn').click(function(event) {			
 			var nnV = $('#nickName').val();
 			var tMV = $('#tMessageArea').val();
@@ -1009,12 +1010,14 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 			}
 			else if (gCR.val() === null || gCR.val() === "") {
 				console.log('gCR is empty')
+				rcHlC.val('');
 			}
-			/*else {
+			else {
 				event.preventDefault();
+				rcHlC.val('1');				
 				var formDateArr = $('form').serializeArray();
 				var formDate = JSON.stringify(formDateArr);			
-				console.log(formDate);
+				// console.log(formDate);
 				var curThoughtFontSize = $('.thought').css('font-size');
 				var curRobotFontSize = $('.fa-robot').css('font-size');
 				$tCont.append('<p class="thought userThought">'+formDateArr[1].value+'</p>');
@@ -1039,7 +1042,7 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 						$('#tMessageArea').val('')				
 					}
 				});			 
-			}*/			
+			}			
 		});
 		$('#tMessageArea').keypress(function(event) {
 			var key = event.keyCode;
