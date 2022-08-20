@@ -188,7 +188,7 @@ var projectDivFullSizeState = false;
 /*functions which handling MySkills areas divs
 and applying zommIn animation on it*/
 var DSdurationTime = 500; //div skill full size animation duration time
-
+//handler for all div thumbnails
 var mySkillsAnimation = function () {
   $($projectDiv).addClass("scrollAnimate hidden");
   var zoomInAnimation = function (thisIs) {
@@ -875,7 +875,7 @@ var projectDivSizeHandler = function (
   $("#rmb, #vpb").css("font-size", projectDivWidth * 0.06);
   //set button vpb position parameters, except project_1 and 2 divs
   $projectDiv
-    .not(".project_1")
+    .not(".project_1, .react_project_1")
     .find("#vpb")
     .css({
       left: projectDivWidth * 0.55,
