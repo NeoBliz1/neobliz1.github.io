@@ -122,10 +122,10 @@ h2 {
 .github_logo {
   background-image: url(../img/GitHub-Mark-120px-plus.svg);
 }
-.twitter_logo:hover,
-.codecademy_logo:hover,
-.kacademy_logo:hover,
-.github_logo:hover,
+.freecodecamp_logo {
+  background-image: url(../img/freecodecamp_logo.png);
+}
+.logo_prop:hover,
 .go_home:hover {
   background-color: #fff;
   transition-duration: 1s;

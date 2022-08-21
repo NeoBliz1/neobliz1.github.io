@@ -167,11 +167,11 @@ var setParallaxImage = function (wSW, wDPR) {
     setImgPassway();
   } else if (wSW < 1800 && wSW >= 640 && wDPR >= 3) {
     pathToParllaxImg = "../img/responsive_Img/cover_bg_3.png";
-    pathToThmbImg = "../img/responsive_Img/thmb_small.png";
+    pathToThmbImg = "../img/responsive_Img/tiny_ava.png";
     setImgPassway();
   } else {
     pathToParllaxImg = "../img/responsive_Img/cover_bg_3_small.png";
-    pathToThmbImg = "../img/responsive_Img/thmb_small.png";
+    pathToThmbImg = "../img/responsive_Img/tiny_ava.png";
     setImgPassway();
   }
 };
@@ -914,7 +914,7 @@ var projectDivSizeHandler = function (
   });
   htmlFM.setProperties(75, FMcanvasSize, FMborderSize, FMfontSize, "HTML");
   cssFM.setProperties(70, FMcanvasSize, FMborderSize, FMfontSize, "CSS");
-  jsFM.setProperties(25, FMcanvasSize, FMborderSize, FMfontSize, "JavaScript");
+  jsFM.setProperties(45, FMcanvasSize, FMborderSize, FMfontSize, "JavaScript");
   jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, "jQuery");
   pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, "Python");
   // console.log('project div is done');
