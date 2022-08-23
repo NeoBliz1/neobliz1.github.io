@@ -7,7 +7,7 @@ jQuery.event.special.renewPage = {
 };
 
 //checking browser and platform
-var platformIsMobile = (function (a) {
+const platformIsMobile = (function (a) {
   return (
     /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(
       a
@@ -17,7 +17,7 @@ var platformIsMobile = (function (a) {
     )
   );
 })(navigator.userAgent || navigator.vendor || window.opera);
-var orientationIsChange = false;
+let orientationIsChange = false;
 if (platformIsMobile) {
   $(window).on("orientationchange", function (event) {
     $(".loader-gif").css("display", "initial");
@@ -26,39 +26,39 @@ if (platformIsMobile) {
   });
 }
 
-var zoomInHeader = function () {
+const zoomInHeader = function () {
   //zoom in main header
   $(".headerContent").addClass("zoomIn animated");
   //hide are elements which will be animated
   $(".scrollAnimate").addClass("hidden");
 };
-var fluidMeterRestart = function () {
+const fluidMeterRestart = function () {
   doAnim = true; //global anim variable
   htmlFM.restart();
   cssFM.restart();
   jsFM.restart();
   jQueryFM.restart();
   pythonFM.restart();
+  reactFM.restart();
   // console.log('anim start')
 };
 
 this.doAnim = false;
 /*use waypoint JQuery plugin for tracking scroll elements*/
-var controller = [];
-var scenesArr = [];
-var iScrollArr = [];
-var upButtonScene;
-var scrollAnimate = function (viewportHeight, refreshOffset) {
+const controller = [];
+const scenesArr = [];
+const iScrollArr = [];
+const scrollAnimate = function (viewportHeight, refreshOffset) {
   // console.log(viewportHeight*0.48*(-1))
-  var scrollEventOffset = viewportHeight * 0.48 * -1;
+  const scrollEventOffset = viewportHeight * 0.48 * -1;
   if (!refreshOffset) {
     // console.log('magick scroll initialize');
     $(".scrollAnimate, .fluidMeter")
       .addClass("animated")
       .each(function (index, el) {
-        var stickyId = "myStickyEl" + index;
+        const stickyId = "myStickyEl" + index;
         // scenesArr.push('scene'+index);
-        var $this = $(this);
+        const $this = $(this);
         $this.attr("id", stickyId);
 
         controller[index] = new ScrollMagic.Controller();
@@ -87,7 +87,7 @@ var scrollAnimate = function (viewportHeight, refreshOffset) {
             }
           });
         if ($this.hasClass("fluidMeter")) {
-          var FMsceneDuration = $(window).height() + $this.height();
+          const FMsceneDuration = $(window).height() + $this.height();
           scenesArr[index]
             .duration(FMsceneDuration)
             .on("end", function (event) {
@@ -102,11 +102,11 @@ var scrollAnimate = function (viewportHeight, refreshOffset) {
       });
 
     // init controller
-    var upButtonController = new ScrollMagic.Controller();
+    const upButtonController = new ScrollMagic.Controller();
     // create a scene
-    upButtonScene = new ScrollMagic.Scene().addTo(upButtonController);
+    const upButtonScene = new ScrollMagic.Scene().addTo(upButtonController);
 
-    var $upButton = $(".upButton");
+    const $upButton = $(".upButton");
     upButtonScene
       .triggerElement(window)
       .offset($(window).height() + $upButton.height())
@@ -121,7 +121,7 @@ var scrollAnimate = function (viewportHeight, refreshOffset) {
         }
       });
   } else if (refreshOffset) {
-    for (var i = 0, length1 = scenesArr.length; i < length1; i++) {
+    for (let i = 0, length1 = scenesArr.length; i < length1; i++) {
       scenesArr[i].offset(scrollEventOffset);
     }
     upButtonScene.offset(scrollEventOffset);
@@ -130,20 +130,20 @@ var scrollAnimate = function (viewportHeight, refreshOffset) {
 };
 
 /*fadingOut loader screen*/
-var loaderScreen = function () {
+const loaderScreen = function () {
   $(".loader-gif").css("display", "initial").fadeOut("slow");
 };
 
 //set parallax img attributes
-var setParallaxImage = function (wSW, wDPR) {
-  var pathToParllaxImg;
-  var pathToThmbImg;
-  var setImgPassway = function () {
+const setParallaxImage = function (wSW, wDPR) {
+  let pathToParllaxImg = "../img/cover_bg_3.png";
+  let pathToThmbImg = "../img/ava.png";
+  const setImgPassway = function () {
     $(".blizThumbnail").css("background-image", "url(" + pathToThmbImg + ")");
     $(".slider1, .slider2").attr("src", pathToParllaxImg);
   };
   if (wSW >= 2400) {
-    var cover_bgUrl =
+    const cover_bgUrl =
       "https://res.cloudinary.com/deah4rwon/image/upload/v1607826257/imgs/responsive_Img/cover_bg_3-4k_oji9x8.png";
     $.ajax({
       url: cover_bgUrl,
@@ -159,7 +159,7 @@ var setParallaxImage = function (wSW, wDPR) {
         console.log(" img available");
       }
     });
-    pathToThmbImg = "../img/thmb.png";
+    pathToThmbImg = "../img/ava.png";
     console.log(pathToParllaxImg);
   } else if (wSW >= 1800 && wDPR >= 0.25 && wDPR < 3) {
     pathToParllaxImg = "../img/cover_bg_3.png";
@@ -176,24 +176,24 @@ var setParallaxImage = function (wSW, wDPR) {
   }
 };
 
-var $projectDiv = $(".projectDiv");
-var durationTime = 500;
-var viewportWidth,
+const $projectDiv = $(".projectDiv");
+let durationTime = 500;
+let viewportWidth,
   viewportHeight,
   projectDivZoomInCoeff,
   projectDivWidth,
   projectDivHeight;
-var projectDivFullSizeState = false;
+let projectDivFullSizeState = false;
 
 /*functions which handling MySkills areas divs
 and applying zommIn animation on it*/
-var DSdurationTime = 500; //div skill full size animation duration time
+const DSdurationTime = 500; //div skill full size animation duration time
 //handler for all div thumbnails
-var mySkillsAnimation = function () {
+const mySkillsAnimation = function () {
   $($projectDiv).addClass("scrollAnimate hidden");
-  var zoomInAnimation = function (thisIs) {
+  const zoomInAnimation = function (thisIs) {
     durationTime = 500;
-    var viewportWidth = $(window).width();
+    const viewportWidth = $(window).width();
     $(thisIs)
       .removeClass("fadeInUp")
       .filter(":not(:animated)")
@@ -220,7 +220,7 @@ var mySkillsAnimation = function () {
           },
           duration: durationTime,
           complete: function () {
-            var $btns;
+            let $btns;
             if (platformIsMobile && viewportWidth < 1000) {
               $btns = $(thisIs).find("a");
             } else {
@@ -230,9 +230,9 @@ var mySkillsAnimation = function () {
               .rollInBtnAnimation()
               .mousedown(function (event) {
                 //animate press button, I use this method because animate.css is a conflict with translateY
-                var speed = 50;
-                var currentBottomProp = parseFloat($(this).css("bottom"));
-                var currentBottomPropD = currentBottomProp;
+                const speed = 50;
+                const currentBottomProp = parseFloat($(this).css("bottom"));
+                const currentBottomPropD = currentBottomProp;
                 $(this).animate(
                   {
                     bottom: currentBottomPropD - 3 + "px"
@@ -265,7 +265,7 @@ var mySkillsAnimation = function () {
         "linear"
       );
   };
-  var zoomOutAnimation = function (thisIs) {
+  const zoomOutAnimation = function (thisIs) {
     durationTime = 500;
     $(thisIs).animate(
       {
@@ -281,7 +281,7 @@ var mySkillsAnimation = function () {
             "transform",
             "scale3d(" + now + ", " + now + ", " + now + ")"
           );
-          var $btns;
+          let $btns;
           if (platformIsMobile && viewportWidth < 1000) {
             $btns = $(thisIs).find("a");
           } else {
@@ -319,18 +319,18 @@ var mySkillsAnimation = function () {
     divCurrentHeight,
     divCurrentWidth
   ) {
-    var $windowScrollTo = $(window).scrollTop();
+    const $windowScrollTo = $(window).scrollTop();
     //scrolling to current position after hiding scroll bar
     $(window).on("scroll.fixedCurrentView", function () {
       $(window).scrollTop($windowScrollTo);
     });
     // console.log($windowScrollTo)
-    var targetTopOffset = Math.max(
+    const targetTopOffset = Math.max(
       0,
       (viewportHeight - divCurrentHeight) / 2 + $windowScrollTo
     ); //defining the target position from the div top to the viewport
     // console.log('targetTopOffset - '+targetTopOffset)
-    var targetLeftOffset = Math.max(
+    const targetLeftOffset = Math.max(
       0,
       (viewportWidth - divCurrentWidth) / 2 + $(window).scrollLeft()
     ); //defining the target position from the div left to the viewport
@@ -356,9 +356,9 @@ var mySkillsAnimation = function () {
     divCurrentHeight,
     divCurrentWidth
   ) {
-    var divTargetWidthCoeff = (viewportWidth * 0.9) / divCurrentWidth;
-    var divTargetHeightCoeff = (viewportHeight * 0.9) / divCurrentHeight;
-    var divTargetCoeff;
+    const divTargetWidthCoeff = (viewportWidth * 0.9) / divCurrentWidth;
+    const divTargetHeightCoeff = (viewportHeight * 0.9) / divCurrentHeight;
+    let divTargetCoeff;
     if (
       viewportWidth > viewportHeight &&
       viewportWidth - viewportHeight > 200
@@ -442,19 +442,19 @@ var mySkillsAnimation = function () {
   };
 
   //scaling project div for more description, sensitive to resize event
-  var projectDivFullSize = function (thisIs) {
-    var currentDivOffset = $(thisIs).offset();
-    var viewportHeight = $(window).height();
-    var viewportWidth = $(window).width();
-    var divCurrentHeight = $(thisIs).outerHeight();
-    var divCurrentWidth = $(thisIs).outerWidth();
-    var vpbMarginValue = projectDivWidth * 0.03;
-    var vpbFontSize = projectDivWidth * 0.04;
+  const projectDivFullSize = function (thisIs) {
+    const currentDivOffset = $(thisIs).offset();
+    const viewportHeight = $(window).height();
+    const viewportWidth = $(window).width();
+    const divCurrentHeight = $(thisIs).outerHeight();
+    const divCurrentWidth = $(thisIs).outerWidth();
+    const vpbMarginValue = projectDivWidth * 0.03;
+    const vpbFontSize = projectDivWidth * 0.04;
     //forced triggering mouse leave handler for minimizing current div
     $(thisIs).trigger("mouseleave");
 
     //cloning current div for saving current structure flex table
-    var $cloneDiv = $(thisIs).clone();
+    const $cloneDiv = $(thisIs).clone();
 
     //remove "read more" button
     $cloneDiv.removeClass("projectDiv scrollAnimate").find("#rmb").remove();
@@ -505,8 +505,8 @@ var mySkillsAnimation = function () {
       .find("button, a")
       .mousedown(function (event) {
         //animate press button, I use this method because animate.css is a conflict with translateY
-        var speed = 50;
-        var currentBottomProp = parseFloat($(this).css("bottom"));
+        const speed = 50;
+        const currentBottomProp = parseFloat($(this).css("bottom"));
         $(this).animate(
           {
             bottom: currentBottomProp - 3 + "px"
@@ -560,7 +560,7 @@ var mySkillsAnimation = function () {
     $projectDiv.off("mouseenter mouseleave vmouseover vmouseout"); //shutdown mouse event handler from skills divs
   };
   //minimize fullSize div
-  var projectDivMinimize = function (thisIs, currentDivOffset) {
+  const projectDivMinimize = function (thisIs, currentDivOffset) {
     $(thisIs).off("click");
     $("#fullSizeSkillBoxOverlay").fadeOut(DSdurationTime, function () {
       $(this).remove();
@@ -575,19 +575,19 @@ var mySkillsAnimation = function () {
     divHoverHandler();
     $(window).off("scroll.fixedCurrentView");
   };
-  var divHoverHandler = function () {
+  const divHoverHandler = function () {
     //mouse in and out handler
     $projectDiv.hover(
       function () {
         /* Stuff to do when the mouse enters the element */
-        var thisIs = this;
+        const thisIs = this;
         zoomInAnimation(thisIs);
         if (platformIsMobile) {
-          var divCurrentHeight = $(thisIs).outerHeight();
-          var viewportHeight = $(window).height();
-          var currentDivOffset = $(thisIs).offset();
-          var windowScrollTo = currentDivOffset.top;
-          var targetTopOffset = Math.max(
+          const divCurrentHeight = $(thisIs).outerHeight();
+          const viewportHeight = $(window).height();
+          const currentDivOffset = $(thisIs).offset();
+          const windowScrollTo = currentDivOffset.top;
+          const targetTopOffset = Math.max(
             0,
             windowScrollTo - (viewportHeight - divCurrentHeight) / 2
           ); //defining the target position from the div top to the viewport
@@ -612,7 +612,7 @@ var mySkillsAnimation = function () {
       },
       function () {
         /* Stuff to do when the mouse leaves the element */
-        var thisIs = this;
+        const thisIs = this;
         zoomOutAnimation(thisIs);
         if (platformIsMobile) {
           if ($(thisIs).hasClass("project_1")) {
@@ -640,26 +640,26 @@ var mySkillsAnimation = function () {
   divHoverHandler();
 };
 
-var resizeHandler = function () {
+const resizeHandler = function () {
   //resize handler
-  var resizeTimer;
-  var browserInitialWidth = window.outerWidth;
-  var windowOuterHeight = window.outerHeight;
+  //const resizeTimer;
+  let browserInitialWidth = window.outerWidth;
+  let windowOuterHeight = window.outerHeight;
   $(window).on("renewPage", function (event) {
     if (!platformIsMobile) {
       $(".loader-gif").css("display", "initial");
     }
     //main resize part
-    var viewportWidth = $(window).width();
-    var viewportHeight = $(window).height();
-    var wSW = window.screen.width;
-    var wDPR = window.devicePixelRatio;
+    const viewportWidth = $(window).width();
+    const viewportHeight = $(window).height();
+    const wSW = window.screen.width;
+    const wDPR = window.devicePixelRatio;
     // console.log(wDPR);
     // console.log(viewportHeight);
-    var currBrowserWidth = window.outerWidth;
-    var currBrowserHeight = window.outerHeight;
-    var bWratio = browserInitialWidth / currBrowserWidth;
-    var bHratio;
+    const currBrowserWidth = window.outerWidth;
+    const currBrowserHeight = window.outerHeight;
+    const bWratio = browserInitialWidth / currBrowserWidth;
+    let bHratio;
     if (platformIsMobile) {
       bHratio = 1;
     } else {
@@ -703,22 +703,20 @@ var resizeHandler = function () {
   });
 };
 //this function is sensitive to resize event
-var windowSizeHandler = function (viewportWidth, viewportHeight) {
+const windowSizeHandler = function (viewportWidth, viewportHeight) {
   //set main elements width and height
   $("body, .headerContent, .main").width(viewportWidth);
 
-  var FMheight = $(".fluidMeterContainer1").height();
+  const FMheight = $(".fluidMeterContainer1").height();
   $(".mySkills").height(FMheight * 1.2);
   // console.log(FMheight*1.2);
-  var mySkillsDivHeight = $(".mySkills").height();
-  var mySkillsDivWidth = $(".mySkills").width();
-  var image1 = 0;
-  var image2 = 0;
+  const mySkillsDivHeight = $(".mySkills").height();
+  const mySkillsDivWidth = $(".mySkills").width();
 
   //add parallax element
   //initialize parallax script
-  var $sldr1 = $(".slider1");
-  var $sldr2 = $(".slider2");
+  const $sldr1 = $(".slider1");
+  const $sldr2 = $(".slider2");
   //initial parameters for sliders img
   let sldr1NW, sldr1NH, headerOverlayWidth;
   let headerOverlayHeight, mySkillsOverlayWidth, mySkillsOverlayHeight;
@@ -752,15 +750,15 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
     height: mySkillsOverlayHeight
   });
 
-  var parallaxScaleCoeff = 2; //parallax image coeff which enhances parallax effect
-  image1 = document.getElementsByClassName("slider1");
+  const parallaxScaleCoeff = 2; //parallax image coeff which enhances parallax effect
+  const image1 = document.getElementsByClassName("slider1");
   new simpleParallax(image1, {
     scale: parallaxScaleCoeff,
     delay: 0.6,
     transition: "cubic-bezier(0,0,0,1)",
     overflow: false
   });
-  image2 = document.getElementsByClassName("slider2");
+  const image2 = document.getElementsByClassName("slider2");
   new simpleParallax(image2, {
     scale: parallaxScaleCoeff,
     delay: 0.6,
@@ -778,7 +776,7 @@ var windowSizeHandler = function (viewportWidth, viewportHeight) {
   }
 };
 //this function is sensitive to resize event
-var projectDivSizeHandler = function (
+const projectDivSizeHandler = function (
   viewportWidth,
   viewportHeight,
   wDPR,
@@ -786,7 +784,7 @@ var projectDivSizeHandler = function (
   windowOuterWidth
 ) {
   //function handle which window is on resize
-  var fontScaleCoeff, blizThumbnailScaleCoeff;
+  let fontScaleCoeff, blizThumbnailScaleCoeff;
   if (platformIsMobile) {
     if (viewportWidth > viewportHeight) {
       fontScaleCoeff = viewportWidth * 1.2;
@@ -822,23 +820,23 @@ var projectDivSizeHandler = function (
   //set responsive font-size
   $("h1")
     .each(function (index) {
-      var elFontSize = fontScaleCoeff * 0.025;
+      const elFontSize = fontScaleCoeff * 0.025;
       $(this).css("font-size", elFontSize); //set font size in pixels
     })
     .filter(".mainHeader")
     .css("font-size", fontScaleCoeff * 0.04);
 
   $("h2").each(function (index) {
-    var elFontSize = fontScaleCoeff * 0.02;
+    const elFontSize = fontScaleCoeff * 0.02;
     $(this).css("font-size", elFontSize); //set font size in pixels
   });
 
   $("p, a").each(function (index) {
-    var elFontSize = fontScaleCoeff * 0.018;
+    const elFontSize = fontScaleCoeff * 0.018;
     $(this).css("font-size", elFontSize); //set font size in pixels
   });
   //upButton size handler
-  var upButtonFontSize = fontScaleCoeff * 0.045;
+  const upButtonFontSize = fontScaleCoeff * 0.045;
   $(".upButton").css({
     "font-size": upButtonFontSize,
     height: "auto",
@@ -849,7 +847,7 @@ var projectDivSizeHandler = function (
     right: fontScaleCoeff * 0.04
   });
   //messageButton size handler
-  var messageButtonFontSize = fontScaleCoeff * 0.04;
+  const messageButtonFontSize = fontScaleCoeff * 0.04;
   $(".messageButton").css({
     "font-size": messageButtonFontSize,
     width: messageButtonFontSize * 1.5,
@@ -888,10 +886,10 @@ var projectDivSizeHandler = function (
     "text-indent": projectDivWidth * 0.02,
     "font-size": projectDivWidth * 0.025
   });
-  var FMcanvasSize, FMborderSize, FMfontSize;
+  let FMcanvasSize, FMborderSize, FMfontSize;
   // console.log(platformIsMobile, viewportWidth, wDPR)
   if (platformIsMobile && viewportWidth < 1000 && wDPR <= 3) {
-    var FMScaleCoeff = 1.8;
+    const FMScaleCoeff = 1.8;
     FMcanvasSize = projectDivWidth * 0.4;
     FMborderSize = projectDivWidth * 0.015;
     FMfontSize = projectDivWidth * 0.055 + "px";
@@ -914,9 +912,10 @@ var projectDivSizeHandler = function (
   });
   htmlFM.setProperties(75, FMcanvasSize, FMborderSize, FMfontSize, "HTML");
   cssFM.setProperties(70, FMcanvasSize, FMborderSize, FMfontSize, "CSS");
-  jsFM.setProperties(45, FMcanvasSize, FMborderSize, FMfontSize, "JavaScript");
+  jsFM.setProperties(55, FMcanvasSize, FMborderSize, FMfontSize, "JavaScript");
   jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, "jQuery");
   pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, "Python");
+  reactFM.setProperties(40, FMcanvasSize, FMborderSize, FMfontSize, "React");
   // console.log('project div is done');
   // console.log('platformIsMobile '+platformIsMobile);
   // console.log(fontScaleCoeff, blizThumbnailScaleCoeff);
@@ -924,14 +923,14 @@ var projectDivSizeHandler = function (
   // console.log('windowOuterHeight'+windowOuterHeight);
 };
 //this function is sensitive to resize event
-var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
+const cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
   //handle clone div if it exist
-  var $cloneDiv = $("#cloneDiv");
+  const $cloneDiv = $("#cloneDiv");
   if ($cloneDiv.length) {
-    var divCurrentHeight = $cloneDiv.outerHeight();
-    var divCurrentWidth = $cloneDiv.outerWidth();
-    var vpbFontSize = divCurrentWidth * 0.04;
-    var vpbMarginValue = divCurrentWidth * 0.03;
+    const divCurrentHeight = $cloneDiv.outerHeight();
+    const divCurrentWidth = $cloneDiv.outerWidth();
+    const vpbFontSize = divCurrentWidth * 0.04;
+    const vpbMarginValue = divCurrentWidth * 0.03;
     // console.log(viewportWidth);
     // console.log(divCurrentWidth);
     // console.log(divCurrentHeight);
@@ -958,9 +957,9 @@ var cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
 };
 //handler for tMessage box
 //this function is sensitive to resize event
-var tMessageDialogBox = function (viewportWidth, viewportHeight) {
+const tMessageDialogBox = function (viewportWidth, viewportHeight) {
   //dialog init variables
-  var titleFontSize,
+  let titleFontSize,
     messagesFontSize,
     robotFontsize,
     userIconSize,
@@ -969,12 +968,12 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
     thHeight;
 
   jQuery.fn.scrollToLastMsg = function () {
-    var $this = $(this);
+    const $this = $(this);
     $this.scrollTop($this[0].scrollHeight);
     return this;
   };
   jQuery.fn.fixUserIconSize = function () {
-    var $this = $(this);
+    const $this = $(this);
     $this.css({
       width: userIconSize,
       height: userIconSize,
@@ -982,7 +981,7 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
     });
     return this;
   };
-  var dialogPos, pOf, pAt, pMy;
+  let pOf, pAt, pMy;
   if (platformIsMobile) {
     targetWidth = viewportWidth * 0.8;
     targetHeight = viewportHeight * 0.7;
@@ -1016,8 +1015,8 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
   }
 
   //initizlize dialog widget
-  var $tMessageDialog = $("#tMessageDialog");
-  var $tCont = $(".thoughtContainer");
+  const $tMessageDialog = $("#tMessageDialog");
+  const $tCont = $(".thoughtContainer");
   // console.log($tMessageDialog.dialog('instance'));
   if ($tMessageDialog.dialog("instance") === undefined) {
     // console.log('t box initialized');
@@ -1038,8 +1037,8 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
         duration: DSdurationTime
       }
     });
-    var chatUpdateTimer;
-    var updateChat = function () {
+    let chatUpdateTimer;
+    const updateChat = function () {
       $.ajax({
         type: "GET",
         url: "https://t-msg-bot.space/get_msg",
@@ -1048,7 +1047,7 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
           console.log(data);
           if (!jQuery.isEmptyObject(data)) {
             // console.log(Object.values(data));
-            var textMsg = Object.values(data)[0];
+            const textMsg = Object.values(data)[0];
             $tCont
               .append('<p class="thought robotThought">' + textMsg + "</p>")
               .append('<i class="userIcon"></i>');
@@ -1076,7 +1075,7 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
       });
     //toggle message box view
     $(".messageButton").click(function (event) {
-      var isOpen = $tMessageDialog.dialog("isOpen");
+      const isOpen = $tMessageDialog.dialog("isOpen");
       if (isOpen) {
         $tMessageDialog.dialog("close");
       } else {
@@ -1084,12 +1083,12 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
       }
     });
     //send message
-    var execOnce = false;
-    var rcHlC = $("#recaptchaCheck"); //recaptcha highlighter container
+    let execOnce = false;
+    const rcHlC = $("#recaptchaCheck"); //recaptcha highlighter container
     $(".sendBtn").click(function (event) {
-      var nnV = $("#nickName").val();
-      var tMV = $("#tMessageArea").val();
-      var gCR = $("#g-recaptcha-response");
+      const nnV = $("#nickName").val();
+      const tMV = $("#tMessageArea").val();
+      const gCR = $("#g-recaptcha-response");
       if (nnV === null || nnV === "") {
         console.log("Nick name can't be empty");
       } else if (tMV === null || tMV === "") {
@@ -1100,11 +1099,11 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
       } else {
         event.preventDefault();
         rcHlC.val("1");
-        var formDateArr = $("form").serializeArray();
-        var formDate = JSON.stringify(formDateArr);
+        const formDateArr = $("form").serializeArray();
+        const formDate = JSON.stringify(formDateArr);
         // console.log(formDate);
-        var curThoughtFontSize = $(".thought").css("font-size");
-        var curRobotFontSize = $(".fa-robot").css("font-size");
+        const curThoughtFontSize = $(".thought").css("font-size");
+        const curRobotFontSize = $(".fa-robot").css("font-size");
         $tCont.append(
           '<p class="thought userThought">' + formDateArr[1].value + "</p>"
         );
@@ -1135,7 +1134,7 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
       }
     });
     $("#tMessageArea").keypress(function (event) {
-      var key = event.keyCode;
+      const key = event.keyCode;
       if (key === 13) {
         $(".sendBtn").click();
       }
@@ -1177,8 +1176,8 @@ var tMessageDialogBox = function (viewportWidth, viewportHeight) {
 //initialize my skills fluid meter
 
 //initialization HTML fluid meter
-var FMfont = "Big Shoulders Display";
-var htmlFM = new FluidMeter();
+const FMfont = "Big Shoulders Display";
+const htmlFM = new FluidMeter();
 htmlFM.init({
   targetContainer: document.getElementById("HTML-fluid-meter"),
   fillPercentage: 75,
@@ -1209,7 +1208,7 @@ htmlFM.init({
 });
 
 //initialization CSS fluid meter
-var cssFM = new FluidMeter();
+const cssFM = new FluidMeter();
 cssFM.init({
   targetContainer: document.getElementById("CSS-fluid-meter"),
   fillPercentage: 75,
@@ -1240,7 +1239,7 @@ cssFM.init({
 });
 
 //initialization JS fluid meter
-var jsFM = new FluidMeter();
+const jsFM = new FluidMeter();
 jsFM.init({
   targetContainer: document.getElementById("JS-fluid-meter"),
   fillPercentage: 75,
@@ -1271,7 +1270,7 @@ jsFM.init({
 });
 
 //initialization jQuery fluid meter
-var jQueryFM = new FluidMeter();
+const jQueryFM = new FluidMeter();
 jQueryFM.init({
   targetContainer: document.getElementById("jQuery-fluid-meter"),
   fillPercentage: 75,
@@ -1302,7 +1301,7 @@ jQueryFM.init({
 });
 
 //initialization python fluid meter
-var pythonFM = new FluidMeter();
+const pythonFM = new FluidMeter();
 pythonFM.init({
   targetContainer: document.getElementById("python-fluid-meter"),
   fillPercentage: 75,
@@ -1332,15 +1331,46 @@ pythonFM.init({
   }
 });
 
+//initialization python fluid meter
+const reactFM = new FluidMeter();
+reactFM.init({
+  targetContainer: document.getElementById("React-fluid-meter"),
+  fillPercentage: 75,
+  options: {
+    fontFamily: FMfont,
+    drawPercentageSign: true,
+    drawBubbles: true,
+    drawShadow: false,
+    size: 300,
+    borderWidth: 15,
+    backgroundColor: "#e2e2e2",
+    foregroundColor: "#fafafa",
+    foregroundFluidLayer: {
+      fillStyle: "#61dbfb",
+      angularSpeed: 100,
+      maxAmplitude: 12,
+      frequency: 30,
+      horizontalSpeed: -75
+    },
+    backgroundFluidLayer: {
+      fillStyle: "#bceaf5",
+      angularSpeed: 100,
+      maxAmplitude: 15,
+      frequency: 30,
+      horizontalSpeed: 75
+    }
+  }
+});
+
 //handler for scroll top button
-var scrollTop = function () {
+const scrollTop = function () {
   if (platformIsMobile) {
     $(".upButton")
       .mousedown(function (event) {
         //animate press button, I use this method because animate.css is a conflict with translateY
-        var $this = $(this);
-        var speed = 50;
-        var currentBottomProp = parseFloat($(this).css("bottom"));
+        const $this = $(this);
+        const speed = 50;
+        const currentBottomProp = parseFloat($(this).css("bottom"));
 
         $this.animate(
           {
@@ -1393,12 +1423,12 @@ var scrollTop = function () {
 
 /**************main block*******************/
 $(window).on("load", function () {
-  var viewportWidth = $(window).width();
-  var viewportHeight = $(window).height();
-  var wSW = window.screen.width;
-  var wDPR = window.devicePixelRatio;
-  var windowOuterWidth = window.outerWidth;
-  var windowOuterHeight = window.outerHeight;
+  const viewportWidth = $(window).width();
+  const viewportHeight = $(window).height();
+  const wSW = window.screen.width;
+  const wDPR = window.devicePixelRatio;
+  const windowOuterWidth = window.outerWidth;
+  const windowOuterHeight = window.outerHeight;
   scrollTop(); //handler for up button
   mySkillsAnimation();
   projectDivSizeHandler(
