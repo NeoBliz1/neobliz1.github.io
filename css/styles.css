@@ -266,24 +266,36 @@ h2 {
   box-shadow: 10px 13px 33px 8px rgba(0, 0, 0, 0.75);
   z-index: 7;
 }
-.react_project_1 {
-  background-image: url(../img/neobliz1.github.io_personal_blog_on_react.png);
+.react_RQM_project_2 {
+  background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_rand0m_qu0te_machine.png);
+  background-color: rgb(156, 204, 101);
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
-  background-size: 100% 100%;
+  background-size: 100% 48%;
+}
+.react_RQM_project_2 > .bottomPart > .paragraphMSD {
+  color: black;
+  background-color: rgb(156, 204, 101);
+}
+.react_project_1 {
+  background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_personal_blog_on_react.png);
+  background-color: whitesmoke;
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 80%;
 }
 .react_project_1 > .bottomPart > .paragraphMSD {
   color: black;
-  background-color: aliceblue;
+  background-color: whitesmoke;
 }
 .project_1 {
-  background-image: url(../img/project_1.png);
+  background-image: url(../img/pojects_preview_imgs/project_1.png);
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
 }
 .project_2 {
-  background-image: url(../img/project2.png);
+  background-image: url(../img/pojects_preview_imgs/project2.png);
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
@@ -295,13 +307,13 @@ h2 {
 }
 
 .project_3 {
-  background-image: url(../img/project3.png);
+  background-image: url(../img/pojects_preview_imgs/project3.png);
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
 }
 .project_4 {
-  background-image: url(../img/project4.png);
+  background-image: url(../img/pojects_preview_imgs/project4.png);
   background-repeat: no-repeat;
   -webkit-background-size: 130% 100%;
   background-size: 100% 100%;
@@ -309,25 +321,25 @@ h2 {
 }
 
 .project_5 {
-  background-image: url(../img/project5.png);
+  background-image: url(../img/pojects_preview_imgs/project5.png);
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
 }
 .project_angry_fish {
-  background-image: url(../img/project_angry_fish.png);
+  background-image: url(../img/pojects_preview_imgs/project_angry_fish.png);
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
 }
 .project_bees_awakening {
-  background-image: url(../img/project_bees_awakening.png);
+  background-image: url(../img/pojects_preview_imgs/project_bees_awakening.png);
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
 }
 .project_ants_colony {
-  background-image: url(../img/project_ants_colony.png);
+  background-image: url(../img/pojects_preview_imgs/project_ants_colony.png);
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;

@@ -40,13 +40,18 @@ const fluidMeterRestart = function () {
   jQueryFM.restart();
   pythonFM.restart();
   reactFM.restart();
+  bootstrapFM.restart();
+  typeScriptFM.restart();
+
   // console.log('anim start')
 };
 
 this.doAnim = false;
 /*use waypoint JQuery plugin for tracking scroll elements*/
-const controller = [];
-const scenesArr = [];
+let controller = [];
+let scenesArr = [];
+let upButtonController = {};
+let upButtonScene = {};
 const iScrollArr = [];
 const scrollAnimate = function (viewportHeight, refreshOffset) {
   // console.log(viewportHeight*0.48*(-1))
@@ -102,9 +107,9 @@ const scrollAnimate = function (viewportHeight, refreshOffset) {
       });
 
     // init controller
-    const upButtonController = new ScrollMagic.Controller();
+    upButtonController = new ScrollMagic.Controller();
     // create a scene
-    const upButtonScene = new ScrollMagic.Scene().addTo(upButtonController);
+    upButtonScene = new ScrollMagic.Scene().addTo(upButtonController);
 
     const $upButton = $(".upButton");
     upButtonScene
@@ -873,7 +878,7 @@ const projectDivSizeHandler = function (
   $("#rmb, #vpb").css("font-size", projectDivWidth * 0.06);
   //set button vpb position parameters, except project_1 and 2 divs
   $projectDiv
-    .not(".project_1, .react_project_1")
+    .not(".project_1, .projectWithDescription")
     .find("#vpb")
     .css({
       left: projectDivWidth * 0.55,
@@ -916,6 +921,20 @@ const projectDivSizeHandler = function (
   jQueryFM.setProperties(80, FMcanvasSize, FMborderSize, FMfontSize, "jQuery");
   pythonFM.setProperties(35, FMcanvasSize, FMborderSize, FMfontSize, "Python");
   reactFM.setProperties(40, FMcanvasSize, FMborderSize, FMfontSize, "React");
+  bootstrapFM.setProperties(
+    50,
+    FMcanvasSize,
+    FMborderSize,
+    FMfontSize,
+    "Bootstrap"
+  );
+  typeScriptFM.setProperties(
+    25,
+    FMcanvasSize,
+    FMborderSize,
+    FMfontSize,
+    "TypeScript"
+  );
   // console.log('project div is done');
   // console.log('platformIsMobile '+platformIsMobile);
   // console.log(fontScaleCoeff, blizThumbnailScaleCoeff);
@@ -1315,23 +1334,23 @@ pythonFM.init({
     backgroundColor: "#e2e2e2",
     foregroundColor: "#fafafa",
     foregroundFluidLayer: {
-      fillStyle: "#3572a5",
+      fillStyle: "#317bb5",
       angularSpeed: 100,
       maxAmplitude: 12,
       frequency: 30,
       horizontalSpeed: -75
     },
     backgroundFluidLayer: {
-      fillStyle: "#70b5ef",
+      fillStyle: "#ffcb17",
       angularSpeed: 100,
-      maxAmplitude: 15,
+      maxAmplitude: 25,
       frequency: 30,
       horizontalSpeed: 75
     }
   }
 });
 
-//initialization python fluid meter
+//initialization react fluid meter
 const reactFM = new FluidMeter();
 reactFM.init({
   targetContainer: document.getElementById("React-fluid-meter"),
@@ -1347,6 +1366,68 @@ reactFM.init({
     foregroundColor: "#fafafa",
     foregroundFluidLayer: {
       fillStyle: "#61dbfb",
+      angularSpeed: 200,
+      maxAmplitude: 25,
+      frequency: 50,
+      horizontalSpeed: -45
+    },
+    backgroundFluidLayer: {
+      fillStyle: "#bceaf5",
+      angularSpeed: 100,
+      maxAmplitude: 20,
+      frequency: 30,
+      horizontalSpeed: 75
+    }
+  }
+});
+
+//initialization Bootstrap fluid meter
+const bootstrapFM = new FluidMeter();
+bootstrapFM.init({
+  targetContainer: document.getElementById("bootstrap-fluid-meter"),
+  fillPercentage: 50,
+  options: {
+    fontFamily: FMfont,
+    drawPercentageSign: true,
+    drawBubbles: true,
+    drawShadow: false,
+    size: 300,
+    borderWidth: 15,
+    backgroundColor: "#e2e2e2",
+    foregroundColor: "#fafafa",
+    foregroundFluidLayer: {
+      fillStyle: "#860afb",
+      angularSpeed: 100,
+      maxAmplitude: 12,
+      frequency: 30,
+      horizontalSpeed: -75
+    },
+    backgroundFluidLayer: {
+      fillStyle: "#8e55c3",
+      angularSpeed: 100,
+      maxAmplitude: 15,
+      frequency: 30,
+      horizontalSpeed: 75
+    }
+  }
+});
+
+//initialization TypeScript fluid meter
+const typeScriptFM = new FluidMeter();
+typeScriptFM.init({
+  targetContainer: document.getElementById("typeScript-fluid-meter"),
+  fillPercentage: 20,
+  options: {
+    fontFamily: FMfont,
+    drawPercentageSign: true,
+    drawBubbles: true,
+    drawShadow: false,
+    size: 300,
+    borderWidth: 15,
+    backgroundColor: "#e2e2e2",
+    foregroundColor: "#fafafa",
+    foregroundFluidLayer: {
+      fillStyle: "#2d79c7",
       angularSpeed: 100,
       maxAmplitude: 12,
       frequency: 30,
