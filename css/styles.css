@@ -157,6 +157,7 @@ h2 {
 /*main block, first article styles*/
 .main {
   height: auto;
+  overflow: hidden;
 }
 .about {
   width: 100%;
