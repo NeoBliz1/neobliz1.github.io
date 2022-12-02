@@ -254,7 +254,7 @@ h2 {
 	flex-direction: row;
 	justify-content: space-around;
 	padding: 40px;
-	overflow: hidden;
+	/* overflow: hidden; */
 	z-index: 6;
 }
 .examplesContainer > div {
