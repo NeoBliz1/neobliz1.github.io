@@ -267,11 +267,22 @@ h2 {
 	box-shadow: 10px 13px 33px 8px rgba(0, 0, 0, 0.75);
 	z-index: 7;
 }
+.react_DP_project_4 {
+	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_drum_machine_tiny.png);
+	background-color: aliceblue;
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 55%;
+	background-size: 100% 55%;
+}
+.react_DP_project_4 > .bottomPart > .paragraphMSD {
+	color: black;
+	background-color: aliceblue;
+}
 .react_MP_project_3 {
 	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_Markdown_Previewer_tiny.png);
 	background-color: aliceblue;
 	background-repeat: no-repeat;
-	-webkit-background-size: 100% 100%;
+	-webkit-background-size: 100% 130%;
 	background-size: 100% 130%;
 }
 .react_MP_project_3 > .bottomPart > .paragraphMSD {
@@ -282,7 +293,7 @@ h2 {
 	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_rand0m_qu0te_machine.png);
 	background-color: rgb(156, 204, 101);
 	background-repeat: no-repeat;
-	-webkit-background-size: 100% 100%;
+	-webkit-background-size: 100% 48%;
 	background-size: 100% 48%;
 }
 .react_RQM_project_2 > .bottomPart > .paragraphMSD {
@@ -293,7 +304,7 @@ h2 {
 	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_personal_blog_on_react.png);
 	background-color: whitesmoke;
 	background-repeat: no-repeat;
-	-webkit-background-size: 100% 100%;
+	-webkit-background-size: 100% 80%;
 	background-size: 100% 80%;
 }
 .react_project_1 > .bottomPart > .paragraphMSD {
