@@ -20,7 +20,8 @@ html {
 button:focus {
 	outline: unset;
 }
-p {
+p,
+ul {
 	color: rgb(77, 77, 77);
 	font-family: 'Biryani', sans-serif;
 	font-size: 2vh;
@@ -266,6 +267,30 @@ h2 {
 	-moz-box-shadow: 10px 13px 33px 8px rgba(0, 0, 0, 0.75);
 	box-shadow: 10px 13px 33px 8px rgba(0, 0, 0, 0.75);
 	z-index: 7;
+}
+.react_TFPFC_project_6 {
+	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_twenty_five_plus_five_clock_tiny.png);
+	background-color: rgb(211, 178, 29);
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 50%;
+	background-size: 100% 50%;
+	background-position: 100% 20%;
+}
+.react_TFPFC_project_6 > .bottomPart > .paragraphMSD {
+	color: black;
+	background-color: rgb(211, 178, 29);
+}
+.react_JSC_project_5 {
+	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_javaScript_calculator_tiny.png);
+	background-color: darkslategray;
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 50%;
+	background-size: 100% 50%;
+	background-position: 100% 20%;
+}
+.react_JSC_project_5 > .bottomPart > .paragraphMSD {
+	color: black;
+	background-color: darkslategray;
 }
 .react_DP_project_4 {
 	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_drum_machine_tiny.png);
