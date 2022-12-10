@@ -260,10 +260,10 @@ const mySkillsAnimation = function () {
 									projectDivFullSize(thisIs);
 								}
 								if (event.currentTarget.id === 'vpb') {
-									if ($(thisIs).hasClass('project_1')) {
-										event.preventDefault();
-										$('.upButton').trigger('click');
-									}
+									// if ($(thisIs).hasClass('project_1')) {
+									// 	event.preventDefault();
+									// 	$('.upButton').trigger('click');
+									// }
 									$('.hovered').trigger('mouseleave');
 								}
 							});

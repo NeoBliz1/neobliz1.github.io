@@ -382,7 +382,7 @@ h2 {
 	background-color: whitesmoke;
 }
 .project_1 {
-	background-image: url(../img/pojects_preview_imgs/project_1.png);
+	background-image: url(../img/pojects_preview_imgs/project1.png);
 	background-color: orange;
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 100%;
@@ -390,6 +390,7 @@ h2 {
 }
 .project_2 {
 	background-image: url(../img/pojects_preview_imgs/project2.png);
+	background-color: orange;
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
@@ -403,12 +404,14 @@ h2 {
 .project_3 {
 	background-image: url(../img/pojects_preview_imgs/project3.png);
 	background-repeat: no-repeat;
+	background-color: orange;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 }
 .project_4 {
 	background-image: url(../img/pojects_preview_imgs/project4.png);
 	background-repeat: no-repeat;
+	background-color: orange;
 	-webkit-background-size: 130% 100%;
 	background-size: 100% 100%;
 	background-position: 50% 0%;
@@ -417,24 +420,28 @@ h2 {
 .project_5 {
 	background-image: url(../img/pojects_preview_imgs/project5.png);
 	background-repeat: no-repeat;
+	background-color: orange;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 }
 .project_angry_fish {
 	background-image: url(../img/pojects_preview_imgs/project_angry_fish.png);
 	background-repeat: no-repeat;
+	background-color: orange;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 }
 .project_bees_awakening {
 	background-image: url(../img/pojects_preview_imgs/project_bees_awakening.png);
 	background-repeat: no-repeat;
+	background-color: orange;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 }
 .project_ants_colony {
 	background-image: url(../img/pojects_preview_imgs/project_ants_colony.png);
 	background-repeat: no-repeat;
+	background-color: orange;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 }
