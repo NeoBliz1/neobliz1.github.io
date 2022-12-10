@@ -249,6 +249,39 @@ h2 {
 	position: relative;
 	z-index: 5;
 }
+.skillsIcon {
+	width: 10vh;
+	height: 10vh;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.ico-html5 {
+	background-image: url(../img/skills_icons/html.svg);
+}
+.ico-css3 {
+	background-image: url(../img/skills_icons/css3.svg);
+}
+.ico-js {
+	background-image: url(../img/skills_icons/javascript.svg);
+}
+.ico-p5js {
+	background-image: url(../img/skills_icons/p5js.svg);
+}
+.ico-bootstrap {
+	background-image: url(../img/skills_icons/bootstrap.svg);
+}
+.ico-sass {
+	background-image: url(../img/skills_icons/sass.svg);
+}
+.ico-react {
+	background-image: url(../img/skills_icons/react.svg);
+}
+.ico-redux {
+	background-image: url(../img/skills_icons/redux.svg);
+}
+.ico-typeScript {
+	background-image: url(../img/skills_icons/typescript.svg);
+}
 .examplesContainer {
 	display: flex;
 	flex-wrap: wrap;
@@ -268,13 +301,23 @@ h2 {
 	box-shadow: 10px 13px 33px 8px rgba(0, 0, 0, 0.75);
 	z-index: 7;
 }
+.zoomInIcon {
+	font-size: 10vh;
+	color: rgb(255, 255, 255, 0.6);
+	position: absolute;
+	top: 10%;
+	left: 10%;
+}
+.zoomInIconBlack {
+	color: rgb(0, 0, 0, 0.6);
+}
 .react_TFPFC_project_6 {
 	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_twenty_five_plus_five_clock_tiny.png);
 	background-color: rgb(211, 178, 29);
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 50%;
-	background-size: 100% 50%;
-	background-position: 100% 20%;
+	background-size: 212% 96%;
+	background-position: 50% 25%;
 }
 .react_TFPFC_project_6 > .bottomPart > .paragraphMSD {
 	color: black;
@@ -296,8 +339,9 @@ h2 {
 	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_drum_machine_tiny.png);
 	background-color: aliceblue;
 	background-repeat: no-repeat;
-	-webkit-background-size: 100% 55%;
-	background-size: 100% 55%;
+	-webkit-background-size: 157% 85%;
+	background-size: 157% 85%;
+	background-position: 50% 3%;
 }
 .react_DP_project_4 > .bottomPart > .paragraphMSD {
 	color: black;
@@ -318,8 +362,9 @@ h2 {
 	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_rand0m_qu0te_machine.png);
 	background-color: rgb(156, 204, 101);
 	background-repeat: no-repeat;
-	-webkit-background-size: 100% 48%;
-	background-size: 100% 48%;
+	-webkit-background-size: 186% 83%;
+	background-size: 186% 83%;
+	background-position: 49% 1%;
 }
 .react_RQM_project_2 > .bottomPart > .paragraphMSD {
 	color: black;
@@ -338,6 +383,7 @@ h2 {
 }
 .project_1 {
 	background-image: url(../img/pojects_preview_imgs/project_1.png);
+	background-color: orange;
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;

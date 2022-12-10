@@ -32,19 +32,19 @@ const zoomInHeader = function () {
 	//hide are elements which will be animated
 	$('.scrollAnimate').addClass('hidden');
 };
-const fluidMeterRestart = function () {
-	doAnim = true; //global anim variable
-	htmlFM.restart();
-	cssFM.restart();
-	jsFM.restart();
-	jQueryFM.restart();
-	pythonFM.restart();
-	reactFM.restart();
-	bootstrapFM.restart();
-	typeScriptFM.restart();
+// const fluidMeterRestart = function () {
+// 	doAnim = true; //global anim variable
+// 	htmlFM.restart();
+// 	cssFM.restart();
+// 	jsFM.restart();
+// 	jQueryFM.restart();
+// 	pythonFM.restart();
+// 	reactFM.restart();
+// 	bootstrapFM.restart();
+// 	typeScriptFM.restart();
 
-	// console.log('anim start')
-};
+// 	// console.log('anim start')
+// };
 
 this.doAnim = false;
 /*use waypoint JQuery plugin for tracking scroll elements*/
@@ -81,29 +81,29 @@ const scrollAnimate = function (viewportHeight, refreshOffset) {
 									.removeClass('hidden fadeOutDown')
 									.addClass('fadeInUp slow');
 							}
-							if ($this.hasClass('fluidMeter') && !doAnim) {
-								fluidMeterRestart();
-							}
+							// if ($this.hasClass('fluidMeter') && !doAnim) {
+							// 	fluidMeterRestart();
+							// }
 						} else {
-							if ($this.hasClass('fluidMeter') && doAnim) {
-								doAnim = false; //global anim variable
-								// console.log('anim end')
-							}
+							// if ($this.hasClass('fluidMeter') && doAnim) {
+							// 	doAnim = false; //global anim variable
+							// 	// console.log('anim end')
+							// }
 						}
 					});
-				if ($this.hasClass('fluidMeter')) {
-					const FMsceneDuration = $(window).height() + $this.height();
-					scenesArr[index]
-						.duration(FMsceneDuration)
-						.on('end', function (event) {
-							if (doAnim && event.scrollDirection === 'FORWARD') {
-								doAnim = false; //global anim variable
-								// console.log('anim end')
-							} else if (!doAnim) {
-								fluidMeterRestart();
-							}
-						});
-				}
+				// if ($this.hasClass('fluidMeter')) {
+				// 	const FMsceneDuration = $(window).height() + $this.height();
+				// 	scenesArr[index]
+				// 		.duration(FMsceneDuration)
+				// 		.on('end', function (event) {
+				// 			if (doAnim && event.scrollDirection === 'FORWARD') {
+				// 				doAnim = false; //global anim variable
+				// 				// console.log('anim end')
+				// 			} else if (!doAnim) {
+				// 				fluidMeterRestart();
+				// 			}
+				// 		});
+				// }
 			});
 
 		// init controller
@@ -213,6 +213,8 @@ const mySkillsAnimation = function () {
 				},
 				{
 					step: function (now, fx) {
+						let $zoomInIcon = $(thisIs).find('i');
+						$zoomInIcon.fadeOutZoomIcon();
 						//animate zomm in skill box
 						$(thisIs).css(
 							'-webkit-transform',
@@ -286,6 +288,8 @@ const mySkillsAnimation = function () {
 						'transform',
 						'scale3d(' + now + ', ' + now + ', ' + now + ')'
 					);
+					let $zoomInIcon = $(thisIs).find('i');
+					$zoomInIcon.fadeInZoomIcon();
 					let $btns;
 					if (platformIsMobile && viewportWidth < 1000) {
 						$btns = $(thisIs).find('a');
@@ -302,7 +306,20 @@ const mySkillsAnimation = function () {
 			'linear'
 		);
 	};
-
+	jQuery.fn.fadeInZoomIcon = function () {
+		//button animated In
+		this.removeClass('fadeOut animated faster').addClass(
+			'fadeIn animated faster'
+		);
+		return this;
+	};
+	jQuery.fn.fadeOutZoomIcon = function () {
+		//button animated In
+		this.removeClass('fadeIn animated faster').addClass(
+			'fadeOut animated faster'
+		);
+		return this;
+	};
 	jQuery.fn.rollInBtnAnimation = function () {
 		//button animated In
 		this.removeClass('hidden rollOut animated faster').addClass(
@@ -836,7 +853,7 @@ const projectDivSizeHandler = function (
 		$(this).css('font-size', elFontSize); //set font size in pixels
 	});
 
-	$('p, a').each(function (index) {
+	$('p, a, ul').each(function (index) {
 		const elFontSize = fontScaleCoeff * 0.018;
 		$(this).css('font-size', elFontSize); //set font size in pixels
 	});
