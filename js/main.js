@@ -58,7 +58,7 @@ const scrollAnimate = function (viewportHeight, refreshOffset) {
 	const scrollEventOffset = viewportHeight * 0.48 * -1;
 	if (!refreshOffset) {
 		// console.log('magick scroll initialize');
-		$('.scrollAnimate, .fluidMeter')
+		$('.scrollAnimate, .progressbar__svg-circle')
 			.addClass('animated')
 			.each(function (index, el) {
 				const stickyId = 'myStickyEl' + index;
@@ -81,9 +81,11 @@ const scrollAnimate = function (viewportHeight, refreshOffset) {
 									.removeClass('hidden fadeOutDown')
 									.addClass('fadeInUp slow');
 							}
-							// if ($this.hasClass('fluidMeter') && !doAnim) {
-							// 	fluidMeterRestart();
-							// }
+							if ($this.hasClass('progressbar__svg-circle')) {
+								$('#' + stickyId).addClass(
+									'circle-' + $('#' + stickyId).attr('data-circle-name')
+								);
+							}
 						} else {
 							// if ($this.hasClass('fluidMeter') && doAnim) {
 							// 	doAnim = false; //global anim variable
@@ -729,6 +731,7 @@ const windowSizeHandler = function (viewportWidth, viewportHeight) {
 	//set main elements width and height
 	$('body, .headerContent, .main').width(viewportWidth);
 
+	//set my skills area height
 	const FMheight = $('.fluidMeterContainer1').height();
 	$('.mySkills').height(FMheight * 1.2);
 	// console.log(FMheight*1.2);

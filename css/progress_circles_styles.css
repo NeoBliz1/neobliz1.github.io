@@ -1,0 +1,402 @@
+* {
+	box-sizing: border-box;
+}
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.container__progressbars {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	min-width: 270px;
+	width: 100%;
+	min-height: 100%;
+}
+.progressbar {
+	position: relative;
+	width: 170px;
+	height: 170px;
+	transform: rotate(-90deg);
+}
+.progressbar__svg {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.progressbar__svg-circle {
+	width: 100%;
+	height: 100%;
+	fill: none;
+	stroke-width: 10;
+	stroke-dasharray: 440;
+	stroke-dashoffset: 440;
+	stroke: white;
+	stroke-linecap: round;
+	transform: translate(5px, 5px);
+	r: 70;
+	cx: 80;
+	cy: 80;
+}
+.shadow-html {
+	filter: drop-shadow(0 0 5px #f63);
+}
+.shadow-css {
+	filter: drop-shadow(0 0 5px #3bf);
+}
+.shadow-scss {
+	filter: drop-shadow(0 0 5px #f3f);
+}
+.shadow-js {
+	filter: drop-shadow(0 0 5px #ff3);
+}
+.shadow-ts {
+	filter: drop-shadow(0 0 5px #37f);
+}
+.shadow-redux {
+	filter: drop-shadow(0 0 5px #723fb6);
+}
+.shadow-react {
+	filter: drop-shadow(0 0 5px #0070ff);
+}
+.shadow-p5js {
+	filter: drop-shadow(0 0 5px #f33);
+}
+.shadow-bootstrap {
+	filter: drop-shadow(0 0 5px #6126ad);
+}
+.circle-html {
+	animation: anim_circle-html 1s ease-in-out forwards;
+}
+.circle-css {
+	animation: anim_circle-css 1s ease-in-out forwards;
+}
+.circle-scss {
+	animation: anim_circle-scss 1s ease-in-out forwards;
+}
+.circle-js {
+	animation: anim_circle-js 1s ease-in-out forwards;
+}
+.circle-ts {
+	animation: anim_circle-ts 1s ease-in-out forwards;
+}
+.circle-redux {
+	animation: anim_circle-redux 1s ease-in-out forwards;
+}
+.circle-react {
+	animation: anim_circle-react 1s ease-in-out forwards;
+}
+.circle-p5js {
+	animation: anim_circle-p5js 1s ease-in-out forwards;
+}
+.circle-bootstrap {
+	animation: anim_circle-bootstrap 1s ease-in-out forwards;
+}
+.progressbar__text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: 0.25em 0.5em;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	border-radius: 0.25em;
+	transform: translate(-50%, -50%) rotate(90deg);
+	width: 100%;
+	height: 100%;
+}
+@keyframes anim_circle-html {
+	to {
+		stroke-dashoffset: 22;
+	}
+}
+@keyframes anim_circle-css {
+	to {
+		stroke-dashoffset: 66;
+	}
+}
+@keyframes anim_circle-scss {
+	to {
+		stroke-dashoffset: 132;
+	}
+}
+@keyframes anim_circle-js {
+	to {
+		stroke-dashoffset: 88;
+	}
+}
+@keyframes anim_circle-ts {
+	to {
+		stroke-dashoffset: 198;
+	}
+}
+@keyframes anim_circle-redux {
+	to {
+		stroke-dashoffset: 88;
+	}
+}
+@keyframes anim_circle-react {
+	to {
+		stroke-dashoffset: 88;
+	}
+}
+@keyframes anim_circle-p5js {
+	to {
+		stroke-dashoffset: 88;
+	}
+}
+@keyframes anim_circle-bootstrap {
+	to {
+		stroke-dashoffset: 88;
+	}
+}
+
+/* Extra small devices (phones, 576px and down) */
+@media only screen and (max-width: 575px) {
+	@keyframes anim_circle-html {
+		to {
+			stroke-dashoffset: 300;
+		}
+	}
+	@keyframes anim_circle-css {
+		to {
+			stroke-dashoffset: 66;
+		}
+	}
+	@keyframes anim_circle-scss {
+		to {
+			stroke-dashoffset: 132;
+		}
+	}
+	@keyframes anim_circle-js {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-ts {
+		to {
+			stroke-dashoffset: 350;
+		}
+	}
+	@keyframes anim_circle-redux {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-react {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-p5js {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-bootstrap {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	.progressbar__svg-circle {
+		r: 35;
+		cx: 40;
+		cy: 40;
+		stroke-width: 5px;
+	}
+	.progressbar {
+		width: 90px;
+		height: 90px;
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 576px and up) */
+@media only screen and (min-width: 576px) {
+	@keyframes anim_circle-html {
+		to {
+			stroke-dashoffset: 300;
+		}
+	}
+	@keyframes anim_circle-css {
+		to {
+			stroke-dashoffset: 66;
+		}
+	}
+	@keyframes anim_circle-scss {
+		to {
+			stroke-dashoffset: 132;
+		}
+	}
+	@keyframes anim_circle-js {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-ts {
+		to {
+			stroke-dashoffset: 317;
+		}
+	}
+	@keyframes anim_circle-redux {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-react {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-p5js {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-bootstrap {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	.progressbar__svg-circle {
+		r: 47;
+		cx: 60;
+		cy: 60;
+		stroke-width: 7px;
+	}
+	.progressbar {
+		width: 135px;
+		height: 135px;
+	}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media only screen and (min-width: 768px) {
+} */
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px) {
+} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	@keyframes anim_circle-html {
+		to {
+			stroke-dashoffset: 300;
+		}
+	}
+	@keyframes anim_circle-css {
+		to {
+			stroke-dashoffset: 66;
+		}
+	}
+	@keyframes anim_circle-scss {
+		to {
+			stroke-dashoffset: 132;
+		}
+	}
+	@keyframes anim_circle-js {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-ts {
+		to {
+			stroke-dashoffset: 350;
+		}
+	}
+	@keyframes anim_circle-redux {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-react {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-p5js {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-bootstrap {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	.progressbar__svg-circle {
+		r: 70;
+		cx: 80;
+		cy: 80;
+		stroke-width: 10px;
+	}
+	.progressbar {
+		width: 180px;
+		height: 180px;
+	}
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1400px) {
+} */
+/* Super extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 2000px) {
+	@keyframes anim_circle-html {
+		to {
+			stroke-dashoffset: 300;
+		}
+	}
+	@keyframes anim_circle-css {
+		to {
+			stroke-dashoffset: 66;
+		}
+	}
+	@keyframes anim_circle-scss {
+		to {
+			stroke-dashoffset: 132;
+		}
+	}
+	@keyframes anim_circle-js {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-ts {
+		to {
+			stroke-dashoffset: 350;
+		}
+	}
+	@keyframes anim_circle-redux {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-react {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-p5js {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	@keyframes anim_circle-bootstrap {
+		to {
+			stroke-dashoffset: 88;
+		}
+	}
+	.progressbar__svg-circle {
+		r: 84;
+		cx: 100;
+		cy: 100;
+		stroke-width: 13px;
+	}
+	.progressbar {
+		width: 210px;
+		height: 210px;
+	}
+}
+/* Super extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 2800px) {
+} */
