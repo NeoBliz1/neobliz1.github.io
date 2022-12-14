@@ -267,7 +267,9 @@ h2 {
 .lastSkillLink {
 	margin-left: -20px;
 }
-
+.beforeSkillLink {
+	margin-left: -10px;
+}
 .ico-html5 {
 	background-image: url(../img/skills_icons/html.svg);
 }
