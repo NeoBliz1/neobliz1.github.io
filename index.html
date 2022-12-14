@@ -3,10 +3,12 @@
 	<head>
 		<meta http-equiv="x-ua-compatible" content="IE=edge" />
 		<meta charset="UTF-8" />
-		<meta name="description" content="Landing page about NeoBliz skills" />
+		<meta name="description" content="Profile page about NeoBliz skills" />
 		<meta name="keywords" content="HTML,CSS,XML,JavaScript" />
 		<meta name="author" content="NeoBliz" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Permissions-Policy" content="interest-cohort=()"/>
+
 		<title>NeoBliz profile</title>
 		<link
 			href="https://fonts.googleapis.com/css?family=Big+Shoulders+Display:500|Biryani|Caveat&display=swap"
@@ -28,35 +30,35 @@
 					<img class="slider1" />
 				</div>
 				<div class="links_to_acc">
-					<a
+					<a 
 						href="https://www.khanacademy.org/profile/NeoBliz"
 						target="blank_"
 						rel="noreferrer"
 					>
 						<div class="kacademy_logo logo_prop"></div>
 					</a>
-					<a
+					<a 
 						href="https://www.codecademy.com/profiles/neobliz1"
 						target="blank_"
 						rel="noreferrer"
 					>
 						<div class="codecademy_logo logo_prop"></div>
 					</a>
-					<a
+					<a 
 						href="https://www.freecodecamp.org/neobliz1"
 						target="blank_"
 						rel="noreferrer"
 					>
 						<div class="freecodecamp_logo logo_prop"></div>
 					</a>
-					<a
+					<a 
 						href="https://github.com/NeoBliz1"
 						target="blank_"
 						rel="noreferrer"
 					>
 						<div class="github_logo logo_prop"></div>
 					</a>
-					<a
+					<a 
 						href="https://twitter.com/neobliz1"
 						target="blank_"
 						rel="noreferrer"
@@ -71,7 +73,7 @@
 				</div>
 			</header>
 
-			<div class="about flex_box">
+			<div id="aboutProfile" class="about flex_box">
 				<article class="helloBlock flex_box">
 					<div>
 						<h1>
@@ -103,7 +105,7 @@
 								<h2>Khan Academy</h2>
 								<p>
 									First of all, I started to learn JavaScrip, HTML, CSS at
-									<a href="https://www.khanacademy.org/profile/NeoBliz"
+									target="blank_"  rel="noreferrer"href="https://www.khanacademy.org/profile/NeoBliz"
 										>Khan Academy.</a
 									>
 									Through a series of simple but interesting interactive
@@ -120,13 +122,13 @@
 								<h2>MDN learning center.</h2>
 								<p>
 									Inspired and enthusiastic, I went to the
-									<a href="https://developer.mozilla.org/en-US/docs/Learn"
+									target="blank_"  rel="noreferrer"href="https://developer.mozilla.org/en-US/docs/Learn"
 										>MDN Learning Center</a
 									>
 									course. There was a fundamental and detailed course on HTML,
 									CSS, responsive design technology, etc. After that, I studied
 									the jQuery library with the
-									<a href="https://learn.jquery.com">jQuery learning center.</a>
+									target="blank_"  rel="noreferrer"href="https://learn.jquery.com">jQuery learning center.</a>
 									Based on that knowledge, I created this website.
 								</p>
 							</div>
@@ -142,7 +144,7 @@
 									After studying the general features of front-end development,
 									I decided to try a new direction of programming - data science
 									engineering. After I studied the Machine Learning course at
-									<a href="https://www.codecademy.com/profiles/neobliz1"
+									target="blank_"  rel="noreferrer"href="https://www.codecademy.com/profiles/neobliz1"
 										>Codecademy.</a
 									>
 									It was positive experience, but I preferred continue web
@@ -159,13 +161,13 @@
 								<h2>freeCodeCamp</h2>
 								<p>
 									Searched the Internet for a while, I found
-									<a href="https://www.freecodecamp.org/learn"
+									<a target="blank_" rel="noreferrer" href="https://www.freecodecamp.org/learn"
 										>freeCodeCamp.org</a
 									>. This is a useful training center that gives knowledge for
 									free. I was crazy about interesting interactive lessons. I
 									studied JavaScript in depth for about 300 hours. At the end of
 									the training block, I received a
-									<a
+									<a target="blank_"  rel="noreferrer"
 										href="https://freecodecamp.org/certification/neobliz1/javascript-algorithms-and-data-structures"
 										>Certificate</a
 									>. <br />"Front-End Development Libraries" was the next block
@@ -186,7 +188,7 @@
 									At the end of the course it is proposed to create five small
 									applications based on the knowledge gained. I've complete it
 									successful. I've got
-									<a
+									<a target="blank_"  rel="noreferrer"
 										href="https://www.freecodecamp.org/certification/neobliz1/front-end-development-libraries"
 										>Certificate</a
 									>.
@@ -197,7 +199,7 @@
 				</article>
 			</div>
 
-			<div class="mySkills flex_box">
+			<div id="skillsMeter" class="mySkills flex_box">
 				<div class="overlayImgContainer" style="opacity: 1;">
 					<img class="slider2" />
 				</div>
@@ -218,12 +220,14 @@
 									></span>
 								</div>
 								<div class="linksContainer shadow-html">
-									<a id="profilePage_S_Link" class="firstSkillLink"
+									<a id="profilePage_S_Link"
+										class="firstSkillLink"
+										data-linkToElement="project_1"
 										>Profile page</a
 									>
-									<a>Link</a>
-									<a>Link</a>
-									<a class="lastSkillLink">Link</a>
+									<a target="blank_"  rel="noreferrer" href="https://codesandbox.io/s/neobliz-mozilla-splash-page-323mf">Mozilla splash page</a>
+									<a target="blank_"  rel="noreferrer" href="https://codesandbox.io/s/fakebirdwatchingsite-2hnqu">Fake birdwatchin gsite</a>
+									<!-- <a target="blank_"  rel="noreferrer"class="lastSkillLink">Link</a> -->
 								</div>
 							</div>
 
@@ -232,9 +236,6 @@
 									<svg class="progressbar__svg">
 										<circle
 											data-circle-name="css"
-											cx="80"
-											cy="80"
-											r="70"
 											class="progressbar__svg-circle shadow-css"
 										></circle>
 									</svg>
@@ -243,10 +244,14 @@
 									></span>
 								</div>
 								<div class="linksContainer shadow-css">
-									<a class="firstSkillLink">Link</a>
-									<a>Link</a>
-									<a>Link</a>
-									<a class="lastSkillLink">Link</a>
+									<a id="profilePage_S_Link"
+										class="firstSkillLink"
+										data-linkToElement="project_1"
+										>Profile page</a
+									>
+									<a target="blank_"  rel="noreferrer" href="https://codesandbox.io/s/fonts-styling-assesment-eil2w">Mozilla Fonts styling</a>
+									<a target="blank_"  rel="noreferrer" href="https://codesandbox.io/s/not-responsive-milky-way-site-demo-7r7jk?file=/src/styles.css">Mozilla milky way</a>
+									<!-- <a target="blank_"  rel="noreferrer"class="lastSkillLink">Link</a> -->
 								</div>
 							</div>
 
@@ -255,9 +260,6 @@
 									<svg class="progressbar__svg">
 										<circle
 											data-circle-name="js"
-											cx="80"
-											cy="80"
-											r="70"
 											class="progressbar__svg-circle shadow-js"
 										></circle>
 									</svg>
@@ -266,10 +268,24 @@
 									></span>
 								</div>
 								<div class="linksContainer shadow-js">
-									<a class="firstSkillLink">Link</a>
-									<a>Link</a>
-									<a>Link</a>
-									<a class="lastSkillLink">Link</a>
+									<a id="codeReminder_S_Link"
+										class="firstSkillLink"
+										data-linkToElement="react_project_1"
+										>Code reminder</a
+									>
+									<a id="profilePage_S_Link"										
+										data-linkToElement="project_1"
+										>Profile page</a
+									>
+									<a id="ohNoGuy_extreme_hope_S_Link"										
+										data-linkToElement="project_5"
+										>OhNoGuy extreme hope</a
+									>
+									<a id="memoryGame_S_Link"
+										class="lastSkillLink"
+										data-linkToElement="project_4"
+										>Memory game</a
+									>
 								</div>
 							</div>
 
@@ -278,9 +294,6 @@
 									<svg class="progressbar__svg">
 										<circle
 											data-circle-name="p5js"
-											cx="80"
-											cy="80"
-											r="70"
 											class="progressbar__svg-circle circle-angular shadow-p5js"
 										></circle>
 									</svg>
@@ -289,10 +302,31 @@
 									></span>
 								</div>
 								<div class="linksContainer shadow-p5js">
-									<a class="firstSkillLink">Link</a>
-									<a>Link</a>
-									<a>Link</a>
-									<a class="lastSkillLink">Link</a>
+									<a id="project_ants_colony_S_Link"
+										class="firstSkillLink"
+										data-linkToElement="project_ants_colony"
+										>Ants colony</a
+									>  
+									<a id="project_bees_awakening_S_Link"
+										class="beforeSkillLink"										
+										data-linkToElement="project_bees_awakening"
+										>Bees awakening</a
+									>
+									<a id="project_angry_fish_S_Link"										
+										class="centerSkillLink"
+										data-linkToElement="project_angry_fish"
+										>Angry fish</a
+									>
+									<a id="ohNoGuy_extreme_hope_S_Link"										
+										class="beforeSkillLink"
+										data-linkToElement="project_5"
+										>OhNoGuy extreme hope</a
+									>
+									<a id="memoryGame_S_Link"
+										class="lastSkillLink"
+										data-linkToElement="project_4"
+										>Memory game</a
+									>
 								</div>
 							</div>
 
@@ -301,9 +335,6 @@
 									<svg class="progressbar__svg">
 										<circle
 											data-circle-name="bootstrap"
-											cx="80"
-											cy="80"
-											r="70"
 											class="progressbar__svg-circle shadow-bootstrap"
 										></circle>
 									</svg>
@@ -312,10 +343,10 @@
 									></span>
 								</div>
 								<div class="linksContainer shadow-bootstrap">
-									<a class="firstSkillLink">Link</a>
-									<a>Link</a>
-									<a>Link</a>
-									<a class="lastSkillLink">Link</a>
+									<a target="blank_"  rel="noreferrer"class="firstSkillLink">Link</a>
+									<a target="blank_"  rel="noreferrer">Link</a>
+									<a target="blank_"  rel="noreferrer">Link</a>
+									<a target="blank_"  rel="noreferrer"class="lastSkillLink">Link</a>
 								</div>
 							</div>
 
@@ -324,9 +355,6 @@
 									<svg class="progressbar__svg">
 										<circle
 											data-circle-name="scss"
-											cx="80"
-											cy="80"
-											r="70"
 											class="progressbar__svg-circle shadow-scss"
 										></circle>
 									</svg>
@@ -335,10 +363,10 @@
 									></span>
 								</div>
 								<div class="linksContainer shadow-scss">
-									<a class="firstSkillLink">Link</a>
-									<a>Link</a>
-									<a>Link</a>
-									<a class="lastSkillLink">Link</a>
+									<a target="blank_"  rel="noreferrer"class="firstSkillLink">Link</a>
+									<a target="blank_"  rel="noreferrer">Link</a>
+									<a target="blank_"  rel="noreferrer">Link</a>
+									<a target="blank_"  rel="noreferrer"class="lastSkillLink">Link</a>
 								</div>
 							</div>
 
@@ -347,9 +375,6 @@
 									<svg class="progressbar__svg">
 										<circle
 											data-circle-name="react"
-											cx="80"
-											cy="80"
-											r="70"
 											class="progressbar__svg-circle shadow-react"
 										></circle>
 									</svg>
@@ -358,10 +383,10 @@
 									></span>
 								</div>
 								<div class="linksContainer shadow-react">
-									<a class="firstSkillLink">Link</a>
-									<a>Link</a>
-									<a>Link</a>
-									<a class="lastSkillLink">Link</a>
+									<a target="blank_"  rel="noreferrer"class="firstSkillLink">Link</a>
+									<a target="blank_"  rel="noreferrer">Link</a>
+									<a target="blank_"  rel="noreferrer">Link</a>
+									<a target="blank_"  rel="noreferrer"class="lastSkillLink">Link</a>
 								</div>
 							</div>
 
@@ -370,9 +395,6 @@
 									<svg class="progressbar__svg">
 										<circle
 											data-circle-name="redux"
-											cx="80"
-											cy="80"
-											r="70"
 											class="progressbar__svg-circle shadow-redux"
 										></circle>
 									</svg>
@@ -381,10 +403,10 @@
 									></span>
 								</div>
 								<div class="linksContainer shadow-redux">
-									<a class="firstSkillLink">Link</a>
-									<a>Link</a>
-									<a>Link</a>
-									<a class="lastSkillLink">Link</a>
+									<a target="blank_"  rel="noreferrer"class="firstSkillLink">Link</a>
+									<a target="blank_"  rel="noreferrer">Link</a>
+									<a target="blank_"  rel="noreferrer">Link</a>
+									<a target="blank_"  rel="noreferrer"class="lastSkillLink">Link</a>
 								</div>
 							</div>
 
@@ -393,9 +415,6 @@
 									<svg class="progressbar__svg">
 										<circle
 											data-circle-name="ts"
-											cx="80"
-											cy="80"
-											r="70"
 											class="progressbar__svg-circle shadow-ts"
 										></circle>
 									</svg>
@@ -404,10 +423,10 @@
 									></span>
 								</div>
 								<div class="linksContainer shadow-ts">
-									<a class="firstSkillLink">Link</a>
-									<a>Link</a>
-									<a>Link</a>
-									<a class="lastSkillLink">Link</a>
+									<a target="blank_"  rel="noreferrer"class="firstSkillLink">Link</a>
+									<a target="blank_"  rel="noreferrer">Link</a>
+									<a target="blank_"  rel="noreferrer">Link</a>
+									<a target="blank_"  rel="noreferrer"class="lastSkillLink">Link</a>
 								</div>
 							</div>
 						</div>
@@ -438,7 +457,7 @@
 				</div>
 			</div>
 
-			<div class="about flex_box">
+			<div id="projectList" class="about flex_box">
 				<div class="mySkillsContent flex_box">
 					<h1>Project list</h1>
 					<div class="examplesContainer">
@@ -450,7 +469,7 @@
 								<h2 class="paragraphMSD hidden">
 									Twenty five plus five clock project. #freeCodeCamp project.
 								</h2>
-								<a
+								<a target="blank_"  rel="noreferrer"
 									class="viewProject hidden"
 									id="vpb"
 									href="https://neobliz1.github.io/personal_blog_bootstrapped_by_react/?redirect=twenty_five_plus_five_clock"
@@ -471,7 +490,7 @@
 								<h2 class="paragraphMSD hidden">
 									JavaScript calculator #freeCodeCamp project.
 								</h2>
-								<a
+								<a target="blank_"  rel="noreferrer"
 									class="viewProject hidden"
 									id="vpb"
 									href="https://neobliz1.github.io/personal_blog_bootstrapped_by_react/?redirect=javaScript_calculator"
@@ -492,7 +511,7 @@
 								<h2 class="paragraphMSD hidden">
 									Drum machine #freeCodeCamp project.
 								</h2>
-								<a
+								<a target="blank_"  rel="noreferrer"
 									class="viewProject hidden"
 									id="vpb"
 									href="https://neobliz1.github.io/personal_blog_bootstrapped_by_react/?redirect=drum_machine"
@@ -513,7 +532,7 @@
 								<h2 class="paragraphMSD hidden">
 									Markdown Previewer #freeCodeCamp project.
 								</h2>
-								<a
+								<a target="blank_"  rel="noreferrer"
 									class="viewProject hidden"
 									id="vpb"
 									href="https://neobliz1.github.io/personal_blog_bootstrapped_by_react/?redirect=markdown_previewer"
@@ -534,7 +553,7 @@
 								<h2 class="paragraphMSD hidden">
 									Random Quote Machine #freeCodeCamp project.
 								</h2>
-								<a
+								<a target="blank_"  rel="noreferrer"
 									class="viewProject hidden"
 									id="vpb"
 									href="https://neobliz1.github.io/personal_blog_bootstrapped_by_react/?redirect=random_quote_machine"
@@ -556,7 +575,7 @@
 								<h2 class="paragraphMSD hidden">
 									Blog application on the react framework.
 								</h2>
-								<a
+								<a target="blank_"  rel="noreferrer"
 									class="viewProject hidden"
 									id="vpb"
 									href="https://neobliz1.github.io/personal_blog_bootstrapped_by_react"
@@ -591,7 +610,7 @@
 								<p class="paragraphMSD hidden">
 									During this project, I learned JQuery deeper and revise my
 								</p>
-								<a
+								<a target="blank_"  rel="noreferrer"
 									class="viewProject hidden"
 									id="vpb"
 									href="https://codesandbox.io/s/profile-page-neobliz1-es8u84"
@@ -607,7 +626,7 @@
 						<div class="project_ants_colony projectDiv">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
-								<a
+								<a target="blank_"  rel="noreferrer"
 									class="viewProject hidden"
 									id="vpb"
 									href="html/project_ants_colony.html"
@@ -618,7 +637,7 @@
 						<div class="project_bees_awakening projectDiv">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
-								<a
+								<a target="blank_"  rel="noreferrer"
 									class="viewProject hidden"
 									id="vpb"
 									href="html/project_bees_awakening.html"
@@ -629,7 +648,7 @@
 						<div class="project_angry_fish projectDiv">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
-								<a
+								<a target="blank_"  rel="noreferrer"
 									class="viewProject hidden"
 									id="vpb"
 									href="html/project_angry_fish.html"
@@ -640,7 +659,7 @@
 						<div class="project_5 projectDiv">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
-								<a class="viewProject hidden" id="vpb" href="html/project5.html"
+								<a target="blank_"  rel="noreferrer"class="viewProject hidden" id="vpb" href="html/project5.html"
 									>view project</a
 								>
 							</div>
@@ -648,7 +667,7 @@
 						<div class="project_4 projectDiv">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
-								<a class="viewProject hidden" id="vpb" href="html/project4.html"
+								<a target="blank_"  rel="noreferrer"class="viewProject hidden" id="vpb" href="html/project4.html"
 									>view project</a
 								>
 							</div>
@@ -656,7 +675,7 @@
 						<div class="project_3 projectDiv">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
-								<a class="viewProject hidden" id="vpb" href="html/project3.html"
+								<a target="blank_"  rel="noreferrer"class="viewProject hidden" id="vpb" href="html/project3.html"
 									>view project</a
 								>
 							</div>
@@ -664,7 +683,7 @@
 						<div class="project_2 projectDiv">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
-								<a class="viewProject hidden" id="vpb" href="html/project2.html"
+								<a target="blank_"  rel="noreferrer"class="viewProject hidden" id="vpb" href="html/project2.html"
 									>view project</a
 								>
 							</div>
@@ -674,11 +693,11 @@
 			</div>
 			<footer>
 				<p>Third-party libraries used in the project</p>
-				<a href="https://simpleparallax.com/">simpleParallax.js</a>
-				<a href="http://scrollmagic.io">ScrollMagic.js</a>
-				<a href="https://p5js.org/">p5.js</a>
-				<a href="https://modernizr.com/">modernizr.js</a>
-				<a href="https://github.com/aarcoraci">JavascriptFluidMeter.js</a>
+				<a target="blank_"  rel="noreferrer "href="https://simpleparallax.com/">simpleParallax.js</a>
+				<a target="blank_"  rel="noreferrer "href="http://scrollmagic.io">ScrollMagic.js</a>
+				<a target="blank_"  rel="noreferrer "href="https://p5js.org/">p5.js</a>
+				<a target="blank_"  rel="noreferrer "href="https://modernizr.com/">modernizr.js</a>
+				<a target="blank_"  rel="noreferrer "href="https://github.com/aarcoraci">JavascriptFluidMeter.js</a>
 			</footer>
 			<!-- upButton -->
 			<button class="upButton animated hidden">
@@ -761,13 +780,15 @@
 		<!-- scrollMagic -->
 		<script src="js/scrollMagic.min.js"></script>
 		<!-- modernizer script -->
-		<script src="js/modernizr-custom.js"></script>
+		<!-- <script src="js/modernizr-custom.js"></script> -->
 		<!-- img parallax -->
 		<script src="js/simpleParallax.js" type="text/javascript"></script>
 		<!-- fluidProgressMeter -->
-		<script src="js/js-fluid-meter.js" type="text/javascript"></script>
+		<!-- <script src="js/js-fluid-meter.js" type="text/javascript"></script> -->
 		<!-- google recaptcha2 -->
 		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		<!-- my module function -->
+		<script src="js/serviceJs/modules.js" type="text/javascript"></script>
 		<!-- Main -->
 		<script src="js/main.js" type="text/javascript"></script>
 	</body>

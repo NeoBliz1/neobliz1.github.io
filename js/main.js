@@ -1,4 +1,6 @@
 /* eslint-disable no-undef, @typescript-eslint/no-unused-vars, no-unused-vars */
+//import functions from modules.js
+const skillsLinksHandler = this.mySkillsLinksHalndler;
 
 //srt named event for refresh parallax imgs
 jQuery.event.special.renewPage = {
@@ -184,6 +186,7 @@ const setParallaxImage = function (wSW, wDPR) {
 };
 
 const $projectDiv = $('.projectDiv');
+
 let durationTime = 500;
 let viewportWidth,
 	viewportHeight,
@@ -195,9 +198,17 @@ let projectDivFullSizeState = false;
 /*functions which handling MySkills areas divs
 and applying zommIn animation on it*/
 const DSdurationTime = 500; //div skill full size animation duration time
+
+//add read more button to project divs
+const addReadMoreBtnsToPrjDivs = () => {
+	$projectDiv.addClass('scrollAnimate hidden');
+	$projectDiv.prepend(
+		'<button class="readMoreBtn hidden" id="rmb" type="button">read more</button>'
+	);
+};
+
 //handler for all div thumbnails
 const mySkillsAnimation = function () {
-	$($projectDiv).addClass('scrollAnimate hidden');
 	const zoomInAnimation = function (thisIs) {
 		durationTime = 500;
 		const viewportWidth = $(window).width();
@@ -258,6 +269,7 @@ const mySkillsAnimation = function () {
 							.click(function (event) {
 								if (event.currentTarget.id === 'rmb') {
 									/*alert('Your clicked button 'Read more'');*/
+
 									projectDivFullSizeState = true;
 									projectDivFullSize(thisIs);
 								}
@@ -266,7 +278,7 @@ const mySkillsAnimation = function () {
 									// 	event.preventDefault();
 									// 	$('.upButton').trigger('click');
 									// }
-									$('.hovered').trigger('mouseleave');
+									$('.hovered').trigger('mouseleave').removeClass('hovered');
 								}
 							});
 					}
@@ -481,7 +493,7 @@ const mySkillsAnimation = function () {
 		const $cloneDiv = $(thisIs).clone();
 
 		//remove "read more" button
-		$cloneDiv.removeClass('projectDiv scrollAnimate').find('#rmb').remove();
+		$cloneDiv.removeClass('projectDiv scrollAnimate').find('#rmb, i').remove();
 
 		//roll in "view project" button
 		$cloneDiv
@@ -495,12 +507,12 @@ const mySkillsAnimation = function () {
 			margin: vpbMarginValue
 		});
 
-		if ($cloneDiv.hasClass('project_1')) {
-			$cloneDiv.find('#vpb').click(function (event) {
-				event.preventDefault();
-				$('.upButton').trigger('click');
-			});
-		}
+		// if ($cloneDiv.hasClass('project_1')) {
+		// 	$cloneDiv.find('#vpb').click(function (event) {
+		// 		event.preventDefault();
+		// 		$('.upButton').trigger('click');
+		// 	});
+		// }
 
 		//add overlay div
 		$('body').append('<div id="fullSizeSkillBoxOverlay"></div>'); //adding overlay div to the end main div
@@ -580,10 +592,10 @@ const mySkillsAnimation = function () {
 			projectDivFullSizeState = false;
 			projectDivMinimize(this, currentDivOffset);
 		});
-
-		$projectDiv.off('mouseenter mouseleave vmouseover vmouseout'); //shutdown mouse event handler from skills divs
+		//disable mouse event handler from skills divs
+		$projectDiv.off('mouseenter mouseleave vmouseover vmouseout');
 	};
-	//minimize fullSize div
+	//minimize fullSize div $(this).trigger('mouseleave');
 	const projectDivMinimize = function (thisIs, currentDivOffset) {
 		$(thisIs).off('click');
 		$('#fullSizeSkillBoxOverlay').fadeOut(DSdurationTime, function () {
@@ -597,12 +609,16 @@ const mySkillsAnimation = function () {
 			});
 		$('body').css('overflow', 'visible');
 		divHoverHandler();
+		//minimize all hovered divs
+		$('.hovered').trigger('mouseleave').removeClass('hovered');
 		$(window).off('scroll.fixedCurrentView');
 	};
 	const divHoverHandler = function () {
 		//mouse in and out handler
 		$projectDiv.hover(
 			function () {
+				//minimize all hovered divs
+				$('.hovered').trigger('mouseleave').removeClass('hovered');
 				/* Stuff to do when the mouse enters the element */
 				const thisIs = this;
 				zoomInAnimation(thisIs);
@@ -621,9 +637,6 @@ const mySkillsAnimation = function () {
 						},
 						DSdurationTime
 					);
-					if ($(thisIs).hasClass('project_1')) {
-						$('.examplesContainer').css('overflow', 'visible');
-					}
 					$(thisIs).addClass('hovered');
 					if ($(window).width() < 1000) {
 						$(thisIs)
@@ -653,14 +666,11 @@ const mySkillsAnimation = function () {
 			// console.log('swipe1');
 			$('.examplesContainer').on('scrollstart', function (event) {
 				// console.log('swipe');
-				$('.hovered').trigger('mouseleave');
+				$('.hovered').trigger('mouseleave').removeClass('hovered');
 			});
 		}
 	};
-	//add read more button to project divs
-	$projectDiv.prepend(
-		'<button class="readMoreBtn hidden" id="rmb" type="button">read more</button>'
-	);
+
 	divHoverHandler();
 };
 
@@ -911,30 +921,30 @@ const projectDivSizeHandler = function (
 		'text-indent': projectDivWidth * 0.02,
 		'font-size': projectDivWidth * 0.025
 	});
-	let FMcanvasSize, FMborderSize, FMfontSize;
-	// console.log(platformIsMobile, viewportWidth, wDPR)
-	if (platformIsMobile && viewportWidth < 1000 && wDPR <= 3) {
-		const FMScaleCoeff = 1.8;
-		FMcanvasSize = projectDivWidth * 0.4;
-		FMborderSize = projectDivWidth * 0.015;
-		FMfontSize = projectDivWidth * 0.055 + 'px';
-		// console.log('123')
-	} else if (viewportWidth > viewportHeight) {
-		FMcanvasSize = projectDivWidth * 0.6;
-		FMborderSize = projectDivWidth / 40;
-		FMfontSize = projectDivWidth / 12 + 'px';
-		// console.log('2')
-	} else if (viewportWidth < viewportHeight) {
-		FMcanvasSize = projectDivWidth * 0.5;
-		FMborderSize = projectDivWidth / 50;
-		FMfontSize = projectDivWidth / 15 + 'px';
-		// console.log('3')
-	}
+	// let FMcanvasSize, FMborderSize, FMfontSize;
+	// // console.log(platformIsMobile, viewportWidth, wDPR)
+	// if (platformIsMobile && viewportWidth < 1000 && wDPR <= 3) {
+	// 	const FMScaleCoeff = 1.8;
+	// 	FMcanvasSize = projectDivWidth * 0.4;
+	// 	FMborderSize = projectDivWidth * 0.015;
+	// 	FMfontSize = projectDivWidth * 0.055 + 'px';
+	// 	// console.log('123')
+	// } else if (viewportWidth > viewportHeight) {
+	// 	FMcanvasSize = projectDivWidth * 0.6;
+	// 	FMborderSize = projectDivWidth / 40;
+	// 	FMfontSize = projectDivWidth / 12 + 'px';
+	// 	// console.log('2')
+	// } else if (viewportWidth < viewportHeight) {
+	// 	FMcanvasSize = projectDivWidth * 0.5;
+	// 	FMborderSize = projectDivWidth / 50;
+	// 	FMfontSize = projectDivWidth / 15 + 'px';
+	// 	// console.log('3')
+	// }
 
-	$('canvas').attr({
-		width: FMcanvasSize,
-		height: FMcanvasSize
-	});
+	// $('canvas').attr({
+	// 	width: FMcanvasSize,
+	// 	height: FMcanvasSize
+	// });
 	// htmlFM.setProperties(75, FMcanvasSize, FMborderSize, FMfontSize, "HTML");
 	// cssFM.setProperties(70, FMcanvasSize, FMborderSize, FMfontSize, "CSS");
 	// jsFM.setProperties(55, FMcanvasSize, FMborderSize, FMfontSize, "JavaScript");
@@ -1459,6 +1469,7 @@ const tMessageDialogBox = function (viewportWidth, viewportHeight) {
 // });
 
 //handler for scroll top button
+
 const scrollTop = function () {
 	if (platformIsMobile) {
 		$('.upButton')
@@ -1526,6 +1537,7 @@ $(window).on('load', function () {
 	const windowOuterWidth = window.outerWidth;
 	const windowOuterHeight = window.outerHeight;
 	scrollTop(); //handler for up button
+	addReadMoreBtnsToPrjDivs();
 	mySkillsAnimation();
 	projectDivSizeHandler(
 		viewportWidth,
@@ -1541,7 +1553,9 @@ $(window).on('load', function () {
 		scrollAnimate(viewportHeight, false); //scroll handler for divs
 		loaderScreen();
 		zoomInHeader();
-		tMessageDialogBox(viewportWidth, viewportHeight); //handler for tMessage box
+		//handler for tMessage box
+		tMessageDialogBox(viewportWidth, viewportHeight);
 		console.log('document loaded');
+		skillsLinksHandler();
 	});
 });
