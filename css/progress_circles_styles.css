@@ -8,12 +8,74 @@
 }
 .container__progressbars {
 	display: flex;
-	justify-content: space-around;
-	align-items: center;
 	flex-wrap: wrap;
 	min-width: 270px;
 	width: 100%;
 	min-height: 100%;
+}
+.mySkills {
+	background-color: rgb(255, 145, 0);
+	position: relative;
+	width: 100%;
+	z-index: 2;
+}
+.mySkills > div > h1 {
+	text-align: center;
+}
+.mySkillsContent {
+	position: relative;
+	z-index: 5;
+}
+.skillsIcon {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: 50% 50%;
+	background-position: 45% 55%;
+}
+.progresBarContainer {
+	display: flex;
+}
+.linksContainer {
+	display: flex;
+	flex-flow: column;
+	justify-content: space-around;
+	padding-right: 1em;
+}
+.firstSkillLink,
+.lastSkillLink {
+	margin-left: -20px;
+}
+.beforeSkillLink {
+	margin-left: -10px;
+}
+.ico-html5 {
+	background-image: url(../img/skills_icons/html.svg);
+}
+.ico-css3 {
+	background-image: url(../img/skills_icons/css3.svg);
+}
+.ico-js {
+	background-image: url(../img/skills_icons/javascript.svg);
+}
+.ico-p5js {
+	background-image: url(../img/skills_icons/p5js.svg);
+}
+.ico-bootstrap {
+	background-image: url(../img/skills_icons/bootstrap.svg);
+}
+.ico-sass {
+	background-image: url(../img/skills_icons/sass.svg);
+}
+.ico-react {
+	background-image: url(../img/skills_icons/react.svg);
+}
+.ico-redux {
+	background-image: url(../img/skills_icons/redux.svg);
+}
+.ico-typeScript {
+	background-image: url(../img/skills_icons/typescript.svg);
 }
 .progressbar {
 	position: relative;
@@ -106,98 +168,57 @@
 	width: 100%;
 	height: 100%;
 }
-@keyframes anim_circle-html {
-	to {
-		stroke-dashoffset: 22;
-	}
-}
-@keyframes anim_circle-css {
-	to {
-		stroke-dashoffset: 66;
-	}
-}
-@keyframes anim_circle-scss {
-	to {
-		stroke-dashoffset: 132;
-	}
-}
-@keyframes anim_circle-js {
-	to {
-		stroke-dashoffset: 88;
-	}
-}
-@keyframes anim_circle-ts {
-	to {
-		stroke-dashoffset: 198;
-	}
-}
-@keyframes anim_circle-redux {
-	to {
-		stroke-dashoffset: 88;
-	}
-}
-@keyframes anim_circle-react {
-	to {
-		stroke-dashoffset: 88;
-	}
-}
-@keyframes anim_circle-p5js {
-	to {
-		stroke-dashoffset: 88;
-	}
-}
-@keyframes anim_circle-bootstrap {
-	to {
-		stroke-dashoffset: 88;
-	}
-}
 
 /* Extra small devices (phones, 576px and down) */
 @media only screen and (max-width: 575px) {
 	@keyframes anim_circle-html {
 		to {
-			stroke-dashoffset: 300;
+			stroke-dashoffset: 260;
 		}
 	}
 	@keyframes anim_circle-css {
 		to {
-			stroke-dashoffset: 66;
-		}
-	}
-	@keyframes anim_circle-scss {
-		to {
-			stroke-dashoffset: 132;
+			stroke-dashoffset: 280;
 		}
 	}
 	@keyframes anim_circle-js {
 		to {
-			stroke-dashoffset: 88;
-		}
-	}
-	@keyframes anim_circle-ts {
-		to {
-			stroke-dashoffset: 350;
-		}
-	}
-	@keyframes anim_circle-redux {
-		to {
-			stroke-dashoffset: 88;
-		}
-	}
-	@keyframes anim_circle-react {
-		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 295;
 		}
 	}
 	@keyframes anim_circle-p5js {
 		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 250;
 		}
 	}
 	@keyframes anim_circle-bootstrap {
 		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 300;
 		}
+	}
+	@keyframes anim_circle-scss {
+		to {
+			stroke-dashoffset: 330;
+		}
+	}
+	@keyframes anim_circle-react {
+		to {
+			stroke-dashoffset: 320;
+		}
+	}
+	@keyframes anim_circle-redux {
+		to {
+			stroke-dashoffset: 360;
+		}
+	}
+	@keyframes anim_circle-ts {
+		to {
+			stroke-dashoffset: 360;
+		}
+	}
+
+	.container__progressbars {
+		justify-content: flex-start;
 	}
 	.progressbar__svg-circle {
 		r: 35;
@@ -205,9 +226,27 @@
 		cy: 40;
 		stroke-width: 5px;
 	}
+	.progresBarContainer {
+		margin: 10px 0 10px 45px;
+		align-items: center;
+	}
 	.progressbar {
 		width: 90px;
 		height: 90px;
+	}
+	.linksContainer > a {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.firstSkillLink,
+	.lastSkillLink {
+		margin-left: -10px;
+	}
+	.centerSkillLink {
+		margin-left: 10px;
+	}
+	.beforeSkillLink {
+		margin-left: 0;
 	}
 }
 
@@ -215,48 +254,52 @@
 @media only screen and (min-width: 576px) {
 	@keyframes anim_circle-html {
 		to {
-			stroke-dashoffset: 300;
+			stroke-dashoffset: 200;
 		}
 	}
 	@keyframes anim_circle-css {
 		to {
-			stroke-dashoffset: 66;
-		}
-	}
-	@keyframes anim_circle-scss {
-		to {
-			stroke-dashoffset: 132;
+			stroke-dashoffset: 220;
 		}
 	}
 	@keyframes anim_circle-js {
 		to {
-			stroke-dashoffset: 88;
-		}
-	}
-	@keyframes anim_circle-ts {
-		to {
-			stroke-dashoffset: 317;
-		}
-	}
-	@keyframes anim_circle-redux {
-		to {
-			stroke-dashoffset: 88;
-		}
-	}
-	@keyframes anim_circle-react {
-		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 235;
 		}
 	}
 	@keyframes anim_circle-p5js {
 		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 190;
 		}
 	}
 	@keyframes anim_circle-bootstrap {
 		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 240;
 		}
+	}
+	@keyframes anim_circle-scss {
+		to {
+			stroke-dashoffset: 280;
+		}
+	}
+	@keyframes anim_circle-react {
+		to {
+			stroke-dashoffset: 270;
+		}
+	}
+	@keyframes anim_circle-redux {
+		to {
+			stroke-dashoffset: 320;
+		}
+	}
+	@keyframes anim_circle-ts {
+		to {
+			stroke-dashoffset: 320;
+		}
+	}
+
+	.container__progressbars {
+		justify-content: flex-start;
 	}
 	.progressbar__svg-circle {
 		r: 47;
@@ -264,14 +307,32 @@
 		cy: 60;
 		stroke-width: 7px;
 	}
+	.progresBarContainer {
+		margin: 10px 0 10px 45px;
+		align-items: center;
+	}
 	.progressbar {
 		width: 135px;
 		height: 135px;
 	}
+	.linksContainer > a {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.firstSkillLink,
+	.lastSkillLink {
+		margin-left: -20px;
+	}
+	.centerSkillLink {
+		margin-left: 10px;
+	}
+	.beforeSkillLink {
+		margin-left: -5;
+	}
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) { 
 } */
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -282,48 +343,52 @@
 @media only screen and (min-width: 1200px) {
 	@keyframes anim_circle-html {
 		to {
-			stroke-dashoffset: 300;
+			stroke-dashoffset: 90;
 		}
 	}
 	@keyframes anim_circle-css {
 		to {
-			stroke-dashoffset: 66;
-		}
-	}
-	@keyframes anim_circle-scss {
-		to {
-			stroke-dashoffset: 132;
+			stroke-dashoffset: 110;
 		}
 	}
 	@keyframes anim_circle-js {
 		to {
-			stroke-dashoffset: 88;
-		}
-	}
-	@keyframes anim_circle-ts {
-		to {
-			stroke-dashoffset: 350;
-		}
-	}
-	@keyframes anim_circle-redux {
-		to {
-			stroke-dashoffset: 88;
-		}
-	}
-	@keyframes anim_circle-react {
-		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 125;
 		}
 	}
 	@keyframes anim_circle-p5js {
 		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 80;
 		}
 	}
 	@keyframes anim_circle-bootstrap {
 		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 130;
 		}
+	}
+	@keyframes anim_circle-scss {
+		to {
+			stroke-dashoffset: 200;
+		}
+	}
+	@keyframes anim_circle-react {
+		to {
+			stroke-dashoffset: 190;
+		}
+	}
+	@keyframes anim_circle-redux {
+		to {
+			stroke-dashoffset: 260;
+		}
+	}
+	@keyframes anim_circle-ts {
+		to {
+			stroke-dashoffset: 260;
+		}
+	}
+
+	.container__progressbars {
+		justify-content: space-around;
 	}
 	.progressbar__svg-circle {
 		r: 70;
@@ -331,11 +396,30 @@
 		cy: 80;
 		stroke-width: 10px;
 	}
+	.progresBarContainer {
+		margin: 10px 0 10px 45px;
+		align-items: center;
+	}
 	.progressbar {
 		width: 180px;
 		height: 180px;
 	}
+	.linksContainer > a {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.firstSkillLink,
+	.lastSkillLink {
+		margin-left: -30px;
+	}
+	.centerSkillLink {
+		margin-left: 0;
+	}
+	.beforeSkillLink {
+		margin-left: -15;
+	}
 }
+
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 /* @media only screen and (min-width: 1400px) {
 } */
@@ -343,58 +427,80 @@
 @media only screen and (min-width: 2000px) {
 	@keyframes anim_circle-html {
 		to {
-			stroke-dashoffset: 300;
+			stroke-dashoffset: 90;
 		}
 	}
 	@keyframes anim_circle-css {
 		to {
-			stroke-dashoffset: 66;
-		}
-	}
-	@keyframes anim_circle-scss {
-		to {
-			stroke-dashoffset: 132;
+			stroke-dashoffset: 110;
 		}
 	}
 	@keyframes anim_circle-js {
 		to {
-			stroke-dashoffset: 88;
-		}
-	}
-	@keyframes anim_circle-ts {
-		to {
-			stroke-dashoffset: 350;
-		}
-	}
-	@keyframes anim_circle-redux {
-		to {
-			stroke-dashoffset: 88;
-		}
-	}
-	@keyframes anim_circle-react {
-		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 125;
 		}
 	}
 	@keyframes anim_circle-p5js {
 		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 80;
 		}
 	}
 	@keyframes anim_circle-bootstrap {
 		to {
-			stroke-dashoffset: 88;
+			stroke-dashoffset: 130;
 		}
 	}
+	@keyframes anim_circle-scss {
+		to {
+			stroke-dashoffset: 200;
+		}
+	}
+	@keyframes anim_circle-react {
+		to {
+			stroke-dashoffset: 190;
+		}
+	}
+	@keyframes anim_circle-redux {
+		to {
+			stroke-dashoffset: 260;
+		}
+	}
+	@keyframes anim_circle-ts {
+		to {
+			stroke-dashoffset: 260;
+		}
+	}
+
+	.container__progressbars {
+		justify-content: space-around;
+	}
 	.progressbar__svg-circle {
-		r: 84;
+		r: 85;
 		cx: 100;
 		cy: 100;
 		stroke-width: 13px;
 	}
+	.progresBarContainer {
+		margin: 10px 0 10px 45px;
+		align-items: center;
+	}
 	.progressbar {
 		width: 210px;
 		height: 210px;
+	}
+	.linksContainer > a {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.firstSkillLink,
+	.lastSkillLink {
+		margin-left: -40px;
+	}
+	.centerSkillLink {
+		margin-left: 0;
+	}
+	.beforeSkillLink {
+		margin-left: -20;
 	}
 }
 /* Super extra large devices (large laptops and desktops, 1200px and up) */

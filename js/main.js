@@ -4,8 +4,8 @@ const skillsLinksHandler = this.mySkillsLinksHalndler;
 
 //srt named event for refresh parallax imgs
 jQuery.event.special.renewPage = {
-	bindType: 'resize',
-	delegateType: 'resize'
+	bindType: "resize",
+	delegateType: "resize"
 };
 
 //checking browser and platform
@@ -21,8 +21,8 @@ const platformIsMobile = (function (a) {
 })(navigator.userAgent || navigator.vendor || window.opera);
 let orientationIsChange = false;
 if (platformIsMobile) {
-	$(window).on('orientationchange', function (event) {
-		$('.loader-gif').css('display', 'initial');
+	$(window).on("orientationchange", function (event) {
+		$(".loader-gif").css("display", "initial");
 		orientationIsChange = true;
 		// console.log(orientationIsChange);
 	});
@@ -30,9 +30,9 @@ if (platformIsMobile) {
 
 const zoomInHeader = function () {
 	//zoom in main header
-	$('.headerContent').addClass('zoomIn animated');
+	$(".headerContent").addClass("zoomIn animated");
 	//hide are elements which will be animated
-	$('.scrollAnimate').addClass('hidden');
+	$(".scrollAnimate").addClass("hidden");
 };
 // const fluidMeterRestart = function () {
 // 	doAnim = true; //global anim variable
@@ -60,32 +60,32 @@ const scrollAnimate = function (viewportHeight, refreshOffset) {
 	const scrollEventOffset = viewportHeight * 0.48 * -1;
 	if (!refreshOffset) {
 		// console.log('magick scroll initialize');
-		$('.scrollAnimate, .progressbar__svg-circle')
-			.addClass('animated')
+		$(".scrollAnimate, .progressbar__svg-circle")
+			.addClass("animated")
 			.each(function (index, el) {
-				const stickyId = 'myStickyEl' + index;
+				const stickyId = "myStickyEl" + index;
 				// scenesArr.push('scene'+index);
 				const $this = $(this);
-				$this.attr('id', stickyId);
+				$this.attr("id", stickyId);
 
 				controller[index] = new ScrollMagic.Controller();
 				// create a scene
 				scenesArr[index] = new ScrollMagic.Scene().addTo(controller[index]);
 
 				scenesArr[index]
-					.triggerElement('#' + stickyId)
+					.triggerElement("#" + stickyId)
 					.offset(scrollEventOffset)
 					.duration(100)
-					.on('start', function (event) {
-						if (event.scrollDirection === 'FORWARD') {
-							if ($this.hasClass('hidden')) {
-								$('#' + stickyId)
-									.removeClass('hidden fadeOutDown')
-									.addClass('fadeInUp slow');
+					.on("start", function (event) {
+						if (event.scrollDirection === "FORWARD") {
+							if ($this.hasClass("hidden")) {
+								$("#" + stickyId)
+									.removeClass("hidden fadeOutDown")
+									.addClass("fadeInUp slow");
 							}
-							if ($this.hasClass('progressbar__svg-circle')) {
-								$('#' + stickyId).addClass(
-									'circle-' + $('#' + stickyId).attr('data-circle-name')
+							if ($this.hasClass("progressbar__svg-circle")) {
+								$("#" + stickyId).addClass(
+									"circle-" + $("#" + stickyId).attr("data-circle-name")
 								);
 							}
 						} else {
@@ -115,18 +115,18 @@ const scrollAnimate = function (viewportHeight, refreshOffset) {
 		// create a scene
 		upButtonScene = new ScrollMagic.Scene().addTo(upButtonController);
 
-		const $upButton = $('.upButton');
+		const $upButton = $(".upButton");
 		upButtonScene
 			.triggerElement(window)
 			.offset($(window).height() + $upButton.height())
 			.duration(100)
-			.on('start', function (event) {
-				if (event.scrollDirection === 'FORWARD') {
+			.on("start", function (event) {
+				if (event.scrollDirection === "FORWARD") {
 					// console.log(event.scrollDirection);
-					$upButton.removeClass('hidden fadeOutDown').addClass('fadeInUp slow');
+					$upButton.removeClass("hidden fadeOutDown").addClass("fadeInUp slow");
 				} else {
 					// console.log(event.scrollDirection);
-					$upButton.removeClass('fadeInUp slow').addClass('fadeOutDown');
+					$upButton.removeClass("fadeInUp slow").addClass("fadeOutDown");
 				}
 			});
 	} else if (refreshOffset) {
@@ -140,52 +140,52 @@ const scrollAnimate = function (viewportHeight, refreshOffset) {
 
 /*fadingOut loader screen*/
 const loaderScreen = function () {
-	$('.loader-gif').css('display', 'initial').fadeOut('slow');
+	$(".loader-gif").css("display", "initial").fadeOut("slow");
 };
 
 //set parallax img attributes
 const setParallaxImage = function (wSW, wDPR) {
-	let pathToParllaxImg = '../img/cover_bg_3.png';
-	let pathToThmbImg = '../img/ava.png';
+	let pathToParllaxImg = "../img/cover_bg_3.png";
+	let pathToThmbImg = "../img/ava.png";
 	const setImgPassway = function () {
-		$('.blizThumbnail').css('background-image', 'url(' + pathToThmbImg + ')');
-		$('.slider1, .slider2').attr('src', pathToParllaxImg);
+		$(".blizThumbnail").css("background-image", "url(" + pathToThmbImg + ")");
+		$(".slider1, .slider2").attr("src", pathToParllaxImg);
 	};
 	if (wSW >= 2400) {
 		const cover_bgUrl =
-			'https://res.cloudinary.com/deah4rwon/image/upload/v1607826257/imgs/responsive_Img/cover_bg_3-4k_oji9x8.png';
+			"https://res.cloudinary.com/deah4rwon/image/upload/v1607826257/imgs/responsive_Img/cover_bg_3-4k_oji9x8.png";
 		$.ajax({
 			url: cover_bgUrl,
-			type: 'HEAD',
+			type: "HEAD",
 			error: function () {
-				pathToParllaxImg = '../img/cover_bg_3.png';
+				pathToParllaxImg = "../img/cover_bg_3.png";
 				setImgPassway();
-				console.log('img is not available');
+				console.log("img is not available");
 			},
 			success: function () {
 				pathToParllaxImg = cover_bgUrl;
 				setImgPassway();
-				console.log(' img available');
+				console.log(" img available");
 			}
 		});
-		pathToThmbImg = '../img/ava.png';
+		pathToThmbImg = "../img/ava.png";
 		console.log(pathToParllaxImg);
 	} else if (wSW >= 1800 && wDPR >= 0.25 && wDPR < 3) {
-		pathToParllaxImg = '../img/cover_bg_3.png';
-		pathToThmbImg = '../img/ava.png';
+		pathToParllaxImg = "../img/cover_bg_3.png";
+		pathToThmbImg = "../img/ava.png";
 		setImgPassway();
 	} else if (wSW < 1800 && wSW >= 640 && wDPR >= 3) {
-		pathToParllaxImg = '../img/responsive_Img/cover_bg_3.png';
-		pathToThmbImg = '../img/responsive_Img/tiny_ava.png';
+		pathToParllaxImg = "../img/responsive_Img/cover_bg_3.png";
+		pathToThmbImg = "../img/responsive_Img/tiny_ava.png";
 		setImgPassway();
 	} else {
-		pathToParllaxImg = '../img/responsive_Img/cover_bg_3_small.png';
-		pathToThmbImg = '../img/responsive_Img/tiny_ava.png';
+		pathToParllaxImg = "../img/responsive_Img/cover_bg_3_small.png";
+		pathToThmbImg = "../img/responsive_Img/tiny_ava.png";
 		setImgPassway();
 	}
 };
 
-const $projectDiv = $('.projectDiv');
+const $projectDiv = $(".projectDiv");
 
 let durationTime = 500;
 let viewportWidth,
@@ -201,7 +201,7 @@ const DSdurationTime = 500; //div skill full size animation duration time
 
 //add read more button to project divs
 const addReadMoreBtnsToPrjDivs = () => {
-	$projectDiv.addClass('scrollAnimate hidden');
+	$projectDiv.addClass("scrollAnimate hidden");
 	$projectDiv.prepend(
 		'<button class="readMoreBtn hidden" id="rmb" type="button">read more</button>'
 	);
@@ -213,11 +213,11 @@ const mySkillsAnimation = function () {
 		durationTime = 500;
 		const viewportWidth = $(window).width();
 		$(thisIs)
-			.removeClass('fadeInUp')
-			.filter(':not(:animated)')
+			.removeClass("fadeInUp")
+			.filter(":not(:animated)")
 			.css({
-				'z-index': 8,
-				'text-indent': '1px'
+				"z-index": 8,
+				"text-indent": "1px"
 			})
 			//using step function for animate skill boxes
 			.animate(
@@ -226,64 +226,64 @@ const mySkillsAnimation = function () {
 				},
 				{
 					step: function (now, fx) {
-						let $zoomInIcon = $(thisIs).find('i');
+						let $zoomInIcon = $(thisIs).find("i");
 						$zoomInIcon.fadeOutZoomIcon();
 						//animate zomm in skill box
 						$(thisIs).css(
-							'-webkit-transform',
-							'scale3d(' + now + ', ' + now + ', ' + now + ')'
+							"-webkit-transform",
+							"scale3d(" + now + ", " + now + ", " + now + ")"
 						);
 						$(thisIs).css(
-							'transform',
-							'scale3d(' + now + ', ' + now + ', ' + now + ')'
+							"transform",
+							"scale3d(" + now + ", " + now + ", " + now + ")"
 						);
 					},
 					duration: durationTime,
 					complete: function () {
 						let $btns;
 						if (platformIsMobile && viewportWidth < 1000) {
-							$btns = $(thisIs).find('a');
+							$btns = $(thisIs).find("a");
 						} else {
-							$btns = $(thisIs).find('button, a');
+							$btns = $(thisIs).find("button, a");
 						}
 						$btns
 							.rollInBtnAnimation()
 							.mousedown(function (event) {
 								//animate press button, I use this method because animate.css is a conflict with translateY
 								const speed = 50;
-								const currentBottomProp = parseFloat($(this).css('bottom'));
+								const currentBottomProp = parseFloat($(this).css("bottom"));
 								const currentBottomPropD = currentBottomProp;
 								$(this).animate(
 									{
-										bottom: currentBottomPropD - 3 + 'px'
+										bottom: currentBottomPropD - 3 + "px"
 									},
 									speed,
 									function () {
 										$(this).animate(
-											{ bottom: currentBottomProp + 'px' },
+											{ bottom: currentBottomProp + "px" },
 											speed
 										);
 									}
 								);
 							})
 							.click(function (event) {
-								if (event.currentTarget.id === 'rmb') {
+								if (event.currentTarget.id === "rmb") {
 									/*alert('Your clicked button 'Read more'');*/
 
 									projectDivFullSizeState = true;
 									projectDivFullSize(thisIs);
 								}
-								if (event.currentTarget.id === 'vpb') {
+								if (event.currentTarget.id === "vpb") {
 									// if ($(thisIs).hasClass('project_1')) {
 									// 	event.preventDefault();
 									// 	$('.upButton').trigger('click');
 									// }
-									$('.hovered').trigger('mouseleave').removeClass('hovered');
+									$(".hovered").trigger("mouseleave").removeClass("hovered");
 								}
 							});
 					}
 				},
-				'linear'
+				"linear"
 			);
 	};
 	const zoomOutAnimation = function (thisIs) {
@@ -295,56 +295,56 @@ const mySkillsAnimation = function () {
 			{
 				step: function (now, fx) {
 					$(thisIs).css(
-						'-webkit-transform',
-						'scale3d(' + now + ', ' + now + ', ' + now + ')'
+						"-webkit-transform",
+						"scale3d(" + now + ", " + now + ", " + now + ")"
 					);
 					$(thisIs).css(
-						'transform',
-						'scale3d(' + now + ', ' + now + ', ' + now + ')'
+						"transform",
+						"scale3d(" + now + ", " + now + ", " + now + ")"
 					);
-					let $zoomInIcon = $(thisIs).find('i');
+					let $zoomInIcon = $(thisIs).find("i");
 					$zoomInIcon.fadeInZoomIcon();
 					let $btns;
 					if (platformIsMobile && viewportWidth < 1000) {
-						$btns = $(thisIs).find('a');
+						$btns = $(thisIs).find("a");
 					} else {
-						$btns = $(thisIs).find('button, a');
+						$btns = $(thisIs).find("button, a");
 					}
-					$btns.rollOutBtnAnimation().off('click');
+					$btns.rollOutBtnAnimation().off("click");
 				},
 				duration: durationTime,
 				complete: function () {
-					$(thisIs).css('z-index', '7');
+					$(thisIs).css("z-index", "7");
 				}
 			},
-			'linear'
+			"linear"
 		);
 	};
 	jQuery.fn.fadeInZoomIcon = function () {
 		//button animated In
-		this.removeClass('fadeOut animated faster').addClass(
-			'fadeIn animated faster'
+		this.removeClass("fadeOut animated faster").addClass(
+			"fadeIn animated faster"
 		);
 		return this;
 	};
 	jQuery.fn.fadeOutZoomIcon = function () {
 		//button animated In
-		this.removeClass('fadeIn animated faster').addClass(
-			'fadeOut animated faster'
+		this.removeClass("fadeIn animated faster").addClass(
+			"fadeOut animated faster"
 		);
 		return this;
 	};
 	jQuery.fn.rollInBtnAnimation = function () {
 		//button animated In
-		this.removeClass('hidden rollOut animated faster').addClass(
-			'rollIn animated faster'
+		this.removeClass("hidden rollOut animated faster").addClass(
+			"rollIn animated faster"
 		);
 		return this;
 	};
 	jQuery.fn.rollOutBtnAnimation = function () {
 		//button animated Out
-		this.removeClass('rollIn animated faster').addClass(
-			'rollOut animated faster'
+		this.removeClass("rollIn animated faster").addClass(
+			"rollOut animated faster"
 		);
 		return this;
 	};
@@ -357,7 +357,7 @@ const mySkillsAnimation = function () {
 	) {
 		const $windowScrollTo = $(window).scrollTop();
 		//scrolling to current position after hiding scroll bar
-		$(window).on('scroll.fixedCurrentView', function () {
+		$(window).on("scroll.fixedCurrentView", function () {
 			$(window).scrollTop($windowScrollTo);
 		});
 		// console.log($windowScrollTo)
@@ -412,19 +412,19 @@ const mySkillsAnimation = function () {
 			{
 				step: function (now, fx) {
 					$(this).css(
-						'-webkit-transform',
-						'scale3d(' + now + ', ' + now + ', ' + now + ')'
+						"-webkit-transform",
+						"scale3d(" + now + ", " + now + ", " + now + ")"
 					);
 					$(this).css(
-						'transform',
-						'scale3d(' + now + ', ' + now + ', ' + now + ')'
+						"transform",
+						"scale3d(" + now + ", " + now + ", " + now + ")"
 					);
 				},
 				duration: DSdurationTime,
 				queue: false,
 				complete: function () {}
 			},
-			'linear'
+			"linear"
 		);
 		return this;
 	};
@@ -450,28 +450,28 @@ const mySkillsAnimation = function () {
 			{
 				step: function (now, fx) {
 					$(this).css(
-						'-webkit-transform',
-						'scale3d(' + now + ', ' + now + ', ' + now + ')'
+						"-webkit-transform",
+						"scale3d(" + now + ", " + now + ", " + now + ")"
 					);
 					$(this).css(
-						'transform',
-						'scale3d(' + now + ', ' + now + ', ' + now + ')'
+						"transform",
+						"scale3d(" + now + ", " + now + ", " + now + ")"
 					);
 				},
 				duration: DSdurationTime,
 				queue: false,
 				complete: function () {}
 			},
-			'linear'
+			"linear"
 		);
 		return this;
 	};
 	jQuery.fn.scaleCloseButton = function (divCurrentHeight, divCurrentWidth) {
 		this.css({
-			'font-size': divCurrentWidth * 0.03,
+			"font-size": divCurrentWidth * 0.03,
 			bottom: divCurrentHeight * 1.02,
 			left: divCurrentWidth * 0.99,
-			'text-indent': 0
+			"text-indent": 0
 		});
 		// console.log(this.css('font-size'))
 		return this;
@@ -487,23 +487,23 @@ const mySkillsAnimation = function () {
 		const vpbMarginValue = projectDivWidth * 0.03;
 		const vpbFontSize = projectDivWidth * 0.04;
 		//forced triggering mouse leave handler for minimizing current div
-		$(thisIs).trigger('mouseleave');
+		$(thisIs).trigger("mouseleave");
 
 		//cloning current div for saving current structure flex table
 		const $cloneDiv = $(thisIs).clone();
 
 		//remove "read more" button
-		$cloneDiv.removeClass('projectDiv scrollAnimate').find('#rmb, i').remove();
+		$cloneDiv.removeClass("projectDiv scrollAnimate").find("#rmb, i").remove();
 
 		//roll in "view project" button
 		$cloneDiv
-			.find('#vpb')
+			.find("#vpb")
 			.css({
-				'font-size': vpbFontSize
+				"font-size": vpbFontSize
 			})
 			.rollInBtnAnimation();
 
-		$cloneDiv.find('.project_1 > .bottomPart, #vpb').css({
+		$cloneDiv.find(".project_1 > .bottomPart, #vpb").css({
 			margin: vpbMarginValue
 		});
 
@@ -515,21 +515,21 @@ const mySkillsAnimation = function () {
 		// }
 
 		//add overlay div
-		$('body').append('<div id="fullSizeSkillBoxOverlay"></div>'); //adding overlay div to the end main div
+		$("body").append('<div id="fullSizeSkillBoxOverlay"></div>'); //adding overlay div to the end main div
 		$cloneDiv
-			.attr('id', 'cloneDiv')
-			.appendTo('body') //adding clone div to the end main div
+			.attr("id", "cloneDiv")
+			.appendTo("body") //adding clone div to the end main div
 			.append(
 				'<p class="closeButton hidden"><i class="far fa-times-circle"></i></p>'
 			)
 			.css({
-				position: 'absolute',
+				position: "absolute",
 				top: currentDivOffset.top,
 				left: currentDivOffset.left,
-				'z-index': 10,
+				"z-index": 10,
 				margin: 0,
-				'border-style': 'double',
-				'border-color': 'white'
+				"border-style": "double",
+				"border-color": "white"
 			})
 			.center(viewportHeight, viewportWidth, divCurrentHeight, divCurrentWidth)
 			.scaleDivMax(
@@ -538,87 +538,87 @@ const mySkillsAnimation = function () {
 				divCurrentHeight,
 				divCurrentWidth
 			)
-			.find('button, a')
+			.find("button, a")
 			.mousedown(function (event) {
 				//animate press button, I use this method because animate.css is a conflict with translateY
 				const speed = 50;
-				const currentBottomProp = parseFloat($(this).css('bottom'));
+				const currentBottomProp = parseFloat($(this).css("bottom"));
 				$(this).animate(
 					{
-						bottom: currentBottomProp - 3 + 'px'
+						bottom: currentBottomProp - 3 + "px"
 					},
 					speed,
 					function () {
-						$(this).animate({ bottom: currentBottomProp + 'px' }, speed);
+						$(this).animate({ bottom: currentBottomProp + "px" }, speed);
 					}
 				);
 			});
 
 		//show description
 		$cloneDiv
-			.find('.paragraphMSD')
-			.removeClass('hidden')
+			.find(".paragraphMSD")
+			.removeClass("hidden")
 			.hide()
 			.fadeIn(DSdurationTime);
 
 		//set close button font-size
-		$('.closeButton').scaleCloseButton(divCurrentHeight, divCurrentWidth);
+		$(".closeButton").scaleCloseButton(divCurrentHeight, divCurrentWidth);
 
 		//show close button
-		$('.closeButton')
-			.removeClass('hidden')
+		$(".closeButton")
+			.removeClass("hidden")
 			.hide()
 			.fadeIn(DSdurationTime)
 			.hover(
 				function () {
 					$(this)
-						.find('.fa-times-circle')
-						.removeClass('far')
-						.addClass('fas')
+						.find(".fa-times-circle")
+						.removeClass("far")
+						.addClass("fas")
 						.fadeIn(DSdurationTime);
 				},
 				function () {
 					$(this)
-						.find('.fa-times-circle')
-						.removeClass('fas')
-						.addClass('far')
+						.find(".fa-times-circle")
+						.removeClass("fas")
+						.addClass("far")
 						.fadeIn(DSdurationTime);
 				}
 			);
 
 		//overlay click handler
-		$('#fullSizeSkillBoxOverlay, .closeButton, #vpb').click(function (event) {
+		$("#fullSizeSkillBoxOverlay, .closeButton, #vpb").click(function (event) {
 			/* Act on the event */
 			projectDivFullSizeState = false;
 			projectDivMinimize(this, currentDivOffset);
 		});
 		//disable mouse event handler from skills divs
-		$projectDiv.off('mouseenter mouseleave vmouseover vmouseout');
+		$projectDiv.off("mouseenter mouseleave vmouseover vmouseout");
 	};
 	//minimize fullSize div $(this).trigger('mouseleave');
 	const projectDivMinimize = function (thisIs, currentDivOffset) {
-		$(thisIs).off('click');
-		$('#fullSizeSkillBoxOverlay').fadeOut(DSdurationTime, function () {
+		$(thisIs).off("click");
+		$("#fullSizeSkillBoxOverlay").fadeOut(DSdurationTime, function () {
 			$(this).remove();
 		});
-		$('#cloneDiv')
+		$("#cloneDiv")
 			.scaleDivMin()
 			.backToStartPosition(currentDivOffset)
 			.fadeOut(DSdurationTime, function () {
 				$(this).remove();
 			});
-		$('body').css('overflow', 'visible');
+		$("body").css("overflow", "visible");
 		divHoverHandler();
 		//minimize all hovered divs
-		$('.hovered').trigger('mouseleave').removeClass('hovered');
-		$(window).off('scroll.fixedCurrentView');
+		$(".hovered").trigger("mouseleave").removeClass("hovered");
+		$(window).off("scroll.fixedCurrentView");
 	};
 	const divHoverHandler = function () {
 		//mouse in and out handler
 		$projectDiv.hover(
 			function () {
 				//minimize all hovered divs
-				$('.hovered').trigger('mouseleave').removeClass('hovered');
+				$(".hovered").trigger("mouseleave").removeClass("hovered");
 				/* Stuff to do when the mouse enters the element */
 				const thisIs = this;
 				zoomInAnimation(thisIs);
@@ -631,17 +631,17 @@ const mySkillsAnimation = function () {
 						0,
 						windowScrollTo - (viewportHeight - divCurrentHeight) / 2
 					); //defining the target position from the div top to the viewport
-					$('html, body').animate(
+					$("html, body").animate(
 						{
 							scrollTop: targetTopOffset
 						},
 						DSdurationTime
 					);
-					$(thisIs).addClass('hovered');
+					$(thisIs).addClass("hovered");
 					if ($(window).width() < 1000) {
 						$(thisIs)
-							.find('.paragraphMSD')
-							.removeClass('hidden')
+							.find(".paragraphMSD")
+							.removeClass("hidden")
 							.hide()
 							.fadeIn(DSdurationTime);
 					}
@@ -652,21 +652,21 @@ const mySkillsAnimation = function () {
 				const thisIs = this;
 				zoomOutAnimation(thisIs);
 				if (platformIsMobile) {
-					if ($(thisIs).hasClass('project_1')) {
-						$('.examplesContainer').css('overflow', 'hidden');
+					if ($(thisIs).hasClass("project_1")) {
+						$(".examplesContainer").css("overflow", "hidden");
 					}
 					$(thisIs)
-						.removeClass('hovered')
-						.find('.paragraphMSD')
+						.removeClass("hovered")
+						.find(".paragraphMSD")
 						.fadeOut(DSdurationTime);
 				}
 			}
 		);
 		if (platformIsMobile) {
 			// console.log('swipe1');
-			$('.examplesContainer').on('scrollstart', function (event) {
+			$(".examplesContainer").on("scrollstart", function (event) {
 				// console.log('swipe');
-				$('.hovered').trigger('mouseleave').removeClass('hovered');
+				$(".hovered").trigger("mouseleave").removeClass("hovered");
 			});
 		}
 	};
@@ -679,9 +679,9 @@ const resizeHandler = function () {
 	//const resizeTimer;
 	let browserInitialWidth = window.outerWidth;
 	let windowOuterHeight = window.outerHeight;
-	$(window).on('renewPage', function (event) {
+	$(window).on("renewPage", function (event) {
 		if (!platformIsMobile) {
-			$('.loader-gif').css('display', 'initial');
+			$(".loader-gif").css("display", "initial");
 		}
 		//main resize part
 		const viewportWidth = $(window).width();
@@ -711,7 +711,7 @@ const resizeHandler = function () {
 		) {
 			browserInitialWidth = currBrowserWidth;
 			windowOuterHeight = currBrowserHeight;
-			$('#tMessageDialog').dialog('close'); //close current message dialog
+			$("#tMessageDialog").dialog("close"); //close current message dialog
 			projectDivSizeHandler(
 				viewportWidth,
 				viewportHeight,
@@ -724,13 +724,13 @@ const resizeHandler = function () {
 			// console.log('font and divs resize is happend');
 		}
 		setParallaxImage(wSW, wDPR);
-		$('.slider1').one('load', function (event) {
+		$(".slider1").one("load", function (event) {
 			if (!platformIsMobile || orientationIsChange) {
 				loaderScreen();
 				orientationIsChange = false;
 			}
 			// console.log('windowSizeHandler finished');
-			$(window).off('renewPage').trigger('resize');
+			$(window).off("renewPage").trigger("resize");
 			resizeHandler();
 			// console.log('renewPage is finished');
 		});
@@ -739,19 +739,20 @@ const resizeHandler = function () {
 //this function is sensitive to resize event
 const windowSizeHandler = function (viewportWidth, viewportHeight) {
 	//set main elements width and height
-	$('body, .headerContent, .main').width(viewportWidth);
+	$("body, .headerContent, .main").width(viewportWidth);
 
 	//set my skills area height
-	const FMheight = $('.fluidMeterContainer1').height();
-	$('.mySkills').height(FMheight * 1.2);
-	// console.log(FMheight*1.2);
-	const mySkillsDivHeight = $('.mySkills').height();
-	const mySkillsDivWidth = $('.mySkills').width();
+	const FMheight = $(".skillsProgressContainer").height();
+	$(".mySkills").height(FMheight * 1.04);
+
+	// console.log();
+	const mySkillsDivHeight = $(".mySkills").height();
+	const mySkillsDivWidth = $(".mySkills").width();
 
 	//add parallax element
 	//initialize parallax script
-	const $sldr1 = $('.slider1');
-	const $sldr2 = $('.slider2');
+	const $sldr1 = $(".slider1");
+	const $sldr2 = $(".slider2");
 	//initial parameters for sliders img
 	let sldr1NW, sldr1NH, headerOverlayWidth;
 	let headerOverlayHeight, mySkillsOverlayWidth, mySkillsOverlayHeight;
@@ -760,25 +761,25 @@ const windowSizeHandler = function (viewportWidth, viewportHeight) {
 	sldr1NH = $sldr1.get(0).naturalHeight;
 
 	if (sldr1NH / (sldr1NW / viewportWidth) < viewportHeight) {
-		headerOverlayWidth = 'auto';
-		headerOverlayHeight = '100vh';
+		headerOverlayWidth = "auto";
+		headerOverlayHeight = "100vh";
 	} else {
-		headerOverlayWidth = '100vw';
-		headerOverlayHeight = 'auto';
+		headerOverlayWidth = "100vw";
+		headerOverlayHeight = "auto";
 	}
 
 	if (sldr1NH / (sldr1NW / mySkillsDivWidth) < mySkillsDivHeight) {
-		mySkillsOverlayWidth = 'auto';
+		mySkillsOverlayWidth = "auto";
 		mySkillsOverlayHeight = mySkillsDivHeight;
 	} else {
-		mySkillsOverlayWidth = '100vw';
-		mySkillsOverlayHeight = 'auto';
+		mySkillsOverlayWidth = "100vw";
+		mySkillsOverlayHeight = "auto";
 	}
 	// initialize parallax
 	$sldr1.css({
 		width: headerOverlayWidth,
 		height: headerOverlayHeight,
-		'will-change': 'auto'
+		"will-change": "auto"
 	});
 	$sldr2.css({
 		width: mySkillsOverlayWidth,
@@ -786,18 +787,18 @@ const windowSizeHandler = function (viewportWidth, viewportHeight) {
 	});
 
 	const parallaxScaleCoeff = 2; //parallax image coeff which enhances parallax effect
-	const image1 = document.getElementsByClassName('slider1');
+	const image1 = document.getElementsByClassName("slider1");
 	new simpleParallax(image1, {
 		scale: parallaxScaleCoeff,
 		delay: 0.6,
-		transition: 'cubic-bezier(0,0,0,1)',
+		transition: "cubic-bezier(0,0,0,1)",
 		overflow: false
 	});
-	const image2 = document.getElementsByClassName('slider2');
+	const image2 = document.getElementsByClassName("slider2");
 	new simpleParallax(image2, {
 		scale: parallaxScaleCoeff,
 		delay: 0.6,
-		transition: 'cubic-bezier(0,0,0,1)',
+		transition: "cubic-bezier(0,0,0,1)",
 		overflow: false
 	});
 
@@ -845,50 +846,50 @@ const projectDivSizeHandler = function (
 	}
 
 	//set thumbnail size in px;
-	$('.blizThumbnail')
+	$(".blizThumbnail")
 		.width(blizThumbnailScaleCoeff * 0.3)
 		.height(blizThumbnailScaleCoeff * 0.3);
 	//set responsive size for social networks logos
-	$('.logo_prop')
+	$(".logo_prop")
 		.width(blizThumbnailScaleCoeff * 0.08)
 		.height(blizThumbnailScaleCoeff * 0.08);
 	//set responsive font-size
-	$('h1')
+	$("h1")
 		.each(function (index) {
 			const elFontSize = fontScaleCoeff * 0.025;
-			$(this).css('font-size', elFontSize); //set font size in pixels
+			$(this).css("font-size", elFontSize); //set font size in pixels
 		})
-		.filter('.mainHeader')
-		.css('font-size', fontScaleCoeff * 0.04);
+		.filter(".mainHeader")
+		.css("font-size", fontScaleCoeff * 0.04);
 
-	$('h2').each(function (index) {
+	$("h2").each(function (index) {
 		const elFontSize = fontScaleCoeff * 0.02;
-		$(this).css('font-size', elFontSize); //set font size in pixels
+		$(this).css("font-size", elFontSize); //set font size in pixels
 	});
 
-	$('p, a, ul').each(function (index) {
+	$("p, a, ul").each(function (index) {
 		const elFontSize = fontScaleCoeff * 0.018;
-		$(this).css('font-size', elFontSize); //set font size in pixels
+		$(this).css("font-size", elFontSize); //set font size in pixels
 	});
 	//upButton size handler
 	const upButtonFontSize = fontScaleCoeff * 0.045;
-	$('.upButton').css({
-		'font-size': upButtonFontSize,
-		height: 'auto',
-		width: '-moz-min-content',
+	$(".upButton").css({
+		"font-size": upButtonFontSize,
+		height: "auto",
+		width: "-moz-min-content",
 		padding: fontScaleCoeff * 0.005,
-		'padding-bottom': 'initial',
+		"padding-bottom": "initial",
 		// bottom:  fontScaleCoeff*0.04,
 		right: fontScaleCoeff * 0.04
 	});
 	//messageButton size handler
 	const messageButtonFontSize = fontScaleCoeff * 0.04;
-	$('.messageButton').css({
-		'font-size': messageButtonFontSize,
+	$(".messageButton").css({
+		"font-size": messageButtonFontSize,
 		width: messageButtonFontSize * 1.5,
 		height: messageButtonFontSize * 1.5,
-		'padding-top': fontScaleCoeff * 0.005,
-		'padding-bottom': 'initial',
+		"padding-top": fontScaleCoeff * 0.005,
+		"padding-bottom": "initial",
 		// bottom:  fontScaleCoeff*0.04,
 		left: fontScaleCoeff * 0.04
 	});
@@ -897,29 +898,29 @@ const projectDivSizeHandler = function (
 	projectDivWidth = Math.pow(viewportWidth * 30000, 1 / 3);
 	projectDivHeight = projectDivWidth * 0.8;
 	$projectDiv.css({
-		'min-width': projectDivWidth,
-		'min-height': projectDivHeight,
+		"min-width": projectDivWidth,
+		"min-height": projectDivHeight,
 		width: projectDivWidth,
 		height: projectDivHeight,
-		'margin-left': 0.05 * projectDivWidth,
-		'margin-right': 0.05 * projectDivWidth
+		"margin-left": 0.05 * projectDivWidth,
+		"margin-right": 0.05 * projectDivWidth
 	});
 	//set buttons font-size
-	$('#rmb, #vpb').css('font-size', projectDivWidth * 0.06);
+	$("#rmb, #vpb").css("font-size", projectDivWidth * 0.06);
 	//set button vpb position parameters, except project_1 and 2 divs
 	$projectDiv
-		.not('.project_1, .projectWithDescription')
-		.find('#vpb')
+		.not(".project_1, .projectWithDescription")
+		.find("#vpb")
 		.css({
 			left: projectDivWidth * 0.55,
 			bottom: 0,
-			'margin-bottom': projectDivWidth * 0.02
+			"margin-bottom": projectDivWidth * 0.02
 		});
 
 	//set paragraph size in project divs
-	$('.paragraphMSD').css({
-		'text-indent': projectDivWidth * 0.02,
-		'font-size': projectDivWidth * 0.025
+	$(".paragraphMSD").css({
+		"text-indent": projectDivWidth * 0.02,
+		"font-size": projectDivWidth * 0.025
 	});
 	// let FMcanvasSize, FMborderSize, FMfontSize;
 	// // console.log(platformIsMobile, viewportWidth, wDPR)
@@ -969,7 +970,7 @@ const projectDivSizeHandler = function (
 //this function is sensitive to resize event
 const cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
 	//handle clone div if it exist
-	const $cloneDiv = $('#cloneDiv');
+	const $cloneDiv = $("#cloneDiv");
 	if ($cloneDiv.length) {
 		const divCurrentHeight = $cloneDiv.outerHeight();
 		const divCurrentWidth = $cloneDiv.outerWidth();
@@ -986,16 +987,16 @@ const cloneDivSizeHandler = function (viewportHeight, viewportWidth) {
 				divCurrentHeight,
 				divCurrentWidth
 			)
-			.find('#vpb')
+			.find("#vpb")
 			.css({
-				'font-size': vpbFontSize
+				"font-size": vpbFontSize
 			});
 		//set close button font-size
-		$('.closeButton').scaleCloseButton(divCurrentHeight, divCurrentWidth);
+		$(".closeButton").scaleCloseButton(divCurrentHeight, divCurrentWidth);
 		// console.log('rescaling is happened')
-		$cloneDiv.find('.paragraphMSD').css({
-			'text-indent': divCurrentWidth * 0.02,
-			'font-size': divCurrentWidth * 0.025
+		$cloneDiv.find(".paragraphMSD").css({
+			"text-indent": divCurrentWidth * 0.02,
+			"font-size": divCurrentWidth * 0.025
 		});
 	}
 };
@@ -1021,7 +1022,7 @@ const tMessageDialogBox = function (viewportWidth, viewportHeight) {
 		$this.css({
 			width: userIconSize,
 			height: userIconSize,
-			'min-height': userIconSize
+			"min-height": userIconSize
 		});
 		return this;
 	};
@@ -1041,9 +1042,9 @@ const tMessageDialogBox = function (viewportWidth, viewportHeight) {
 			robotFontsize = targetHeight / 20;
 			userIconSize = targetHeight / 10;
 		}
-		thHeight = '65%';
-		pMy = 'center';
-		pAt = 'center';
+		thHeight = "65%";
+		pMy = "center";
+		pAt = "center";
 		pOf = window;
 	} else {
 		targetWidth = viewportWidth * 0.3;
@@ -1052,17 +1053,17 @@ const tMessageDialogBox = function (viewportWidth, viewportHeight) {
 		messagesFontSize = titleFontSize * 0.7;
 		robotFontsize = targetHeight * 0.07;
 		userIconSize = targetHeight * 0.1;
-		thHeight = '60%'; //height of thought area
-		pMy = 'left bottom';
-		pAt = 'left bottom-60';
-		pOf = '.messageButton';
+		thHeight = "60%"; //height of thought area
+		pMy = "left bottom";
+		pAt = "left bottom-60";
+		pOf = ".messageButton";
 	}
 
 	//initizlize dialog widget
-	const $tMessageDialog = $('#tMessageDialog');
-	const $tCont = $('.thoughtContainer');
+	const $tMessageDialog = $("#tMessageDialog");
+	const $tCont = $(".thoughtContainer");
 	// console.log($tMessageDialog.dialog('instance'));
-	if ($tMessageDialog.dialog('instance') === undefined) {
+	if ($tMessageDialog.dialog("instance") === undefined) {
 		// console.log('t box initialized');
 		$tMessageDialog.dialog({
 			position: { my: pMy, at: pAt, of: pOf },
@@ -1071,21 +1072,21 @@ const tMessageDialogBox = function (viewportWidth, viewportHeight) {
 			resizable: true,
 			autoOpen: false,
 			show: {
-				effect: 'blind',
-				direction: 'down',
+				effect: "blind",
+				direction: "down",
 				duration: DSdurationTime
 			},
 			hide: {
-				effect: 'blind',
-				direction: 'down',
+				effect: "blind",
+				direction: "down",
 				duration: DSdurationTime
 			}
 		});
 		let chatUpdateTimer;
 		const updateChat = function () {
 			$.ajax({
-				type: 'GET',
-				url: 'https://t-msg-bot.space/get_msg',
+				type: "GET",
+				url: "https://t-msg-bot.space/get_msg",
 				crossDomain: true,
 				success: function (data) {
 					console.log(data);
@@ -1093,63 +1094,63 @@ const tMessageDialogBox = function (viewportWidth, viewportHeight) {
 						// console.log(Object.values(data));
 						const textMsg = Object.values(data)[0];
 						$tCont
-							.append('<p class="thought robotThought">' + textMsg + '</p>')
+							.append('<p class="thought robotThought">' + textMsg + "</p>")
 							.append('<i class="userIcon"></i>');
-						$('.userIcon').fixUserIconSize();
+						$(".userIcon").fixUserIconSize();
 						$tCont.scrollToLastMsg();
 					}
 				}
 			});
 		};
-		$('.ui-dialog')
-			.on('dialogclose', function (event, ui) {
+		$(".ui-dialog")
+			.on("dialogclose", function (event, ui) {
 				clearInterval(chatUpdateTimer); //stop update chat when the dialog is closed
-				console.log('clearInterval');
+				console.log("clearInterval");
 			})
-			.on('dialogopen', function (event, ui) {
+			.on("dialogopen", function (event, ui) {
 				chatUpdateTimer = setInterval(function () {
 					updateChat();
 					// console.log('startInterval');
 				}, 5000);
 			})
-			.on('resize', function (e) {
+			.on("resize", function (e) {
 				// console.log('stop prop');
-				$('#tMessageDialog').css('width', $(this).width());
+				$("#tMessageDialog").css("width", $(this).width());
 				e.stopPropagation(); // prevents triggering to resize the entire page
 			});
 		//toggle message box view
-		$('.messageButton').click(function (event) {
-			const isOpen = $tMessageDialog.dialog('isOpen');
+		$(".messageButton").click(function (event) {
+			const isOpen = $tMessageDialog.dialog("isOpen");
 			if (isOpen) {
-				$tMessageDialog.dialog('close');
+				$tMessageDialog.dialog("close");
 			} else {
-				$tMessageDialog.dialog('open');
+				$tMessageDialog.dialog("open");
 			}
 		});
 		//send message
 		let execOnce = false;
-		const rcHlC = $('#recaptchaCheck'); //recaptcha highlighter container
-		$('.sendBtn').click(function (event) {
-			const nnV = $('#nickName').val();
-			const tMV = $('#tMessageArea').val();
-			const gCR = $('#g-recaptcha-response');
-			if (nnV === null || nnV === '') {
+		const rcHlC = $("#recaptchaCheck"); //recaptcha highlighter container
+		$(".sendBtn").click(function (event) {
+			const nnV = $("#nickName").val();
+			const tMV = $("#tMessageArea").val();
+			const gCR = $("#g-recaptcha-response");
+			if (nnV === null || nnV === "") {
 				console.log("Nick name can't be empty");
-			} else if (tMV === null || tMV === '') {
+			} else if (tMV === null || tMV === "") {
 				console.log("Message field can't be empty");
-			} else if (gCR.val() === null || gCR.val() === '') {
-				console.log('gCR is empty');
-				rcHlC.val('');
+			} else if (gCR.val() === null || gCR.val() === "") {
+				console.log("gCR is empty");
+				rcHlC.val("");
 			} else {
 				event.preventDefault();
-				rcHlC.val('1');
-				const formDateArr = $('form').serializeArray();
+				rcHlC.val("1");
+				const formDateArr = $("form").serializeArray();
 				const formDate = JSON.stringify(formDateArr);
 				// console.log(formDate);
-				const curThoughtFontSize = $('.thought').css('font-size');
-				const curRobotFontSize = $('.fa-robot').css('font-size');
+				const curThoughtFontSize = $(".thought").css("font-size");
+				const curRobotFontSize = $(".fa-robot").css("font-size");
 				$tCont.append(
-					'<p class="thought userThought">' + formDateArr[1].value + '</p>'
+					'<p class="thought userThought">' + formDateArr[1].value + "</p>"
 				);
 
 				if (!execOnce) {
@@ -1161,61 +1162,61 @@ const tMessageDialogBox = function (viewportWidth, viewportHeight) {
 					execOnce = true;
 				}
 
-				$('.thought').css('font-size', curThoughtFontSize);
-				$('.fa-robot').css('font-size', curRobotFontSize);
+				$(".thought").css("font-size", curThoughtFontSize);
+				$(".fa-robot").css("font-size", curRobotFontSize);
 				// $tCont.scrollTop($('.thoughtContainer')[0].scrollHeight); //scroll to the last text msg
 				$tCont.scrollToLastMsg();
 				$.ajax({
-					type: 'POST',
-					url: 'https://t-msg-bot.space/post_msg',
+					type: "POST",
+					url: "https://t-msg-bot.space/post_msg",
 					data: formDate,
 					crossDomain: true,
 					success: function (data) {
 						console.log(data);
-						$('#tMessageArea').val('');
+						$("#tMessageArea").val("");
 					}
 				});
 			}
 		});
-		$('#tMessageArea').keypress(function (event) {
+		$("#tMessageArea").keypress(function (event) {
 			const key = event.keyCode;
 			if (key === 13) {
-				$('.sendBtn').click();
+				$(".sendBtn").click();
 			}
 		});
 	}
 
 	//update size of dialog box
 	$tMessageDialog
-		.dialog('option', 'height', targetHeight)
-		.dialog('option', 'width', targetWidth);
+		.dialog("option", "height", targetHeight)
+		.dialog("option", "width", targetWidth);
 	//update size thought area
 	$tCont.height(thHeight);
 	//refresh fornt sizes of dialog content
-	$('.sendBtn').css('font-size', titleFontSize);
+	$(".sendBtn").css("font-size", titleFontSize);
 
-	$('.ui-dialog')
+	$(".ui-dialog")
 		.css({
-			position: 'fixed',
-			'min-width': '350px'
+			position: "fixed",
+			"min-width": "350px"
 		})
-		.find('.ui-dialog-titlebar')
+		.find(".ui-dialog-titlebar")
 		.css({
-			'font-size': titleFontSize,
-			'margin-top': '-20px',
-			'margin-left': '10px',
-			'margin-right': '10px'
+			"font-size": titleFontSize,
+			"margin-top": "-20px",
+			"margin-left": "10px",
+			"margin-right": "10px"
 		});
 
-	$('.ui-dialog')
-		.find('.thought, label, input, textarea')
-		.css('font-size', messagesFontSize);
+	$(".ui-dialog")
+		.find(".thought, label, input, textarea")
+		.css("font-size", messagesFontSize);
 
-	$('.fa-robot').css({
-		'font-size': robotFontsize
+	$(".fa-robot").css({
+		"font-size": robotFontsize
 	});
 
-	$('.userIcon').fixUserIconSize();
+	$(".userIcon").fixUserIconSize();
 };
 //initialize my skills fluid meter
 
@@ -1472,55 +1473,55 @@ const tMessageDialogBox = function (viewportWidth, viewportHeight) {
 
 const scrollTop = function () {
 	if (platformIsMobile) {
-		$('.upButton')
+		$(".upButton")
 			.mousedown(function (event) {
 				//animate press button, I use this method because animate.css is a conflict with translateY
 				const $this = $(this);
 				const speed = 50;
-				const currentBottomProp = parseFloat($(this).css('bottom'));
+				const currentBottomProp = parseFloat($(this).css("bottom"));
 
 				$this.animate(
 					{
-						bottom: currentBottomProp - 3 + 'px'
+						bottom: currentBottomProp - 3 + "px"
 					},
 					speed,
 					function () {
-						$this.animate({ bottom: currentBottomProp + 'px' }, speed);
+						$this.animate({ bottom: currentBottomProp + "px" }, speed);
 					}
 				);
 			})
 			.click(function (event) {
 				event.preventDefault();
-				$('html, body').animate(
+				$("html, body").animate(
 					{
-						scrollTop: $('.header').offset().top
+						scrollTop: $(".header").offset().top
 					},
 					900
 				);
 			});
 	} else {
-		$('.upButton')
+		$(".upButton")
 			.hover(
 				function () {
 					$(this)
-						.addClass('upButton-hover')
-						.find('.fa-arrow-alt-circle-up')
-						.removeClass('far')
-						.addClass('fas');
+						.addClass("upButton-hover")
+						.find(".fa-arrow-alt-circle-up")
+						.removeClass("far")
+						.addClass("fas");
 				},
 				function () {
 					$(this)
-						.removeClass('upButton-hover')
-						.find('.fa-arrow-alt-circle-up')
-						.removeClass('fas')
-						.addClass('far');
+						.removeClass("upButton-hover")
+						.find(".fa-arrow-alt-circle-up")
+						.removeClass("fas")
+						.addClass("far");
 				}
 			)
 			.click(function (event) {
 				event.preventDefault();
-				$('html, body').animate(
+				$("html, body").animate(
 					{
-						scrollTop: $('.header').offset().top
+						scrollTop: $(".header").offset().top
 					},
 					900
 				);
@@ -1529,7 +1530,7 @@ const scrollTop = function () {
 };
 
 /**************main block*******************/
-$(window).on('load', function () {
+$(window).on("load", function () {
 	const viewportWidth = $(window).width();
 	const viewportHeight = $(window).height();
 	const wSW = window.screen.width;
@@ -1547,7 +1548,7 @@ $(window).on('load', function () {
 		windowOuterWidth
 	); //resize MySkills divs from window size
 	setParallaxImage(wSW, wDPR);
-	$('.slider1').one('load', function (event) {
+	$(".slider1").one("load", function (event) {
 		windowSizeHandler(viewportWidth, viewportHeight); //resize main blocks according to window width
 		resizeHandler();
 		scrollAnimate(viewportHeight, false); //scroll handler for divs
@@ -1555,7 +1556,7 @@ $(window).on('load', function () {
 		zoomInHeader();
 		//handler for tMessage box
 		tMessageDialogBox(viewportWidth, viewportHeight);
-		console.log('document loaded');
+		console.log("document loaded");
 		skillsLinksHandler();
 	});
 });

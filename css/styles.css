@@ -1,4 +1,5 @@
-@import 'progress_circles_styles.css';
+@import "progress_circles_styles.css";
+
 /*common styles*/
 
 *:focus {
@@ -20,12 +21,12 @@ button:focus {
 p,
 ul {
 	color: rgb(77, 77, 77);
-	font-family: 'Biryani', sans-serif;
+	font-family: "Biryani", sans-serif;
 	font-size: 2vh;
 }
 a {
 	color: rgb(77, 77, 77);
-	font-family: 'Biryani', sans-serif;
+	font-family: "Biryani", sans-serif;
 	font-size: 2vh;
 	color: purple;
 	cursor: pointer;
@@ -38,12 +39,12 @@ a:active {
 	color: white;
 }
 h1 {
-	font-family: 'Big Shoulders Display', cursive;
+	font-family: "Big Shoulders Display", cursive;
 	font-size: 3vh;
 }
 h2 {
 	font-size: 2.5vh;
-	font-family: 'Biryani', sans-serif;
+	font-family: "Biryani", sans-serif;
 }
 .blizThumbnail {
 	border-radius: 50%;
@@ -142,7 +143,7 @@ h2 {
 	color: rgb(255, 255, 255);
 }
 .headerContent > h1 {
-	font-family: 'Caveat', cursive;
+	font-family: "Caveat", cursive;
 	color: rgb(255, 255, 255);
 	text-align: center;
 	-webkit-transform: rotate(5deg);
@@ -233,68 +234,6 @@ h2 {
 	visibility: hidden;
 }
 
-.mySkills {
-	background-color: rgb(255, 145, 0);
-	position: relative;
-	width: 100%;
-	z-index: 2;
-}
-.mySkills > div > h1 {
-	text-align: center;
-}
-.mySkillsContent {
-	position: relative;
-	z-index: 5;
-}
-.skillsIcon {
-	display: block;
-	width: 100%;
-	height: 100%;
-	background-repeat: no-repeat;
-	background-size: 50% 50%;
-	background-position: 45% 55%;
-}
-.progresBarContainer {
-	display: flex;
-}
-.linksContainer {
-	display: flex;
-	flex-flow: column;
-	justify-content: space-around;
-	padding-right: 1em;
-}
-.firstSkillLink,
-.lastSkillLink {
-	margin-left: -20px;
-}
-
-.ico-html5 {
-	background-image: url(../img/skills_icons/html.svg);
-}
-.ico-css3 {
-	background-image: url(../img/skills_icons/css3.svg);
-}
-.ico-js {
-	background-image: url(../img/skills_icons/javascript.svg);
-}
-.ico-p5js {
-	background-image: url(../img/skills_icons/p5js.svg);
-}
-.ico-bootstrap {
-	background-image: url(../img/skills_icons/bootstrap.svg);
-}
-.ico-sass {
-	background-image: url(../img/skills_icons/sass.svg);
-}
-.ico-react {
-	background-image: url(../img/skills_icons/react.svg);
-}
-.ico-redux {
-	background-image: url(../img/skills_icons/redux.svg);
-}
-.ico-typeScript {
-	background-image: url(../img/skills_icons/typescript.svg);
-}
 .examplesContainer {
 	display: flex;
 	flex-wrap: wrap;
@@ -472,7 +411,7 @@ h2 {
 	cursor: pointer;
 	color: #333333;
 	font-weight: bold;
-	font-family: 'Big Shoulders Display', cursive;
+	font-family: "Big Shoulders Display", cursive;
 	position: relative;
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #ffee66;
@@ -581,7 +520,7 @@ h2 {
 }
 
 h2.projectHeader {
-	font-family: 'Caveat', cursive;
+	font-family: "Caveat", cursive;
 	font-size: 5vh;
 	color: rgb(255, 255, 255);
 	text-align: center;
@@ -627,16 +566,16 @@ pre {
 	scrollbar-color: orange #e0e0e0;
 	scrollbar-width: thin;
 }
-.fluidMeterContainer1 {
+.skillsProgressContainer {
 	z-index: 2;
 	position: absolute;
 }
-.fluidMeterContainer2 {
+/* .fluidMeterContainer2 {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-around;
-}
+} */
 .fluidMeter {
 	position: relative;
 }
@@ -754,7 +693,7 @@ pre {
 }
 .thought:before,
 .thought:after {
-	content: '';
+	content: "";
 	border-radius: 50%;
 	display: block;
 	position: absolute;
@@ -795,7 +734,7 @@ pre {
 	margin: 1vh 1vh 1vh 0;
 }
 .userIcon {
-	background-image: url('../img/responsive_Img/thmb_small.png');
+	background-image: url("../img/responsive_Img/thmb_small.png");
 	border-radius: 50%;
 	background-position: 60% 0%;
 	background-repeat: no-repeat;
@@ -847,7 +786,7 @@ pre {
 	}
 	.gridBoxWicd {
 		display: grid;
-		grid-template-areas: 'empt1 cont empt2';
+		grid-template-areas: "empt1 cont empt2";
 		grid-template-columns: 0.5fr 4fr 0.5fr;
 	}
 	.wicdCont {
@@ -857,7 +796,6 @@ pre {
 		grid-auto-rows: auto;
 	}
 	.wicdCont > div:nth-of-type(odd) {
-		width: 100%;
 		display: grid;
 		align-self: start;
 		justify-self: start;
@@ -908,7 +846,7 @@ pre {
 	/*grid box area for "wicd" article*/
 	.gridBoxWicd {
 		display: grid;
-		grid-template-areas: 'empt1 cont empt2';
+		grid-template-areas: "empt1 cont empt2";
 		grid-template-columns: 1fr 4fr 1fr;
 	}
 	.wicdCont {
@@ -970,7 +908,7 @@ pre {
 	}
 	.gridBoxWicd {
 		display: grid;
-		grid-template-areas: 'empt1 cont empt2';
+		grid-template-areas: "empt1 cont empt2";
 		grid-template-columns: 1fr 4fr 1fr;
 	}
 	.wicdCont {
@@ -985,7 +923,7 @@ pre {
 		align-self: start;
 		justify-self: start;
 		grid-template-columns: 8fr 0.5fr 0.5fr;
-		grid-template-areas: 'contS icon hLine';
+		grid-template-areas: "contS icon hLine";
 	}
 	.wicdCont > div:nth-of-type(odd) > div:nth-of-type(1) {
 		justify-self: end;
@@ -997,7 +935,7 @@ pre {
 		align-self: start;
 		justify-self: end;
 		grid-template-columns: 0.5fr 0.5fr 8fr;
-		grid-template-areas: 'hLine icon contS';
+		grid-template-areas: "hLine icon contS";
 	}
 	.wicdCont > div:nth-of-type(even) > div:nth-of-type(3) {
 		margin-left: 20px;
