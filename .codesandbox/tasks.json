@@ -6,7 +6,8 @@
   "tasks": {
     "live-server": {
       "name": "live-server",
-      "command": "live-server"
+      "command": "live-server",
+      "runAtStart": true
     }
   }
 }
