@@ -24,74 +24,134 @@
 
 	<body>
 		<div class="loader-gif"></div>
-		<div class="main flex_box">
+		<main class="main flex_box">
+			
+			<!-- tMessage button -->
+			<button class="messageButton" tabindex="1">
+				<i class="fab fa-telegram-plane"></i>
+			</button>
+			
+			<!-- message dialog -->
+			<div id="tMessageDialog" title="Message to me">
+				<div class="thoughtContainer">
+					<p class="thought robotThought">
+						Hi there, I hope you doing well.
+					</p>
+					<i class="fas fa-robot"></i>
+					<p class="thought robotThought">
+						I'm tChatBot, you could text me everything. I resend your message to
+						the master.<br/>
+						It average takes 1-2 minutes to response.
+					</p>
+					<i class="fas fa-robot"></i>
+				</div>
+				<form action="">
+					<label for="nickName">Enter your nickname:</label>
+					<input
+						type="text"
+						id="nickName"
+						name="nickName"
+						placeholder="nickName"
+						required
+						minlength="1"
+						tabindex="2"
+					/>
+					<textarea
+						name="tMessageArea"
+						id="tMessageArea"
+						placeholder="Type there!!)"
+						cols="40"
+						rows="2"
+						spellcheck="true"
+						required
+						minlength="1"
+						tabindex="3"
+					></textarea>
+					<div class="sendBlock">
+						<button class="sendBtn" tabindex="5">send</button>
+						<div class="g-recaptcha-container">
+							<div
+								class="g-recaptcha"
+								data-sitekey="6LfhIFAaAAAAADP9r_20uuqTdqvKQUH4hsWzTLGT"
+								data-tabindex="4"
+							></div>
+							<input
+								type="text"
+								id="recaptchaCheck"
+								required
+								minlength="1"
+								tabindex="-1"
+							/>
+						</div>
+
+						<input type="hidden" autofocus="true" />
+					</div>
+				</form>
+			</div>
+			
 			<header class="header flex_box" role="banner" id="top">
 				<div class="overlayImgContainer">
 					<img class="slider1" />
 				</div>
-				<div class="links_to_acc">
+				<aside class="links_to_acc">
 					<a 
 						href="https://www.khanacademy.org/profile/NeoBliz"
 						target="blank_"
 						rel="noreferrer"
-					>
-						<div class="kacademy_logo logo_prop"></div>
+						class="kacademy_logo logo_prop"
+					>						
 					</a>
 					<a 
 						href="https://www.codecademy.com/profiles/neobliz1"
 						target="blank_"
 						rel="noreferrer"
-					>
-						<div class="codecademy_logo logo_prop"></div>
+						class="codecademy_logo logo_prop"
+					>						
 					</a>
 					<a 
 						href="https://www.freecodecamp.org/neobliz1"
 						target="blank_"
 						rel="noreferrer"
-					>
-						<div class="freecodecamp_logo logo_prop"></div>
+						class="freecodecamp_logo logo_prop"
+					>						
 					</a>
 					<a 
 						href="https://github.com/NeoBliz1"
 						target="blank_"
 						rel="noreferrer"
-					>
-						<div class="github_logo logo_prop"></div>
+						class="github_logo logo_prop"
+					>						
 					</a>
 					<a 
 						href="https://twitter.com/neobliz1"
 						target="blank_"
 						rel="noreferrer"
-					>
-						<div class="twitter_logo logo_prop"></div>
+						class="twitter_logo logo_prop"
+					>						
 					</a>
-				</div>
-				<div class="headerContent flex_box">
-					<div class="blizThumbnail"></div>
-					<h1 class="mainHeader">- Ilya Grebenschikov -</h1>
+				</aside>
+				<figure class="headerContent flex_box">
+					<figure class="blizThumbnail" alt="Profile photo"></figure>
+					<h1 class="mainHeader">- Ilya Grebenshchikov -</h1>
 					<p>Coding enthusiast and Dreamer</p>
-				</div>
+				</figure>
 			</header>
 
-			<div id="aboutProfile" class="about flex_box">
-				<article class="helloBlock flex_box">
-					<div>
-						<h1>
-							Hello There! <br />
-							I'm Ilya, a web developer from Chelyabinsk, Russia Federation.
-							Please take a look around!
-						</h1>
-					</div>
-					<div>
-						<p>
-							I am passionate about creating web applications. Although web
-							development is my hobby, in the future I dream of becoming a real
-							web application developer.
-						</p>
-					</div>
+			<section id="aboutProfile" class="about flex_box">
+				<article class="helloBlock flex_box">					
+					<h1>
+						Hello There! <br />
+						I'm Ilya, a web developer from Chelyabinsk, Russia Federation.
+						Please take a look around!
+					</h1>					
+					<p tabindex="0">
+						I am passionate about creating web applications. Although web
+						development is my hobby, in the future I dream of becoming a real
+						web application developer.
+					</p>					
 				</article>
 
-				<article class="gridBoxWicd">
+				<article id="code_pathway" class="gridBoxWicd">
 					<div class="wicdCont">
 						<h1 class="scrollAnimate wicdHeader justifySelfCenter">
 							My coder pathway.
@@ -105,9 +165,10 @@
 								<h2>Khan Academy</h2>
 								<p>
 									First of all, I started to learn JavaScrip, HTML, CSS at
-									<a target="blank_"  rel="noreferrer"href="https://www.khanacademy.org/profile/NeoBliz"
-										>Khan Academy.</a
-									>
+									<a target="blank_"  
+										rel="noreferrer"
+										href="https://www.khanacademy.org/profile/NeoBliz"										
+										>Khan Academy.</a>
 									Through a series of simple but interesting interactive
 									lessons, I learned the basics of programming.
 								</p>
@@ -122,13 +183,14 @@
 								<h2>MDN learning center.</h2>
 								<p>
 									Inspired and enthusiastic, I went to the
-									<a target="blank_"  rel="noreferrer"href="https://developer.mozilla.org/en-US/docs/Learn"
-										>MDN Learning Center</a
-									>
+									<a target="blank_"  
+										rel="noreferrer" 
+										href="https://developer.mozilla.org/en-US/docs/Learn"										
+										>MDN Learning Center</a>
 									course. There was a fundamental and detailed course on HTML,
 									CSS, responsive design technology, etc. After that, I studied
 									the jQuery library with the
-									<a target="blank_"  rel="noreferrer"href="https://learn.jquery.com">jQuery learning center.</a>
+									<a target="blank_"  rel="noreferrer" href="https://learn.jquery.com">jQuery learning center.</a>
 									Based on that knowledge, I created this website.
 								</p>
 							</div>
@@ -144,9 +206,8 @@
 									After studying the general features of front-end development,
 									I decided to try a new direction of programming - data science
 									engineering. After I studied the Machine Learning course at
-									<a target="blank_"  rel="noreferrer"href="https://www.codecademy.com/profiles/neobliz1"
-										>Codecademy.</a
-									>
+									<a target="blank_"  rel="noreferrer" href="https://www.codecademy.com/profiles/neobliz1"
+										>Codecademy.</a>
 									It was positive experience, but I preferred continue web
 									development way.
 								</p>
@@ -197,9 +258,9 @@
 						</div>
 					</div>
 				</article>
-			</div>
+			</section>
 
-			<div id="skillsMeter" class="mySkills flex_box">
+			<section id="skillsMeter" class="mySkills flex_box">
 				<div class="overlayImgContainer" style="opacity: 1;">
 					<img class="slider2" />
 				</div>
@@ -223,10 +284,10 @@
 									<a id="profilePage_S_Link"
 										class="beforeSkillLink"
 										data-linkToElement="project_1"
-										>Profile page</a
-									>
+										href=""
+										>Profile page</a>
 									<a target="blank_"  rel="noreferrer" class="centerSkillLink" href="https://codesandbox.io/s/neobliz-mozilla-splash-page-323mf">Mozilla splash page</a>
-									<a target="blank_"  rel="noreferrer" class="beforeSkillLink" href="https://codesandbox.io/s/fakebirdwatchingsite-2hnqu">Fake birdwatchin gsite</a>
+									<a target="blank_"  rel="noreferrer" class="beforeSkillLink" href="https://codesandbox.io/s/fakebirdwatchingsite-2hnqu">Fake birdwatching site</a>
 									<!-- <a target="blank_"  rel="noreferrer"class="lastSkillLink">Link</a> -->
 								</div>
 							</div>
@@ -247,6 +308,7 @@
 									<a id="profilePage_S_Link"
 										class="beforeSkillLink"
 										data-linkToElement="project_1"
+										href=""
 										>Profile page</a
 									>
 									<a target="blank_"  rel="noreferrer" class="centerSkillLink" href="https://codesandbox.io/s/fonts-styling-assesment-eil2w">Mozilla Fonts styling</a>
@@ -271,23 +333,27 @@
 									<a id="codeReminder_S_Link"
 										class="beforeSkillLink"
 										data-linkToElement="react_project_1"
+										href=""
 										>Code reminder</a
 									>
 									<a id="profilePage_S_Link"		
 										class="centerSkillLink"								
 										data-linkToElement="project_1"
+										href=""
 										>Profile page</a
 									>
 									<a id="ohNoGuy_extreme_hope_S_Link"
 										class="centerSkillLink"									
 										data-linkToElement="project_5"
+										href=""
 										>OhNoGuy extreme hope</a
 									>
 									<a id="memoryGame_S_Link"
 										class="beforeSkillLink"
 										data-linkToElement="project_4"
+										href=""
 										>Memory game</a
-									>
+									>			
 								</div>
 							</div>
 
@@ -307,26 +373,31 @@
 									<a id="project_ants_colony_S_Link"
 										class="firstSkillLink"
 										data-linkToElement="project_ants_colony"
+										href=""
 										>Ants colony</a
 									>  
 									<a id="project_bees_awakening_S_Link"
 										class="beforeSkillLink"										
 										data-linkToElement="project_bees_awakening"
+										href=""
 										>Bees awakening</a
 									>
 									<a id="project_angry_fish_S_Link"										
 										class="centerSkillLink"
 										data-linkToElement="project_angry_fish"
+										href=""
 										>Angry fish</a
 									>
 									<a id="ohNoGuy_extreme_hope_S_Link"										
 										class="beforeSkillLink"
 										data-linkToElement="project_5"
+										href=""
 										>OhNoGuy hope</a
 									>
 									<a id="memoryGame_S_Link"
 										class="lastSkillLink"
 										data-linkToElement="project_4"
+										href=""
 										>Memory game</a
 									>
 								</div>
@@ -348,17 +419,23 @@
 									<a id="codeReminder_S_Link"
 										class="beforeSkillLink"
 										data-linkToElement="react_project_1"
+										href=""
 										>Code reminder</a
 									>
 									<a id="react_JSC_project_S_Link"
 										class="centerSkillLink"
-										data-linkToElement="react_JSC_project_5">JS calculator</a>
+										data-linkToElement="react_JSC_project_5"
+										href=""
+										>JS calculator</a>
 									<a id="react_DP_project_S_Link"
 										class="centerSkillLink"
-										data-linkToElement="react_DP_project_4">Drum pad</a>
+										data-linkToElement="react_DP_project_4"
+										href=""
+										>Drum pad</a>
 									<a id="react_MP_project_S_Link"
 										class="beforeSkillLink"
 										data-linkToElement="react_MP_project_3"
+										href=""
 										>Markdown previewer</a
 									>
 								</div>
@@ -380,6 +457,7 @@
 									<a id="codeReminder_S_Link"
 										class="centerSkillLink"
 										data-linkToElement="react_project_1"
+										href=""
 										>Code reminder</a
 									>
 									<!-- <a target="blank_"  rel="noreferrer">Link</a>
@@ -404,27 +482,35 @@
 									<a id="codeReminder_S_Link"
 										class="firstSkillLink"
 										data-linkToElement="react_project_1"
+										href=""
 										>Code reminder</a
 									>
 									<a id="TFPFC_S_Link"
 										class="beforeSkillLink"
 										data-linkToElement="react_TFPFC_project_6"
+										href=""
 										>25 + 5 clock</a
 									>									
 									<a id="react_JSC_project_S_Link"
 										class="centerSkillLink"
-										data-linkToElement="react_JSC_project_5">JS calculator</a>
+										data-linkToElement="react_JSC_project_5"
+										href=""
+										>JS calculator</a>
 									<a id="react_DP_project_S_Link"
 										class="centerSkillLink"
-										data-linkToElement="react_DP_project_4">Drum pad</a>
+										data-linkToElement="react_DP_project_4"
+										href=""
+										>Drum pad</a>
 										<a id="react_MP_project_S_Link"
 										class="beforeSkillLink"
 										data-linkToElement="react_MP_project_3"
+										href=""
 										>Markdown previewer</a
 									>
 									<a id="RQM_project_S_Link"
 										class="lastSkillLink"
 										data-linkToElement="react_RQM_project_2"
+										href=""
 										>Random quote machine</a
 									>
 								</div>
@@ -446,6 +532,7 @@
 									<a id="codeReminder_S_Link"
 										class="centerSkillLink"
 										data-linkToElement="react_project_1"
+										href=""
 										>Code reminder</a
 									>
 									<!-- <a target="blank_"  rel="noreferrer"class="firstSkillLink">Link</a>
@@ -471,6 +558,7 @@
 									<a id="TFPFC_S_Link"
 										class="centerSkillLink"
 										data-linkToElement="react_TFPFC_project_6"
+										href=""
 										>25 + 5 clock</a
 									>
 									<!-- <a target="blank_"  rel="noreferrer"class="firstSkillLink">Link</a>
@@ -505,14 +593,15 @@
 					</div> -->
 					<img class="canvas_render" />
 				</div>
-			</div>
+			</section>
 
-			<div id="projectList" class="about flex_box">
+			<section id="projectList" class="about flex_box">
 				<div class="mySkillsContent flex_box">
-					<h1>Project list</h1>
+					<h1 tabindex="0" >Project list</h1>
 					<div class="examplesContainer">
 						<div
 							class="react_TFPFC_project_6 projectDiv projectWithDescription"
+							tabindex="0"						
 						>
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
@@ -534,7 +623,8 @@
 								</p>
 							</div>
 						</div>
-						<div class="react_JSC_project_5 projectDiv projectWithDescription">
+						<div class="react_JSC_project_5 projectDiv projectWithDescription"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
 								<h2 class="paragraphMSD hidden">
@@ -555,7 +645,8 @@
 								</p>
 							</div>
 						</div>
-						<div class="react_DP_project_4 projectDiv projectWithDescription">
+						<div class="react_DP_project_4 projectDiv projectWithDescription"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon zoomInIconBlack"></i>
 							<div class="bottomPart">
 								<h2 class="paragraphMSD hidden">
@@ -576,7 +667,8 @@
 								</p>
 							</div>
 						</div>
-						<div class="react_MP_project_3 projectDiv projectWithDescription">
+						<div class="react_MP_project_3 projectDiv projectWithDescription"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon zoomInIconBlack"></i>
 							<div class="bottomPart">
 								<h2 class="paragraphMSD hidden">
@@ -597,7 +689,8 @@
 								</p>
 							</div>
 						</div>
-						<div class="react_RQM_project_2 projectDiv projectWithDescription">
+						<div class="react_RQM_project_2 projectDiv projectWithDescription"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
 								<h2 class="paragraphMSD hidden">
@@ -618,7 +711,8 @@
 								</p>
 							</div>
 						</div>
-						<div class="react_project_1 projectDiv projectWithDescription">
+						<div class="react_project_1 projectDiv projectWithDescription"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
 								<h2 class="paragraphMSD hidden">
@@ -648,9 +742,9 @@
 								</p>
 							</div>
 						</div>
-						<div class="project_1 projectDiv">
-							<p class="topParagraphMSD paragraphMSD hidden">
-								
+						<div class="project_1 projectDiv"
+							tabindex="0">
+							<p class="topParagraphMSD paragraphMSD hidden">								
 							</p>
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
@@ -668,7 +762,8 @@
 								</p>
 							</div>
 						</div>
-						<div class="project_ants_colony projectDiv">
+						<div class="project_ants_colony projectDiv"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
 								<a target="blank_"  rel="noreferrer"
@@ -679,7 +774,8 @@
 								>
 							</div>
 						</div>
-						<div class="project_bees_awakening projectDiv">
+						<div class="project_bees_awakening projectDiv"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
 								<a target="blank_"  rel="noreferrer"
@@ -690,7 +786,8 @@
 								>
 							</div>
 						</div>
-						<div class="project_angry_fish projectDiv">
+						<div class="project_angry_fish projectDiv"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
 								<a target="blank_"  rel="noreferrer"
@@ -701,7 +798,8 @@
 								>
 							</div>
 						</div>
-						<div class="project_5 projectDiv">
+						<div class="project_5 projectDiv"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
 								<a target="blank_"  rel="noreferrer"class="viewProject hidden" id="vpb" href="html/project5.html"
@@ -709,7 +807,8 @@
 								>
 							</div>
 						</div>
-						<div class="project_4 projectDiv">
+						<div class="project_4 projectDiv"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
 								<a target="blank_"  rel="noreferrer"class="viewProject hidden" id="vpb" href="html/project4.html"
@@ -717,7 +816,8 @@
 								>
 							</div>
 						</div>
-						<div class="project_3 projectDiv">
+						<div class="project_3 projectDiv"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
 								<a target="blank_"  rel="noreferrer"class="viewProject hidden" id="vpb" href="html/project3.html"
@@ -725,7 +825,8 @@
 								>
 							</div>
 						</div>
-						<div class="project_2 projectDiv">
+						<div class="project_2 projectDiv"
+							tabindex="0">
 							<i class="fas fa-search-plus zoomInIcon"></i>
 							<div class="bottomPart">
 								<a target="blank_"  rel="noreferrer"class="viewProject hidden" id="vpb" href="html/project2.html"
@@ -735,7 +836,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</section>
 			
 			<footer>
 				<p>Third-party libraries used in the project</p>
@@ -747,68 +848,10 @@
 			</footer>
 			
 			<!-- upButton -->
-			<button class="upButton animated hidden">
+			<button class="upButton animated hidden" tabindex="0">
 				<i class="far fa-arrow-alt-circle-up"></i>
-			</button>
-			
-			<!-- message dialog -->
-			<div id="tMessageDialog" title="Message to me">
-				<div class="thoughtContainer">
-					<p class="thought robotThought">
-						Hi there, I hope you doing well.
-					</p>
-					<i class="fas fa-robot"></i>
-					<p class="thought robotThought">
-						I'm tChatBot, you could text me everything. I resend your message to
-						the master.
-					</p>
-					<i class="fas fa-robot"></i>
-				</div>
-				<form action="">
-					<label for="nickName">Enter your nickname:</label>
-					<input
-						type="text"
-						id="nickName"
-						name="nickName"
-						placeholder="nickName"
-						required
-						minlength="1"
-					/>
-					<textarea
-						name="tMessageArea"
-						id="tMessageArea"
-						placeholder="Type there!!)"
-						cols="40"
-						rows="2"
-						spellcheck="true"
-						required
-						minlength="1"
-					></textarea>
-					<div class="sendBlock">
-						<button class="sendBtn">send</button>
-						<div class="g-recaptcha-container">
-							<div
-								class="g-recaptcha"
-								data-sitekey="6LfhIFAaAAAAADP9r_20uuqTdqvKQUH4hsWzTLGT"
-							></div>
-							<input
-								type="text"
-								id="recaptchaCheck"
-								required
-								minlength="1"
-								tabindex="-1"
-							/>
-						</div>
-
-						<input type="hidden" autofocus="true" />
-					</div>
-				</form>
-			</div>
-			<!-- tMessage button -->
-			<button class="messageButton">
-				<i class="fab fa-telegram-plane"></i>
-			</button>
-		</div>
+			</button>			
+		</main>
 		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.5.1.js"></script>		
 		<!-- jQuery mobile, orientation part -->

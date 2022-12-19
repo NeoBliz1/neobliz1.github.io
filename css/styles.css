@@ -35,8 +35,8 @@ a {
 a:hover {
 	color: black;
 }
-a:active {
-	color: white;
+a:is(:active, :focus) {
+	color: red;
 }
 h1 {
 	font-family: 'Big Shoulders Display', cursive;
@@ -96,6 +96,7 @@ h2 {
 }
 .logo_prop,
 .go_home {
+	display: block;
 	margin: 3px;
 	border-radius: 50%;
 	width: 7vh;
@@ -124,8 +125,8 @@ h2 {
 .freecodecamp_logo {
 	background-image: url(../img/freecodecamp_logo.png);
 }
-.logo_prop:hover,
-.go_home:hover {
+.logo_prop:is(:hover, :focus),
+.go_home:is(:hover, :focus) {
 	background-color: #fff;
 	transition-duration: 1s;
 }
@@ -170,18 +171,13 @@ h2 {
 	align-items: center;
 	justify-content: center;
 }
-.helloBlock > p {
-	font-size: 3vw;
-}
-.helloBlock > div:nth-of-type(1) {
+.helloBlock > h1 {
+	text-align: right;
 	margin: 1vw;
 	flex: 1 40vw;
 }
-.helloBlock > div > h1 {
-	text-align: right;
-}
-
-.helloBlock > div:nth-of-type(2) {
+.helloBlock > p {
+	font-size: 3vw;
 	margin: 1vh;
 	flex: 2 50vw;
 	text-align: left;
@@ -427,9 +423,9 @@ h2 {
 	background: linear-gradient(to bottom, #fca314 5%, #ffec64 100%);
 	background-color: #fca314;
 }
-.readMoreBtn:active,
-.viewProject:active,
-.sendBtn:active {
+.readMoreBtn:is(:active, :focus),
+.viewProject:is(:active, :focus),
+.sendBtn:is(:active, :focus) {
 	-webkit-transform: translateY(4px);
 	transform: translateY(4px);
 	color: white;
@@ -644,8 +640,8 @@ pre {
 	background-color: #ffab23;
 	color: black;
 }
-.upButton:active,
-.messageButton:active {
+.upButton:is(:active, :focus),
+.messageButton:is(:active, :focus) {
 	bottom: 50px;
 	color: white;
 }
@@ -783,14 +779,14 @@ pre {
 	.flex_box {
 		flex-flow: column nowrap;
 	}
-	.helloBlock > div:nth-of-type(1) {
-		margin-bottom: 0px;
+	.helloBlock > h1 {
+		margin: 1em 0;
 		flex: 2 0;
 	}
-	.helloBlock > div:nth-of-type(2) {
+	.helloBlock > p {
 		text-align: justify;
 		padding-top: 0px;
-		margin-top: 0px;
+		margin: 1em 0;
 		flex: 2 0;
 	}
 	.gridBoxWicd {

@@ -48,7 +48,8 @@ const zoomInHeader = function () {
 // 	// console.log('anim start')
 // };
 
-this.doAnim = false;
+// this.doAnim = false;
+
 /*use waypoint JQuery plugin for tracking scroll elements*/
 let controller = [];
 let scenesArr = [];
@@ -212,9 +213,10 @@ const mySkillsAnimation = function () {
 	const zoomInAnimation = function (thisIs) {
 		durationTime = 500;
 		const viewportWidth = $(window).width();
+
 		$(thisIs)
 			.removeClass('fadeInUp')
-			.filter(':not(:animated)')
+			// .filter(':not(:animated)')
 			.css({
 				'z-index': 8,
 				'text-indent': '1px'
@@ -269,13 +271,12 @@ const mySkillsAnimation = function () {
 							.click(function (event) {
 								if (event.currentTarget.id === 'rmb') {
 									/*alert('Your clicked button 'Read more'');*/
-
 									projectDivFullSizeState = true;
 									projectDivFullSize(thisIs);
 								}
-								if (event.currentTarget.id === 'vpb') {
-									$('.hovered').trigger('mouseleave').removeClass('hovered');
-								}
+								// if (event.currentTarget.id === 'vpb') {
+								// 	$('.hovered').trigger('mouseleave').removeClass('hovered');
+								// }
 							});
 					}
 				},
@@ -298,6 +299,7 @@ const mySkillsAnimation = function () {
 						'transform',
 						'scale3d(' + now + ', ' + now + ', ' + now + ')'
 					);
+
 					let $zoomInIcon = $(thisIs).find('i');
 					$zoomInIcon.fadeInAnimation();
 					let $btns;
@@ -332,16 +334,16 @@ const mySkillsAnimation = function () {
 	};
 	jQuery.fn.rollInBtnAnimation = function () {
 		//button animated In
-		this.removeClass('hidden rollOut animated faster').addClass(
-			'rollIn animated faster'
-		);
+		this.removeClass('hidden rollOut animated faster')
+			.addClass('rollIn animated faster')
+			.attr('tabindex', '0');
 		return this;
 	};
 	jQuery.fn.rollOutBtnAnimation = function () {
 		//button animated Out
-		this.removeClass('rollIn animated faster').addClass(
-			'rollOut animated faster'
-		);
+		this.removeClass('rollIn animated faster')
+			.addClass('rollOut animated faster')
+			.attr('tabindex', '-1');
 		return this;
 	};
 	//jQuery function for centering div
@@ -482,8 +484,6 @@ const mySkillsAnimation = function () {
 		const divCurrentWidth = $(thisIs).outerWidth();
 		const vpbMarginValue = projectDivWidth * 0.03;
 		const vpbFontSize = projectDivWidth * 0.04;
-		//forced triggering mouse leave handler for minimizing current div
-		$(thisIs).trigger('mouseleave');
 
 		//cloning current div for saving current structure flex table
 		const $cloneDiv = $(thisIs).clone();
@@ -509,7 +509,7 @@ const mySkillsAnimation = function () {
 			.attr('id', 'cloneDiv')
 			.appendTo('body') //adding clone div to the end main div
 			.append(
-				'<p class="closeButton hidden"><i class="far fa-times-circle"></i></p>'
+				'<a class="closeButton" type="button" tabindex="0"><i class="far fa-times-circle"></i></a>'
 			)
 			.css({
 				position: 'absolute',
@@ -527,6 +527,7 @@ const mySkillsAnimation = function () {
 				divCurrentHeight,
 				divCurrentWidth
 			)
+			.focus()
 			.find('button, a')
 			.mousedown(function (event) {
 				//animate press button, I use this method because animate.css is a conflict with translateY
@@ -554,39 +555,65 @@ const mySkillsAnimation = function () {
 		$('.closeButton').scaleCloseButton(divCurrentHeight, divCurrentWidth);
 
 		//show close button
-		$('.closeButton')
-			.removeClass('hidden')
-			.hide()
-			.fadeIn(DSdurationTime)
-			.hover(
-				function () {
-					$(this)
-						.find('.fa-times-circle')
-						.removeClass('far')
-						.addClass('fas')
-						.fadeIn(DSdurationTime);
-				},
-				function () {
-					$(this)
-						.find('.fa-times-circle')
-						.removeClass('fas')
-						.addClass('far')
-						.fadeIn(DSdurationTime);
-				}
-			);
+		// $('.closeButton')
+		// 	.removeClass('hidden')
+		// 	.hide()
+		// 	.fadeIn(DSdurationTime)
+		// 	.hover(
+		// 		function () {
+		// 			$(this)
+		// 				.find('.fa-times-circle')
+		// 				.removeClass('far')
+		// 				.addClass('fas')
+		// 				.fadeIn(DSdurationTime);
+		// 		},
+		// 		function () {
+		// 			$(this)
+		// 				.find('.fa-times-circle')
+		// 				.removeClass('fas')
+		// 				.addClass('far')
+		// 				.fadeIn(DSdurationTime);
+		// 		}
+		// 	);
 
 		//overlay click handler
-		$('#fullSizeSkillBoxOverlay, .closeButton, #vpb').click(function (event) {
+		const $closeButton = $('#fullSizeSkillBoxOverlay, .closeButton');
+		$closeButton.click(function (event) {
+			console.log('click');
+			event.preventDefault();
 			/* Act on the event */
 			projectDivFullSizeState = false;
 			projectDivMinimize(this, currentDivOffset);
 		});
+		//add esc key listner for close enhanced div
+		$(document).keyup(function (e) {
+			// console.log('keyUp');
+			if (e.key === 'Escape') {
+				// escape key maps to keycode `27`
+				projectDivFullSizeState = false;
+				projectDivMinimize($closeButton, currentDivOffset);
+				$('.hovered').find('#rmb').focus();
+			} else if (e.key === 'Enter') {
+				// console.log('enter tapped');
+				if ($('.closeButton').hasClass('closeBtnFocused')) {
+					// console.log('cose button focused');
+					projectDivFullSizeState = false;
+					projectDivMinimize($closeButton, currentDivOffset);
+					$('.hovered').find('#rmb').focus();
+				}
+			}
+		});
+		$('.closeButton').focus(function () {
+			// console.log('close button focused');
+			$(this).addClass('closeBtnFocused');
+		});
 		//disable mouse event handler from skills divs
-		$projectDiv.off('mouseenter mouseleave vmouseover vmouseout');
+		$projectDiv.off('mouseenter mouseleave vmouseover vmouseout focus');
 	};
 	//minimize fullSize div $(this).trigger('mouseleave');
 	const projectDivMinimize = function (thisIs, currentDivOffset) {
-		$(thisIs).off('click');
+		$(thisIs).off('click, focus');
+		$(document).off('keyup');
 		$('#fullSizeSkillBoxOverlay').fadeOut(DSdurationTime, function () {
 			$(this).remove();
 		});
@@ -597,58 +624,95 @@ const mySkillsAnimation = function () {
 				$(this).remove();
 			});
 		$('body').css('overflow', 'visible');
-		divHoverHandler();
-		//minimize all hovered divs
-		$('.hovered').trigger('mouseleave').removeClass('hovered');
 		$(window).off('scroll.fixedCurrentView');
+		//add hover listner
+		divHoverHandler();
+		const $divFocused = $('.focused');
+		//if divs with class focused is exist
+		// console.log($divMaximazed[0] === undefined);
+		if ($divFocused[0] !== undefined) {
+			$divFocused.find('#rmb').focus();
+		}
 	};
 	const divHoverHandler = function () {
 		//mouse in and out handler
-		$projectDiv.hover(
-			function () {
-				/* Stuff to do when the mouse enters the element */
-				console.log('hovered');
-				//minimize all hovered divs
-				$('.hovered').trigger('mouseleave').removeClass('hovered');
-				const thisIs = this;
-				zoomInAnimation(thisIs);
-				if (platformIsMobile) {
-					const divCurrentHeight = $(thisIs).outerHeight();
-					const viewportHeight = $(window).height();
-					const currentDivOffset = $(thisIs).offset();
-					const windowScrollTo = currentDivOffset.top;
-					const targetTopOffset = Math.max(
-						0,
-						windowScrollTo - (viewportHeight - divCurrentHeight) / 2
-					); //defining the target position from the div top to the viewport
-					$('html, body').animate(
-						{
-							scrollTop: targetTopOffset
-						},
-						DSdurationTime
-					);
-					$(thisIs).addClass('hovered');
-					//show description
-					if ($(window).width() < 1000) {
-						$(thisIs)
-							.find('.paragraphMSD')
-							.removeClass('hidden')
-							.fadeInAnimation();
+		$projectDiv
+			.hover(
+				function () {
+					const thisIs = this;
+					/* Stuff to do when the mouse enters the element */
+					// console.log('mouseenter fired');
+					const $divHovered = $('.hovered').not(thisIs);
+					//if divs with class focused is exist
+					// console.log($divMaximazed[0] === undefined);
+					if ($divHovered[0] !== undefined) {
+						//minimize div and remove classes
+						zoomOutAnimation($divHovered);
+						$divHovered.removeClass('hovered');
+						// console.log('hovered remove in hover event');
+					}
+					const $divFocused = $('.focused').not(thisIs);
+					//if divs with class focused is exist
+					// console.log($divMaximazed[0] === undefined);
+					if ($divFocused[0] !== undefined) {
+						//minimize div and remove classes
+						$divHovered.removeClass('focused');
+						// console.log('hovered remove in hover event');
+					}
+					// console.log($(thisIs));
+					if (!$(thisIs).hasClass('hovered')) {
+						// console.log('has class hovered');
+						$(thisIs).addClass('hovered');
+						zoomInAnimation(thisIs);
+					}
+					if (platformIsMobile) {
+						const divCurrentHeight = $(thisIs).outerHeight();
+						const viewportHeight = $(window).height();
+						const currentDivOffset = $(thisIs).offset();
+						const windowScrollTo = currentDivOffset.top;
+						const targetTopOffset = Math.max(
+							0,
+							windowScrollTo - (viewportHeight - divCurrentHeight) / 2
+						); //defining the target position from the div top to the viewport
+						$('html, body').animate(
+							{
+								scrollTop: targetTopOffset
+							},
+							DSdurationTime
+						);
+						//show description
+						if ($(window).width() < 1000) {
+							$(thisIs)
+								.find('.paragraphMSD')
+								.removeClass('hidden')
+								.fadeInAnimation();
+						}
+					}
+				},
+				function () {
+					console.log('mouseleave fired');
+					/* Stuff to do when the mouse leaves the element */
+					const thisIs = this;
+					$(thisIs).removeClass('hovered');
+					zoomOutAnimation(thisIs);
+					if (platformIsMobile) {
+						$(thisIs).find('.paragraphMSD').fadeOutAnimation();
 					}
 				}
-			},
-			function () {
-				/* Stuff to do when the mouse leaves the element */
-				const thisIs = this;
-				zoomOutAnimation(thisIs);
-				if (platformIsMobile) {
-					$(thisIs)
-						.removeClass('hovered')
-						.find('.paragraphMSD')
-						.fadeOutAnimation();
+			)
+			//add focus listner for tab navigation
+			.focus(function () {
+				// console.log('div focused');
+				const $divFocused = $('.focused');
+				//if divs with class focused is exist
+				// console.log($divMaximazed[0] === undefined);
+				if ($divFocused[0] !== undefined) {
+					//minimize div and remove classes
+					zoomOutAnimation($divFocused);
+					$divFocused.removeClass('focused');
 				}
-			}
-		);
+				$(this).mouseenter().addClass('focused');
+			});
 		if (platformIsMobile) {
 			// console.log('swipe1');
 			$('.examplesContainer').on('scrollstart', function (event) {

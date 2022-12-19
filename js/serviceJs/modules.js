@@ -1,12 +1,12 @@
 //handler for links in skills area
 this.mySkillsLinksHalndler = () => {
 	//get all links in divs with class=linksContainer
-	$(".linksContainer > a").each(function (index, el) {
+	$('.linksContainer > a').each(function (index, el) {
 		//if data attrimute isn't undefined then add onClick listner
-		const dataLinkToEl = $(this).attr("data-linkToElement");
-		if (typeof dataLinkToEl === "string") {
+		const dataLinkToEl = $(this).attr('data-linkToElement');
+		if (typeof dataLinkToEl === 'string') {
 			//get project preview div
-			const $projectPreviewDiv = $("." + dataLinkToEl);
+			const $projectPreviewDiv = $('.' + dataLinkToEl);
 			//callculate project preview offset
 			const marginPercentFromTop = 5;
 			const offsetFromTop = $projectPreviewDiv.offset().top;
@@ -17,9 +17,11 @@ this.mySkillsLinksHalndler = () => {
 			$(this).click(function (event) {
 				event.preventDefault();
 				//disable mouse event handler from skills divs
-				$(".projectDiv").off("mouseenter mouseleave vmouseover vmouseout");
+				$('.projectDiv').off(
+					'mouseenter mouseleave vmouseover vmouseout focus'
+				);
 				//scroll to project preview
-				$("html").animate(
+				$('html').animate(
 					{
 						scrollTop: newOffsetFromTop
 					},
@@ -28,22 +30,20 @@ this.mySkillsLinksHalndler = () => {
 						complete: function () {
 							//enable mouse event handler from skills divs
 							mySkillsAnimation();
-							$projectPreviewDiv.trigger("mouseenter");
+							$projectPreviewDiv.mouseenter();
 							if (!platformIsMobile) {
-								console.log("platform is mobile 123");
-								$(".projectDiv").off(
-									"mouseenter mouseleave vmouseover vmouseout"
+								$('.projectDiv').off(
+									'mouseenter mouseleave vmouseover vmouseout focus'
 								);
 								$projectPreviewDiv
-									.find("#rmb")
+									.find('#rmb')
 									.one(
-										"webkitAnimationEnd oanimationend msAnimationEnd animationend",
+										'webkitAnimationEnd oanimationend msAnimationEnd animationend',
 										function (e) {
 											// console.log('i animation end');
-											$(this).trigger("click");
+											$(this).trigger('click');
 										}
-									)
-									.addClass("hovered");
+									);
 							}
 						}
 					}
