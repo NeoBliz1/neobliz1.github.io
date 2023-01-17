@@ -18,5 +18,11 @@
 		"titleBar.inactiveBackground": "#9ec81999",
 		"titleBar.inactiveForeground": "#15202b99"
 	},
-	"peacock.remoteColor": "#9ec819"
+	"peacock.remoteColor": "#9ec819",
+	"prettier.tabWidth": 1,
+	"prettier.useTabs": true,
+	"prettier.useEditorConfig": false,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"prettier.singleQuote": true,
+	"prettier.singleAttributePerLine": true
 }
