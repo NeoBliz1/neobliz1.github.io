@@ -1,4 +1,4 @@
-# Neobliz1 profile page.Neobliz1 profile page.
+# Neobliz1 profile page.
 
 This project was bootstrapped with the Codesandbox.io online - IDE.
 
