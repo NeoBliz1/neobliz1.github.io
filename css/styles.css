@@ -259,11 +259,23 @@ h2 {
 .zoomInIconBlack {
 	color: rgb(0, 0, 0, 0.6);
 }
+.typescript_react_FGAT {
+	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_arithmetic_first_grade_trainer_tiny.png);
+	background-color: #6ebbfa;
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 91%;
+	background-size: 100% 91%;
+	background-position: 50% 25%;
+}
+.typescript_react_FGAT > .bottomPart > .paragraphMSD {
+	color: black;
+	background-color: #6ebbfa;
+}
 .react_TFPFC_project_6 {
 	background-image: url(../img/pojects_preview_imgs/neobliz1.github.io_twenty_five_plus_five_clock_tiny.png);
 	background-color: rgb(211, 178, 29);
 	background-repeat: no-repeat;
-	-webkit-background-size: 100% 50%;
+	-webkit-background-size: 212% 96%;
 	background-size: 212% 96%;
 	background-position: 50% 25%;
 }
